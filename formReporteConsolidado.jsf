@@ -1,0 +1,894 @@
+
+
+<%@page contentType="text/html"%>
+<%@page pageEncoding="UTF-8"%>
+<%@ page language="java" %>
+<%@ page import = "java.sql.*"%>
+<%@ page import = "java.sql.DriverManager"%> 
+<%@ page import = "java.sql.ResultSet"%> 
+<%@ page import = "java.sql.Statement"%> 
+<%@ page import="com.cofar.util.*" %>
+<%@ page import = "java.text.DecimalFormat"%> 
+<%@ page import = "java.text.NumberFormat"%> 
+<%@ page import = "java.util.Locale"%> 
+<%@ page import="java.text.SimpleDateFormat"%>
+
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title></title>
+        <link rel="STYLESHEET" type="text/css" href="../../css/ventas.css" />
+        <script src="../../js/general.js"></script>
+        <style>
+            td{
+                padding:5px;
+            }
+            th{
+                padding:5px;
+            }
+        </style>
+    </head>
+    <body>
+        <%!    public double redondear(double numero, int decimales) {
+        return Math.round(numero * Math.pow(10, decimales)) / Math.pow(10, decimales);
+    }
+        %>
+
+        <form name="form1" action="">
+            <%! Connection con = null;
+            %>
+            <%
+        con = Util.openConnection(con);
+            %>
+            <%
+			
+		NumberFormat nf = NumberFormat.getNumberInstance(Locale.ENGLISH);
+		DecimalFormat form = (DecimalFormat)nf;
+		form.applyPattern("#,###.00");
+
+			
+        String sql3 = "";
+        String cod_tipo_inc_regional = "";
+        cod_tipo_inc_regional = request.getParameter("cod_tipo_inc_regional");
+        String cod_gestion = request.getParameter("cod_gestion");
+        String nombre_gestion = request.getParameter("nombre_gestion");
+        String cod_mes = request.getParameter("cod_mes");
+        String nombre_mes = request.getParameter("nombre_mes");
+        String codPersonal = request.getParameter("codPersonal");
+        String nomPersonal = request.getParameter("nombrePersonal");
+        String codCargo = request.getParameter("codCargo");
+        String codAreaEmpresa = request.getParameter("codAreaEmpresa");
+        String nomAreaEmpresa = request.getParameter("nomAreaEmpresa");
+        String codTipoCategoria = request.getParameter("codCategoria");
+        String nomCategoria = request.getParameter("nomCategoria");
+        String closeup = request.getParameter("closeup");
+        System.out.println("closeup : "+closeup);
+        double totalComision=0;
+
+
+            %>
+            <br> <br><br>
+            <p align="center" style="font-size:13px" > COMISIONES CONSOLIDADO POR GESTION Y MES  <br><br> </p>
+            <br><br>
+            <table width="90%" align="center" class="outputText2" style="border: solid #f2f2f2 1px;" cellpadding="0" cellspacing="0">
+                <tr class="outputText2">
+                    <td height="30 px"> Nombre :</td>
+                    <td> <%=nomPersonal%></td>
+                    <td> <%=nombre_gestion%></td>
+                    <td> <%=nombre_mes%></td>
+                    
+                    <td colspan="2"> Agencia :</td>
+                    <td> <%=nomAreaEmpresa%> </td>
+                </tr>
+               
+
+
+                <%
+        try {
+            int codLineaVentaT = 0;
+            String sql_contlinea = "select distinct c.COD_LINEAVENTA from CLIENTES_LINEASVENTA_VERSIONES c" +
+                    " where c.COD_PERSONAL=" + codPersonal + " and c.cod_gestion=" + cod_gestion + " and c.cod_mes=" + cod_mes + "";
+            System.out.println("sql_contlinea :" + sql_contlinea);
+            Statement st_contlinea = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            ResultSet rs_contlinea = st_contlinea.executeQuery(sql_contlinea);
+            int contLineasventasPersonal = 0;
+            
+			if (codPersonal.equals("1860")){
+                codLineaVentaT=1;
+            }
+
+            while (rs_contlinea.next()) {
+                codLineaVentaT = rs_contlinea.getInt(1);
+                contLineasventasPersonal++;
+            }
+            if (codPersonal.equals("1860")){
+                codLineaVentaT=1;
+                contLineasventasPersonal=1;
+            }
+            if (contLineasventasPersonal == 2) {
+                codLineaVentaT = 0;
+            }
+            if((codCargo.equals("1123") && contLineasventasPersonal==0) || (codCargo.equals("1227") && contLineasventasPersonal==0)  || (codCargo.equals("1122") && contLineasventasPersonal==0) || (codCargo.equals("1171") && contLineasventasPersonal==0)){
+                codLineaVentaT = 1;
+            }
+            if ( (codCargo.equals("1120") )){
+            //if ( (codCargo.equals("1120") && contLineasventasPersonal==0)){
+                codLineaVentaT = 0;
+            }
+
+            if ( (codCargo.equals("1171") )){
+            //if ( (codCargo.equals("1120") && contLineasventasPersonal==0)){
+                codLineaVentaT = 1;
+            }
+            System.out.println("codAreaEmpresa :"+codAreaEmpresa);
+            if(codAreaEmpresa.equals("90")){
+                codLineaVentaT =1;
+            }
+
+            //if((codCargo.equals("1123"))) {
+            if((codCargo.equals("1123") && contLineasventasPersonal>=1 )) {  
+                codLineaVentaT = 0;
+            }
+            /********************************/
+            String sql_monto = "select c.CODIGO_CARGO_CAT, t.NOM_TIPO_COMISION, c.MONTO_VARIABLE," +
+                    " (c.MONTO_VARIABLE*cd.PORCENTAJE)/100,cd.PORCENTAJE,t.COD_TIPO_COMISION " +
+                    " from CARGOS_MONTO_VARIABLE c,CARGOS_MONTO_VARIABLE_PORCENTAJE cd,TIPOS_COMISION_COMERCIAL t," +
+                    " CARGOS_MONTO_VARIABLE_AGENCIA ca" +
+                    " where c.COD_LINEA_VENTA = " + codLineaVentaT + "  and c.COD_TIPO_CATEGORIA = " + codTipoCategoria + "" +
+                    " and ca.CODIGO_CARGO_CAT=cd.CODIGO_CARGO_CAT " +
+                    " and c.CODIGO_CARGO_CAT=ca.CODIGO_CARGO_CAT and ca.COD_AREA_EMPRESA= " + codAreaEmpresa + " " +
+                    " and c.COD_CARGO = " + codCargo + "  and cd.CODIGO_CARGO_CAT = c.CODIGO_CARGO_CAT and t.COD_TIPO_COMISION = cd.COD_TIPO_COMISION " ;
+            if(codAreaEmpresa.equals("90")){
+                sql_monto += " and c.COD_PERSONAL="+codPersonal+"";
+            }else{
+                sql_monto += " and c.COD_PERSONAL=0";
+            }
+            
+            if((codCargo.equals("1123")  && closeup.equals("2"))) {
+                sql_monto += " and c.NOM_CARGO_CAT like '%cup%'";
+            }
+            if((codCargo.equals("1123")  && closeup.equals("1"))) {
+                 sql_monto += " and c.NOM_CARGO_CAT not like '%cup%'";
+            }
+            if((codCargo.equals("1122") && closeup.equals("2"))) {
+                sql_monto += " and c.NOM_CARGO_CAT like '%cup%'";
+            }
+            if((codCargo.equals("1122") && closeup.equals("1"))) {
+                sql_monto += " and c.NOM_CARGO_CAT not like '%cup%'";
+            }
+
+
+            
+            System.out.println("sql_monto :" + sql_monto);
+            Statement st_monto = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            ResultSet rs_monto = st_monto.executeQuery(sql_monto);
+            double montoGlobal=0;
+            while(rs_monto.next()){
+                montoGlobal = rs_monto.getDouble(3);
+            }
+            %>
+             <tr class="outputText2">
+                    <td height="30 px"> Monto Comision al 100% </td>
+                    <td> <%=montoGlobal%></td>
+                    <td> Categoria :</td>
+                    <td> <%=nomCategoria%></td>
+                    <td colspan="2"> Codigo :</td>
+                    <td> <%=codPersonal%> </td>
+                </tr>
+            <%
+
+            /********************************/
+
+
+            String sql_tipo = "select c.CODIGO_CARGO_CAT, t.NOM_TIPO_COMISION, c.MONTO_VARIABLE," +
+                    " (c.MONTO_VARIABLE*cd.PORCENTAJE)/100,cd.PORCENTAJE,t.COD_TIPO_COMISION " +
+                    " from CARGOS_MONTO_VARIABLE c,CARGOS_MONTO_VARIABLE_PORCENTAJE cd,TIPOS_COMISION_COMERCIAL t," +
+                    " CARGOS_MONTO_VARIABLE_AGENCIA ca" +
+                    " where c.COD_LINEA_VENTA = " + codLineaVentaT + "  and c.COD_TIPO_CATEGORIA = " + codTipoCategoria + "" +
+                    " and ca.CODIGO_CARGO_CAT=cd.CODIGO_CARGO_CAT " +
+                    " and c.CODIGO_CARGO_CAT=ca.CODIGO_CARGO_CAT and ca.COD_AREA_EMPRESA= " + codAreaEmpresa + " " +
+                    " and c.COD_CARGO = " + codCargo + "  and cd.CODIGO_CARGO_CAT = c.CODIGO_CARGO_CAT and t.COD_TIPO_COMISION = cd.COD_TIPO_COMISION " ;
+                    //" and c.COD_PERSONAL=0";
+
+            if(codAreaEmpresa.equals("90")){
+                sql_tipo += " and c.COD_PERSONAL="+codPersonal+"";
+            }else{
+                sql_tipo += " and c.COD_PERSONAL=0";
+
+            }
+             if((codCargo.equals("1123")  && closeup.equals("2"))) {
+                sql_tipo += " and c.NOM_CARGO_CAT like '%cup%'";
+            }
+            if((codCargo.equals("1123")  && closeup.equals("1"))) {
+                 sql_tipo += " and c.NOM_CARGO_CAT not like '%cup%'";
+            }
+            if((codCargo.equals("1122") && closeup.equals("2"))) {
+                sql_tipo += " and c.NOM_CARGO_CAT like '%cup%'";
+            }
+            if((codCargo.equals("1122") && closeup.equals("1"))) {
+                sql_tipo += " and c.NOM_CARGO_CAT not like '%cup%'";
+            }
+            System.out.println("sql_tipo :" + sql_tipo);
+            Statement st_tipo = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            ResultSet rs_tipo = st_tipo.executeQuery(sql_tipo);
+            String nombreTipoComision = "";
+            double montoVariable = 0;
+            double montoVariablePorcentaje = 0;
+            double porcentaje = 0;
+            int cont = 1;
+            while (rs_tipo.next()) {
+                double total=0;
+                int codigo = rs_tipo.getInt(6);
+                nombreTipoComision = rs_tipo.getString(2);
+                montoVariable = rs_tipo.getDouble(3);
+                montoVariablePorcentaje = rs_tipo.getDouble(4);
+                porcentaje = rs_tipo.getDouble(5);
+                %>
+                <tr class="outputText2" style="font-size:13px" bgcolor="fuchsia">
+                    <th  height="30px"  style="color:white;border-bottom:1px solid #cccccc"> ESQUEMA</th>
+                    <td  height="20px"  style="color:white;border-bottom:1px solid #cccccc"> <%=nombreTipoComision%> </td>
+                    <td  height="20px"  style="color:white;border-bottom:1px solid #cccccc"> &nbsp; </td>
+                    <td  height="20px"  style="color:white;border-bottom:1px solid #cccccc"> <%=montoVariablePorcentaje%> (Bs)</td>
+                    <td  height="20px" colspan="3"  style="color:white;border-bottom:1px solid #cccccc"> <%=porcentaje%> % </td>
+                </tr>
+                <%
+
+                if (codigo == 8 || codigo ==6 || codigo ==7) {
+                    if(codigo == 6 ){
+                        codLineaVentaT =2;
+                    }
+                    if(codigo == 7 ){
+                        codLineaVentaT =1;
+                    }
+
+                %>
+                <tr class="outputText2" style="font-size:13px" >
+                    <th colspan="8" height="30px"  style="color:blue;border-bottom:1px solid #cccccc">
+                        <table width="100%" align="center" class="outputText2" style="border: solid #f2f2f2 1px;" cellpadding="0" cellspacing="0">
+                       
+                            <%
+                    /*sql_contlinea = "select distinct c.COD_LINEAVENTA from CLIENTES_LINEASVENTA_VERSIONES c" +
+                            " where c.COD_PERSONAL=" + codPersonal + " and c.cod_gestion=" + cod_gestion + " and c.cod_mes=" + cod_mes + "";
+                    if(codigo==8){
+                        sql_contlinea += " and COD_LINEAVENTA = 1";
+                    }
+   
+                    System.out.println("sql_linea :" + sql_contlinea);
+                    st_contlinea = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+                    rs_contlinea = st_contlinea.executeQuery(sql_contlinea);
+                    codLineaVentaT = 0;
+                    while (rs_contlinea.next()) {*/
+                         %>
+
+                        <table width="100%" align="center" class="outputText2" style="border: solid #f2f2f2 1px;" cellpadding="0" cellspacing="0">
+                            <tr bgcolor="#cccccc" >
+                                <th  align="center" style="border-bottom:1px solid #cccccc;border-left:1px solid #cccccc;padding:10px">% Linea</th>
+                                <th  align="center" style="border-bottom:1px solid #cccccc;border-left:1px solid #cccccc;padding:10px">Monto Linea (Bs)</th>
+
+                                <th  align="center" style="border-bottom:1px solid #cccccc;border-left:1px solid #cccccc;padding:10px">Linea</th>
+                                <th  align="center" style="border-bottom:1px solid #cccccc;border-left:1px solid #cccccc;padding:10px">Presup. (Bs)</th>
+                                <th  align="center" style="border-bottom:1px solid #cccccc;border-left:1px solid #cccccc;padding:10px">Cumplimiento (Bs)</th>
+                                <th  align="center" style="border-bottom:1px solid #cccccc;border-left:1px solid #cccccc;padding:10px">% Alcanzado</th>
+                                <th  align="center" style="border-bottom:1px solid #cccccc;border-left:1px solid #cccccc;padding:10px">Factor</th>
+                                <th  align="center" style="border-bottom:1px solid #cccccc;border-left:1px solid #cccccc;padding:10px">Total Monto Bs.</th>
+
+                            </tr>
+                            <%
+                        //codLineaVentaT = rs_contlinea.getInt(1);
+                        String sql_lineas = "";
+                        if(codCargo.equals("1123")){
+                        sql_lineas = "select c.PORC_PRORRATEADO,c.MONTO_PRORRATEADO, l.NOMBRE_LINEA_VISITA,c.PRESUPUESTO,c.CUMPLIMIENTO, " +
+                                " c.PORCENTAJE,c.FACTOR,c.MONTO " +
+                                " from CONSOLIDADO_PLANILLA_LINEAVM c,LINEASMKT_VISITA l " +
+                                " where c.COD_LINEAVENTA = " + codLineaVentaT + " and c.COD_PERSONAL = " + codPersonal + " and l.COD_LINEA_VISITA=c.COD_LINEA_VISITA " +
+                                " and c.COD_PLANILLA = " + cod_tipo_inc_regional + " order by l.NOMBRE_LINEA_VISITA ";
+                        }else{
+                        sql_lineas = "select c.PORC_PRORRATEADO,c.MONTO_PRORRATEADO, l.NOMBRE_LINEAMKT,c.PRESUPUESTO,c.CUMPLIMIENTO, " +
+                                " c.PORCENTAJE,c.FACTOR,c.MONTO " +
+                                " from CONSOLIDADO_PLANILLA_LINEAVM c,LINEAS_MKT l " +
+                                " where c.COD_LINEAVENTA = " + codLineaVentaT + " and c.COD_PERSONAL = " + codPersonal + " and l.COD_LINEAMKT=c.COD_LINEA_VISITA " +
+                                " and c.COD_PLANILLA = " + cod_tipo_inc_regional + " order by l.NOMBRE_LINEAMKT ";
+                        }
+                        System.out.println("sql_lineas ww:" + sql_lineas);
+                        Statement st_lineas = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+                        ResultSet rs_lineas = st_lineas.executeQuery(sql_lineas);
+                        int contLineas = 1;
+                        total=0;
+						double sumaMontoProrrateado=0;
+                        while (rs_lineas.next()) {
+                            total +=rs_lineas.getDouble(8);
+                            totalComision += rs_lineas.getDouble(8);
+							sumaMontoProrrateado=sumaMontoProrrateado+rs_lineas.getDouble(2);
+                            %>
+                            <tr class="outputText2" bgcolor="white">
+
+                                <th align="right" height="20px"  style="color:#123456;border-bottom:1px solid #cccccc"> <%=redondear(rs_lineas.getDouble(1), 3)%> %</th>
+                                <td align="right"  height="20px"  style="color:#123456;border-bottom:1px solid #cccccc"> <%=redondear(rs_lineas.getDouble(2), 2)%> </td>
+                                <td  height="20px"  style="color:#123456;border-bottom:1px solid #cccccc"> <%=rs_lineas.getString(3)%> </td>
+                                <td align="right" height="20px"  style="color:#123456;border-bottom:1px solid #cccccc"> <%=form.format(redondear(rs_lineas.getDouble(4), 2))%> </td>
+                                <td align="right"  height="20px"  style="color:#123456;border-bottom:1px solid #cccccc"> <%=form.format(redondear(rs_lineas.getDouble(5), 2))%> </td>
+                                <td align="right" height="20px"  style="color:#123456;border-bottom:1px solid #cccccc"> <%=redondear(rs_lineas.getDouble(6), 2)%> </td>
+                                <td align="right" height="20px"  style="color:#123456;border-bottom:1px solid #cccccc"> <%=redondear(rs_lineas.getDouble(7), 2)%> </td>
+                                <td align="right" height="20px"  style="color:#123456;border-bottom:1px solid #cccccc"> <%=form.format(redondear(rs_lineas.getDouble(8),2))%> </td>
+                            </tr>
+
+                            <%
+                        }
+                        %>
+                         <tr class="outputText2" bgcolor="#cccccc">
+								<th align="right" height="20px" colspan="2" style="color:blue;border-bottom:1px solid #cccccc;font-size:14px;"><%--=form.format(sumaMontoProrrateado)--%></th>
+                                <th align="right" height="20px" colspan="5" style="color:blue;border-bottom:1px solid #cccccc;font-size:14px;"> Total :</th>
+                                <th align="right" height="20px" colspan="1" style="color:blue;border-bottom:1px solid #cccccc;font-size:14px;"> <%=form.format(redondear(total, 0))%> </th>
+
+                            </tr>
+                        </table>
+                        <%
+
+                   // }
+                            %>
+                           
+                    </th>
+
+
+                </tr>
+
+                <%
+                }
+                if (codigo == 9) {
+
+                %>
+                <tr class="outputText2" style="font-size:13px" >
+                    <th colspan="8" height="30px"  style="color:blue;border-bottom:1px solid #cccccc">
+                        <table width="100%" align="center" class="outputText2" style="border: solid #f2f2f2 1px;" cellpadding="0" cellspacing="0">
+
+                            <%
+                    /*sql_contlinea = "select distinct c.COD_LINEAVENTA from CLIENTES_LINEASVENTA_VERSIONES c" +
+                            " where c.COD_PERSONAL=" + codPersonal + " and c.cod_gestion=" + cod_gestion + " and c.cod_mes=" + cod_mes + "";
+                    if(codigo==8){
+                        sql_contlinea += " and COD_LINEAVENTA = 1";
+                    }
+
+                    System.out.println("sql_linea :" + sql_contlinea);
+                    st_contlinea = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+                    rs_contlinea = st_contlinea.executeQuery(sql_contlinea);
+                    codLineaVentaT = 0;
+                    while (rs_contlinea.next()) {*/
+                         %>
+
+                        <table width="100%" align="center" class="outputText2" style="border: solid #f2f2f2 1px;" cellpadding="0" cellspacing="0">
+                            <tr bgcolor="#cccccc" >
+                                <th  align="center" style="border-bottom:1px solid #cccccc;border-left:1px solid #cccccc;padding:10px">% Linea</th>
+                                <th  align="center" style="border-bottom:1px solid #cccccc;border-left:1px solid #cccccc;padding:10px">Monto Linea (Bs)</th>
+
+                                <th  align="center" style="border-bottom:1px solid #cccccc;border-left:1px solid #cccccc;padding:10px">Linea</th>
+                                <th  align="center" style="border-bottom:1px solid #cccccc;border-left:1px solid #cccccc;padding:10px">Presentacion</th>
+                                <th  align="center" style="border-bottom:1px solid #cccccc;border-left:1px solid #cccccc;padding:10px">Presup. (Bs)</th>
+                                <th  align="center" style="border-bottom:1px solid #cccccc;border-left:1px solid #cccccc;padding:10px">Cumplimiento (Bs)</th>
+                                <th  align="center" style="border-bottom:1px solid #cccccc;border-left:1px solid #cccccc;padding:10px">% Alcanzado</th>
+                                <th  align="center" style="border-bottom:1px solid #cccccc;border-left:1px solid #cccccc;padding:10px">Factor</th>
+                                <th  align="center" style="border-bottom:1px solid #cccccc;border-left:1px solid #cccccc;padding:10px">Total Monto Bs.</th>
+
+                            </tr>
+                            <%
+                        //codLineaVentaT = rs_contlinea.getInt(1);
+                        String sql_lineas = " select c.PORC_PRORRATEADO,c.MONTO_PRORRATEADO, p.NOMBRE_PRODUCTO_PRESENTACION,c.PRESUPUESTO," +
+                                " c.CUMPLIMIENTO,c.PORCENTAJE,c.FACTOR,c.MONTO, l.NOMBRE_LINEAMKT " +
+                                " from CONSOLIDADO_PLANILLA_PRODUCTOVM c,LINEAS_MKT l,PRESENTACIONES_PRODUCTO p " +
+                                " where c.COD_LINEAVENTA="+codLineaVentaT+" and c.COD_PERSONAL="+codPersonal+" and l.COD_LINEAMKT=p.COD_LINEAMKT " +
+                                " and c.COD_PLANILLA = "+cod_tipo_inc_regional+" and p.cod_presentacion=c.COD_PRESENTACION " +
+                                " order by l.NOMBRE_LINEAMKT ,p.NOMBRE_PRODUCTO_PRESENTACION ";
+                        System.out.println("sql_lineas :" + sql_lineas);
+                        Statement st_lineas = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+                        ResultSet rs_lineas = st_lineas.executeQuery(sql_lineas);
+                        int contLineas = 1;
+                        total=0;
+						double sumaMontoProrrateado=0;
+                        while (rs_lineas.next()) {
+                            total +=rs_lineas.getDouble(8);
+                            totalComision += rs_lineas.getDouble(8);
+							sumaMontoProrrateado=sumaMontoProrrateado+rs_lineas.getDouble(2);
+                            %>
+                            <tr class="outputText2" bgcolor="white">
+
+                                <th align="right" height="20px"  style="color:#123456;border-bottom:1px solid #cccccc"> <%=redondear(rs_lineas.getDouble(1), 2)%> %</th>
+                                <td align="right"  height="20px"  style="color:#123456;border-bottom:1px solid #cccccc"> <%=redondear(rs_lineas.getDouble(2), 2)%> </td>
+                                <td  height="20px"  style="color:#123456;border-bottom:1px solid #cccccc"> <%=rs_lineas.getString(9)%> </td>
+                                <td  height="20px"  style="color:#123456;border-bottom:1px solid #cccccc"> <%=rs_lineas.getString(3)%> </td>
+                                <td align="right" height="20px"  style="color:#123456;border-bottom:1px solid #cccccc"> <%=form.format(redondear(rs_lineas.getDouble(4), 2))%> </td>
+                                <td align="right"  height="20px"  style="color:#123456;border-bottom:1px solid #cccccc"> <%=form.format(redondear(rs_lineas.getDouble(5), 2))%> </td>
+                                <td align="right" height="20px"  style="color:#123456;border-bottom:1px solid #cccccc"> <%=redondear(rs_lineas.getDouble(6), 2)%> </td>
+                                <td align="right" height="20px"  style="color:#123456;border-bottom:1px solid #cccccc"> <%=redondear(rs_lineas.getDouble(7), 2)%> </td>
+                                <td align="right" height="20px"  style="color:#123456;border-bottom:1px solid #cccccc"> <%=redondear(rs_lineas.getDouble(8),2)%> </td>
+                            </tr>
+
+                            <%
+                        }
+                        %>
+                         <tr class="outputText2" bgcolor="#cccccc">
+
+                                <th align="right" height="20px" colspan="2" style="color:blue;border-bottom:1px solid #cccccc;font-size:14px;"><%--=form.format(sumaMontoProrrateado)--%></th>
+                                <th align="right" height="20px" colspan="6" style="color:blue;border-bottom:1px solid #cccccc;font-size:14px;"> Total :</th>
+                                <th align="right" height="20px" colspan="1" style="color:blue;border-bottom:1px solid #cccccc;font-size:14px;"> <%=form.format(redondear(total, 0))%> </th>
+
+                            </tr>
+                        </table>
+                        <%
+
+                   // }
+                            %>
+
+                    </th>
+
+
+                </tr>
+
+                <%
+                }
+                if (codigo == 1 || codigo == 2) {
+
+                %>
+                <tr class="outputText2" style="font-size:13px" >
+                    <th colspan="8" height="30px"  style="color:blue;border-bottom:1px solid #cccccc">
+                        <table width="100%" align="center" class="outputText2" style="border: solid #f2f2f2 1px;" cellpadding="0" cellspacing="0">
+                            <%--tr bgcolor="#cccccc" >
+                                <th  align="center" style="border-bottom:1px solid #cccccc;border-left:1px solid #cccccc;padding:10px">% Linea</th>
+                                <th  align="center" style="border-bottom:1px solid #cccccc;border-left:1px solid #cccccc;padding:10px">Monto Linea (Bs)</th>
+
+                                <th  align="center" style="border-bottom:1px solid #cccccc;border-left:1px solid #cccccc;padding:10px">Linea</th>
+                                <th  align="center" style="border-bottom:1px solid #cccccc;border-left:1px solid #cccccc;padding:10px">Presup. (Bs)</th>
+                                <th  align="center" style="border-bottom:1px solid #cccccc;border-left:1px solid #cccccc;padding:10px">Cumplimiento (Bs)</th>
+                                <th  align="center" style="border-bottom:1px solid #cccccc;border-left:1px solid #cccccc;padding:10px">% Alcanzado</th>
+                                <th  align="center" style="border-bottom:1px solid #cccccc;border-left:1px solid #cccccc;padding:10px">Factor</th>
+                                <th  align="center" style="border-bottom:1px solid #cccccc;border-left:1px solid #cccccc;padding:10px">Total Monto Bs.</th>
+
+                            </tr--%>
+                            <%
+                    sql_contlinea = "select distinct c.COD_LINEAVENTA from CLIENTES_LINEASVENTA_VERSIONES c" +
+                            " where c.COD_PERSONAL=" + codPersonal + " and c.cod_gestion=" + cod_gestion + " and c.cod_mes=" + cod_mes + "";
+                    if(codigo==1){
+                        sql_contlinea += " and COD_LINEAVENTA = 1";
+                    }
+                    if(codigo==2){
+                        sql_contlinea += " and COD_LINEAVENTA = 2";
+                    }
+                    System.out.println("sql_contlinea :" + sql_contlinea);
+                    st_contlinea = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+                    rs_contlinea = st_contlinea.executeQuery(sql_contlinea);
+                    codLineaVentaT = 0;
+                    while (rs_contlinea.next()) {
+                         %>
+
+                        <table width="100%" align="center" class="outputText2" style="border: solid #f2f2f2 1px;" cellpadding="0" cellspacing="0">
+                            <tr bgcolor="#cccccc" >
+                                <th  align="center" style="border-bottom:1px solid #cccccc;border-left:1px solid #cccccc;padding:10px">% Linea</th>
+                                <th  align="center" style="border-bottom:1px solid #cccccc;border-left:1px solid #cccccc;padding:10px">Monto Linea (Bs)</th>
+
+                                <th  align="center" style="border-bottom:1px solid #cccccc;border-left:1px solid #cccccc;padding:10px">Linea</th>
+                                <th  align="center" style="border-bottom:1px solid #cccccc;border-left:1px solid #cccccc;padding:10px">Presup. (Bs)</th>
+                                <th  align="center" style="border-bottom:1px solid #cccccc;border-left:1px solid #cccccc;padding:10px">Cumplimiento (Bs)</th>
+                                <th  align="center" style="border-bottom:1px solid #cccccc;border-left:1px solid #cccccc;padding:10px">% Alcanzado</th>
+                                <th  align="center" style="border-bottom:1px solid #cccccc;border-left:1px solid #cccccc;padding:10px">Factor</th>
+                                <th  align="center" style="border-bottom:1px solid #cccccc;border-left:1px solid #cccccc;padding:10px">Total Monto Bs.</th>
+
+                            </tr>
+                            <%
+                        codLineaVentaT = rs_contlinea.getInt(1);
+                        String sql_lineas = "select c.PORC_PRORRATEADO,c.MONTO_PRORRATEADO, l.NOMBRE_LINEAMKT,c.PRESUPUESTO,c.CUMPLIMIENTO, " +
+                                " c.PORCENTAJE,c.FACTOR,c.MONTO " +
+                                " from CONSOLIDADO_PLANILLA_INDIVIDUAL c,LINEAS_MKT l " +
+                                " where c.COD_LINEAVENTA = " + codLineaVentaT + " and c.COD_PERSONAL = " + codPersonal + " and l.COD_LINEAMKT=c.COD_LINEAMKT " +
+                                " and c.COD_PLANILLA = " + cod_tipo_inc_regional + " order by l.NOMBRE_LINEAMKT ";
+                        System.out.println("sql_lineas :" + sql_lineas);
+                        Statement st_lineas = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+                        ResultSet rs_lineas = st_lineas.executeQuery(sql_lineas);
+                        int contLineas = 1;
+                        total=0;
+						
+						double sumaMontoProrrateado=0;
+						
+                        while (rs_lineas.next()) {
+                            total +=rs_lineas.getDouble(8);
+                            totalComision += rs_lineas.getDouble(8);
+							sumaMontoProrrateado=sumaMontoProrrateado+rs_lineas.getDouble(2);
+							
+                            %>
+                            <tr class="outputText2" bgcolor="white">
+
+                                <th align="right" height="20px"  style="color:#123456;border-bottom:1px solid #cccccc"> <%=redondear(rs_lineas.getDouble(1), 2)%> %</th>
+                                <td align="right"  height="20px"  style="color:#123456;border-bottom:1px solid #cccccc"> <%=redondear(rs_lineas.getDouble(2), 2)%> </td>
+                                <td  height="20px"  style="color:#123456;border-bottom:1px solid #cccccc"> <%=rs_lineas.getString(3)%> </td>
+                                <td align="right" height="20px"  style="color:#123456;border-bottom:1px solid #cccccc"> <%=form.format(redondear(rs_lineas.getDouble(4), 2))%> </td>
+                                <td align="right"  height="20px"  style="color:#123456;border-bottom:1px solid #cccccc"> <%=form.format(redondear(rs_lineas.getDouble(5), 2))%> </td>
+                                <td align="right" height="20px"  style="color:#123456;border-bottom:1px solid #cccccc"> <%=redondear(rs_lineas.getDouble(6), 2)%> </td>
+                                <td align="right" height="20px"  style="color:#123456;border-bottom:1px solid #cccccc"> <%=redondear(rs_lineas.getDouble(7), 2)%> </td>
+                                <td align="right" height="20px"  style="color:#123456;border-bottom:1px solid #cccccc"> <%=form.format(redondear(rs_lineas.getDouble(8), 2))%> </td>
+                            </tr>
+
+                            <%
+                        }
+                        %>
+                         <tr class="outputText2" bgcolor="#cccccc">
+
+                                <th align="right" height="20px" colspan="2" style="color:blue;border-bottom:1px solid #cccccc;font-size:14px;"><%--=form.format(sumaMontoProrrateado)--%></th>
+                                <th align="right" height="20px" colspan="5" style="color:blue;border-bottom:1px solid #cccccc;font-size:14px;"> Total :</th>
+                                <th align="right" height="20px" colspan="1" style="color:blue;border-bottom:1px solid #cccccc;font-size:14px;"> <%=form.format(redondear(total, 0))%> </th>
+
+                            </tr>
+                        </table>
+                        <%
+
+                    }
+                            %>
+
+                    </th>
+
+
+                </tr>
+
+                <%
+                }
+                if (codigo == 4 || codigo == 5) {
+
+                %>
+                <tr class="outputText2" style="font-size:13px" >
+                    <th colspan="8" height="30px"  style="color:blue;border-bottom:1px solid #cccccc">
+                        <table width="90%" align="center" class="outputText2" style="border: solid #f2f2f2 1px;" cellpadding="0" cellspacing="0">
+                            <tr bgcolor="#cccccc" >
+                                <th  align="center" style="border-bottom:1px solid #cccccc;border-left:1px solid #cccccc;padding:10px">% Linea</th>
+                                <th  align="center" style="border-bottom:1px solid #cccccc;border-left:1px solid #cccccc;padding:10px">Monto Linea (Bs)</th>
+
+                                <th  align="center" style="border-bottom:1px solid #cccccc;border-left:1px solid #cccccc;padding:10px">Presentacion</th>
+                                <th  align="center" style="border-bottom:1px solid #cccccc;border-left:1px solid #cccccc;padding:10px">Linea</th>
+                                <th  align="center" style="border-bottom:1px solid #cccccc;border-left:1px solid #cccccc;padding:10px">Presup. (Bs)</th>
+                                <th  align="center" style="border-bottom:1px solid #cccccc;border-left:1px solid #cccccc;padding:10px">Cumplimiento (Bs)</th>
+                                <th  align="center" style="border-bottom:1px solid #cccccc;border-left:1px solid #cccccc;padding:10px">% Alcanzado</th>
+                                <th  align="center" style="border-bottom:1px solid #cccccc;border-left:1px solid #cccccc;padding:10px">Factor</th>
+                                <th  align="center" style="border-bottom:1px solid #cccccc;border-left:1px solid #cccccc;padding:10px">Total Monto Bs.</th>
+
+                            </tr>
+                            <%
+					//AQUI PONDREMOS TOTALES
+                    sql_contlinea = "select distinct c.COD_LINEAVENTA from CLIENTES_LINEASVENTA_VERSIONES c" +
+                            " where c.COD_PERSONAL=" + codPersonal + " and c.cod_gestion=" + cod_gestion + " and c.cod_mes=" + cod_mes + "";
+                    System.out.println("sql_contlinea :" + sql_contlinea);
+                    st_contlinea = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+                    rs_contlinea = st_contlinea.executeQuery(sql_contlinea);
+                    codLineaVentaT = 0;
+					
+					double sumaMontoProrrateado=0;
+					
+                    while (rs_contlinea.next()) {
+
+                        codLineaVentaT = rs_contlinea.getInt(1);
+                        String sql_lineas = "select c.PORC_PRORRATEADO,c.MONTO_PRORRATEADO, p.NOMBRE_PRODUCTO_PRESENTACION,c.PRESUPUESTO,c.CUMPLIMIENTO, " +
+                                " c.PORCENTAJE,c.FACTOR,c.MONTO, l.NOMBRE_LINEAMKT " +
+                                " from CONSOLIDADO_PLANILLA_PRODUCTO c,LINEAS_MKT l,PRESENTACIONES_PRODUCTO p " +
+                                " where c.COD_LINEAVENTA="+codLineaVentaT+" and c.COD_PERSONAL="+codPersonal+" and l.COD_LINEAMKT=p.COD_LINEAMKT " +
+                                " and c.COD_PLANILLA = "+cod_tipo_inc_regional+" and p.cod_presentacion=c.COD_PRESENTACION " +
+                                " order by l.NOMBRE_LINEAMKT ,p.NOMBRE_PRODUCTO_PRESENTACION ";
+                        System.out.println("sql_lineas :" + sql_lineas);
+                        Statement st_lineas = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+                        ResultSet rs_lineas = st_lineas.executeQuery(sql_lineas);
+                        int contLineas = 1;
+                        total=0;
+						
+						
+                        while (rs_lineas.next()) {
+                            total +=rs_lineas.getDouble(8);
+                            totalComision += rs_lineas.getDouble(8);
+							sumaMontoProrrateado=sumaMontoProrrateado+rs_lineas.getDouble(2);
+							
+                            %>
+                            <tr class="outputText2" bgcolor="white">
+
+                                <th align="right" height="20px"  style="color:#123456;border-bottom:1px solid #cccccc"> <%=redondear(rs_lineas.getDouble(1), 2)%> %</th>
+                                <td align="right"  height="20px"  style="color:#123456;border-bottom:1px solid #cccccc"> <%=redondear(rs_lineas.getDouble(2), 2)%> </td>
+                                <td  height="20px"  style="color:#123456;border-bottom:1px solid #cccccc"> <%=rs_lineas.getString(9)%> </td>
+                                <td  height="20px"  style="color:#123456;border-bottom:1px solid #cccccc"> <%=rs_lineas.getString(3)%> </td>
+                                <td  align="right"  height="20px"  style="color:#123456;border-bottom:1px solid #cccccc"> <%=form.format(redondear(rs_lineas.getDouble(4), 2))%> </td>
+                                <td  align="right" height="20px"  style="color:#123456;border-bottom:1px solid #cccccc"> <%=form.format(redondear(rs_lineas.getDouble(5), 2))%> </td>
+                                <td  align="right" height="20px"  style="color:#123456;border-bottom:1px solid #cccccc"> <%=redondear(rs_lineas.getDouble(6), 2)%> </td>
+                                <td  align="right" height="20px"  style="color:#123456;border-bottom:1px solid #cccccc"> <%=redondear(rs_lineas.getDouble(7), 2)%> </td>
+                                <td  align="right" height="20px"  style="color:#123456;border-bottom:1px solid #cccccc"> <%=form.format(redondear(rs_lineas.getDouble(8), 2))%> </td>
+                            </tr>
+
+                            <%
+                        }
+
+                    }
+                            %>
+                             <tr class="outputText2" bgcolor="#cccccc">
+								<th align="right" height="20px" colspan="2" style="color:blue;border-bottom:1px solid #cccccc;font-size:14px;"><%--=form.format(sumaMontoProrrateado)--%></th>
+                                <th align="right" height="20px" colspan="6" style="color:blue;border-bottom:1px solid #cccccc;font-size:14px;"> Total :</th>
+                                <th align="right" height="20px" colspan="1" style="color:blue;border-bottom:1px solid #cccccc;font-size:14px;"> <%=form.format(redondear(total, 0))%> </th>
+
+                            </tr>
+                        </table>
+                    </th>
+
+
+                </tr>
+
+                <%
+                }
+                if (codigo == 3) {
+
+                %>
+                <tr class="outputText2" style="font-size:13px" >
+                    <th colspan="8" height="30px"  style="color:blue;border-bottom:1px solid #cccccc">
+                        <table width="100%" align="center" class="outputText2" style="border: solid #f2f2f2 1px;" cellpadding="0" cellspacing="0">
+                            <tr bgcolor="#cccccc" >
+                                <th  align="center" style="border-bottom:1px solid #cccccc;border-left:1px solid #cccccc;padding:10px">% Mora</th>
+                                <th  align="center" style="border-bottom:1px solid #cccccc;border-left:1px solid #cccccc;padding:10px"> Dias Mora</th>
+                                <th  align="center" style="border-bottom:1px solid #cccccc;border-left:1px solid #cccccc;padding:10px"> Factor</th>
+                                <th  align="center" style="border-bottom:1px solid #cccccc;border-left:1px solid #cccccc;padding:10px"> Monto Bs.</th>
+
+                            </tr>
+                            <%
+                   
+
+                        
+                        String sql_lineas = " select c.PORC_MORA,c.PROM_DIAS,c.PORCENTAJE,c.MONTO_PRORRATEADO from CONSOLIDADO_PLANILLA_MORA_CERO c" +
+                                " where  c.COD_PERSONAL="+codPersonal+" and c.COD_PLANILLA="+cod_tipo_inc_regional+"";
+                        System.out.println("sql_lineas :" + sql_lineas);
+                        Statement st_lineas = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+                        ResultSet rs_lineas = st_lineas.executeQuery(sql_lineas);
+                        int contLineas = 1;
+                        total=0;
+                        while (rs_lineas.next()) {
+                            total +=rs_lineas.getDouble(4);
+                            totalComision += rs_lineas.getDouble(4);
+                            %>
+                            <tr class="outputText2" bgcolor="white">
+
+                                <th align="right" height="20px"  style="color:#123456;border-bottom:1px solid #cccccc"> <%=redondear(rs_lineas.getDouble(1), 2)%> </th>
+                                <td align="right"  height="20px"  style="color:#123456;border-bottom:1px solid #cccccc"> <%=redondear(rs_lineas.getDouble(2), 2)%> </td>
+                                <td align="right"  height="20px"  style="color:#123456;border-bottom:1px solid #cccccc"> <%=redondear(rs_lineas.getDouble(3), 2)%> </td>
+                                <td align="right"  height="20px"  style="color:#123456;border-bottom:1px solid #cccccc"> <%=form.format(redondear(rs_lineas.getDouble(4), 2))%> </td>
+                     </tr>
+
+                            <%
+                        }
+
+                    
+                            %>
+                             <tr class="outputText2" bgcolor="#cccccc">
+
+                                <th align="right" height="20px" colspan="3" style="color:blue;border-bottom:1px solid #cccccc;font-size:14px;"> Total :</th>
+                                <th align="right" height="20px" colspan="1" style="color:blue;border-bottom:1px solid #cccccc;font-size:14px;"> <%=form.format(redondear(total, 2))%> </th>
+
+                            </tr>
+                        </table>
+                    </th>
+
+
+                </tr>
+
+                <%
+                }
+                if (codigo == 10) {
+
+                %>
+                <tr class="outputText2" style="font-size:13px" >
+                    <th colspan="8" height="30px"  style="color:blue;border-bottom:1px solid #cccccc">
+                        <table width="100%" align="center" class="outputText2" style="border: solid #f2f2f2 1px;" cellpadding="0" cellspacing="0">
+                            <tr bgcolor="#cccccc" >
+                                <th  align="center" style="border-bottom:1px solid #cccccc;border-left:1px solid #cccccc;padding:10px"> % Cobertura </th>
+                                <th  align="center" style="border-bottom:1px solid #cccccc;border-left:1px solid #cccccc;padding:10px"> Monto Bs. </th>
+
+                            </tr>
+                            <%
+
+
+
+                        String sql_lineas = " select c.PORCENTAJE,c.MONTO from CONSOLIDADO_PLANILLA_COBERTURAVM c" +
+                                " where  c.COD_PERSONAL="+codPersonal+" and c.COD_PLANILLA="+cod_tipo_inc_regional+"";
+                        System.out.println("sql_lineas :" + sql_lineas);
+                        Statement st_lineas = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+                        ResultSet rs_lineas = st_lineas.executeQuery(sql_lineas);
+                        int contLineas = 1;
+                        total=0;
+                        while (rs_lineas.next()) {
+                            total +=rs_lineas.getDouble(2);
+                            totalComision += rs_lineas.getDouble(2);
+                            %>
+                            <tr class="outputText2" bgcolor="white">
+
+                                <th align="right" height="20px"  style="color:#123456;border-bottom:1px solid #cccccc"> <%=redondear(rs_lineas.getDouble(1), 2)%> %</th>
+                                <td align="right"  height="20px"  style="color:#123456;border-bottom:1px solid #cccccc"> <%=form.format(redondear(rs_lineas.getDouble(2), 2))%> </td>
+                            </tr>
+
+                            <%
+                        }
+
+
+                            %>
+                             <tr class="outputText2" bgcolor="#cccccc">
+
+                                <th align="right" height="20px" colspan="1" style="color:blue;border-bottom:1px solid #cccccc;font-size:14px;"> Total :</th>
+                                <th align="right" height="20px" colspan="1" style="color:blue;border-bottom:1px solid #cccccc;font-size:14px;"> <%=form.format(redondear(total, 0))%> </th>
+
+                            </tr>
+                        </table>
+                    </th>
+
+
+                </tr>
+
+                <%
+                }
+                if (codigo == 11) {
+
+                %>
+                <tr class="outputText2" style="font-size:13px" >
+                    <th colspan="8" height="30px"  style="color:blue;border-bottom:1px solid #cccccc">
+                        <table width="100%" align="center" class="outputText2" style="border: solid #f2f2f2 1px;" cellpadding="0" cellspacing="0">
+                            <tr bgcolor="#cccccc" >
+                                <%--th  align="center" style="border-bottom:1px solid #cccccc;border-left:1px solid #cccccc;padding:10px"> % (Porcentaje) </th>
+                                <th  align="center" style="border-bottom:1px solid #cccccc;border-left:1px solid #cccccc;padding:10px"> % (Monto) </th>
+                                <th  align="center" style="border-bottom:1px solid #cccccc;border-left:1px solid #cccccc;padding:10px"> Producto </th--%>
+                                <%--th  align="center" style="border-bottom:1px solid #cccccc;border-left:1px solid #cccccc;padding:10px"> Linea </th>
+                                <th  align="center" style="border-bottom:1px solid #cccccc;border-left:1px solid #cccccc;padding:10px"> Factor de Crecimiento </th--%>
+                                <th  align="center" style="border-bottom:1px solid #cccccc;border-left:1px solid #cccccc;padding:10px"> Monto </th>
+
+                            </tr>
+                            <%
+
+                        String sql_contP = " select COUNT (c.COD_PRESENTACION) from CONSOLIDADO_PLANILLA_CLOSEUP c" +
+                                " where  c.COD_PERSONAL="+codPersonal+" and c.COD_PLANILLA="+cod_tipo_inc_regional+"";
+                        System.out.println("sql_contP :" + sql_contP);
+                        Statement st_contP = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+                        ResultSet rs_contP = st_contP.executeQuery(sql_contP);
+                        System.out.println("sql_contP :"+sql_contP);
+                        int coutProd=0;
+                        while (rs_contP.next()){
+                              coutProd = rs_contP.getInt(1);
+                        }
+
+                        String sql_lineas = " select SUM (c.MONTO) AS MONTO" +
+                        //String sql_lineas = " select l.NOMBRE_LINEAMKT,c.porcentaje,c.MONTO " +
+                                " from CONSOLIDADO_PLANILLA_CLOSEUP c , LINEAS_MKT l where " +
+                                " c.COD_PLANILLA="+cod_tipo_inc_regional+" and l.COD_LINEAMKT=c.COD_PRESENTACION" +
+                                " and c.COD_PERSONAL="+codPersonal+"" +
+                                " " ;
+                                //" where  c.COD_PERSONAL="+codPersonal+" and c.COD_PLANILLA="+cod_tipo_inc_regional+"";
+                        System.out.println("sql_lineas1111 :" + sql_lineas);
+                        Statement st_lineas = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+                        ResultSet rs_lineas = st_lineas.executeQuery(sql_lineas);
+                        int contLineas = 1;
+                        total=0;
+                        while (rs_lineas.next()) {
+                            //String nomPres = rs_lineas.getString("NOMBRE_PRODUCTO_PRESENTACION");
+                            //String nomLinea = rs_lineas.getString("NOMBRE_LINEAMKT");
+                            //double porcentajeCum = redondear ( rs_lineas.getDouble("porcentaje"),2);
+                            double montocum = redondear ( rs_lineas.getDouble("MONTO"),0);
+                            total +=rs_lineas.getDouble("MONTO");
+                            totalComision += rs_lineas.getDouble("MONTO");
+                            %>
+                            <tr class="outputText2" bgcolor="white">
+
+                                <%--th align="right" height="20px"  style="color:#123456;border-bottom:1px solid #cccccc"> <%=redondear(100/coutProd, 2)%> %</th>
+                                <th align="right" height="20px"  style="color:#123456;border-bottom:1px solid #cccccc"> <%=redondear(montoVariablePorcentaje/coutProd, 2)%> </th>
+                                <th align="left" height="20px"  style="color:#123456;border-bottom:1px solid #cccccc"> <%=nomPres%> </th--%>
+                                <%--th align="left" height="20px"  style="color:#123456;border-bottom:1px solid #cccccc"> <%=nomLinea%> </th>
+                                <td align="right"  height="20px"  style="color:#123456;border-bottom:1px solid #cccccc"> <%=redondear(porcentajeCum, 2)%> </td--%>
+                                <td align="right"  height="20px"  style="color:#123456;border-bottom:1px solid #cccccc"> <%=redondear(montocum, 0)%> </td>
+                            </tr>
+
+                            <%
+                        }
+
+
+                            %>
+                             <tr class="outputText2" bgcolor="#cccccc">
+
+                                
+                               <th align="right" height="20px" colspan="" style="color:blue;border-bottom:1px solid #cccccc;font-size:14px;"> <%=redondear(total, 0)%> </th>
+
+                            </tr>
+                        </table>
+                    </th>
+
+
+                </tr>
+
+                <%
+                }
+                if (codigo == 12) {
+
+                %>
+                <tr class="outputText2" style="font-size:13px" >
+                    <th colspan="8" height="30px"  style="color:blue;border-bottom:1px solid #cccccc">
+                        <table width="100%" align="center" class="outputText2" style="border: solid #f2f2f2 1px;" cellpadding="0" cellspacing="0">
+                            <tr bgcolor="#cccccc" >
+                                <%--th  align="center" style="border-bottom:1px solid #cccccc;border-left:1px solid #cccccc;padding:10px"> % (Porcentaje) </th>
+                                <th  align="center" style="border-bottom:1px solid #cccccc;border-left:1px solid #cccccc;padding:10px"> % (Monto) </th>
+                                <th  align="center" style="border-bottom:1px solid #cccccc;border-left:1px solid #cccccc;padding:10px"> Visitador </th>
+                                
+                                <th  align="center" style="border-bottom:1px solid #cccccc;border-left:1px solid #cccccc;padding:10px"> Factor de Crecimiento </th--%>
+                                <th  align="center" style="border-bottom:1px solid #cccccc;border-left:1px solid #cccccc;padding:10px"> Monto </th>
+
+                            </tr>
+                            <%
+
+                        String sql_contP = " select COUNT (c.COD_PRESENTACION) from CONSOLIDADO_PLANILLA_CLOSEUP c" +
+                                " where  c.COD_PERSONAL="+codPersonal+" and c.COD_PLANILLA="+cod_tipo_inc_regional+"";
+                        System.out.println("sql_contP :" + sql_contP);
+                        Statement st_contP = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+                        ResultSet rs_contP = st_contP.executeQuery(sql_contP);
+                        System.out.println("sql_contP :"+sql_contP);
+                        int coutProd=0;
+                        while (rs_contP.next()){
+                              coutProd = rs_contP.getInt(1);
+                        }
+
+                        String sql_lineas = " select  SUM (c.MONTO ) AS MONTO" +
+                        //String sql_lineas = " select  p.AP_PATERNO_PERSONAL + ' ' + p.AP_MATERNO_PERSONAL + ' ' + p.NOMBRES_PERSONAL + ' ' + p.nombre2_personal as nombre,c.porcentaje,c.MONTO " +
+                                " from CONSOLIDADO_PLANILLA_CLOSEUP c , personal p where " +
+                                " p.cod_personal=c.COD_PRESENTACION and  c.COD_PLANILLA="+cod_tipo_inc_regional+" " +
+                                " and c.COD_PERSONAL="+codPersonal+"" +
+                                " order by 1" ;
+                                //" where  c.COD_PERSONAL="+codPersonal+" and c.COD_PLANILLA="+cod_tipo_inc_regional+"";
+                        System.out.println("sql_lineas :" + sql_lineas);
+                        Statement st_lineas = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+                        ResultSet rs_lineas = st_lineas.executeQuery(sql_lineas);
+                        int contLineas = 1;
+                        total=0;
+                        while (rs_lineas.next()) {
+                            //String nomPres = rs_lineas.getString("nombre");
+                            //String nomLinea = rs_lineas.getString("NOMBRE_LINEAMKT");
+                            //double porcentajeCum = redondear ( rs_lineas.getDouble("porcentaje"),2);
+                            double montocum = redondear ( rs_lineas.getDouble("MONTO"),0);
+                            total +=rs_lineas.getDouble("MONTO");
+                            totalComision += rs_lineas.getDouble("MONTO");
+                            %>
+                            <tr class="outputText2" bgcolor="white">
+
+                                <%--th align="right" height="20px"  style="color:#123456;border-bottom:1px solid #cccccc"> <%=redondear(100/coutProd, 2)%> %</th>
+                                <th align="right" height="20px"  style="color:#123456;border-bottom:1px solid #cccccc"> <%=redondear(montoVariablePorcentaje/coutProd, 2)%> </th>
+                                <th align="left" height="20px"  style="color:#123456;border-bottom:1px solid #cccccc"> <%=nomPres%> </th>
+                                
+                                <td align="right"  height="20px"  style="color:#123456;border-bottom:1px solid #cccccc"> <%=redondear(porcentajeCum, 2)%> </td--%>
+                                <td align="right"  height="20px"  style="color:#123456;border-bottom:1px solid #cccccc"> <%=redondear(montocum, 2)%> </td>
+                            </tr>
+
+                            <%
+                        }
+
+
+                            %>
+                             <tr class="outputText2" bgcolor="#cccccc">
+
+                                
+                                <th align="right" height="20px" colspan="1" style="color:blue;border-bottom:1px solid #cccccc;font-size:14px;"> <%=redondear(total, 0)%> </th>
+
+                            </tr>
+                        </table>
+                    </th>
+
+
+                </tr>
+
+                <%
+                }
+
+            }
+
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+                %>
+                <tr class="outputText2" bgcolor="#cccccc">
+
+                                <th align="right" height="40px" colspan="6" style="color:blue;border-bottom:1px solid #cccccc;font-size:15px;"> TOTAL COMISION : </th>
+                                <th align="right" height="20px" colspan="1" style="color:blue;border-bottom:1px solid #cccccc;font-size:15px;"> <%=redondear(totalComision, 0)%> </th>
+
+                </tr>
+            </table>
+            <br>
+
+        </form>
+    </body>
+</html>

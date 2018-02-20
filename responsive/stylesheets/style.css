@@ -1,0 +1,380 @@
+@charset "UTF-8";
+
+/* `Main Styles and Grid Overrides
+----------------------------------------------------------------------------------------------------*/
+/* Set some colors that will be used in the layout */
+body {background-color:#f2f2f2;}
+
+.color-one {background-color: #4A456C;} /* light purple */
+.color-two {background-color:#353153 ;} /* dark purple */ 
+.color-three {background-color: #201A16;} /* brown */
+.color-four {background-color:#755F4F ;} /*light brown*/
+.color-five {background-color:#dddddd;} /*dark gray */
+
+.container, .section {
+    padding:0;
+    margin:0;
+    /* Prevents horizontal scrollling for off-canvas elements */
+    overflow-x: hidden;
+}
+
+/* Set the width of the site rows */
+.row {
+    width:95%;
+}
+
+/* Make sure that the bands stretch to 100% width */
+.full-width, .site-footer {
+    min-width:100%; 
+    position: relative; 
+    z-index:9999;
+}
+
+#add-row {
+    background: transparent url('../../imagenes/add-slide.png') no-repeat scroll 50% 50%;
+    cursor: pointer;
+    margin: 30px 0 10px 10px;
+    width: 102px;
+    height: 32px;
+    float: left;
+}
+#add-row:hover { 
+    background: transparent url('../../imagenes/add-slide-hover.png') no-repeat scroll 50% 50%;
+    cursor: pointer;
+    margin: 30px 0 10px 10px;
+    width: 102px;
+    height: 32px;
+}
+#calcular-row {
+    background: transparent url('../../imagenes/cal-slide.png') no-repeat scroll 50% 50%;
+    cursor: pointer;
+    margin: 30px 0 10px 10px;
+    width: 102px;
+    height: 32px;
+    float: left;
+}
+#calcular-row:hover { 
+    background: transparent url('../../imagenes/cal-slide-hover.png') no-repeat scroll 50% 50%;
+    cursor: pointer;
+    margin: 30px 0 10px 10px;
+    width: 102px;
+    height: 32px;
+}
+td.deleteSlide	{
+    background: transparent url(../../imagenes/delete-slide.png) no-repeat scroll 50% 50%;
+    cursor:pointer;
+}
+#loader { display: none;  position: absolute; z-index: 110; top: 50%; left: 50% }
+#manto { width: 100%; height: 100%; background: #000; opacity:0.60; filter:Alpha(Opacity=60);  position: absolute; top: 0; left: 0; display: none; z-index: 100 }
+
+/* `PRIMARY NAVBAR
+----------------------------------------------------------------------------------------------------*/
+
+/* nav bar floats to the right of the row */ 
+#mainNav {float:right;}
+
+
+.nav-bar {
+    /* override foundation styles */	
+    background-color:transparent;
+    border:none; 
+}
+
+.nav-bar > li {
+    /* removes borders */
+    box-shadow:0 0 0 0;
+    border:none;
+    /*centers nav bar to the logo */
+    line-height: 60px;
+    background-color:#201a16;
+    -webkit-transition: all .2s ease-in-out;
+    -moz-transition: all .2s ease-in-out;
+    -ms-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+
+}
+
+.nav-bar>li:last-child {
+    border:none;
+    /* removes borders */
+    box-shadow:0 0 0 0; 
+} 
+
+.nav-bar > li:hover {
+    border-bottom: 4px white solid;
+    -webkit-transition: all .2s ease-in-out;
+    -moz-transition: all .2s ease-in-out;
+    -ms-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .4) inset; /* Opera 10.5, IE9, FF4+, Chrome 6+, iOS 5 */
+    background-color:#110E0C;
+}
+
+.nav-bar > li a {
+    border:none;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+    /* px used instead of em to ensure nav bar doesn't break into multiple lines */
+    font-size: 15px !important; 
+}
+
+/* `TYPOGRAPHY
+----------------------------------------------------------------------------------------------------*/
+h1 {
+    /* remove h1 text from the viewport */
+    position: absolute;
+    top:-9999px;
+    left:-9999px;
+}
+
+h1, h2, h3, .callout p {
+    font-family:'Open Sans', sans-serif;
+    text-align:center;
+    font-size:2em;
+    font-weight:600;
+}
+
+h3 {
+    font-size:1.7em;
+    position: relative;}
+
+    p {
+        color:black;
+        font-size: 1.1em;
+        font-family: 'Open Sans', sans-serif;
+        font-weight: 300;
+    }
+
+    /* CALLOUT PANEL */
+
+    .callout p {
+        font-family:'Open Sans', sans-serif;
+        text-align:center;
+        color:white;
+        font-size:2em;
+        font-weight:600;
+        color:#222222;
+        margin-bottom: 0;
+    }
+
+    @font-face {
+        font-family: 'IcoMoon';
+        src: url('../fonts/IcoMoon.eot');
+        src: url('../fonts/IcoMoon.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/IcoMoon.svg#IcoMoon') format('svg'),
+        url('../fonts/IcoMoon.woff') format('woff'),
+        url('../fonts/IcoMoon.ttf') format('truetype');
+        font-weight: normal;
+        font-style: normal;
+    }
+
+
+/* `BUTTONS
+----------------------------------------------------------------------------------------------------*/
+.button {
+    background-color:#dddddd;
+    border-color: #cccccc;
+    color:#222222;
+}
+
+.button:hover {
+    background-color: #bbb;
+    -webkit-box-shadow: 0px 0px 10px rgba(0, 0, 0, .8) inset; /* Saf3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+    -moz-box-shadow: 0px 0px 10px rgba(0, 0, 0, .8) inset; /* FF3.5 - 3.6 */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, .8) inset; /* Opera 10.5, IE9, FF4+, Chrome 6+, iOS 5 */
+    border-color: #444444;
+    color:#222222;
+}
+
+.button:focus {
+    -webkit-box-shadow: 0 0 4px #ffffff, 0 1px 0 rgba(255, 255, 255, 0.5) inset; /* Saf3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+    -moz-box-shadow: 0 0 4px #ffffff, 0 1px 0 rgba(255, 255, 255, 0.5) inset; /* FF3.5 - 3.6 */
+    box-shadow: 0 0 4px #ffffff, 0 1px 0 rgba(255, 255, 255, 0.5) inset; /* Opera 10.5, IE9, FF4+, Chrome 6+, iOS 5 */
+    color: #222;
+}
+
+
+/* `FORMS
+----------------------------------------------------------------------------------------------------*/
+label {
+    font-family: 'Open Sans', sans-serif;
+    font-size:1.3em;
+    color:white;
+    font-weight: 300;
+    padding: 15px 0 5px 0;
+}
+
+input[type="text"], textarea {
+    border-radius:5px;
+    background-color:#fff;
+    /*border:1px solid #0A0807;*/
+    /*-webkit-box-shadow: 0 2px 7px rgba(0, 0, 0, .5) inset;*/
+    /*box-shadow: 0 2px 7px rgba(0, 0, 0, .5) inset;*/
+    height: 35px;
+    color:black;	
+    margin-top: 10px
+}
+
+input[type="text"]:focus, textarea:focus {
+    /* change the font color on focus */
+    color:black;
+}
+
+textarea {
+    min-height:200px;
+    font-family: sans-serif;
+    font-size: 18px;
+    overflow-y: hidden;
+}
+select {
+    border-radius:5px;
+    background-color:#fff;
+    /*height: 35px;*/
+    color:black;    
+    margin-top: 10px
+}
+
+/* `LAYOUT
+----------------------------------------------------------------------------------------------------*/
+
+/* HEADER */
+
+.logo {
+    position: relative;
+    top:20px;}
+
+    .logo img {
+        /* Remove border in ie */
+        border:none;}
+
+        .first {
+            /* add the border under the header */
+            border-bottom: 5px solid #755F4F;}
+
+            header {min-height: 100px;}
+
+            /* SLIDER */
+            #featured > img {width:100%;}
+
+            /*CALLOUT */
+            .callout {padding:20px 0 20px 0;}
+
+            /* SERVICES AREA */
+            .service {padding-bottom: 30px;}
+
+            /* Use Data-icon in the HTML to use the icon font */
+            [data-icon]:before {
+                /* providing a fallback bg color for browsers that don't support rgba*/
+                background-color:#000000;
+                background-color: rgba(0,0,0,.4);
+                /* Sets the background disc and shadow */
+                -webkit-box-shadow: 0 1px 1px rgba(255,255,255,0.3), 0 1px 0 rgba(0, 0, 0, 0.33) inset;
+                box-shadow: 0 1px 1px rgba(255,255,255,0.3), 0 1px 0 rgba(0, 0, 0, 0.33) inset;
+                border-radius: 60px;
+                /* inserts the icon font as pseudo-content */
+                content: attr(data-icon);
+                display: block;
+                font-family: 'IcoMoon';
+                /* We want the icons to be fixed size (like an image), so we use px instead of em */
+                font-size: 60px;
+                height: 120px;
+                /* Centers the icon in the disc */
+                line-height:120px; 
+            }
+
+            h3.service-icon span {
+                /* give the span width */
+                display: block; 
+                /* centers the icon and its background */
+                margin: 0 auto; 
+                width: 120px; 
+                margin-bottom:20px;
+            }
+
+            .service > span {
+                padding: 20px 0 30px 0; 
+                width:100%; 
+                display:block; 
+                /* Centers the button, since the button fills its parent with 100% width */
+                text-align:center; 
+            }
+
+            /*Featured Project */
+            .featured {
+                padding-bottom: 30px;
+            }
+
+            .featured img {
+                /* centers the image to the middle of the .columns div */
+                position: relative;
+                left: 50%;
+                margin-left:-300px;
+                border: none;
+            }
+
+            /* FOOTER */
+            .site-footer {text-align: center; padding: 40px 0}
+            .site-footer p {font-size: 1.2em;}
+
+/* `OFF CANVAS
+----------------------------------------------------------------------------------------------------*/
+
+[role="complementary"], [role="main"] {
+    /* remove the default padding */
+    padding:0;
+}
+
+@media all and (min-width: 768px) { 
+
+    .js [role="complementary"] { 
+        /* Sets both the complementary and main sections at 100% width instead of main content / sidebar layout */
+        width: 100%;
+    } 
+    .js [role="main"] { 
+        width: 100%; padding: 0 0; 
+    } 
+    } /* end media query */
+
+    [role="main"]:before {
+        content:"";
+        /* Changes the bg color of the flyout panel */
+        background-color: #322820;
+    }
+
+/* `MEDIA QUERIES
+----------------------------------------------------------------------------------------------------*/
+@media only screen and (max-width: 767px) {
+
+    .nav-bar > li:hover {
+        border-bottom: none;}
+
+        .nav-bar > li > a.main {
+            border:none;}
+
+            .menu-button {
+                /* Add a margin betwen the logo and the 'Menu' button */
+                margin-top:30px;}
+
+                .first {
+                    padding-bottom:0 !important;
+                    border-bottom: none;}
+
+                    .full-width {padding-bottom: 10px;}
+
+                    .service {
+                        /* add a 1px bottom border between the service panels */
+                        padding: 15px 15px 30px 15px; 
+                        border-bottom: 1px solid rgba(0,0,0,.2);}
+
+                        .service:last-child {
+                            /* Removes the bottom border on the last service panel */ 
+                            border:none;}
+
+                            /* ensures that the featured project div fills 100% of its parent */
+                            .featured {width:100%;}
+
+                            /* Removes the centering of the featured image and resizes the image as the viewport is scaled down */
+                            .featured img {width:100%; left:0; margin-left:0;}
+} /* end media query */

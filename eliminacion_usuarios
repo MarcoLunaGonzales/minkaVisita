@@ -1,0 +1,6 @@
+<?php
+
+$codigos_usuarios=$_GET['codigos_usuarios'];
+echo $codigos_usuarios;
+
+?>

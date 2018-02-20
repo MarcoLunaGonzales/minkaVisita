@@ -1,0 +1,5 @@
+<?php
+require("function_distribucionMMMA.php");
+echo "hola";
+$var1=mostrarDistribucionMA(1064, 4, 1007);
+?>

@@ -1,0 +1,1773 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link href="lib/960.css" rel="stylesheet" media="screen" />
+	<link href="lib/defaultTheme.css" rel="stylesheet" media="screen" />
+	<link href="lib/myTheme.css" rel="stylesheet" media="screen" />
+	<!-- <script type="text/javascript" src="lib/jquery-1.7.1.js"></script> -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
+	<script src="lib/jquery.fixedheadertable.js"></script>
+	<script>
+		jQuery(document).ready(function($) {
+			$('#myTable05').fixedHeaderTable({ altClass: 'odd', footer: true, fixedColumns: 3 });
+		});
+	</script>
+</head>
+<body>
+	<div class="container_12 divider">
+		<div class="grid_12 height400">
+			<table class="fancyTable" id="myTable05" cellpadding="0" cellspacing="0">
+				<thead>
+					<tr>
+						<th>Producto SemiTerminado</th>
+						<th>Presentacion</th>
+						<th>Tamaño Lote</th>
+						<th>Acond MC (1)</th>
+						<th>Acond MM (2)</th>
+						<th>Proceso MC (3)</th>
+						<th>Proceso MM (4)</th>
+						<th>Proceso MI (5)</th>
+						<th>Transito (6)</th>
+						<th>Regionales (7)</th>
+						<th>PT Quintanilla (8)</th>
+						<th>PT Quintanilla Cuarentena (9)</th>
+						<th>Total PT (10) = (7)+(8)+(9)</th>
+						<th>Stock Min</th>
+						<th>Stock Rep</th>
+						<th>Stock Maximo</th>
+						<th>TOTAL MC (1)+(3)+(6)+(10)</th>
+						<th>A Producir MC</th>
+						<th>Nro. Lotes Producir MC</th>
+						<th>Lotes Aprob. Op.</th>
+						<th>(U) Aprob. Op.</th>
+						<th>Observaciones</th>
+						<th>Hermes (11)</th>
+						<th>Total MM(12) = (2)+(4)+(11)</th>
+						<th>Stock Min MM</th>
+						<th>Stock Rep MM</th>
+						<th>Stock Max MM</th>
+						<th>A Producir MM</th>
+						<th>Nro. Lotes Producir MM</th>
+						<th>Lotes Aprob. Op.</th>
+						<th>(U) Aprob. Op.</th>
+						<th>Observaciones</th>
+						<th>Pendiente Entrega Ins.</th>
+						<th>PT Inst. Quintanilla</th>
+						<th>PT Inst. Quintanilla Cuarentena</th>
+						<th>TOTAL INST</th>
+						<th>A Producir Mi</th>
+						<th>Nro. Lotes Producir MI</th>
+						<th>Lotes Aprob. Op.</th>
+						<th>(U) Aprob. Op.</th>
+						<th>Observaciones</th>
+						<th>TOTAL LOTES A PROD.</th>
+						<th>Cant. MC</th>
+						<th>Cant. MM</th>
+						<th>Cant. MI</th>                            
+					</tr>
+				</thead>
+
+				<tbody>
+					<tr>
+						<td>AMBROX ADULTOS JARABE</td>
+						<td>AMBROX ADULTOS JARABE FRASCO x 100 ML</td>
+						<td>8,000</td>   
+						<!-- <input type="hidden" class="LOTE" value="8000"> -->
+						<td>-</td>
+						<td>-</td>                        
+						<td>-</td>
+						<td>-</td>
+						<td>-</td>                        
+						<td>-</td>
+
+						<td style="background-color:#FACC2E">977</td>
+						<td style="background-color:#FACC2E">4814</td>
+						<td style="background-color:#FACC2E">46</td>                        
+						<td style="background-color:#FACC2E">5837</td>
+						<td style="background-color:#FACC2E">1572</td>                        
+						<td style="background-color:#FACC2E">4191</td>
+						<td style="background-color:#FACC2E">12191</td>
+						<td style="background-color:#FACC2E">5837</td>
+						<td style="background-color:#FACC2E">-</td>                        
+						<td style="background-color:#FACC2E" align="center"><span style="font-size:16px; font-weight:bold;">-</span></td>
+						<td style="background-color:#FACC2E">
+							<input type="text" class="MC" name="&/MC&/|242|426"  id="&/MC&/|242|426" value="0.0" size="3" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="2" readonly>
+						</td>
+						<td style="background-color:#FACC2E">
+							<input type="text" class="MCU" name="&/UNIDMC&/|242|426" value="0" size="4" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="6">
+						</td>
+						<td style="background-color:#FACC2E">
+							<textarea name="OBSMC&/|242|426" id="" rows="3" cols="20"></textarea>
+						</td>
+
+
+						<td style="background-color:#F781F3">-</td>
+						<td style="background-color:#F781F3">-</td>                        
+						<td style="background-color:#F781F3">-</td>
+						<td style="background-color:#F781F3">-</td>
+						<td style="background-color:#F781F3">-</td>                        
+						<td style="background-color:#F781F3">-</td>
+						<td style="background-color:#F781F3" align="center"><span style="font-size:16px; font-weight:bold;">-</span></td>
+						<td style="background-color:#F781F3">
+							<input type="text" class="MM" name="&/MM&/|242|426" value="0.0" size="3" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="2" readonly>
+						</td>
+						<td style="background-color:#F781F3">
+							<input type="text" class="MMU" name="&/UNIDMM&/|242|426" value="0" size="6" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="6">
+						</td>
+						<td style="background-color:#F781F3">
+							<textarea name="OBSMM&/|242|426" id="" rows="3" cols="20"></textarea>
+						</td>                        
+
+						<td style="background-color:#58FA58">-</td>                        
+						<td style="background-color:#58FA58">-</td>
+						<td style="background-color:#58FA58">-</td>   
+						<td style="background-color:#58FA58">-</td>   
+						<td style="background-color:#58FA58">-</td>
+						<td style="background-color:#58FA58" align="center"><span style="font-size:16px; font-weight:bold;">-</span></td>   
+						<td style="background-color:#58FA58">
+							<input type="text" class="MI" NAME="&/MI&/|242|426" value="1.0" size="3" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="2" readonly>
+						</td>
+						<td style="background-color:#58FA58">
+							<input type="text" class="MIU" NAME="&/UNIDMI&/|242|426" value="8000" size="6" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="6">
+						</td>
+						<td style="background-color:#58FA58">
+							<textarea name="OBSMI&/|242|426" id="" rows="3" cols="20"></textarea>
+						</td>
+
+
+						<td style="background-color:#FFFF00">
+							<input type="text" class="TOTAL" NAME="&/TOTALLOTES&/|242|426" id="AMBROX ADULTOS JARABE FRASCO x 100 ML" value="1.0" size="6" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="6" readonly>
+						</td>
+
+						<td style="background-color:#FFFF00">
+							<input type="text" class="UNITMC" value="0" size="6" style="font-size:10px" maxlength="6" readonly>
+						</td>
+						<td style="background-color:#FFFF00">
+							<input type="text" class="UNITMM" value="0" size="6" style="font-size:10px" maxlength="6" readonly>
+						</td>
+						<td style="background-color:#FFFF00">
+							<input type="text" class="UNITMI" value="8000" size="6" style="font-size:10px" maxlength="6" readonly>
+						</td>
+
+					</tr>
+
+					<tr>
+						<td>AMBROX NIÑOS JARABE </td>
+						<td>AMBROX PEDIATRICO JARABE FRASCO x 100 ML</td>
+						<td>8,000</td>   
+						<!-- <input type="hidden" class="LOTE" value="8000"> -->
+						<td>-</td>
+						<td>-</td>                        
+						<td>-</td>
+						<td>-</td>
+						<td>-</td>                        
+						<td>-</td>
+
+						<td style="background-color:#FACC2E">3387</td>
+						<td style="background-color:#FACC2E">3743</td>
+						<td style="background-color:#FACC2E">-</td>                        
+						<td style="background-color:#FACC2E">7130</td>
+						<td style="background-color:#FACC2E">1468</td>                        
+						<td style="background-color:#FACC2E">3915</td>
+						<td style="background-color:#FACC2E">11915</td>
+						<td style="background-color:#FACC2E">7130</td>
+						<td style="background-color:#FACC2E">-</td>                        
+						<td style="background-color:#FACC2E" align="center"><span style="font-size:16px; font-weight:bold;">-</span></td>
+						<td style="background-color:#FACC2E">
+							<input type="text" class="MC" name="&/MC&/|243|427"  id="&/MC&/|243|427" value="0.0" size="3" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="2" readonly>
+						</td>
+						<td style="background-color:#FACC2E">
+							<input type="text" class="MCU" name="&/UNIDMC&/|243|427" value="0" size="4" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="6">
+						</td>
+						<td style="background-color:#FACC2E">
+							<textarea name="OBSMC&/|243|427" id="" rows="3" cols="20"></textarea>
+						</td>
+
+
+						<td style="background-color:#F781F3">-</td>
+						<td style="background-color:#F781F3">-</td>                        
+						<td style="background-color:#F781F3">-</td>
+						<td style="background-color:#F781F3">-</td>
+						<td style="background-color:#F781F3">-</td>                        
+						<td style="background-color:#F781F3">-</td>
+						<td style="background-color:#F781F3" align="center"><span style="font-size:16px; font-weight:bold;">-</span></td>
+						<td style="background-color:#F781F3">
+							<input type="text" class="MM" name="&/MM&/|243|427" value="0.0" size="3" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="2" readonly>
+						</td>
+						<td style="background-color:#F781F3">
+							<input type="text" class="MMU" name="&/UNIDMM&/|243|427" value="0" size="6" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="6">
+						</td>
+						<td style="background-color:#F781F3">
+							<textarea name="OBSMM&/|243|427" id="" rows="3" cols="20"></textarea>
+						</td>                        
+
+						<td style="background-color:#58FA58">-</td>                        
+						<td style="background-color:#58FA58">-</td>
+						<td style="background-color:#58FA58">-</td>   
+						<td style="background-color:#58FA58">-</td>   
+						<td style="background-color:#58FA58">-</td>
+						<td style="background-color:#58FA58" align="center"><span style="font-size:16px; font-weight:bold;">-</span></td>   
+						<td style="background-color:#58FA58">
+							<input type="text" class="MI" NAME="&/MI&/|243|427" value="0.0" size="3" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="2" readonly>
+						</td>
+						<td style="background-color:#58FA58">
+							<input type="text" class="MIU" NAME="&/UNIDMI&/|243|427" value="0" size="6" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="6">
+						</td>
+						<td style="background-color:#58FA58">
+							<textarea name="OBSMI&/|243|427" id="" rows="3" cols="20"></textarea>
+						</td>
+
+
+						<td style="background-color:#FFFF00">
+							<input type="text" class="TOTAL" NAME="&/TOTALLOTES&/|243|427" id="AMBROX PEDIATRICO JARABE FRASCO x 100 ML" value="0.0" size="6" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="6" readonly>
+						</td>
+
+						<td style="background-color:#FFFF00">
+							<input type="text" class="UNITMC" value="0" size="6" style="font-size:10px" maxlength="6" readonly>
+						</td>
+						<td style="background-color:#FFFF00">
+							<input type="text" class="UNITMM" value="0" size="6" style="font-size:10px" maxlength="6" readonly>
+						</td>
+						<td style="background-color:#FFFF00">
+							<input type="text" class="UNITMI" value="0" size="6" style="font-size:10px" maxlength="6" readonly>
+						</td>
+
+					</tr>
+
+
+
+					<tr>
+						<td>BLOKTUS COMPUESTO JARABE </td>
+						<td>BLOKTUS COMPUESTO JARABE FRASCO x 100 ML</td>
+						<td>8,000</td>   
+						<!-- <input type="hidden" class="LOTE" value="8000"> -->
+						<td>-</td>
+						<td>-</td>                        
+						<td>-</td>
+						<td>-</td>
+						<td>-</td>                        
+						<td>-</td>
+
+						<td style="background-color:#FACC2E">680</td>
+						<td style="background-color:#FACC2E">5836</td>
+						<td style="background-color:#FACC2E">-</td>                        
+						<td style="background-color:#FACC2E">6516</td>
+						<td style="background-color:#FACC2E">75</td>                        
+						<td style="background-color:#FACC2E">199</td>
+						<td style="background-color:#FACC2E">4199</td>
+						<td style="background-color:#FACC2E">6516</td>
+						<td style="background-color:#FACC2E">-</td>                        
+						<td style="background-color:#FACC2E" align="center"><span style="font-size:16px; font-weight:bold;">-</span></td>
+						<td style="background-color:#FACC2E">
+							<input type="text" class="MC" name="&/MC&/|367|22481"  id="&/MC&/|367|22481" value="0.0" size="3" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="2" readonly>
+						</td>
+						<td style="background-color:#FACC2E">
+							<input type="text" class="MCU" name="&/UNIDMC&/|367|22481" value="0" size="4" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="6">
+						</td>
+						<td style="background-color:#FACC2E">
+							<textarea name="OBSMC&/|367|22481" id="" rows="3" cols="20"></textarea>
+						</td>
+
+
+						<td style="background-color:#F781F3">-</td>
+						<td style="background-color:#F781F3">-</td>                        
+						<td style="background-color:#F781F3">-</td>
+						<td style="background-color:#F781F3">-</td>
+						<td style="background-color:#F781F3">-</td>                        
+						<td style="background-color:#F781F3">-</td>
+						<td style="background-color:#F781F3" align="center"><span style="font-size:16px; font-weight:bold;">-</span></td>
+						<td style="background-color:#F781F3">
+							<input type="text" class="MM" name="&/MM&/|367|22481" value="0.0" size="3" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="2" readonly>
+						</td>
+						<td style="background-color:#F781F3">
+							<input type="text" class="MMU" name="&/UNIDMM&/|367|22481" value="0" size="6" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="6">
+						</td>
+						<td style="background-color:#F781F3">
+							<textarea name="OBSMM&/|367|22481" id="" rows="3" cols="20"></textarea>
+						</td>                        
+
+						<td style="background-color:#58FA58">-</td>                        
+						<td style="background-color:#58FA58">-</td>
+						<td style="background-color:#58FA58">-</td>   
+						<td style="background-color:#58FA58">-</td>   
+						<td style="background-color:#58FA58">-</td>
+						<td style="background-color:#58FA58" align="center"><span style="font-size:16px; font-weight:bold;">-</span></td>   
+						<td style="background-color:#58FA58">
+							<input type="text" class="MI" NAME="&/MI&/|367|22481" value="0.0" size="3" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="2" readonly>
+						</td>
+						<td style="background-color:#58FA58">
+							<input type="text" class="MIU" NAME="&/UNIDMI&/|367|22481" value="0" size="6" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="6">
+						</td>
+						<td style="background-color:#58FA58">
+							<textarea name="OBSMI&/|367|22481" id="" rows="3" cols="20"></textarea>
+						</td>
+
+
+						<td style="background-color:#FFFF00">
+							<input type="text" class="TOTAL" NAME="&/TOTALLOTES&/|367|22481" id="BLOKTUS COMPUESTO JARABE FRASCO x 100 ML" value="0.0" size="6" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="6" readonly>
+						</td>
+
+						<td style="background-color:#FFFF00">
+							<input type="text" class="UNITMC" value="0" size="6" style="font-size:10px" maxlength="6" readonly>
+						</td>
+						<td style="background-color:#FFFF00">
+							<input type="text" class="UNITMM" value="0" size="6" style="font-size:10px" maxlength="6" readonly>
+						</td>
+						<td style="background-color:#FFFF00">
+							<input type="text" class="UNITMI" value="0" size="6" style="font-size:10px" maxlength="6" readonly>
+						</td>
+
+					</tr>
+
+
+
+					<tr>
+						<td>BONAGEL 80 ML SUSPENSION 80 ML MENTA</td>
+						<td>BONAGEL SUSPENSION FRASCO X 80ML</td>
+						<td>10,000</td>   
+						<!-- <input type="hidden" class="LOTE" value="10000"> -->
+						<td>-</td>
+						<td>-</td>                        
+						<td>-</td>
+						<td>-</td>
+						<td>-</td>                        
+						<td>-</td>
+
+						<td style="background-color:#FACC2E">7777</td>
+						<td style="background-color:#FACC2E">12704</td>
+						<td style="background-color:#FACC2E">-</td>                        
+						<td style="background-color:#FACC2E">20481</td>
+						<td style="background-color:#FACC2E">0</td>                        
+						<td style="background-color:#FACC2E">0</td>
+						<td style="background-color:#FACC2E">0</td>
+						<td style="background-color:#FACC2E">20481</td>
+						<td style="background-color:#FACC2E">-</td>                        
+						<td style="background-color:#FACC2E" align="center"><span style="font-size:16px; font-weight:bold;">-</span></td>
+						<td style="background-color:#FACC2E">
+							<input type="text" class="MC" name="&/MC&/|1448|22706"  id="&/MC&/|1448|22706" value="0.0" size="3" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="2" readonly>
+						</td>
+						<td style="background-color:#FACC2E">
+							<input type="text" class="MCU" name="&/UNIDMC&/|1448|22706" value="0" size="4" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="6">
+						</td>
+						<td style="background-color:#FACC2E">
+							<textarea name="OBSMC&/|1448|22706" id="" rows="3" cols="20"></textarea>
+						</td>
+
+
+						<td style="background-color:#F781F3">-</td>
+						<td style="background-color:#F781F3">-</td>                        
+						<td style="background-color:#F781F3">-</td>
+						<td style="background-color:#F781F3">-</td>
+						<td style="background-color:#F781F3">-</td>                        
+						<td style="background-color:#F781F3">-</td>
+						<td style="background-color:#F781F3" align="center"><span style="font-size:16px; font-weight:bold;">-</span></td>
+						<td style="background-color:#F781F3">
+							<input type="text" class="MM" name="&/MM&/|1448|22706" value="0.0" size="3" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="2" readonly>
+						</td>
+						<td style="background-color:#F781F3">
+							<input type="text" class="MMU" name="&/UNIDMM&/|1448|22706" value="0" size="6" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="6">
+						</td>
+						<td style="background-color:#F781F3">
+							<textarea name="OBSMM&/|1448|22706" id="" rows="3" cols="20"></textarea>
+						</td>                        
+
+						<td style="background-color:#58FA58">-</td>                        
+						<td style="background-color:#58FA58">-</td>
+						<td style="background-color:#58FA58">-</td>   
+						<td style="background-color:#58FA58">-</td>   
+						<td style="background-color:#58FA58">-</td>
+						<td style="background-color:#58FA58" align="center"><span style="font-size:16px; font-weight:bold;">-</span></td>   
+						<td style="background-color:#58FA58">
+							<input type="text" class="MI" NAME="&/MI&/|1448|22706" value="0.0" size="3" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="2" readonly>
+						</td>
+						<td style="background-color:#58FA58">
+							<input type="text" class="MIU" NAME="&/UNIDMI&/|1448|22706" value="0" size="6" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="6">
+						</td>
+						<td style="background-color:#58FA58">
+							<textarea name="OBSMI&/|1448|22706" id="" rows="3" cols="20"></textarea>
+						</td>
+
+
+						<td style="background-color:#FFFF00">
+							<input type="text" class="TOTAL" NAME="&/TOTALLOTES&/|1448|22706" id="BONAGEL SUSPENSION FRASCO X 80ML" value="0.0" size="6" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="6" readonly>
+						</td>
+
+						<td style="background-color:#FFFF00">
+							<input type="text" class="UNITMC" value="0" size="6" style="font-size:10px" maxlength="6" readonly>
+						</td>
+						<td style="background-color:#FFFF00">
+							<input type="text" class="UNITMM" value="0" size="6" style="font-size:10px" maxlength="6" readonly>
+						</td>
+						<td style="background-color:#FFFF00">
+							<input type="text" class="UNITMI" value="0" size="6" style="font-size:10px" maxlength="6" readonly>
+						</td>
+
+					</tr>
+
+
+
+					<tr>
+						<td>BONAGEL PLUS SUSPENSION 10 ML BANANA</td>
+						<td>BONAGEL PLUS SUSPENSION BANANA SACHET (MM) X 10 ML</td>
+						<td>20,000</td>   
+						<!-- <input type="hidden" class="LOTE" value="20000"> -->
+						<td>-</td>
+						<td>-</td>                        
+						<td>-</td>
+						<td>-</td>
+						<td>-</td>                        
+						<td>-</td>
+
+						<td style="background-color:#FACC2E">-</td>
+						<td style="background-color:#FACC2E">-</td>
+						<td style="background-color:#FACC2E">-</td>                        
+						<td style="background-color:#FACC2E">-</td>
+						<td style="background-color:#FACC2E">0</td>                        
+						<td style="background-color:#FACC2E">0</td>
+						<td style="background-color:#FACC2E">0</td>
+						<td style="background-color:#FACC2E">-</td>
+						<td style="background-color:#FACC2E">-</td>                        
+						<td style="background-color:#FACC2E" align="center"><span style="font-size:16px; font-weight:bold;">-</span></td>
+						<td style="background-color:#FACC2E">
+							<input type="text" class="MC" name="&/MC&/|355|22465"  id="&/MC&/|355|22465" value="0.0" size="3" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="2" readonly>
+						</td>
+						<td style="background-color:#FACC2E">
+							<input type="text" class="MCU" name="&/UNIDMC&/|355|22465" value="0" size="4" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="6">
+						</td>
+						<td style="background-color:#FACC2E">
+							<textarea name="OBSMC&/|355|22465" id="" rows="3" cols="20"></textarea>
+						</td>
+
+
+						<td style="background-color:#F781F3">-</td>
+						<td style="background-color:#F781F3">-</td>                        
+						<td style="background-color:#F781F3">-</td>
+						<td style="background-color:#F781F3">-</td>
+						<td style="background-color:#F781F3">-</td>                        
+						<td style="background-color:#F781F3">-</td>
+						<td style="background-color:#F781F3" align="center"><span style="font-size:16px; font-weight:bold;">-</span></td>
+						<td style="background-color:#F781F3">
+							<input type="text" class="MM" name="&/MM&/|355|22465" value="0.0" size="3" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="2" readonly>
+						</td>
+						<td style="background-color:#F781F3">
+							<input type="text" class="MMU" name="&/UNIDMM&/|355|22465" value="0" size="6" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="6">
+						</td>
+						<td style="background-color:#F781F3">
+							<textarea name="OBSMM&/|355|22465" id="" rows="3" cols="20"></textarea>
+						</td>                        
+
+						<td style="background-color:#58FA58">-</td>                        
+						<td style="background-color:#58FA58">-</td>
+						<td style="background-color:#58FA58">-</td>   
+						<td style="background-color:#58FA58">-</td>   
+						<td style="background-color:#58FA58">-</td>
+						<td style="background-color:#58FA58" align="center"><span style="font-size:16px; font-weight:bold;">-</span></td>   
+						<td style="background-color:#58FA58">
+							<input type="text" class="MI" NAME="&/MI&/|355|22465" value="0.0" size="3" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="2" readonly>
+						</td>
+						<td style="background-color:#58FA58">
+							<input type="text" class="MIU" NAME="&/UNIDMI&/|355|22465" value="0" size="6" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="6">
+						</td>
+						<td style="background-color:#58FA58">
+							<textarea name="OBSMI&/|355|22465" id="" rows="3" cols="20"></textarea>
+						</td>
+
+
+						<td style="background-color:#FFFF00">
+							<input type="text" class="TOTAL" NAME="&/TOTALLOTES&/|355|22465" id="BONAGEL PLUS SUSPENSION BANANA SACHET (MM) X 10 ML" value="0.0" size="6" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="6" readonly>
+						</td>
+
+						<td style="background-color:#FFFF00">
+							<input type="text" class="UNITMC" value="0" size="6" style="font-size:10px" maxlength="6" readonly>
+						</td>
+						<td style="background-color:#FFFF00">
+							<input type="text" class="UNITMM" value="0" size="6" style="font-size:10px" maxlength="6" readonly>
+						</td>
+						<td style="background-color:#FFFF00">
+							<input type="text" class="UNITMI" value="0" size="6" style="font-size:10px" maxlength="6" readonly>
+						</td>
+
+					</tr>
+
+
+
+					<tr>
+						<td>BONAGEL PLUS SUSPENSION 10 ML CHERRY</td>
+						<td>BONAGEL PLUS SUSPENSION CHERRY (MM) x 10 ML</td>
+						<td>20,000</td>   
+						<!-- <input type="hidden" class="LOTE" value="20000"> -->
+						<td>-</td>
+						<td>-</td>                        
+						<td>-</td>
+						<td>-</td>
+						<td>-</td>                        
+						<td>-</td>
+
+						<td style="background-color:#FACC2E">-</td>
+						<td style="background-color:#FACC2E">-</td>
+						<td style="background-color:#FACC2E">-</td>                        
+						<td style="background-color:#FACC2E">-</td>
+						<td style="background-color:#FACC2E">0</td>                        
+						<td style="background-color:#FACC2E">0</td>
+						<td style="background-color:#FACC2E">0</td>
+						<td style="background-color:#FACC2E">-</td>
+						<td style="background-color:#FACC2E">-</td>                        
+						<td style="background-color:#FACC2E" align="center"><span style="font-size:16px; font-weight:bold;">-</span></td>
+						<td style="background-color:#FACC2E">
+							<input type="text" class="MC" name="&/MC&/|311|22325"  id="&/MC&/|311|22325" value="0.0" size="3" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="2" readonly>
+						</td>
+						<td style="background-color:#FACC2E">
+							<input type="text" class="MCU" name="&/UNIDMC&/|311|22325" value="0" size="4" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="6">
+						</td>
+						<td style="background-color:#FACC2E">
+							<textarea name="OBSMC&/|311|22325" id="" rows="3" cols="20"></textarea>
+						</td>
+
+
+						<td style="background-color:#F781F3">71</td>
+						<td style="background-color:#F781F3">71</td>                        
+						<td style="background-color:#F781F3">29835</td>
+						<td style="background-color:#F781F3">44753</td>
+						<td style="background-color:#F781F3">59670</td>                        
+						<td style="background-color:#F781F3">59599</td>
+						<td style="background-color:#F781F3" align="center"><span style="font-size:16px; font-weight:bold;">3.0</span></td>
+						<td style="background-color:#F781F3">
+							<input type="text" class="MM" name="&/MM&/|311|22325" value="0.0" size="3" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="2" readonly>
+						</td>
+						<td style="background-color:#F781F3">
+							<input type="text" class="MMU" name="&/UNIDMM&/|311|22325" value="0" size="6" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="6">
+						</td>
+						<td style="background-color:#F781F3">
+							<textarea name="OBSMM&/|311|22325" id="" rows="3" cols="20"></textarea>
+						</td>                        
+
+						<td style="background-color:#58FA58">-</td>                        
+						<td style="background-color:#58FA58">-</td>
+						<td style="background-color:#58FA58">-</td>   
+						<td style="background-color:#58FA58">-</td>   
+						<td style="background-color:#58FA58">-</td>
+						<td style="background-color:#58FA58" align="center"><span style="font-size:16px; font-weight:bold;">-</span></td>   
+						<td style="background-color:#58FA58">
+							<input type="text" class="MI" NAME="&/MI&/|311|22325" value="0.0" size="3" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="2" readonly>
+						</td>
+						<td style="background-color:#58FA58">
+							<input type="text" class="MIU" NAME="&/UNIDMI&/|311|22325" value="0" size="6" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="6">
+						</td>
+						<td style="background-color:#58FA58">
+							<textarea name="OBSMI&/|311|22325" id="" rows="3" cols="20"></textarea>
+						</td>
+
+
+						<td style="background-color:#FFFF00">
+							<input type="text" class="TOTAL" NAME="&/TOTALLOTES&/|311|22325" id="BONAGEL PLUS SUSPENSION CHERRY (MM) x 10 ML" value="0.0" size="6" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="6" readonly>
+						</td>
+
+						<td style="background-color:#FFFF00">
+							<input type="text" class="UNITMC" value="0" size="6" style="font-size:10px" maxlength="6" readonly>
+						</td>
+						<td style="background-color:#FFFF00">
+							<input type="text" class="UNITMM" value="0" size="6" style="font-size:10px" maxlength="6" readonly>
+						</td>
+						<td style="background-color:#FFFF00">
+							<input type="text" class="UNITMI" value="0" size="6" style="font-size:10px" maxlength="6" readonly>
+						</td>
+
+					</tr>
+
+
+
+					<tr>
+						<td>BONAGEL PLUS SUSPENSION 200 ML BANANA</td>
+						<td>BONAGEL PLUS SUSPENSION BANANA FRASCO x 200 ML</td>
+						<td>4,000</td>   
+						<!-- <input type="hidden" class="LOTE" value="4000"> -->
+						<td>66</td>
+						<td>-</td>                        
+						<td>-</td>
+						<td>-</td>
+						<td>-</td>                        
+						<td>-</td>
+
+						<td style="background-color:#FACC2E">4053</td>
+						<td style="background-color:#FACC2E">7008</td>
+						<td style="background-color:#FACC2E">-</td>                        
+						<td style="background-color:#FACC2E">11061</td>
+						<td style="background-color:#FACC2E">3884</td>                        
+						<td style="background-color:#FACC2E">6041</td>
+						<td style="background-color:#FACC2E">8000</td>
+						<td style="background-color:#FACC2E">11127</td>
+						<td style="background-color:#FACC2E">-</td>                        
+						<td style="background-color:#FACC2E" align="center"><span style="font-size:16px; font-weight:bold;">-</span></td>
+						<td style="background-color:#FACC2E">
+							<input type="text" class="MC" name="&/MC&/|301|466"  id="&/MC&/|301|466" value="0.0" size="3" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="2" readonly>
+						</td>
+						<td style="background-color:#FACC2E">
+							<input type="text" class="MCU" name="&/UNIDMC&/|301|466" value="0" size="4" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="6">
+						</td>
+						<td style="background-color:#FACC2E">
+							<textarea name="OBSMC&/|301|466" id="" rows="3" cols="20"></textarea>
+						</td>
+
+
+						<td style="background-color:#F781F3">-</td>
+						<td style="background-color:#F781F3">-</td>                        
+						<td style="background-color:#F781F3">-</td>
+						<td style="background-color:#F781F3">-</td>
+						<td style="background-color:#F781F3">-</td>                        
+						<td style="background-color:#F781F3">-</td>
+						<td style="background-color:#F781F3" align="center"><span style="font-size:16px; font-weight:bold;">-</span></td>
+						<td style="background-color:#F781F3">
+							<input type="text" class="MM" name="&/MM&/|301|466" value="0.0" size="3" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="2" readonly>
+						</td>
+						<td style="background-color:#F781F3">
+							<input type="text" class="MMU" name="&/UNIDMM&/|301|466" value="0" size="6" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="6">
+						</td>
+						<td style="background-color:#F781F3">
+							<textarea name="OBSMM&/|301|466" id="" rows="3" cols="20"></textarea>
+						</td>                        
+
+						<td style="background-color:#58FA58">-</td>                        
+						<td style="background-color:#58FA58">-</td>
+						<td style="background-color:#58FA58">-</td>   
+						<td style="background-color:#58FA58">-</td>   
+						<td style="background-color:#58FA58">-</td>
+						<td style="background-color:#58FA58" align="center"><span style="font-size:16px; font-weight:bold;">-</span></td>   
+						<td style="background-color:#58FA58">
+							<input type="text" class="MI" NAME="&/MI&/|301|466" value="0.0" size="3" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="2" readonly>
+						</td>
+						<td style="background-color:#58FA58">
+							<input type="text" class="MIU" NAME="&/UNIDMI&/|301|466" value="0" size="6" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="6">
+						</td>
+						<td style="background-color:#58FA58">
+							<textarea name="OBSMI&/|301|466" id="" rows="3" cols="20"></textarea>
+						</td>
+
+
+						<td style="background-color:#FFFF00">
+							<input type="text" class="TOTAL" NAME="&/TOTALLOTES&/|301|466" id="BONAGEL PLUS SUSPENSION BANANA FRASCO x 200 ML" value="0.0" size="6" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="6" readonly>
+						</td>
+
+						<td style="background-color:#FFFF00">
+							<input type="text" class="UNITMC" value="0" size="6" style="font-size:10px" maxlength="6" readonly>
+						</td>
+						<td style="background-color:#FFFF00">
+							<input type="text" class="UNITMM" value="0" size="6" style="font-size:10px" maxlength="6" readonly>
+						</td>
+						<td style="background-color:#FFFF00">
+							<input type="text" class="UNITMI" value="0" size="6" style="font-size:10px" maxlength="6" readonly>
+						</td>
+
+					</tr>
+
+
+
+					<tr>
+						<td>BONAGEL PLUS SUSPENSION 200 ML CHERRY</td>
+						<td>BONAGEL PLUS SUSPENSION CHERRY FRASCO x 200 ML</td>
+						<td>4,000</td>   
+						<!-- <input type="hidden" class="LOTE" value="4000"> -->
+						<td>-</td>
+						<td>-</td>                        
+						<td>-</td>
+						<td>-</td>
+						<td>-</td>                        
+						<td>-</td>
+
+						<td style="background-color:#FACC2E">3614</td>
+						<td style="background-color:#FACC2E">3102</td>
+						<td style="background-color:#FACC2E">-</td>                        
+						<td style="background-color:#FACC2E">6716</td>
+						<td style="background-color:#FACC2E">7510</td>                        
+						<td style="background-color:#FACC2E">11682</td>
+						<td style="background-color:#FACC2E">12000</td>
+						<td style="background-color:#FACC2E">6716</td>
+						<td style="background-color:#FACC2E">5284</td>                        
+						<td style="background-color:#FACC2E" align="center"><span style="font-size:16px; font-weight:bold;">2.0</span></td>
+						<td style="background-color:#FACC2E">
+							<input type="text" class="MC" name="&/MC&/|31|36"  id="&/MC&/|31|36" value="0.0" size="3" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="2" readonly>
+						</td>
+						<td style="background-color:#FACC2E">
+							<input type="text" class="MCU" name="&/UNIDMC&/|31|36" value="0" size="4" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="6">
+						</td>
+						<td style="background-color:#FACC2E">
+							<textarea name="OBSMC&/|31|36" id="" rows="3" cols="20"></textarea>
+						</td>
+
+
+						<td style="background-color:#F781F3">-</td>
+						<td style="background-color:#F781F3">-</td>                        
+						<td style="background-color:#F781F3">-</td>
+						<td style="background-color:#F781F3">-</td>
+						<td style="background-color:#F781F3">-</td>                        
+						<td style="background-color:#F781F3">-</td>
+						<td style="background-color:#F781F3" align="center"><span style="font-size:16px; font-weight:bold;">-</span></td>
+						<td style="background-color:#F781F3">
+							<input type="text" class="MM" name="&/MM&/|31|36" value="0.0" size="3" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="2" readonly>
+						</td>
+						<td style="background-color:#F781F3">
+							<input type="text" class="MMU" name="&/UNIDMM&/|31|36" value="0" size="6" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="6">
+						</td>
+						<td style="background-color:#F781F3">
+							<textarea name="OBSMM&/|31|36" id="" rows="3" cols="20"></textarea>
+						</td>                        
+
+						<td style="background-color:#58FA58">-</td>                        
+						<td style="background-color:#58FA58">-</td>
+						<td style="background-color:#58FA58">-</td>   
+						<td style="background-color:#58FA58">-</td>   
+						<td style="background-color:#58FA58">-</td>
+						<td style="background-color:#58FA58" align="center"><span style="font-size:16px; font-weight:bold;">-</span></td>   
+						<td style="background-color:#58FA58">
+							<input type="text" class="MI" NAME="&/MI&/|31|36" value="0.0" size="3" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="2" readonly>
+						</td>
+						<td style="background-color:#58FA58">
+							<input type="text" class="MIU" NAME="&/UNIDMI&/|31|36" value="0" size="6" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="6">
+						</td>
+						<td style="background-color:#58FA58">
+							<textarea name="OBSMI&/|31|36" id="" rows="3" cols="20"></textarea>
+						</td>
+
+
+						<td style="background-color:#FFFF00">
+							<input type="text" class="TOTAL" NAME="&/TOTALLOTES&/|31|36" id="BONAGEL PLUS SUSPENSION CHERRY FRASCO x 200 ML" value="0.0" size="6" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="6" readonly>
+						</td>
+
+						<td style="background-color:#FFFF00">
+							<input type="text" class="UNITMC" value="0" size="6" style="font-size:10px" maxlength="6" readonly>
+						</td>
+						<td style="background-color:#FFFF00">
+							<input type="text" class="UNITMM" value="0" size="6" style="font-size:10px" maxlength="6" readonly>
+						</td>
+						<td style="background-color:#FFFF00">
+							<input type="text" class="UNITMI" value="0" size="6" style="font-size:10px" maxlength="6" readonly>
+						</td>
+
+					</tr>
+
+
+
+					<tr>
+						<td>BONAGEL SUSPENSION 120 ML</td>
+						<td>BONAGEL SUSPENSION FRASCO x 120 ML</td>
+						<td>6,666</td>   
+						<!-- <input type="hidden" class="LOTE" value="6666"> -->
+						<td>-</td>
+						<td>-</td>                        
+						<td>6666</td>
+						<td>-</td>
+						<td>-</td>                        
+						<td>-</td>
+
+						<td style="background-color:#FACC2E">8581</td>
+						<td style="background-color:#FACC2E">8091</td>
+						<td style="background-color:#FACC2E">26295</td>                        
+						<td style="background-color:#FACC2E">42967</td>
+						<td style="background-color:#FACC2E">21074</td>                        
+						<td style="background-color:#FACC2E">32392</td>
+						<td style="background-color:#FACC2E">33330</td>
+						<td style="background-color:#FACC2E">49633</td>
+						<td style="background-color:#FACC2E">-</td>                        
+						<td style="background-color:#FACC2E" align="center"><span style="font-size:16px; font-weight:bold;">-</span></td>
+						<td style="background-color:#FACC2E">
+							<input type="text" class="MC" name="&/MC&/|72|99"  id="&/MC&/|72|99" value="0.0" size="3" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="2" readonly>
+						</td>
+						<td style="background-color:#FACC2E">
+							<input type="text" class="MCU" name="&/UNIDMC&/|72|99" value="0" size="4" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="6">
+						</td>
+						<td style="background-color:#FACC2E">
+							<textarea name="OBSMC&/|72|99" id="" rows="3" cols="20"></textarea>
+						</td>
+
+
+						<td style="background-color:#F781F3">-</td>
+						<td style="background-color:#F781F3">-</td>                        
+						<td style="background-color:#F781F3">-</td>
+						<td style="background-color:#F781F3">-</td>
+						<td style="background-color:#F781F3">-</td>                        
+						<td style="background-color:#F781F3">-</td>
+						<td style="background-color:#F781F3" align="center"><span style="font-size:16px; font-weight:bold;">-</span></td>
+						<td style="background-color:#F781F3">
+							<input type="text" class="MM" name="&/MM&/|72|99" value="0.0" size="3" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="2" readonly>
+						</td>
+						<td style="background-color:#F781F3">
+							<input type="text" class="MMU" name="&/UNIDMM&/|72|99" value="0" size="6" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="6">
+						</td>
+						<td style="background-color:#F781F3">
+							<textarea name="OBSMM&/|72|99" id="" rows="3" cols="20"></textarea>
+						</td>                        
+
+						<td style="background-color:#58FA58">-</td>                        
+						<td style="background-color:#58FA58">-</td>
+						<td style="background-color:#58FA58">-</td>   
+						<td style="background-color:#58FA58">-</td>   
+						<td style="background-color:#58FA58">-</td>
+						<td style="background-color:#58FA58" align="center"><span style="font-size:16px; font-weight:bold;">-</span></td>   
+						<td style="background-color:#58FA58">
+							<input type="text" class="MI" NAME="&/MI&/|72|99" value="0.0" size="3" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="2" readonly>
+						</td>
+						<td style="background-color:#58FA58">
+							<input type="text" class="MIU" NAME="&/UNIDMI&/|72|99" value="0" size="6" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="6">
+						</td>
+						<td style="background-color:#58FA58">
+							<textarea name="OBSMI&/|72|99" id="" rows="3" cols="20"></textarea>
+						</td>
+
+
+						<td style="background-color:#FFFF00">
+							<input type="text" class="TOTAL" NAME="&/TOTALLOTES&/|72|99" id="BONAGEL SUSPENSION FRASCO x 120 ML" value="0.0" size="6" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="6" readonly>
+						</td>
+
+						<td style="background-color:#FFFF00">
+							<input type="text" class="UNITMC" value="0" size="6" style="font-size:10px" maxlength="6" readonly>
+						</td>
+						<td style="background-color:#FFFF00">
+							<input type="text" class="UNITMM" value="0" size="6" style="font-size:10px" maxlength="6" readonly>
+						</td>
+						<td style="background-color:#FFFF00">
+							<input type="text" class="UNITMI" value="0" size="6" style="font-size:10px" maxlength="6" readonly>
+						</td>
+
+					</tr>
+
+
+
+					<tr>
+						<td>BONAGEL SUSPENSION 120 ML</td>
+						<td>BONAGEL SUSPENSION FRASCO x 120 ML LICITACION</td>
+						<td>6,666</td>   
+						<!-- <input type="hidden" class="LOTE" value="6666"> -->
+						<td>-</td>
+						<td>-</td>                        
+						<td>6666</td>
+						<td>-</td>
+						<td>-</td>                        
+						<td>-</td>
+
+						<td style="background-color:#FACC2E">-</td>
+						<td style="background-color:#FACC2E">-</td>
+						<td style="background-color:#FACC2E">-</td>                        
+						<td style="background-color:#FACC2E">-</td>
+						<td style="background-color:#FACC2E">0</td>                        
+						<td style="background-color:#FACC2E">0</td>
+						<td style="background-color:#FACC2E">0</td>
+						<td style="background-color:#FACC2E">6666</td>
+						<td style="background-color:#FACC2E">-</td>                        
+						<td style="background-color:#FACC2E" align="center"><span style="font-size:16px; font-weight:bold;">-</span></td>
+						<td style="background-color:#FACC2E">
+							<input type="text" class="MC" name="&/MC&/|72|22737"  id="&/MC&/|72|22737" value="0.0" size="3" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="2" readonly>
+						</td>
+						<td style="background-color:#FACC2E">
+							<input type="text" class="MCU" name="&/UNIDMC&/|72|22737" value="0" size="4" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="6">
+						</td>
+						<td style="background-color:#FACC2E">
+							<textarea name="OBSMC&/|72|22737" id="" rows="3" cols="20"></textarea>
+						</td>
+
+
+						<td style="background-color:#F781F3">-</td>
+						<td style="background-color:#F781F3">-</td>                        
+						<td style="background-color:#F781F3">-</td>
+						<td style="background-color:#F781F3">-</td>
+						<td style="background-color:#F781F3">-</td>                        
+						<td style="background-color:#F781F3">-</td>
+						<td style="background-color:#F781F3" align="center"><span style="font-size:16px; font-weight:bold;">-</span></td>
+						<td style="background-color:#F781F3">
+							<input type="text" class="MM" name="&/MM&/|72|22737" value="0.0" size="3" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="2" readonly>
+						</td>
+						<td style="background-color:#F781F3">
+							<input type="text" class="MMU" name="&/UNIDMM&/|72|22737" value="0" size="6" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="6">
+						</td>
+						<td style="background-color:#F781F3">
+							<textarea name="OBSMM&/|72|22737" id="" rows="3" cols="20"></textarea>
+						</td>                        
+
+						<td style="background-color:#58FA58">-</td>                        
+						<td style="background-color:#58FA58">-</td>
+						<td style="background-color:#58FA58">-</td>   
+						<td style="background-color:#58FA58">-</td>   
+						<td style="background-color:#58FA58">-</td>
+						<td style="background-color:#58FA58" align="center"><span style="font-size:16px; font-weight:bold;">-</span></td>   
+						<td style="background-color:#58FA58">
+							<input type="text" class="MI" NAME="&/MI&/|72|22737" value="0.0" size="3" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="2" readonly>
+						</td>
+						<td style="background-color:#58FA58">
+							<input type="text" class="MIU" NAME="&/UNIDMI&/|72|22737" value="0" size="6" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="6">
+						</td>
+						<td style="background-color:#58FA58">
+							<textarea name="OBSMI&/|72|22737" id="" rows="3" cols="20"></textarea>
+						</td>
+
+
+						<td style="background-color:#FFFF00">
+							<input type="text" class="TOTAL" NAME="&/TOTALLOTES&/|72|22737" id="BONAGEL SUSPENSION FRASCO x 120 ML LICITACION" value="0.0" size="6" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="6" readonly>
+						</td>
+
+						<td style="background-color:#FFFF00">
+							<input type="text" class="UNITMC" value="0" size="6" style="font-size:10px" maxlength="6" readonly>
+						</td>
+						<td style="background-color:#FFFF00">
+							<input type="text" class="UNITMM" value="0" size="6" style="font-size:10px" maxlength="6" readonly>
+						</td>
+						<td style="background-color:#FFFF00">
+							<input type="text" class="UNITMI" value="0" size="6" style="font-size:10px" maxlength="6" readonly>
+						</td>
+
+					</tr>
+
+
+
+					<tr>
+						<td>BONAGEL SUSPENSION 150 ML</td>
+						<td>BONAGEL SUSPENSION FRASCO x 150 ML</td>
+						<td>6,000</td>   
+						<!-- <input type="hidden" class="LOTE" value="6000"> -->
+						<td>-</td>
+						<td>-</td>                        
+						<td>-</td>
+						<td>-</td>
+						<td>-</td>                        
+						<td>-</td>
+
+						<td style="background-color:#FACC2E">97</td>
+						<td style="background-color:#FACC2E">-</td>
+						<td style="background-color:#FACC2E">-</td>                        
+						<td style="background-color:#FACC2E">97</td>
+						<td style="background-color:#FACC2E">0</td>                        
+						<td style="background-color:#FACC2E">0</td>
+						<td style="background-color:#FACC2E">0</td>
+						<td style="background-color:#FACC2E">97</td>
+						<td style="background-color:#FACC2E">-</td>                        
+						<td style="background-color:#FACC2E" align="center"><span style="font-size:16px; font-weight:bold;">-</span></td>
+						<td style="background-color:#FACC2E">
+							<input type="text" class="MC" name="&/MC&/|71|98"  id="&/MC&/|71|98" value="0.0" size="3" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="2" readonly>
+						</td>
+						<td style="background-color:#FACC2E">
+							<input type="text" class="MCU" name="&/UNIDMC&/|71|98" value="0" size="4" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="6">
+						</td>
+						<td style="background-color:#FACC2E">
+							<textarea name="OBSMC&/|71|98" id="" rows="3" cols="20"></textarea>
+						</td>
+
+
+						<td style="background-color:#F781F3">-</td>
+						<td style="background-color:#F781F3">-</td>                        
+						<td style="background-color:#F781F3">-</td>
+						<td style="background-color:#F781F3">-</td>
+						<td style="background-color:#F781F3">-</td>                        
+						<td style="background-color:#F781F3">-</td>
+						<td style="background-color:#F781F3" align="center"><span style="font-size:16px; font-weight:bold;">-</span></td>
+						<td style="background-color:#F781F3">
+							<input type="text" class="MM" name="&/MM&/|71|98" value="0.0" size="3" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="2" readonly>
+						</td>
+						<td style="background-color:#F781F3">
+							<input type="text" class="MMU" name="&/UNIDMM&/|71|98" value="0" size="6" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="6">
+						</td>
+						<td style="background-color:#F781F3">
+							<textarea name="OBSMM&/|71|98" id="" rows="3" cols="20"></textarea>
+						</td>                        
+
+						<td style="background-color:#58FA58">-</td>                        
+						<td style="background-color:#58FA58">-</td>
+						<td style="background-color:#58FA58">-</td>   
+						<td style="background-color:#58FA58">-</td>   
+						<td style="background-color:#58FA58">-</td>
+						<td style="background-color:#58FA58" align="center"><span style="font-size:16px; font-weight:bold;">-</span></td>   
+						<td style="background-color:#58FA58">
+							<input type="text" class="MI" NAME="&/MI&/|71|98" value="0.0" size="3" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="2" readonly>
+						</td>
+						<td style="background-color:#58FA58">
+							<input type="text" class="MIU" NAME="&/UNIDMI&/|71|98" value="0" size="6" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="6">
+						</td>
+						<td style="background-color:#58FA58">
+							<textarea name="OBSMI&/|71|98" id="" rows="3" cols="20"></textarea>
+						</td>
+
+
+						<td style="background-color:#FFFF00">
+							<input type="text" class="TOTAL" NAME="&/TOTALLOTES&/|71|98" id="BONAGEL SUSPENSION FRASCO x 150 ML" value="0.0" size="6" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="6" readonly>
+						</td>
+
+						<td style="background-color:#FFFF00">
+							<input type="text" class="UNITMC" value="0" size="6" style="font-size:10px" maxlength="6" readonly>
+						</td>
+						<td style="background-color:#FFFF00">
+							<input type="text" class="UNITMM" value="0" size="6" style="font-size:10px" maxlength="6" readonly>
+						</td>
+						<td style="background-color:#FFFF00">
+							<input type="text" class="UNITMI" value="0" size="6" style="font-size:10px" maxlength="6" readonly>
+						</td>
+
+					</tr>
+
+
+
+					<tr>
+						<td>COFARTOS PLUS JARABE </td>
+						<td>COFARTOS PLUS JARABE FRASCO x 100 ML</td>
+						<td>8,000</td>   
+						<!-- <input type="hidden" class="LOTE" value="8000"> -->
+						<td>-</td>
+						<td>-</td>                        
+						<td>-</td>
+						<td>-</td>
+						<td>-</td>                        
+						<td>-</td>
+
+						<td style="background-color:#FACC2E">250</td>
+						<td style="background-color:#FACC2E">384</td>
+						<td style="background-color:#FACC2E">-</td>                        
+						<td style="background-color:#FACC2E">634</td>
+						<td style="background-color:#FACC2E">0</td>                        
+						<td style="background-color:#FACC2E">0</td>
+						<td style="background-color:#FACC2E">0</td>
+						<td style="background-color:#FACC2E">634</td>
+						<td style="background-color:#FACC2E">-</td>                        
+						<td style="background-color:#FACC2E" align="center"><span style="font-size:16px; font-weight:bold;">-</span></td>
+						<td style="background-color:#FACC2E">
+							<input type="text" class="MC" name="&/MC&/|108|147"  id="&/MC&/|108|147" value="0.0" size="3" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="2" readonly>
+						</td>
+						<td style="background-color:#FACC2E">
+							<input type="text" class="MCU" name="&/UNIDMC&/|108|147" value="0" size="4" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="6">
+						</td>
+						<td style="background-color:#FACC2E">
+							<textarea name="OBSMC&/|108|147" id="" rows="3" cols="20"></textarea>
+						</td>
+
+
+						<td style="background-color:#F781F3">-</td>
+						<td style="background-color:#F781F3">-</td>                        
+						<td style="background-color:#F781F3">-</td>
+						<td style="background-color:#F781F3">-</td>
+						<td style="background-color:#F781F3">-</td>                        
+						<td style="background-color:#F781F3">-</td>
+						<td style="background-color:#F781F3" align="center"><span style="font-size:16px; font-weight:bold;">-</span></td>
+						<td style="background-color:#F781F3">
+							<input type="text" class="MM" name="&/MM&/|108|147" value="0.0" size="3" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="2" readonly>
+						</td>
+						<td style="background-color:#F781F3">
+							<input type="text" class="MMU" name="&/UNIDMM&/|108|147" value="0" size="6" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="6">
+						</td>
+						<td style="background-color:#F781F3">
+							<textarea name="OBSMM&/|108|147" id="" rows="3" cols="20"></textarea>
+						</td>                        
+
+						<td style="background-color:#58FA58">-</td>                        
+						<td style="background-color:#58FA58">-</td>
+						<td style="background-color:#58FA58">-</td>   
+						<td style="background-color:#58FA58">-</td>   
+						<td style="background-color:#58FA58">-</td>
+						<td style="background-color:#58FA58" align="center"><span style="font-size:16px; font-weight:bold;">-</span></td>   
+						<td style="background-color:#58FA58">
+							<input type="text" class="MI" NAME="&/MI&/|108|147" value="0.0" size="3" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="2" readonly>
+						</td>
+						<td style="background-color:#58FA58">
+							<input type="text" class="MIU" NAME="&/UNIDMI&/|108|147" value="0" size="6" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="6">
+						</td>
+						<td style="background-color:#58FA58">
+							<textarea name="OBSMI&/|108|147" id="" rows="3" cols="20"></textarea>
+						</td>
+
+
+						<td style="background-color:#FFFF00">
+							<input type="text" class="TOTAL" NAME="&/TOTALLOTES&/|108|147" id="COFARTOS PLUS JARABE FRASCO x 100 ML" value="0.0" size="6" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="6" readonly>
+						</td>
+
+						<td style="background-color:#FFFF00">
+							<input type="text" class="UNITMC" value="0" size="6" style="font-size:10px" maxlength="6" readonly>
+						</td>
+						<td style="background-color:#FFFF00">
+							<input type="text" class="UNITMM" value="0" size="6" style="font-size:10px" maxlength="6" readonly>
+						</td>
+						<td style="background-color:#FFFF00">
+							<input type="text" class="UNITMI" value="0" size="6" style="font-size:10px" maxlength="6" readonly>
+						</td>
+
+					</tr>
+
+
+
+					<tr>
+						<td>DEXTROMETORFANO JARABE </td>
+						<td>DEXTROMETORFANO  JARABE FRASCO x 100 ML</td>
+						<td>8,000</td>   
+						<!-- <input type="hidden" class="LOTE" value="8000"> -->
+						<td>-</td>
+						<td>-</td>                        
+						<td>-</td>
+						<td>-</td>
+						<td>-</td>                        
+						<td>-</td>
+
+						<td style="background-color:#FACC2E">3023</td>
+						<td style="background-color:#FACC2E">738</td>
+						<td style="background-color:#FACC2E">-</td>                        
+						<td style="background-color:#FACC2E">3761</td>
+						<td style="background-color:#FACC2E">2144</td>                        
+						<td style="background-color:#FACC2E">5356</td>
+						<td style="background-color:#FACC2E">13356</td>
+						<td style="background-color:#FACC2E">3761</td>
+						<td style="background-color:#FACC2E">9595</td>                        
+						<td style="background-color:#FACC2E" align="center"><span style="font-size:16px; font-weight:bold;">2.0</span></td>
+						<td style="background-color:#FACC2E">
+							<input type="text" class="MC" name="&/MC&/|114|156"  id="&/MC&/|114|156" value="0.0" size="3" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="2" readonly>
+						</td>
+						<td style="background-color:#FACC2E">
+							<input type="text" class="MCU" name="&/UNIDMC&/|114|156" value="0" size="4" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="6">
+						</td>
+						<td style="background-color:#FACC2E">
+							<textarea name="OBSMC&/|114|156" id="" rows="3" cols="20"></textarea>
+						</td>
+
+
+						<td style="background-color:#F781F3">-</td>
+						<td style="background-color:#F781F3">-</td>                        
+						<td style="background-color:#F781F3">-</td>
+						<td style="background-color:#F781F3">-</td>
+						<td style="background-color:#F781F3">-</td>                        
+						<td style="background-color:#F781F3">-</td>
+						<td style="background-color:#F781F3" align="center"><span style="font-size:16px; font-weight:bold;">-</span></td>
+						<td style="background-color:#F781F3">
+							<input type="text" class="MM" name="&/MM&/|114|156" value="0.0" size="3" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="2" readonly>
+						</td>
+						<td style="background-color:#F781F3">
+							<input type="text" class="MMU" name="&/UNIDMM&/|114|156" value="0" size="6" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="6">
+						</td>
+						<td style="background-color:#F781F3">
+							<textarea name="OBSMM&/|114|156" id="" rows="3" cols="20"></textarea>
+						</td>                        
+
+						<td style="background-color:#58FA58">7960</td>                        
+						<td style="background-color:#58FA58">7960</td>
+						<td style="background-color:#58FA58">-</td>   
+						<td style="background-color:#58FA58">7960</td>   
+						<td style="background-color:#58FA58">-</td>
+						<td style="background-color:#58FA58" align="center"><span style="font-size:16px; font-weight:bold;">-</span></td>   
+						<td style="background-color:#58FA58">
+							<input type="text" class="MI" NAME="&/MI&/|114|156" value="0.0" size="3" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="2" readonly>
+						</td>
+						<td style="background-color:#58FA58">
+							<input type="text" class="MIU" NAME="&/UNIDMI&/|114|156" value="0" size="6" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="6">
+						</td>
+						<td style="background-color:#58FA58">
+							<textarea name="OBSMI&/|114|156" id="" rows="3" cols="20"></textarea>
+						</td>
+
+
+						<td style="background-color:#FFFF00">
+							<input type="text" class="TOTAL" NAME="&/TOTALLOTES&/|114|156" id="DEXTROMETORFANO  JARABE FRASCO x 100 ML" value="0.0" size="6" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="6" readonly>
+						</td>
+
+						<td style="background-color:#FFFF00">
+							<input type="text" class="UNITMC" value="0" size="6" style="font-size:10px" maxlength="6" readonly>
+						</td>
+						<td style="background-color:#FFFF00">
+							<input type="text" class="UNITMM" value="0" size="6" style="font-size:10px" maxlength="6" readonly>
+						</td>
+						<td style="background-color:#FFFF00">
+							<input type="text" class="UNITMI" value="0" size="6" style="font-size:10px" maxlength="6" readonly>
+						</td>
+
+					</tr>
+
+
+
+					<tr>
+						<td>DIGESTOGAS GOTAS ORALES 20ML</td>
+						<td>DIGESTOGAS GOTAS ORALES FRASCO GOTERO x 20 ML</td>
+						<td>4,000</td>   
+						<!-- <input type="hidden" class="LOTE" value="4000"> -->
+						<td>-</td>
+						<td>-</td>                        
+						<td>-</td>
+						<td>-</td>
+						<td>-</td>                        
+						<td>-</td>
+
+						<td style="background-color:#FACC2E">-</td>
+						<td style="background-color:#FACC2E">5995</td>
+						<td style="background-color:#FACC2E">-</td>                        
+						<td style="background-color:#FACC2E">5995</td>
+						<td style="background-color:#FACC2E">275</td>                        
+						<td style="background-color:#FACC2E">550</td>
+						<td style="background-color:#FACC2E">4550</td>
+						<td style="background-color:#FACC2E">5995</td>
+						<td style="background-color:#FACC2E">-</td>                        
+						<td style="background-color:#FACC2E" align="center"><span style="font-size:16px; font-weight:bold;">-</span></td>
+						<td style="background-color:#FACC2E">
+							<input type="text" class="MC" name="&/MC&/|1463|22705"  id="&/MC&/|1463|22705" value="0.0" size="3" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="2" readonly>
+						</td>
+						<td style="background-color:#FACC2E">
+							<input type="text" class="MCU" name="&/UNIDMC&/|1463|22705" value="0" size="4" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="6">
+						</td>
+						<td style="background-color:#FACC2E">
+							<textarea name="OBSMC&/|1463|22705" id="" rows="3" cols="20"></textarea>
+						</td>
+
+
+						<td style="background-color:#F781F3">-</td>
+						<td style="background-color:#F781F3">-</td>                        
+						<td style="background-color:#F781F3">-</td>
+						<td style="background-color:#F781F3">-</td>
+						<td style="background-color:#F781F3">-</td>                        
+						<td style="background-color:#F781F3">-</td>
+						<td style="background-color:#F781F3" align="center"><span style="font-size:16px; font-weight:bold;">-</span></td>
+						<td style="background-color:#F781F3">
+							<input type="text" class="MM" name="&/MM&/|1463|22705" value="0.0" size="3" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="2" readonly>
+						</td>
+						<td style="background-color:#F781F3">
+							<input type="text" class="MMU" name="&/UNIDMM&/|1463|22705" value="0" size="6" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="6">
+						</td>
+						<td style="background-color:#F781F3">
+							<textarea name="OBSMM&/|1463|22705" id="" rows="3" cols="20"></textarea>
+						</td>                        
+
+						<td style="background-color:#58FA58">-</td>                        
+						<td style="background-color:#58FA58">-</td>
+						<td style="background-color:#58FA58">-</td>   
+						<td style="background-color:#58FA58">-</td>   
+						<td style="background-color:#58FA58">-</td>
+						<td style="background-color:#58FA58" align="center"><span style="font-size:16px; font-weight:bold;">-</span></td>   
+						<td style="background-color:#58FA58">
+							<input type="text" class="MI" NAME="&/MI&/|1463|22705" value="0.0" size="3" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="2" readonly>
+						</td>
+						<td style="background-color:#58FA58">
+							<input type="text" class="MIU" NAME="&/UNIDMI&/|1463|22705" value="0" size="6" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="6">
+						</td>
+						<td style="background-color:#58FA58">
+							<textarea name="OBSMI&/|1463|22705" id="" rows="3" cols="20"></textarea>
+						</td>
+
+
+						<td style="background-color:#FFFF00">
+							<input type="text" class="TOTAL" NAME="&/TOTALLOTES&/|1463|22705" id="DIGESTOGAS GOTAS ORALES FRASCO GOTERO x 20 ML" value="0.0" size="6" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="6" readonly>
+						</td>
+
+						<td style="background-color:#FFFF00">
+							<input type="text" class="UNITMC" value="0" size="6" style="font-size:10px" maxlength="6" readonly>
+						</td>
+						<td style="background-color:#FFFF00">
+							<input type="text" class="UNITMM" value="0" size="6" style="font-size:10px" maxlength="6" readonly>
+						</td>
+						<td style="background-color:#FFFF00">
+							<input type="text" class="UNITMI" value="0" size="6" style="font-size:10px" maxlength="6" readonly>
+						</td>
+
+					</tr>
+
+
+
+					<tr>
+						<td>DIGESTOGAS GOTAS ORALES 20ML</td>
+						<td>DIGESTOGAS GOTAS ORALES FRASCO GOTERO x 20 ML LICITACION</td>
+						<td>4,000</td>   
+						<!-- <input type="hidden" class="LOTE" value="4000"> -->
+						<td>-</td>
+						<td>-</td>                        
+						<td>-</td>
+						<td>-</td>
+						<td>-</td>                        
+						<td>-</td>
+
+						<td style="background-color:#FACC2E">-</td>
+						<td style="background-color:#FACC2E">-</td>
+						<td style="background-color:#FACC2E">-</td>                        
+						<td style="background-color:#FACC2E">-</td>
+						<td style="background-color:#FACC2E">0</td>                        
+						<td style="background-color:#FACC2E">0</td>
+						<td style="background-color:#FACC2E">0</td>
+						<td style="background-color:#FACC2E">-</td>
+						<td style="background-color:#FACC2E">-</td>                        
+						<td style="background-color:#FACC2E" align="center"><span style="font-size:16px; font-weight:bold;">-</span></td>
+						<td style="background-color:#FACC2E">
+							<input type="text" class="MC" name="&/MC&/|1463|22774"  id="&/MC&/|1463|22774" value="0.0" size="3" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="2" readonly>
+						</td>
+						<td style="background-color:#FACC2E">
+							<input type="text" class="MCU" name="&/UNIDMC&/|1463|22774" value="0" size="4" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="6">
+						</td>
+						<td style="background-color:#FACC2E">
+							<textarea name="OBSMC&/|1463|22774" id="" rows="3" cols="20"></textarea>
+						</td>
+
+
+						<td style="background-color:#F781F3">-</td>
+						<td style="background-color:#F781F3">-</td>                        
+						<td style="background-color:#F781F3">-</td>
+						<td style="background-color:#F781F3">-</td>
+						<td style="background-color:#F781F3">-</td>                        
+						<td style="background-color:#F781F3">-</td>
+						<td style="background-color:#F781F3" align="center"><span style="font-size:16px; font-weight:bold;">-</span></td>
+						<td style="background-color:#F781F3">
+							<input type="text" class="MM" name="&/MM&/|1463|22774" value="0.0" size="3" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="2" readonly>
+						</td>
+						<td style="background-color:#F781F3">
+							<input type="text" class="MMU" name="&/UNIDMM&/|1463|22774" value="0" size="6" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="6">
+						</td>
+						<td style="background-color:#F781F3">
+							<textarea name="OBSMM&/|1463|22774" id="" rows="3" cols="20"></textarea>
+						</td>                        
+
+						<td style="background-color:#58FA58">-</td>                        
+						<td style="background-color:#58FA58">-</td>
+						<td style="background-color:#58FA58">-</td>   
+						<td style="background-color:#58FA58">-</td>   
+						<td style="background-color:#58FA58">-</td>
+						<td style="background-color:#58FA58" align="center"><span style="font-size:16px; font-weight:bold;">-</span></td>   
+						<td style="background-color:#58FA58">
+							<input type="text" class="MI" NAME="&/MI&/|1463|22774" value="0.0" size="3" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="2" readonly>
+						</td>
+						<td style="background-color:#58FA58">
+							<input type="text" class="MIU" NAME="&/UNIDMI&/|1463|22774" value="0" size="6" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="6">
+						</td>
+						<td style="background-color:#58FA58">
+							<textarea name="OBSMI&/|1463|22774" id="" rows="3" cols="20"></textarea>
+						</td>
+
+
+						<td style="background-color:#FFFF00">
+							<input type="text" class="TOTAL" NAME="&/TOTALLOTES&/|1463|22774" id="DIGESTOGAS GOTAS ORALES FRASCO GOTERO x 20 ML LICITACION" value="0.0" size="6" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="6" readonly>
+						</td>
+
+						<td style="background-color:#FFFF00">
+							<input type="text" class="UNITMC" value="0" size="6" style="font-size:10px" maxlength="6" readonly>
+						</td>
+						<td style="background-color:#FFFF00">
+							<input type="text" class="UNITMM" value="0" size="6" style="font-size:10px" maxlength="6" readonly>
+						</td>
+						<td style="background-color:#FFFF00">
+							<input type="text" class="UNITMI" value="0" size="6" style="font-size:10px" maxlength="6" readonly>
+						</td>
+
+					</tr>
+
+
+
+					<tr>
+						<td>FLAGYTOL SUSPENSION 250 MG/5 ML (8000)</td>
+						<td>FLAGYTOL SUSPENSION FRASCO x 100 ML LICITACION</td>
+						<td>8,000</td>   
+						<!-- <input type="hidden" class="LOTE" value="8000"> -->
+						<td>-</td>
+						<td>-</td>                        
+						<td>-</td>
+						<td>-</td>
+						<td>-</td>                        
+						<td>-</td>
+
+						<td style="background-color:#FACC2E">-</td>
+						<td style="background-color:#FACC2E">-</td>
+						<td style="background-color:#FACC2E">-</td>                        
+						<td style="background-color:#FACC2E">-</td>
+						<td style="background-color:#FACC2E">0</td>                        
+						<td style="background-color:#FACC2E">0</td>
+						<td style="background-color:#FACC2E">0</td>
+						<td style="background-color:#FACC2E">-</td>
+						<td style="background-color:#FACC2E">-</td>                        
+						<td style="background-color:#FACC2E" align="center"><span style="font-size:16px; font-weight:bold;">-</span></td>
+						<td style="background-color:#FACC2E">
+							<input type="text" class="MC" name="&/MC&/|1430|22785"  id="&/MC&/|1430|22785" value="0.0" size="3" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="2" readonly>
+						</td>
+						<td style="background-color:#FACC2E">
+							<input type="text" class="MCU" name="&/UNIDMC&/|1430|22785" value="0" size="4" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="6">
+						</td>
+						<td style="background-color:#FACC2E">
+							<textarea name="OBSMC&/|1430|22785" id="" rows="3" cols="20"></textarea>
+						</td>
+
+
+						<td style="background-color:#F781F3">-</td>
+						<td style="background-color:#F781F3">-</td>                        
+						<td style="background-color:#F781F3">-</td>
+						<td style="background-color:#F781F3">-</td>
+						<td style="background-color:#F781F3">-</td>                        
+						<td style="background-color:#F781F3">-</td>
+						<td style="background-color:#F781F3" align="center"><span style="font-size:16px; font-weight:bold;">-</span></td>
+						<td style="background-color:#F781F3">
+							<input type="text" class="MM" name="&/MM&/|1430|22785" value="0.0" size="3" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="2" readonly>
+						</td>
+						<td style="background-color:#F781F3">
+							<input type="text" class="MMU" name="&/UNIDMM&/|1430|22785" value="0" size="6" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="6">
+						</td>
+						<td style="background-color:#F781F3">
+							<textarea name="OBSMM&/|1430|22785" id="" rows="3" cols="20"></textarea>
+						</td>                        
+
+						<td style="background-color:#58FA58">-</td>                        
+						<td style="background-color:#58FA58">-</td>
+						<td style="background-color:#58FA58">-</td>   
+						<td style="background-color:#58FA58">-</td>   
+						<td style="background-color:#58FA58">-</td>
+						<td style="background-color:#58FA58" align="center"><span style="font-size:16px; font-weight:bold;">-</span></td>   
+						<td style="background-color:#58FA58">
+							<input type="text" class="MI" NAME="&/MI&/|1430|22785" value="0.0" size="3" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="2" readonly>
+						</td>
+						<td style="background-color:#58FA58">
+							<input type="text" class="MIU" NAME="&/UNIDMI&/|1430|22785" value="0" size="6" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="6">
+						</td>
+						<td style="background-color:#58FA58">
+							<textarea name="OBSMI&/|1430|22785" id="" rows="3" cols="20"></textarea>
+						</td>
+
+
+						<td style="background-color:#FFFF00">
+							<input type="text" class="TOTAL" NAME="&/TOTALLOTES&/|1430|22785" id="FLAGYTOL SUSPENSION FRASCO x 100 ML LICITACION" value="0.0" size="6" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="6" readonly>
+						</td>
+
+						<td style="background-color:#FFFF00">
+							<input type="text" class="UNITMC" value="0" size="6" style="font-size:10px" maxlength="6" readonly>
+						</td>
+						<td style="background-color:#FFFF00">
+							<input type="text" class="UNITMM" value="0" size="6" style="font-size:10px" maxlength="6" readonly>
+						</td>
+						<td style="background-color:#FFFF00">
+							<input type="text" class="UNITMI" value="0" size="6" style="font-size:10px" maxlength="6" readonly>
+						</td>
+
+					</tr>
+
+
+
+					<tr>
+						<td>FLAGYTOL SUSPENSION 250 MG/5 ML (8000)</td>
+						<td>FLAGYTOL SUSPENSION FRASCO x 100 ML</td>
+						<td>8,000</td>   
+						<!-- <input type="hidden" class="LOTE" value="8000"> -->
+						<td>-</td>
+						<td>-</td>                        
+						<td>-</td>
+						<td>-</td>
+						<td>-</td>                        
+						<td>-</td>
+
+						<td style="background-color:#FACC2E">1010</td>
+						<td style="background-color:#FACC2E">4223</td>
+						<td style="background-color:#FACC2E">-</td>                        
+						<td style="background-color:#FACC2E">5233</td>
+						<td style="background-color:#FACC2E">1034</td>                        
+						<td style="background-color:#FACC2E">1521</td>
+						<td style="background-color:#FACC2E">5521</td>
+						<td style="background-color:#FACC2E">5233</td>
+						<td style="background-color:#FACC2E">-</td>                        
+						<td style="background-color:#FACC2E" align="center"><span style="font-size:16px; font-weight:bold;">-</span></td>
+						<td style="background-color:#FACC2E">
+							<input type="text" class="MC" name="&/MC&/|1430|203"  id="&/MC&/|1430|203" value="0.0" size="3" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="2" readonly>
+						</td>
+						<td style="background-color:#FACC2E">
+							<input type="text" class="MCU" name="&/UNIDMC&/|1430|203" value="0" size="4" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="6">
+						</td>
+						<td style="background-color:#FACC2E">
+							<textarea name="OBSMC&/|1430|203" id="" rows="3" cols="20"></textarea>
+						</td>
+
+
+						<td style="background-color:#F781F3">-</td>
+						<td style="background-color:#F781F3">-</td>                        
+						<td style="background-color:#F781F3">-</td>
+						<td style="background-color:#F781F3">-</td>
+						<td style="background-color:#F781F3">-</td>                        
+						<td style="background-color:#F781F3">-</td>
+						<td style="background-color:#F781F3" align="center"><span style="font-size:16px; font-weight:bold;">-</span></td>
+						<td style="background-color:#F781F3">
+							<input type="text" class="MM" name="&/MM&/|1430|203" value="0.0" size="3" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="2" readonly>
+						</td>
+						<td style="background-color:#F781F3">
+							<input type="text" class="MMU" name="&/UNIDMM&/|1430|203" value="0" size="6" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="6">
+						</td>
+						<td style="background-color:#F781F3">
+							<textarea name="OBSMM&/|1430|203" id="" rows="3" cols="20"></textarea>
+						</td>                        
+
+						<td style="background-color:#58FA58">-</td>                        
+						<td style="background-color:#58FA58">-</td>
+						<td style="background-color:#58FA58">-</td>   
+						<td style="background-color:#58FA58">-</td>   
+						<td style="background-color:#58FA58">-</td>
+						<td style="background-color:#58FA58" align="center"><span style="font-size:16px; font-weight:bold;">-</span></td>   
+						<td style="background-color:#58FA58">
+							<input type="text" class="MI" NAME="&/MI&/|1430|203" value="0.0" size="3" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="2" readonly>
+						</td>
+						<td style="background-color:#58FA58">
+							<input type="text" class="MIU" NAME="&/UNIDMI&/|1430|203" value="0" size="6" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="6">
+						</td>
+						<td style="background-color:#58FA58">
+							<textarea name="OBSMI&/|1430|203" id="" rows="3" cols="20"></textarea>
+						</td>
+
+
+						<td style="background-color:#FFFF00">
+							<input type="text" class="TOTAL" NAME="&/TOTALLOTES&/|1430|203" id="FLAGYTOL SUSPENSION FRASCO x 100 ML" value="0.0" size="6" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="6" readonly>
+						</td>
+
+						<td style="background-color:#FFFF00">
+							<input type="text" class="UNITMC" value="0" size="6" style="font-size:10px" maxlength="6" readonly>
+						</td>
+						<td style="background-color:#FFFF00">
+							<input type="text" class="UNITMM" value="0" size="6" style="font-size:10px" maxlength="6" readonly>
+						</td>
+						<td style="background-color:#FFFF00">
+							<input type="text" class="UNITMI" value="0" size="6" style="font-size:10px" maxlength="6" readonly>
+						</td>
+
+					</tr>
+
+
+
+					<tr>
+						<td>FLAVICOLD NIÑOS GOTAS ORALES </td>
+						<td>FLAVICOLD NIÑOS GOTAS ORALES FRASCO GOTERO x 20 ML</td>
+						<td>4,000</td>   
+						<!-- <input type="hidden" class="LOTE" value="4000"> -->
+						<td>-</td>
+						<td>-</td>                        
+						<td>-</td>
+						<td>-</td>
+						<td>-</td>                        
+						<td>-</td>
+
+						<td style="background-color:#FACC2E">1303</td>
+						<td style="background-color:#FACC2E">241</td>
+						<td style="background-color:#FACC2E">-</td>                        
+						<td style="background-color:#FACC2E">1544</td>
+						<td style="background-color:#FACC2E">398</td>                        
+						<td style="background-color:#FACC2E">1062</td>
+						<td style="background-color:#FACC2E">5062</td>
+						<td style="background-color:#FACC2E">1544</td>
+						<td style="background-color:#FACC2E">-</td>                        
+						<td style="background-color:#FACC2E" align="center"><span style="font-size:16px; font-weight:bold;">-</span></td>
+						<td style="background-color:#FACC2E">
+							<input type="text" class="MC" name="&/MC&/|159|211"  id="&/MC&/|159|211" value="0.0" size="3" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="2" readonly>
+						</td>
+						<td style="background-color:#FACC2E">
+							<input type="text" class="MCU" name="&/UNIDMC&/|159|211" value="0" size="4" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="6">
+						</td>
+						<td style="background-color:#FACC2E">
+							<textarea name="OBSMC&/|159|211" id="" rows="3" cols="20"></textarea>
+						</td>
+
+
+						<td style="background-color:#F781F3">-</td>
+						<td style="background-color:#F781F3">-</td>                        
+						<td style="background-color:#F781F3">-</td>
+						<td style="background-color:#F781F3">-</td>
+						<td style="background-color:#F781F3">-</td>                        
+						<td style="background-color:#F781F3">-</td>
+						<td style="background-color:#F781F3" align="center"><span style="font-size:16px; font-weight:bold;">-</span></td>
+						<td style="background-color:#F781F3">
+							<input type="text" class="MM" name="&/MM&/|159|211" value="0.0" size="3" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="2" readonly>
+						</td>
+						<td style="background-color:#F781F3">
+							<input type="text" class="MMU" name="&/UNIDMM&/|159|211" value="0" size="6" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="6">
+						</td>
+						<td style="background-color:#F781F3">
+							<textarea name="OBSMM&/|159|211" id="" rows="3" cols="20"></textarea>
+						</td>                        
+
+						<td style="background-color:#58FA58">-</td>                        
+						<td style="background-color:#58FA58">-</td>
+						<td style="background-color:#58FA58">-</td>   
+						<td style="background-color:#58FA58">-</td>   
+						<td style="background-color:#58FA58">-</td>
+						<td style="background-color:#58FA58" align="center"><span style="font-size:16px; font-weight:bold;">-</span></td>   
+						<td style="background-color:#58FA58">
+							<input type="text" class="MI" NAME="&/MI&/|159|211" value="0.0" size="3" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="2" readonly>
+						</td>
+						<td style="background-color:#58FA58">
+							<input type="text" class="MIU" NAME="&/UNIDMI&/|159|211" value="0" size="6" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="6">
+						</td>
+						<td style="background-color:#58FA58">
+							<textarea name="OBSMI&/|159|211" id="" rows="3" cols="20"></textarea>
+						</td>
+
+
+						<td style="background-color:#FFFF00">
+							<input type="text" class="TOTAL" NAME="&/TOTALLOTES&/|159|211" id="FLAVICOLD NIÑOS GOTAS ORALES FRASCO GOTERO x 20 ML" value="0.0" size="6" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="6" readonly>
+						</td>
+
+						<td style="background-color:#FFFF00">
+							<input type="text" class="UNITMC" value="0" size="6" style="font-size:10px" maxlength="6" readonly>
+						</td>
+						<td style="background-color:#FFFF00">
+							<input type="text" class="UNITMM" value="0" size="6" style="font-size:10px" maxlength="6" readonly>
+						</td>
+						<td style="background-color:#FFFF00">
+							<input type="text" class="UNITMI" value="0" size="6" style="font-size:10px" maxlength="6" readonly>
+						</td>
+
+					</tr>
+
+
+
+					<tr>
+						<td>HIOSCINA GOTAS ORALES </td>
+						<td>HIOSCINA GOTAS ORALES FRASCO GOTERO x 10 ML</td>
+						<td>5,000</td>   
+						<!-- <input type="hidden" class="LOTE" value="5000"> -->
+						<td>-</td>
+						<td>-</td>                        
+						<td>-</td>
+						<td>-</td>
+						<td>-</td>                        
+						<td>-</td>
+
+						<td style="background-color:#FACC2E">1066</td>
+						<td style="background-color:#FACC2E">53</td>
+						<td style="background-color:#FACC2E">-</td>                        
+						<td style="background-color:#FACC2E">1119</td>
+						<td style="background-color:#FACC2E">448</td>                        
+						<td style="background-color:#FACC2E">804</td>
+						<td style="background-color:#FACC2E">5804</td>
+						<td style="background-color:#FACC2E">1119</td>
+						<td style="background-color:#FACC2E">-</td>                        
+						<td style="background-color:#FACC2E" align="center"><span style="font-size:16px; font-weight:bold;">-</span></td>
+						<td style="background-color:#FACC2E">
+							<input type="text" class="MC" name="&/MC&/|35|40"  id="&/MC&/|35|40" value="0.0" size="3" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="2" readonly>
+						</td>
+						<td style="background-color:#FACC2E">
+							<input type="text" class="MCU" name="&/UNIDMC&/|35|40" value="0" size="4" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="6">
+						</td>
+						<td style="background-color:#FACC2E">
+							<textarea name="OBSMC&/|35|40" id="" rows="3" cols="20"></textarea>
+						</td>
+
+
+						<td style="background-color:#F781F3">-</td>
+						<td style="background-color:#F781F3">-</td>                        
+						<td style="background-color:#F781F3">-</td>
+						<td style="background-color:#F781F3">-</td>
+						<td style="background-color:#F781F3">-</td>                        
+						<td style="background-color:#F781F3">-</td>
+						<td style="background-color:#F781F3" align="center"><span style="font-size:16px; font-weight:bold;">-</span></td>
+						<td style="background-color:#F781F3">
+							<input type="text" class="MM" name="&/MM&/|35|40" value="0.0" size="3" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="2" readonly>
+						</td>
+						<td style="background-color:#F781F3">
+							<input type="text" class="MMU" name="&/UNIDMM&/|35|40" value="0" size="6" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="6">
+						</td>
+						<td style="background-color:#F781F3">
+							<textarea name="OBSMM&/|35|40" id="" rows="3" cols="20"></textarea>
+						</td>                        
+
+						<td style="background-color:#58FA58">-</td>                        
+						<td style="background-color:#58FA58">-</td>
+						<td style="background-color:#58FA58">-</td>   
+						<td style="background-color:#58FA58">-</td>   
+						<td style="background-color:#58FA58">-</td>
+						<td style="background-color:#58FA58" align="center"><span style="font-size:16px; font-weight:bold;">-</span></td>   
+						<td style="background-color:#58FA58">
+							<input type="text" class="MI" NAME="&/MI&/|35|40" value="0.0" size="3" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="2" readonly>
+						</td>
+						<td style="background-color:#58FA58">
+							<input type="text" class="MIU" NAME="&/UNIDMI&/|35|40" value="0" size="6" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="6">
+						</td>
+						<td style="background-color:#58FA58">
+							<textarea name="OBSMI&/|35|40" id="" rows="3" cols="20"></textarea>
+						</td>
+
+
+						<td style="background-color:#FFFF00">
+							<input type="text" class="TOTAL" NAME="&/TOTALLOTES&/|35|40" id="HIOSCINA GOTAS ORALES FRASCO GOTERO x 10 ML" value="0.0" size="6" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="6" readonly>
+						</td>
+
+						<td style="background-color:#FFFF00">
+							<input type="text" class="UNITMC" value="0" size="6" style="font-size:10px" maxlength="6" readonly>
+						</td>
+						<td style="background-color:#FFFF00">
+							<input type="text" class="UNITMM" value="0" size="6" style="font-size:10px" maxlength="6" readonly>
+						</td>
+						<td style="background-color:#FFFF00">
+							<input type="text" class="UNITMI" value="0" size="6" style="font-size:10px" maxlength="6" readonly>
+						</td>
+
+					</tr>
+
+
+
+					<tr>
+						<td>HIOSCINA GOTAS ORALES </td>
+						<td>HIOSCINA GOTAS ORALES FRASCO GOTERO x 10 ML LICITACION</td>
+						<td>5,000</td>   
+						<!-- <input type="hidden" class="LOTE" value="5000"> -->
+						<td>-</td>
+						<td>-</td>                        
+						<td>-</td>
+						<td>-</td>
+						<td>-</td>                        
+						<td>-</td>
+
+						<td style="background-color:#FACC2E">-</td>
+						<td style="background-color:#FACC2E">-</td>
+						<td style="background-color:#FACC2E">-</td>                        
+						<td style="background-color:#FACC2E">-</td>
+						<td style="background-color:#FACC2E">0</td>                        
+						<td style="background-color:#FACC2E">0</td>
+						<td style="background-color:#FACC2E">0</td>
+						<td style="background-color:#FACC2E">-</td>
+						<td style="background-color:#FACC2E">-</td>                        
+						<td style="background-color:#FACC2E" align="center"><span style="font-size:16px; font-weight:bold;">-</span></td>
+						<td style="background-color:#FACC2E">
+							<input type="text" class="MC" name="&/MC&/|35|22751"  id="&/MC&/|35|22751" value="0.0" size="3" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="2" readonly>
+						</td>
+						<td style="background-color:#FACC2E">
+							<input type="text" class="MCU" name="&/UNIDMC&/|35|22751" value="0" size="4" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="6">
+						</td>
+						<td style="background-color:#FACC2E">
+							<textarea name="OBSMC&/|35|22751" id="" rows="3" cols="20"></textarea>
+						</td>
+
+
+						<td style="background-color:#F781F3">-</td>
+						<td style="background-color:#F781F3">-</td>                        
+						<td style="background-color:#F781F3">-</td>
+						<td style="background-color:#F781F3">-</td>
+						<td style="background-color:#F781F3">-</td>                        
+						<td style="background-color:#F781F3">-</td>
+						<td style="background-color:#F781F3" align="center"><span style="font-size:16px; font-weight:bold;">-</span></td>
+						<td style="background-color:#F781F3">
+							<input type="text" class="MM" name="&/MM&/|35|22751" value="0.0" size="3" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="2" readonly>
+						</td>
+						<td style="background-color:#F781F3">
+							<input type="text" class="MMU" name="&/UNIDMM&/|35|22751" value="0" size="6" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="6">
+						</td>
+						<td style="background-color:#F781F3">
+							<textarea name="OBSMM&/|35|22751" id="" rows="3" cols="20"></textarea>
+						</td>                        
+
+						<td style="background-color:#58FA58">-</td>                        
+						<td style="background-color:#58FA58">-</td>
+						<td style="background-color:#58FA58">-</td>   
+						<td style="background-color:#58FA58">-</td>   
+						<td style="background-color:#58FA58">-</td>
+						<td style="background-color:#58FA58" align="center"><span style="font-size:16px; font-weight:bold;">-</span></td>   
+						<td style="background-color:#58FA58">
+							<input type="text" class="MI" NAME="&/MI&/|35|22751" value="0.0" size="3" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="2" readonly>
+						</td>
+						<td style="background-color:#58FA58">
+							<input type="text" class="MIU" NAME="&/UNIDMI&/|35|22751" value="0" size="6" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="6">
+						</td>
+						<td style="background-color:#58FA58">
+							<textarea name="OBSMI&/|35|22751" id="" rows="3" cols="20"></textarea>
+						</td>
+
+
+						<td style="background-color:#FFFF00">
+							<input type="text" class="TOTAL" NAME="&/TOTALLOTES&/|35|22751" id="HIOSCINA GOTAS ORALES FRASCO GOTERO x 10 ML LICITACION" value="0.0" size="6" style="font-size:10px" onkeypress="return soloNumeros(event)" maxlength="6" readonly>
+						</td>
+
+						<td style="background-color:#FFFF00">
+							<input type="text" class="UNITMC" value="0" size="6" style="font-size:10px" maxlength="6" readonly>
+						</td>
+						<td style="background-color:#FFFF00">
+							<input type="text" class="UNITMM" value="0" size="6" style="font-size:10px" maxlength="6" readonly>
+						</td>
+						<td style="background-color:#FFFF00">
+							<input type="text" class="UNITMI" value="0" size="6" style="font-size:10px" maxlength="6" readonly>
+						</td>
+
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</body>
+</html>

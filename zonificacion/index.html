@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8" />
+
+  <!-- Set the viewport width to device width for mobile -->
+  <meta name="viewport" content="width=device-width" />
+
+  <title>Off Canvas With Zurb Foundation</title>
+
+  <!-- Included Foundations CSS Files -->
+  <link rel="stylesheet" href="stylesheets/foundation.css">
+  <link rel="stylesheet" href="stylesheets/offcanvas.css">
+  <!-- Included Custom Override CSS Files -->
+  <link rel="stylesheet" href="stylesheets/style.css">
+
+  <!-- Include Gooogle Webfonts -->
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600' rel='stylesheet' type='text/css'>
+  
+  <!--[if lt IE 9]>
+    <link rel="stylesheet" href="stylesheets/ie.css">
+  <![endif]-->
+
+  <script src="javascripts/modernizr.foundation.js"></script>
+
+  <!-- IE Fix for HTML5 Tags -->
+  <!--[if lt IE 9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+
+</head>
+
+<body id="page" class="off-canvas">
+	<div class="container">
+
+		<!-- SMALL SCREEN NAVIGATION -->
+		<nav id="topMenu" role="navigation"> <!-- THIS IS KEY -->
+			<ul id="nav" class="nav-bar">
+				<li><a href="" class="main">Home</a></li>
+				<li><a href="" class="main">About</a></li>
+				<li><a href="" class="main">Services</a></li>
+				<li><a href="" class="main">Blog</a></li>
+				<li><a href="" class="main">Contact</a></li>							
+			</ul>											
+		</nav>
+			<div class="first full-width color-three">
+				<header id="header" class="row">	
+		  
+					<!-- LOGO -->
+					<div class="five columns">
+						<a href="#" class="logo"><img src="images/site_assets/logo.png" />
+						<h1>Off Canvas</h1>
+						</a>
+					</div> 
+		  
+		  <!-- REGULAR NAVIGATION -->
+		  			<div class="seven columns">
+		    			<nav id="menu" class="hide-for-small">
+    						<ul id="mainNav" class="nav-bar">
+			    				<li><a href="" class="main">Home</a></li>
+								<li><a href="" class="main">About</a></li>
+								<li><a href="" class="main">Services</a></li>
+								<li><a href="" class="main">Blog</a></li>
+								<li><a href="" class="main">Contact</a></li>							
+			    			</ul>											
+    					</nav>
+
+			    		<!-- SMALL SCREEN EXTRAS BUTTONS -->
+			  			<p class="show-for-small">
+			  			  <a class='menu-button button' id="menuButton" href="#menu">Menu</a><!-- link goes to named anchor -->
+			  			  <a class='sidebar-button button' id="sidebarButton" href="#contact" >Contact Us</a>
+			  			</p> <!-- link goes to named anchor -->
+					</div>
+
+				</header>	
+			</div><!-- end full width -->
+
+			<!-- SLIDER -->
+			<div class="full-width">
+				<div class="hide-for-small">
+  					<div id="featured"> 
+     					<img src="images/site_assets/slide1.jpg" alt="Orb (#79688) Marc Sebastian " />
+     					<img src="images/site_assets/slide2.jpg"  alt="Old Dusty Radio (#48791) Marc Sebastian" />
+     					<img src="images/site_assets/slide3.jpg" alt="IMG_5720 Marc Sebastian	" />
+					</div>
+				</div> <!-- end hide-for-small -->
+			</div><!-- end full width -->
+
+		<section role="main"> <!-- Main Section - This Is Part Of The Magic -->
+			
+			<!-- CALLOUT TEXT -->
+			<div class="full-width color-five">
+				<div class="row callout">
+					<div class="twelve columns">
+						<p>We make incredible websites for incredible companies.</p>
+					</div><!-- end columns -->
+				</div><!-- end row -->
+			</div><!-- end full width color five -->
+			
+			<!-- SERVICES -->	
+			<div class="full-width color-two">
+				<div class="row">
+					<div class="eight columns centered">
+						<h2>Our Services</h2>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="four columns service">
+						<!-- data-icon attribute sets the correct icon font. See line #140 style.css -->
+						<h3 class="service-icon"><span aria-hidden="true" data-icon="&#x6e;"></span> Webdesign</h3>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+						tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+						quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+						consequat. </p>
+
+						<span><a href="#" class="radius button">Learn More &rarr;</a></span>
+					</div>
+			
+					<div class="four columns service">
+						<h3 class="service-icon"><span aria-hidden="true" data-icon="&#x21;"></span>Copywriting</h3>
+
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+						tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+						quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+						consequat. </p>
+						<span><a href="#" class="radius radius button">Learn More &rarr;</a></span>	
+					</div>
+
+					<div class="four columns service">
+						<h3 class="service-icon"><span aria-hidden="true" data-icon="&#x22;"></span>Marketing</h3>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+						tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+						quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+						consequat. </p>
+						<span><a href="#" class="radius button">Learn More &rarr;</a></span>
+					</div>
+				</div><!-- end row -->
+			</div><!-- end full-width -->
+
+			<!-- FEATURED PROJECT -->
+			<div class="full-width color-one">
+				<div class ="row featured">
+					<div class="twelve columns">
+						<h2>Featured Project</h2>
+						<a href="#" class="featured"><img src="images/site_assets/featured_project.png" alt="Featured Project Screenshot"></a>
+					</div>
+				</div> 
+			</div> <!-- end full-width -->
+		</section> <!-- end of main section -->
+
+		<section id="contact" role="complementary"> <!-- This tells the javascript to take this content out of the main section and into the sidebar on small screens -->
+			
+			<!-- CONTACT US -->
+			<div class="full-width">
+				<div class="row">
+					<div class="ten columns centered">
+						<h2>Get In Contact</h2>
+						<p>We'd love to hear from you about your next project. Fill in the form below and we'll be in touch with you as soon as we can.</p>			
+						<form>
+							<div class="row">
+								<div class="six columns"> <!-- this controls the width of the inputs -->
+									<label>Name</label>
+  									<input type="text" class="oversize" />
+  									<label>Email</label>
+  									<input type="text" class="oversize" />
+  								</div>
+  							</div>
+
+  							<div class="row">
+  								<div class="twelve columns"> <!-- this controls the width of the textarea -->
+  									<label>Tell Us About Your Project</label>
+  									<textarea></textarea>
+  									<a href="#" class="button" id="submit">Submit</a>
+  								</div>
+  							</div>
+  						</form>				
+  					</div>
+  				</div> <!-- end row -->
+			</div><!-- end full width -->
+		</section> <!-- end off canvas sidebar -->
+		
+		<!-- FOOTER -->
+		<footer class=" color-four site-footer row">
+      		<div class="twelve columns">
+        		<p>Chris Brown for Webdesign Tuts+ Using Zurb Foundation 3.0 &amp; based on code from Jason Weaver and Luke Wroblewski</p>
+      		</div>	
+    	</footer>	
+ 	</div><!-- end container -->
+
+
+
+	<!-- Include JS Files -->
+	<script src="javascripts/foundation.js"></script>
+	<script src="javascripts/apps.js"></script>
+	<script src="javascripts/jquery.min.js"></script>
+	<script src="javascripts/jquery.orbit-1.4.0.js"></script>
+	<script type="text/javascript" src="javascripts/jquery.offcanvas.js"></script>
+	
+
+	<!-- Call Slideshow -->
+	<script type="text/javascript">
+    	 	$(window).load(function() {
+         	$('#featured').orbit();
+     		});
+	</script>
+</body>

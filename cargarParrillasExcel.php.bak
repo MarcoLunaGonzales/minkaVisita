@@ -1,0 +1,53 @@
+<?php
+require('conexion.inc');
+$sqlParrilla="select `CODIGO`,`LINEA`,`AGENCIA`,`ESPE`,`CAT`,`NRO_VISITA`,`LINEAVISITA`,
+  `ORDEN`,`COD_PROD`,`PROD`,`CANT_PROD`,`COD_MAT`,`MATERIAL`,`CANT_MATERIAL` 
+  from `parrillas_excel` p group by p.`AGENCIA`,p.`LINEA`, p.`ESPE`, p.`LINEAVISITA`, p.`CAT`, p.`nro_visita` order by
+	p.`AGENCIA`,p.`LINEA`, p.`ESPE`, p.`LINEAVISITA`,p.`CAT`, p.`nro_visita`";
+$respParrilla=mysql_query($sqlParrilla);
+while($datParrilla=mysql_fetch_array($respParrilla)){
+	$codigo=$datParrilla[0];
+	$linea=$datParrilla[1];
+	$agencia=$datParrilla[2];
+	$espe=$datParrilla[3];
+	$cat=$datParrilla[4];
+	$nroVisita=$datParrilla[5];
+	$lineaVisita=$datParrilla[6];
+	
+	$sql="select max(p.`codigo_parrilla`) from `parrilla` p";
+	$resp=mysql_query($sql);
+	$dat=mysql_fetch_array($resp);
+	$num_filas=mysql_num_rows($resp);
+	if($num_filas==0)
+	{	$codigo=1000;
+	}
+	else
+	{	$codigo=$dat[0];
+		$codigo++;
+	}
+	$sqlInsert="INSERT INTO `parrilla` (`codigo_parrilla`,`cod_ciclo`,`cod_especialidad`,`categoria_med`,`codigo_linea`,
+					  `fecha_creacion`,`fecha_modificacion`,`numero_visita`,`agencia`,`codigo_l_visita`,`muestras_extra`,`codigo_gestion`) 
+					  	VALUES ($codigo, 10, '$espe','$cat',$linea, '2010-11-16', '2010-11-16', $nroVisita, $agencia, $lineaVisita,
+					  	0,1007)";
+	$respInsert=mysql_query($sqlInsert);
+	echo $sqlInsert;	
+	
+	$sqlDetalle="select `CODIGO`,`ORDEN`,`COD_PROD`,`CANT_PROD`,`COD_MAT`,`CANT_MATERIAL` 
+							from `parrillas_excel` p where p.`LINEA`=$linea and p.`AGENCIA`=$agencia and p.`ESPE`='$espe' 
+							and p.`CAT`='$cat' and p.`NRO_VISITA`=$nroVisita and p.`LINEAVISITA`=$lineaVisita";
+	$respDetalle=mysql_query($sqlDetalle);
+	while($datDetalle=mysql_fetch_array($respDetalle)){
+		$orden=$datDetalle[1];
+		$codProd=$datDetalle[2];
+		$cantProd=$datDetalle[3];
+		$codMaterial=$datDetalle[4];
+		$cantMaterial=$datDetalle[5];
+		
+		$sqlInsertDetalle="INSERT INTO `parrilla_detalle` (`codigo_parrilla`, `codigo_muestra`, `cantidad_muestra`,
+					`codigo_material`, `cantidad_material`, `prioridad`, `observaciones`, `extra`) VALUES 
+					($codigo, '$codProd', $cantProd, '$codMaterial', $cantMaterial, $orden,'',0)";
+		$respInsertDetalle=mysql_query($sqlInsertDetalle);
+		echo $sqlInsertDetalle."<br>";
+	}
+}
+?>

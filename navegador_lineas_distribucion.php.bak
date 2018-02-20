@@ -1,0 +1,39 @@
+<?php
+require("conexion.inc");
+echo "<script language='JavaScript'>
+	function distribuye_mmma(codigo_linea)
+	{	location.href='efectuar_distribucion_mmma.php?codigo_linea='+codigo_linea+'';
+	}
+</script>";
+if($global_usuario==1052)
+{	require("estilos_gerencia.inc");
+}
+else
+{	require("estilos_inicio_adm.inc");
+}
+$sql_gestion="select nombre_gestion from gestiones where estado='Activo'";
+$resp_gestion=mysql_query($sql_gestion);
+$dat_gestion=mysql_fetch_array($resp_gestion);
+$nombre_gestion=$dat_gestion[0];
+$sql="select * from lineas where linea_promocion=1 order by nombre_linea";
+$resp=mysql_query($sql);
+echo "<center><table border='0' class='textotit'><tr><td align='center'>Distribucion de MM y MA por Líneas<br>Ciclo: <strong>$global_ciclo_distribucion</strong> Gestión: <strong>$nombre_gestion</strong></td></tr></table></center><br>";
+echo "<center><table border='1' class='texto' cellspacing='0' width='80%'>";
+//echo "<tr><td>&nbsp;</td><th>Líneas</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th></tr>";
+echo "<tr><td>&nbsp;</td><th>Líneas</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th></tr>";
+$indice_tabla=1;
+while($dat=mysql_fetch_array($resp))
+{
+	$codigo=$dat[0];
+	$nombre=$dat[1];
+	//echo "<tr><td align='center'>$indice_tabla</td></td><td>$nombre</td><td align='center'><a href='inserta_distribucion_lineas.php?global_linea_distribucion=$codigo'>Preparar Distribución de Muestras en base a ruteros>></a></td><td align='center'><a href='inserta_distribucion_lineas_medicosasignados.php?global_linea_distribucion=$codigo'>Preparar Distribución de Muestras de acuerdo a asignacion de Medicos>></a></td><td align='center'><a href='inserta_distribucion_lineas_ma.php?global_linea_distribucion=$codigo'>Preparar Distribución Material de Apoyo>></a></td><td align='center'><a href='javascript:distribuye_mmma($codigo)'>Ejecutar Distribución de MM y MA >></a></td></tr>";
+	echo "<tr><td align='center'>$indice_tabla</td></td><td>$nombre</td>
+	<td align='center'><a href='inserta_distribucion_lineas.php?global_linea_distribucion=$codigo'>Preparar Distribución de Muestras en base a ruteros>></a></td>
+	<td align='center'><a href='cambiarProductoDistribucion.php?global_linea_distribucion=$codigo' target='_blank'>Intercambiar Productos>></a></td>
+	<td align='center'><a href='cambiarMaterialDistribucion.php?global_linea_distribucion=$codigo' target='_blank'>Intercambiar MA>></a></td>
+	<td align='center'><a href='javascript:distribuye_mmma($codigo)'>Ejecutar Distribución de MM y MA >></a></td></tr>";
+	$indice_tabla++;
+}
+echo "</table></center>";
+echo"\n<br><table align='center'><tr><td><a href='navegador_distribucion_ciclos.php'><img  border='0'src='imagenes/volver.gif' width='15' height='8'>Volver Atras</a></td></tr></table>";
+?>

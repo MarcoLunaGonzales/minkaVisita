@@ -1,0 +1,97 @@
+<script language='Javascript'>
+		function enviar_nav()
+		{	location.href='registrar_grupo_especial.php';
+		}
+		function editar_nav(f)
+		{
+			var i;
+			var j=0;
+			var j_linea;
+			for(i=0;i<=f.length-1;i++)
+			{
+				if(f.elements[i].type=='checkbox')
+				{	if(f.elements[i].checked==true)
+					{	j_linea=f.elements[i].value;
+						j=j+1;
+					}
+				}
+			}
+			if(j>1)
+			{	alert('Debe seleccionar solamente un Grupo Especial para editar sus datos.');
+			}
+			else
+			{
+				if(j==0)
+				{
+					alert('Debe seleccionar un Grupo Especial para editar sus datos.');
+				}
+				else
+				{
+					location.href='editar_grupoespe.php?cod_grupo='+j_linea+'';
+				}
+			}
+		}
+		function adi_med_nav(f)
+		{
+			var i;
+			var j=0;
+			var j_linea;
+			for(i=0;i<=f.length-1;i++)
+			{
+				if(f.elements[i].type=='checkbox')
+				{	if(f.elements[i].checked==true)
+					{	j_linea=f.elements[i].value;
+						j=j+1;
+					}
+				}
+			}
+			if(j>1)
+			{	alert('Debe seleccionar solamente un Grupo Especial para ver a los Medicos del grupo.');
+			}
+			else
+			{
+				if(j==0)
+				{
+					alert('Debe seleccionar un Grupo Especial para ver a los Medicos del grupo.');
+				}
+				else
+				{
+					location.href='navegador_grupoespe_detalle.php?cod_grupo='+j_linea+'';
+				}
+			}
+		}
+		function eliminar_nav(f)
+		{	
+			var i;
+			var j=0;
+			datos=new Array();
+			for(i=0;i<=f.length-1;i++)
+			{
+				if(f.elements[i].type=='checkbox')
+				{	if(f.elements[i].checked==true)
+					{	datos[j]=f.elements[i].value;
+						j=j+1;
+					}
+				}
+			}
+			if(j==0)
+			{	alert('Debe seleccionar al menos un Grupo Especial para proceder a su eliminación.');
+			}
+			else
+			{	
+				if(confirm('Esta seguro de eliminar los datos.'))
+				{
+					location.href='eliminar_grupo_especial.php?datos='+datos+'';
+				}
+				else
+				{
+					return(false);
+				}
+			}
+		}
+		</script>
+	<head><link href='stilos.css' rel='stylesheet' type='text/css'></head><body background='imagenes/fondo_pagina.png'><center><img src='imagenes/cab4.png'><br><script src='xaramenu.js'></script><script Webstyle4 src='imagenes/menu_regional.js'></script></center><br><br>
+<b>Warning</b>:  Supplied argument is not a valid MySQL result resource in <b>C:\apache\htdocs\VISITA~1\estilos_regional_pri.inc</b> on line <b>9</b><br>
+<br>
+<b>Warning</b>:  Supplied argument is not a valid MySQL result resource in <b>C:\apache\htdocs\VISITA~1\estilos_regional_pri.inc</b> on line <b>13</b><br>
+<center><table border=0 class='linea'><tr><th>Línea <br>Territorio </th></tr></table></center><br><form><center><table border='0' class='textotit'><tr><td>Registro de Grupos Especiales</td></tr></table></center><br><center><table border='1' class='texto' cellspacing='0'><tr><td>&nbsp;</td><th>Nombre Grupo Especial</th></tr></table></center><br><center><table border='0' class='texto'><tr><td><input type='button' value='Adicionar' name='adicionar' class='boton' onclick='enviar_nav()'></td><td><input type='button' value='Eliminar' name='eliminar' class='boton' onclick='eliminar_nav(this.form)'></td><td><input type='button' value='Editar' class='boton' onclick='editar_nav(this.form)'></td><td><input type='button' value='Medicos del Grupo' class='boton' onclick='adi_med_nav(this.form)'></td></tr></table></center></form>

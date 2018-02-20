@@ -1,0 +1,37 @@
+<?php
+require('conexion.inc');
+$sql="select d.`cod_visitador`, d.`codigo_linea`, d.`grupo_salida` ,d.`codigo_producto`, d.`cantidad_planificada` 
+	from `distribucion_productos_visitadores3` d";
+$resp=mysql_query($sql);
+echo "<table border=1><tr><th>Visitador</th><th>Linea</th><th>Producto</th><th>Cant Ultima</th><th>Cant</th><th>Diferencia</th></tr>";
+	
+while($dat=mysql_fetch_array($resp)){
+	$codVisitador=$dat[0];
+	$codLinea=$dat[1];
+	$grupoSalida=$dat[2];
+	$codProducto=$dat[3];
+	$cantPlanificada=$dat[4];
+	
+	$sqlVeri="select d.`cantidad_planificada` from `distribucion_productos_visitadores` d where d.`cod_ciclo`=9 and d.`codigo_gestion`=1007 and
+	d.`cod_visitador`=$codVisitador and d.`codigo_linea`=$codLinea and d.`grupo_salida`=$grupoSalida and d.`codigo_producto`='$codProducto'";
+	$respVeri=mysql_query($sqlVeri);
+	while($datVeri=mysql_fetch_array($respVeri)){
+		$cantVeri=$datVeri[0];
+		$cantDif=$cantPlanificada-$cantVeri;
+		if($cantDif!=0){
+			$fondo="#ff0000";
+			$sqlAct="update distribucion_productos_visitadores set cantidad_planificada=$cantPlanificada where 
+				`cod_ciclo`=9 and `codigo_gestion`=1007 and `cod_visitador`=$codVisitador and 
+				`codigo_linea`=$codLinea and `grupo_salida`=$grupoSalida and `codigo_producto`='$codProducto'";
+
+		}else{
+			$fondo="";
+		}				
+		echo "<tr bgcolor='$fondo'><td>$codVisitador</td><td>$codLinea</td><td>$codProducto</td><td>$cantPlanificada</td><td>$cantVeri</td><td>$cantDif</td></tr>";
+		
+	}
+	
+}
+
+echo "</table>";
+?>

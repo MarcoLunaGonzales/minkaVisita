@@ -1,0 +1,206 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=iso-8859-15">
+	<TITLE></TITLE>
+	<META NAME="GENERATOR" CONTENT="OpenOffice.org 1.1.3  (Linux)">
+	<META NAME="CREATED" CONTENT="20060609;16593900">
+	<META NAME="CHANGED" CONTENT="20060609;17015100">
+	<STYLE>
+	<!--
+		@page { size: 21cm 29.7cm; margin: 2cm }
+		P { margin-bottom: 0.21cm }
+		PRE { font-family: "Nimbus Roman No9 L" }
+	-->
+	</STYLE>
+</HEAD>
+<BODY LANG="es-ES" DIR="LTR">
+<PRE>&lt;?php
+/**
+ * Desarrollado por Datanet-Bolivia.
+ * @autor: Marco Antonio Luna Gonzales
+ * Sistema de Visita M&eacute;dica
+ * * @copyright 2006
+*/
+echo &quot;&lt;script language='Javascript'&gt;
+		function enviar_nav()
+		{	location.href='creacion_contactos_numero.php';
+		}
+		function recuperar_contactos()
+		{	location.href='recuperacion_contactos.php';
+		}
+		function eliminar_nav(f)
+		{
+			var i;
+			var j=0;
+			datos=new Array();
+			for(i=0;i&lt;=f.length-1;i++)
+			{
+				if(f.elements[i].type=='checkbox')
+				{	if(f.elements[i].checked==true)
+					{	datos[j]=f.elements[i].value;
+						j=j+1;
+					}
+				}
+			}
+			if(j==0)
+			{	alert('Debe seleccionar al menos un contacto para proceder a su eliminaci&oacute;n.');
+			}
+			else
+			{
+				if(confirm('Esta seguro de eliminar los datos.'))
+				{
+					location.href='eliminar_contacto.php?datos='+datos+'';
+				}
+				else
+				{
+					return(false);
+				}
+			}
+		}
+		function editar_nav(f)
+		{
+			var i;
+			var j=0;
+			var j_contacto;
+			for(i=0;i&lt;=f.length-1;i++)
+			{
+				if(f.elements[i].type=='checkbox')
+				{	if(f.elements[i].checked==true)
+					{	j_contacto=f.elements[i].value;
+						j=j+1;
+					}
+				}
+			}
+			if(j&gt;1)
+			{	alert('Debe seleccionar solamente un contacto para editar sus datos.');
+			}
+			else
+			{
+				if(j==0)
+				{
+					alert('Debe seleccionar un contacto para editar sus datos.');
+				}
+				else
+				{
+					location.href='editar_contacto.php?j_contacto='+j_contacto+'';
+				}
+			}
+		}
+		&lt;/script&gt;
+	&quot;;
+echo&quot;&lt;head&gt;&lt;title&gt;Modulo Operativo de Promoci&oacute;n M&eacute;dica&lt;/title&gt;&lt;link href='stilos.css' rel='stylesheet' type='text/css'&gt;&lt;/head&gt;&quot;;  
+echo &quot;&lt;div id='Layer1' style='position:absolute; left:0px; top:0px; width:1000px; height:80px; z-index:1; background-color: #000000; layer-background-color: #000000; border: 1px none #000000;'&gt;&lt;img src='imagenes/cab_peque.png'&gt;&quot;;
+echo &quot;&lt;center&gt;&lt;script src='xaramenu.js'&gt;&lt;/script&gt;&lt;script Webstyle4 src='imagenes/menu_visitador.js'&gt;&lt;/script&gt;&lt;/center&gt;&lt;/div&gt;&quot;;
+echo &quot;&lt;body background='imagenes/fondo_pagina.png'&gt;&quot;;
+//echo &quot;&lt;center&gt;&lt;img src='imagenes/cab4.png'&gt;&lt;br&gt;&quot;;
+echo &quot;&lt;div style='position:absolute; left:0px; top:90px; width:1000px; border: 1px none #000000;'&gt;&quot;;
+require(&quot;conexion.inc&quot;);
+$sql_gestion=mysql_query(&quot;select codigo_gestion,nombre_gestion from gestiones where estado='Activo' and codigo_linea='$global_linea'&quot;);
+$dat_gestion=mysql_fetch_array($sql_gestion);
+$codigo_gestion=$dat_gestion[0];
+$gestion=$dat_gestion[1];
+$sql_ciclo=mysql_query(&quot;select cod_ciclo from ciclos where estado='Activo' and codigo_linea='$global_linea'&quot;);
+$dat_ciclo=mysql_fetch_array($sql_ciclo);
+$ciclo_global=$dat_ciclo[0];
+$sql=&quot;select nombre_linea from lineas where codigo_linea='$global_linea'&quot;;
+$resp=mysql_query($sql);
+$dat=mysql_fetch_array($resp);
+$linea=$dat[0];
+$sql=&quot;select paterno, materno, nombres from funcionarios where codigo_funcionario=$global_visitador&quot;;
+$resp=mysql_query($sql);
+$dat=mysql_fetch_array($resp);
+$paterno=$dat[0];
+$materno=$dat[1];
+$nombre=$dat[2];
+$nombre_completo=&quot;$paterno $materno $nombre&quot;;
+$sql=&quot;select descripcion from ciudades where cod_ciudad='$global_agencia'&quot;;
+$resp=mysql_query($sql);
+$dat=mysql_fetch_array($resp);
+$agencia=$dat[0];
+//sacamos la fecha y la hora
+$fecha_sistema=date(&quot;d-m-Y&quot;);
+$hora_sistema=date(&quot;H:i&quot;);
+if($global_zona_viaje==1)
+{	echo &quot;&lt;center&gt;&lt;table width='100%' border=1 cellspacing=0 class='linea1'&gt;&lt;tr&gt;&lt;th colspan='4'&gt;Modulo Operativo de Promoci&oacute;n M&eacute;dica&lt;/th&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th&gt;Territorio $global_agencia&lt;/th&gt;&lt;th&gt;Usuario:$nombre_completo &lt;/th&gt;&lt;th&gt;Gesti&oacute;n:$gestion&lt;/th&gt;&lt;th&gt;Ciclo en Curso:$ciclo_global&lt;/th&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th colspan='2'&gt;Fecha del Servidor: $fecha_sistema&lt;/th&gt;&lt;th colspan='2'&gt;Hora del Servidor: $hora_sistema&lt;/th&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/center&gt;&lt;br&gt;&quot;;
+}
+else
+{	echo &quot;&lt;center&gt;&lt;table width='100%' border=1 cellspacing=0 class='linea1'&gt;&lt;tr&gt;&lt;th colspan='5'&gt;Modulo Operativo de Promoci&oacute;n M&eacute;dica&lt;/th&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th&gt;L&iacute;nea: $linea&lt;/th&gt;&lt;th&gt;Territorio $agencia&lt;/th&gt;&lt;th&gt;Usuario:$nombre_completo &lt;/th&gt;&lt;th&gt;Gesti&oacute;n:$gestion&lt;/th&gt;&lt;th&gt;Ciclo en Curso:$ciclo_global&lt;/th&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th colspan='3'&gt;Fecha del Servidor: $fecha_sistema&lt;/th&gt;&lt;th colspan='2'&gt;Hora del Servidor: $hora_sistema&lt;/th&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/center&gt;&lt;br&gt;&quot;;
+}
+	require(&quot;estilos_visitador.inc&quot;);
+	echo &quot;&lt;form method='post' action='opciones_medico.php'&gt;&quot;;
+	//esta parte saca el ciclo activo
+	$sql=&quot;select r.cod_ciclo, r.codigo_gestion, r.cod_contacto, r.cod_visitador, r.dia_contacto, r.turno, r.zona_viaje from rutero r, orden_dias o where r.cod_ciclo='$ciclo_global' and r.codigo_gestion='$codigo_gestion' and r.cod_visitador=$global_visitador and r.dia_contacto=o.dia_contacto order by o.id&quot;;
+	$resp=mysql_query($sql);
+	echo &quot;&lt;center&gt;&lt;table border='0' class='textotit'&gt;&lt;tr&gt;&lt;td&gt;Rutero M&eacute;dico Actual&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/center&gt;&lt;br&gt;&quot;;
+	echo &quot;&lt;center&gt;&lt;table border='0' class='textomini'&gt;&lt;tr&gt;&lt;th&gt;Leyenda:&lt;/th&gt;&lt;th&gt;Contactos Viaje&lt;/th&gt;&lt;td bgcolor='#FFD8BF' width='30%'&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/center&gt;&lt;br&gt;&quot;;
+	echo &quot;&lt;center&gt;&lt;table border='1' class='textomini' cellspacing='0' width='90%'&gt;&quot;;
+	echo &quot;&lt;tr&gt;&lt;th&gt;D&iacute;a Contacto&lt;/th&gt;&lt;th&gt;Turno&lt;/th&gt;&lt;th&gt;Contactos&lt;/th&gt;&lt;/tr&gt;&quot;;
+	while($dat=mysql_fetch_array($resp))
+	{
+		$cod_contacto=$dat[2];
+		$dia_contacto=$dat[4];
+		$turno=$dat[5];
+		$zona_de_viaje=$dat[6];
+		if($zona_de_viaje==1)
+		{	$fondo_fila=&quot;#FFD8BF&quot;;
+		}
+		else
+		{	$fondo_fila=&quot;&quot;;
+		}
+		$sql1=&quot;select c.orden_visita, m.ap_pat_med, m.ap_mat_med, m.nom_med, d.direccion, c.cod_especialidad, c.categoria_med, c.estado
+				from rutero_detalle c, medicos m, direcciones_medicos d
+					where (c.cod_contacto=$cod_contacto) and (c.cod_visitador=$global_visitador) and (c.cod_med=m.cod_med) and (m.cod_med=d.cod_med) and (c.cod_zona=d.cod_zona) order by c.orden_visita&quot;;
+		$resp1=mysql_query($sql1);
+		$contacto=&quot;&lt;table class='textomini' width='100%'&gt;&quot;;
+		$contacto=$contacto.&quot;&lt;tr&gt;&lt;th width='5%'&gt;Orden&lt;/th&gt;&lt;th width='35%'&gt;M&eacute;dico&lt;/th&gt;&lt;th width='10%'&gt;Especialidad&lt;/th&gt;&lt;th width='10%'&gt;Categor&iacute;a&lt;/th&gt;&lt;th width='30%'&gt;Direcci&oacute;n&lt;/th&gt;&lt;th width='10%'&gt;Visitado&lt;/th&gt;&lt;/tr&gt;&quot;;
+		while($dat1=mysql_fetch_array($resp1))
+		{
+			$orden_visita=$dat1[0];
+			$pat=$dat1[1];
+			$mat=$dat1[2];
+			$nombre=$dat1[3];
+			$direccion=$dat1[4];
+			$nombre_medico=&quot;$pat $mat $nombre&quot;;
+			$espe=$dat1[5];
+			$cat=$dat1[6];
+			$estado=$dat1[7];
+			if($estado==0)
+			{	$det_estado=&quot;&lt;img src='imagenes/no.gif' width='20' heigth='20'&gt;&quot;;
+			}
+			else
+			{	$det_estado=&quot;&lt;img src='imagenes/si.gif' width='20' heigth='20'&gt;&quot;;
+			}
+			$contacto=$contacto.&quot;&lt;tr&gt;&lt;td align='center'&gt;$dat1[0]&lt;/td&gt;&lt;td align='center'&gt;$nombre_medico&lt;/td&gt;&lt;td align='center'&gt;$espe&lt;/td&gt;&lt;td align='center'&gt;$cat&lt;/td&gt;&lt;td align='center'&gt;$direccion &lt;/td&gt;&lt;td align='center'&gt;$det_estado &lt;/td&gt;&lt;/tr&gt;&quot;;
+		}
+		$contacto=$contacto.&quot;&lt;/table&gt;&quot;;
+		echo &quot;&lt;tr bgcolor=$fondo_fila&gt;&lt;td align='center'&gt;$dia_contacto&lt;/td&gt;&lt;td align='center'&gt;$turno&lt;/td&gt;&lt;td align='center'&gt;$contacto&lt;/td&gt;&lt;/tr&gt;&quot;;
+	}
+	echo &quot;&lt;/table&gt;&lt;/center&gt;&lt;br&gt;&quot;;
+	$sql_numeros=&quot;select cd.estado from rutero c, rutero_detalle cd
+				where c.cod_contacto=cd.cod_contacto and c.cod_ciclo='$ciclo_global' and c.codigo_gestion='$codigo_gestion' and c.cod_visitador='$global_visitador'&quot;;
+	$resp_numeros=mysql_query($sql_numeros);
+	$total_contactos=mysql_num_rows($resp_numeros);
+	$realizados=0;
+	$faltantes=0;
+	while($dat_numeros=mysql_fetch_array($resp_numeros))
+	{	$estado=$dat_numeros[0];
+		if($estado==0)
+		{	$faltantes++;
+		}
+		else
+		{	$realizados++;
+		}
+	}
+	$cobertura=($realizados/$total_contactos)*100;
+	echo &quot;&lt;center&gt;&lt;table border='0' class='texto'&gt;&quot;;
+	echo &quot;&lt;tr&gt;&lt;th align='left'&gt;Total Contactos: &lt;/th&gt;&lt;th&gt;$total_contactos&lt;/th&gt;&lt;/tr&gt;&quot;;
+	echo &quot;&lt;tr&gt;&lt;th align='left'&gt;Realizados: &lt;/th&gt;&lt;th&gt;$realizados&lt;/th&gt;&lt;/tr&gt;&quot;;
+	echo &quot;&lt;tr&gt;&lt;th align='left'&gt;Sin realizar: &lt;/th&gt;&lt;th&gt;$faltantes&lt;/th&gt;&lt;/tr&gt;&quot;;
+	echo &quot;&lt;tr&gt;&lt;th align='left'&gt;Cobertura: &lt;/th&gt;&lt;th&gt;$cobertura %&lt;/th&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/center&gt;&quot;;
+	//echo &quot;&lt;center&gt;&lt;table border='0' class='texto'&gt;&quot;;
+	//echo &quot;&lt;tr&gt;&lt;td&gt;&lt;input type='button' value='Adicionar' name='adicionar' class='boton' onclick='enviar_nav()'&gt;&lt;/td&gt;&lt;td&gt;&lt;input type='button' value='Eliminar' name='eliminar' class='boton' onclick='eliminar_nav(this.form)'&gt;&lt;/td&gt;&lt;td&gt;&lt;input type='button' value='Editar' name='Editar' class='boton' onclick='editar_nav(this.form)'&gt;&lt;/td&gt;&lt;td&gt;&lt;input type='button' value='Recuperar Contactos' name='recuperar' class='boton' onClick='recuperar_contactos()'&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/center&gt;&quot;;
+	echo &quot;&lt;/form&gt;&quot;;
+?&gt;</PRE>
+</BODY>
+</HTML>

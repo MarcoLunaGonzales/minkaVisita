@@ -1,0 +1,65 @@
+<script language='JavaScript'>
+		function envia_select(f){
+			var formato, ver;
+			formato=f.formato.value;
+			ver=f.ver.value;
+			location.href='rpt_op_medicos_linea.php?ver='+ver+'&formato='+formato+'';
+			return(true);
+		}
+		function envia_formulario(f)   
+		{	var formato, ver, parametro;
+			formato=f.formato.value;
+			ver=f.ver.value;
+			if(ver=='Especialidad')
+			{	parametro=f.parametro.value;
+				window.open('rpt_medicos_linea.php?formato='+formato+'&ver='+ver+'&parametro='+parametro+'','','scrollbars=yes,status=no,toolbar=no,directories=no,menubar=no,resizable=yes,width=1000,height=600');
+			}
+			else
+			{	window.open('rpt_medicos_linea.php?formato='+formato+'&ver='+ver+'','','scrollbars=yes,status=no,toolbar=no,directories=no,menubar=no,resizable=yes,width=1000,height=600');			
+			}
+			return(true);
+			//f.submit();
+		}
+		function envia_formulario_pdf(f)
+		{	var formato, ver, parametro;
+			formato=f.formato.value;
+			ver=f.ver.value;
+			if(ver=='Especialidad')
+			{	parametro=f.parametro.value;
+				window.open('rpt_med_asignado_pdf.php?formato='+formato+'&ver='+ver+'&parametro='+parametro+'','','scrollbars=yes,status=no,toolbar=no,directories=no,menubar=no,resizable=yes,width=1000,height=800');
+			}
+			else
+			{	window.open('rpt_med_asignado_pdf.php?formato='+formato+'&ver='+ver+'','','scrollbars=yes,status=no,toolbar=no,directories=no,menubar=no,resizable=yes,width=1000,height=800');			
+			}
+			return(true);
+			//f.submit();
+		}
+		function envia_formulario_xls(f)
+		{	var formato, ver, parametro;
+			formato=f.formato.value;
+			ver=f.ver.value;
+			if(ver=='Especialidad' || ver=='Categoria')
+			{	parametro=f.parametro.value;
+				window.open('rpt_med_asignado_xls.php?formato='+formato+'&ver='+ver+'&parametro='+parametro+'','','scrollbars=yes,status=no,toolbar=no,directories=no,menubar=no,resizable=yes,width=1000,height=800');
+			}
+			else
+			{	window.open('rpt_med_asignado_xls.php?formato='+formato+'&ver='+ver+'','','scrollbars=yes,status=no,toolbar=no,directories=no,menubar=no,resizable=yes,width=1000,height=800');			
+			}
+			return(true);
+			//f.submit();
+		}
+		</script><head><title>Modulo Operativo de Promoción Médica</title><link href='stilos.css' rel='stylesheet' type='text/css'></head><div id='Layer1' style='position:absolute; left:0px; top:0px; width:1000px; height:80px; z-index:1; background-color: #000000; layer-background-color: #000000; border: 1px none #000000;'><img src='imagenes/cab_peque.jpg'><center><script src='xaramenu.js'></script><script Webstyle4 src='imagenes/menu_visitador.js'></script></center></div><body background='imagenes/fondo_pagina.jpg'><div style='position:absolute; left:0px; top:90px; width:1000px; border: 1px none #000000;'><center><table width='100%' border=1 cellspacing=0 class='linea1'><tr><th colspan='5'>Modulo Operativo de Promoción Médica</th></tr><tr><th>Línea: </th><th>Territorio </th><th>Usuario:   </th><th>Gestión:</th><th>Ciclo en Curso:</th></tr><tr><th colspan='3'>Fecha del Servidor: 26-11-2006</th><th colspan='2'>Hora del Servidor: 21:03</th></tr></table></center><br><br><br><br><br><form action='rpt_medicos_linea.php' method='get'><center><table class='textotit'><tr><th>Reporte Medicos de la Línea</th></tr></table><br><center><table class='texto' border='1' cellspacing='0'><tr><th align='left'>Ver:</th><td><select name='formato' class='texto'><option value='Resumido'>Resumido</option><option value='Detallado'>Detallado</option></select></td></tr><tr><th align='left'>Ordenado por:</th><td align='center'><select OnChange='envia_select(this.form)' name='ver' class='texto'><option></option><option value='Alfabetico'>Alfabetico</option><option value='Especialidad'>Especialidad</option><option value='RUC'>RUC</option></select></td></tr></table><br><center><input type='button' name='reporte' value='Ver Reporte' onClick='envia_formulario(this.form)' class='boton'><input type='button' name='pdf' value='Ver Reporte PDF' onClick='envia_formulario_pdf(this.form)' class='boton'><input type='button' name='xls' value='Ver Reporte Excel' onClick='envia_formulario_xls(this.form)' class='boton'></center></form> PHP Notice:  Undefined variable:  global_linea in C:\Archivos de programa\Apache Group\Apache\htdocs\visita_medica\estilos_visitador.inc on line 10
+PHP Notice:  Undefined variable:  global_linea in C:\Archivos de programa\Apache Group\Apache\htdocs\visita_medica\estilos_visitador.inc on line 14
+PHP Notice:  Undefined variable:  global_linea in C:\Archivos de programa\Apache Group\Apache\htdocs\visita_medica\estilos_visitador.inc on line 17
+PHP Notice:  Undefined variable:  global_visitador in C:\Archivos de programa\Apache Group\Apache\htdocs\visita_medica\estilos_visitador.inc on line 21
+PHP Warning:  mysql_fetch_array(): supplied argument is not a valid MySQL result resource in C:\Archivos de programa\Apache Group\Apache\htdocs\visita_medica\estilos_visitador.inc on line 23
+PHP Notice:  Undefined variable:  global_agencia in C:\Archivos de programa\Apache Group\Apache\htdocs\visita_medica\estilos_visitador.inc on line 28
+PHP Warning:  mysql_fetch_array(): supplied argument is not a valid MySQL result resource in C:\Archivos de programa\Apache Group\Apache\htdocs\visita_medica\estilos_visitador.inc on line 30
+PHP Notice:  Undefined variable:  global_zona_viaje in C:\Archivos de programa\Apache Group\Apache\htdocs\visita_medica\estilos_visitador.inc on line 36
+PHP Notice:  Undefined variable:  formato in C:\Archivos de programa\Apache Group\Apache\htdocs\visita_medica\rpt_op_medicos_linea.php on line 60
+PHP Notice:  Undefined variable:  formato in C:\Archivos de programa\Apache Group\Apache\htdocs\visita_medica\rpt_op_medicos_linea.php on line 61
+PHP Notice:  Undefined variable:  ver in C:\Archivos de programa\Apache Group\Apache\htdocs\visita_medica\rpt_op_medicos_linea.php on line 64
+PHP Notice:  Undefined variable:  ver in C:\Archivos de programa\Apache Group\Apache\htdocs\visita_medica\rpt_op_medicos_linea.php on line 65
+PHP Notice:  Undefined variable:  ver in C:\Archivos de programa\Apache Group\Apache\htdocs\visita_medica\rpt_op_medicos_linea.php on line 66
+PHP Notice:  Undefined variable:  ver in C:\Archivos de programa\Apache Group\Apache\htdocs\visita_medica\rpt_op_medicos_linea.php on line 67
+PHP Notice:  Undefined variable:  ver in C:\Archivos de programa\Apache Group\Apache\htdocs\visita_medica\rpt_op_medicos_linea.php on line 71

@@ -1,0 +1,43 @@
+<?php
+echo"<head><title>Modulo Operativo de Promoción Médica</title><link href='stilos.css' rel='stylesheet' type='text/css'></head>";  
+//echo "<div id='Layer1' style='position:absolute; left:0px; top:0px; width:1000px; height:80px; z-index:1; background-color: #000000; layer-background-color: #000000; border: 1px none #000000;'><img src='imagenes/cab_peque.jpg'>";
+//echo "<center><script src='xaramenu.js'></script><script Webstyle4 src='imagenes/menu_visitador.js'></script></center></div>";
+echo "<body background='imagenes/fondo_pagina.jpg'>";
+//echo "<center><img src='imagenes/cab4.png'><br>";
+//echo "<div style='position:absolute; left:0px; top:90px; width:1000px; border: 1px none #000000;'>";
+//require("desconexion.inc");
+require("conexion.inc");
+$sql_gestion=mysql_query("select codigo_gestion,nombre_gestion from gestiones where estado='Activo'");
+$dat_gestion=mysql_fetch_array($sql_gestion);
+$codigo_gestion=$dat_gestion[0];
+$global_gestion=$codigo_gestion;
+$gestion=$dat_gestion[1];
+$sql_ciclo=mysql_query("select cod_ciclo from ciclos where estado='Activo'");
+$dat_ciclo=mysql_fetch_array($sql_ciclo);
+$ciclo_global=$dat_ciclo[0];
+$sql="select nombre_linea from lineas where codigo_linea='$global_linea'";
+$resp=mysql_query($sql);
+$dat=mysql_fetch_array($resp);
+$linea=$dat[0];
+$sql="select paterno, materno, nombres from funcionarios where codigo_funcionario=$global_visitador";
+$resp=mysql_query($sql);
+$dat=mysql_fetch_array($resp);
+$paterno=$dat[0];
+$materno=$dat[1];
+$nombre=$dat[2];
+$nombre_completo="$paterno $materno $nombre";
+$sql="select descripcion from ciudades where cod_ciudad=$global_agencia";
+$resp=mysql_query($sql);
+$dat=mysql_fetch_array($resp);
+$agencia=$dat[0];
+//sacamos la fecha y la hora
+$fecha_sistema=date("d-m-Y");
+$hora_sistema=date("H:i");
+//echo "<table align='center' class='textomini'><tr><td><a href='index1.html'>Cerrar Sesión</a></td></tr></table>";
+if($global_zona_viaje==1)
+{	echo "<center><table width='100%' border=1 cellspacing=0 class='linea1'></tr><tr><th>Territorio $agencia</th><th>Usuario:$nombre_completo </th><th>Gestión:$gestion</th><th>Ciclo en Curso:$ciclo_global</th></tr><tr><th colspan='2'>Fecha del Servidor: $fecha_sistema</th><th colspan='2'>Hora del Servidor: $hora_sistema</th></tr></table></center><br>";
+}
+else
+{	echo "<center><table width='100%' border=1 cellspacing=0 class='linea1'><tr><th>Línea: $linea</th><th>Territorio $agencia</th><th>Usuario:$nombre_completo </th><th>Gestión:$gestion</th><th>Ciclo en Curso:$ciclo_global</th></tr><tr><th colspan='3'>Fecha del Servidor: $fecha_sistema</th><th colspan='2'>Hora del Servidor: $hora_sistema</th></tr></table></center><br>";
+}
+?>

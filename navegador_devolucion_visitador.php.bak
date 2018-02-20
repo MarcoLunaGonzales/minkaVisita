@@ -1,0 +1,85 @@
+<?php
+require("conexion.inc");
+require("estilos_visitador.inc");
+require("funcion_nombres.php");
+
+
+$ciclo_global=$cod_ciclo;
+$global_gestion=$cod_gestion;
+$nombreGestion=nombreGestion($global_gestion);
+
+
+echo "<form action='guardar_devolucion_visitador.php' method='post'>";
+echo "<center><table border='0' class='textotit'><tr><th>Devolucion de Muestras<br>
+Gestion: $nombreGestion Ciclo: $ciclo_global</th></tr></table></center><br>";
+
+echo "<input type='hidden' name='cod_ciclo' value='$ciclo_global'>";
+echo "<input type='hidden' name='cod_gestion' value='$global_gestion'>";
+
+
+$sqlVerificacion="select * from devoluciones_ciclo where codigo_ciclo=$ciclo_global and codigo_gestion=$global_gestion 
+				and codigo_visitador=$global_visitador and tipo_devolucion=1";
+				
+$respVerificacion=mysql_query($sqlVerificacion);
+$filasVerificacion=mysql_num_rows($respVerificacion);
+
+echo "<center><table border='1' class='texto' cellspacing='0'>";
+//echo "<tr><th>Producto</th><th>Cantidad Recibida</th><th>Cantidad Entregada</th><th>Cantidad a Devolver</th><th>Cantidad Efectiva a Devolver</th></tr>";
+
+echo "<tr><th>Producto</th><th>Cantidad Efectiva a Devolver</th></tr>";
+
+$sqlMuestrasEnt="select distinct (m.`codigo`), concat(m.`descripcion`, ' ', m.`presentacion`), sum(sd.`cantidad_unitaria`) 
+		from `salida_detalle_visitador` sv, `salida_detalle_almacenes` sd, `muestras_medicas` m 
+		where sv.`cod_salida_almacen` = sd.`cod_salida_almacen` and m.`codigo` = sd.`cod_material` and sv.`codigo_ciclo` = '$ciclo_global' and 
+		sv.`codigo_gestion` = '$global_gestion' and sv.codigo_funcionario in ('$global_visitador') group by m.`codigo` order by 2";
+$respMuestrasEnt=mysql_query($sqlMuestrasEnt);
+while($datMuestrasEnt=mysql_fetch_array($respMuestrasEnt)){
+	$codMaterial=$datMuestrasEnt[0];
+	$cantidadRecibida=$datMuestrasEnt[2];
+	$nombreMaterial=$datMuestrasEnt[1];
+	$sqlMuestrasDesp="select (sum(rd.`CANT_MM_ENT`) + sum(rd.`CANT_MM_EXTENT`)) as cantidad from `reg_visita_cab` r, 
+			`reg_visita_detalle` rd where r.`COD_REG_VISITA` = rd.`COD_REG_VISITA` and r.`COD_CICLO` = '$ciclo_global' and 
+			r.`COD_GESTION` = '$global_gestion' and r.`COD_VISITADOR` = '$global_visitador' and rd.`COD_MUESTRA` = '$codMaterial'";
+	$respMuestrasDesp=mysql_query($sqlMuestrasDesp);
+	$datMuestrasDesp=mysql_fetch_array($respMuestrasDesp);
+	$cantidadEntregada=$datMuestrasDesp[0];
+	if($cantidadEntregada==''){$cantidadEntregada=0;}
+	$cantidadADevolver=$cantidadRecibida-$cantidadEntregada;
+//	echo "<tr><td>$nombreMaterial</td><td align='center'>$cantidadRecibida</td><td align='center'>$cantidadEntregada</td><td align='center'>$cantidadADevolver</td>";
+	echo "<tr><td>$nombreMaterial</td>";
+	if($filasVerificacion==0){
+		echo "<td align='center'><input type='text' class='texto' name='$codMaterial-$cantidadADevolver' size=5 value='0'></td>";
+	}
+	else{
+		echo "<td align='center'><input type='text' class='texto' name='' size=5 value='-' disabled=true></td>";
+	}
+	echo "</tr>";
+}
+echo "</table><br>";
+echo "<table border=1 class='texto'>
+<tr><th colspan=2>Si Ud. tiene un producto que no se encuentra en la tabla de arriba favor registrarlo a continuacion:</th></tr>
+<tr><th>Producto</th><th>Cantidad a Devolver</th></tr>";
+for($i=1;$i<=2;$i++){
+	$sqlProductos="select m.`codigo`, CONCAT(m.`descripcion`, ' ', m.`presentacion`) from `muestras_medicas` m 
+		where m.`estado` = 1 order by 2";
+	$respProductos=mysql_query($sqlProductos);
+	echo "<td><select name='' class='texto'>";
+	echo "<option value=''></option>";
+	while($datProductos=mysql_fetch_array($respProductos)){
+		$codProducto=$datProductos[0];
+		$nombreProducto=$datProductos[1];
+		echo "<option value='$codProducto'>$nombreProducto</option>";
+	}
+	echo "</select></td><td><input type='text' class='texto' size=5></td></tr>";
+}
+echo"</table>";
+
+if($filasVerificacion==0){
+	echo "<input type='Submit' class='boton' value='Guardar'>";
+}
+else{
+	echo"\n<table align='center'><tr><td>Si usted tiene productos adicionales a devolver, que no se encuentren en la tabla de arriba, por favor registrarlos a continuación.</td></tr></table>";
+}
+echo "</center></form>";
+*/
+?>

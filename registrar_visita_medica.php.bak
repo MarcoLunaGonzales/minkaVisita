@@ -1,0 +1,327 @@
+<script language='Javascript'>
+function editar_contactos(f)
+{	location.href='editar_contactos_dia.php?dia_contacto=$dia_registro&turno=Am';
+}
+
+function funcionEnvia(cad1, cad2, cadLink){
+	var cadenaFinal=cadLink+cad2;
+	window.open(cadenaFinal,'','scrollbars=yes,status=no,toolbar=no,directories=no,menubar=no,resizable=yes,width=1000,height=800');				
+}
+
+function editar_nav(f)
+{
+	var i;
+	var j=0;
+	var j_contacto;
+	for(i=0;i<=f.length-1;i++)
+	{
+		if(f.elements[i].type=='checkbox')
+		{	if(f.elements[i].checked==true)
+			{	j_contacto=f.elements[i].value;
+				j=j+1;
+			}
+		}
+	}
+	if(j>1)
+	{	alert('Debe seleccionar solamente un contacto para registrar su visita.');
+	}
+	else
+	{
+		if(j==0)
+		{
+			alert('Debe seleccionar un contacto para registrar su visita.');
+		}
+		else
+		{
+			window.open('registrar_visita_detalle_parrilla.php?cod_contacto='+j_contacto+'&visita=1','','scrollbars=yes,status=yes,toolbar=no,directories=no,menubar=no,resizable=yes,width=1000,height=800');
+		}
+	}
+}
+function reportar_novisita(f)
+{	var i;
+	var j=0;
+	var j_contacto;
+	var motivo;
+	for(i=0;i<=f.length-1;i++)
+	{
+		if(f.elements[i].type=='checkbox')
+		{	if(f.elements[i].checked==true)
+			{	j_contacto=f.elements[i].value;
+				motivo=f.elements[i+1].value;
+					j=j+1;
+			}
+		}
+	}
+	window.open('registrar_no_visita.php?cod_contacto='+j_contacto+'&dia_registro=$dia_registro','','scrollbars=yes,status=no,toolbar=no,directories=no,menubar=no,resizable=yes,width=1000,height=300');
+	//scrollbars=yes,status=no,toolbar=no,directories=no,menubar=no,resizable=yes,width=1000,height=800
+}
+function desactiva_checkbox(chk,f)
+{	var ii;
+	if(chk.checked==true)
+	{	for(ii=0;ii<=f.length-1;ii++)
+		{	if(f.elements[ii].type=='checkbox')
+			{	f.elements[ii].checked=false;
+			}
+	}
+		chk.checked=true;
+}
+	else
+	{	for(ii=0;ii<=f.length-1;ii++)
+		{	if(f.elements[ii].type=='checkbox')
+			{	f.elements[ii].checked=false;
+			}
+		}
+	}
+}
+</script>
+
+<?php
+/**
+ * Desarrollado por Datanet-Bolivia.
+ * @autor: Marco Antonio Luna Gonzales
+ * Sistema de Visita Médica
+ * * @copyright 2005
+*/
+	require("estilos_visitador.inc");
+	require("conexion.inc");
+	$sql_dias_ini_fin="select fecha_ini,fecha_fin from ciclos where cod_ciclo='$ciclo_global' and codigo_gestion='$codigo_gestion'";
+	
+	$resp_dias_ini_fin=mysql_query($sql_dias_ini_fin);
+	$dat_dias=mysql_fetch_array($resp_dias_ini_fin);
+	$fecha_ini_actual=$dat_dias[0];
+	$fecha_fin_actual=$dat_dias[1];
+	$fecha_actual=$fecha_ini_actual;
+	$inicio=$fecha_ini_actual;
+	$k=0;
+	list($anio,$mes,$dia)=explode("-",$fecha_actual);
+	$dia1=$dia;
+		while($inicio<$fecha_fin_actual)
+		{
+			//echo $inicio."<br>";
+			$ban=0;
+			while($ban==0)
+			{	$nueva1 = mktime(0,0,0, $mes,$dia1,$anio);
+				$dia_semana=date("l",$nueva1);
+				if($dia_semana=='Sunday' or $dia_semana=='Saturday')
+				{	$dia1=$dia1+1;
+				}
+				else
+				{	$ban=1;
+				}
+			}
+			$num_dia=intval($k/5)+1;
+			if($dia_semana=='Monday'){$dias[$k]="Lunes $num_dia";}
+			if($dia_semana=='Tuesday'){$dias[$k]="Martes $num_dia";}
+			if($dia_semana=='Wednesday'){$dias[$k]="Miercoles $num_dia";}
+			if($dia_semana=='Thursday'){$dias[$k]="Jueves $num_dia";}
+			if($dia_semana=='Friday'){$dias[$k]="Viernes $num_dia";}
+
+			$fecha_actual=date("Y-m-d",$nueva1);
+			$inicio=$fecha_actual;
+			list($anio,$mes,$dia)=explode("-",$fecha_actual);
+			$dia1=$dia+1;
+			$fecha_actual_formato="$dia/$mes/$anio";
+			$fechas[$k]=$fecha_actual_formato;
+			$k++;
+		}
+	//fin vectores dias y fechas
+	$contador=1;
+	//desde aqui sacamos las fechas nuevas
+	$fecha_sistema=date("d/m/Y");
+	list($d_actual,$m_actual,$a_actual)=explode("/",$fecha_sistema);
+	$sec_actual=mktime(0,0,0,$m_actual,$d_actual,$a_actual);
+	for($i=0;$i<=$k-1;$i++)
+	{	list($d_comp,$m_comp,$a_comp)=explode("/",$fechas[$i]);
+		$sec_comp=mktime(0,0,0,$m_comp,$d_comp,$a_comp);
+		if($sec_comp<=$sec_actual)
+		{	$posicion=$i;
+		}
+	}
+	//esta parte es la cabecera del modulo
+	echo "<form action='' method='post'>";
+	echo "<center><table border='0' class='textotit'><tr><th>Registro de Visita Médica</th></tr></table><br>";
+	echo "<center><table border='1' class='texto' width='80%'><tr><th colspan='27'>Seleccionar Fecha de Registro</th></tr>";
+	echo "<tr>";
+	$ciclo_anterior=$ciclo_global-1;
+	if($posicion<=4)
+	{
+		for($j=5-$posicion;$j>=0;$j--)
+		{
+			$dia_rutero=$dias[$k-$j];
+			$fecha_rutero=$fechas[$k-$j];
+			echo "<th class='textomini'><a href='registrar_visita_medica.php?dia_registro=$dia_rutero&cod_ciclo=$ciclo_anterior&fecha_registro=$fecha_rutero'>$dia_rutero</a></th>";
+		}
+	}
+	for($j=30;$j>=0;$j--)
+	{
+		$dia_rutero=$dias[$posicion-$j];
+		$fecha_rutero=$fechas[$posicion-$j];
+		if($posicion-$j>=0)
+		{
+		 	echo "<th class='textomini'>&nbsp;<a href='registrar_visita_medica.php?dia_registro=$dia_rutero&cod_ciclo=$ciclo_global&fecha_registro=$fecha_rutero'>$dia_rutero</a></th>";
+		}
+	}
+	echo "</tr>";
+	
+	$dia_registro=$_GET['dia_registro'];
+	$fecha_registro=$_GET['fecha_registro'];
+	
+	echo "<tr><th colspan='28'><br>Fecha de Registro: $dia_registro</th></tr></table><br>";
+	echo "<table border='0' class='textomini'><tr><th>Leyenda:</th><th>Dias de baja en el ciclo</th><th bgcolor='#66CCFF' width='30%'></td></tr>";
+	echo "<tr><th>&nbsp;</th><th>Medicos dados de baja en el ciclo</th><th bgcolor='#AAAAAA' width='30%'></th></tr>";
+	echo "<tr><th>&nbsp;</th><th>Medico con Frecuencia Especial</td><th bgcolor='#AAAAFF' width='30%'></th></tr></table>";
+	echo "<table><tr><td>Visitado</td><td><img src='imagenes/si.png'></td><td>No Visitado</td><td><img src='imagenes/no.png'></td><td>Pendiente</td><td><img src='imagenes/pendiente.png'></td></tr></table><br>";
+	
+	echo "<table border='1' class='texto'>";
+	echo "<tr><th>&nbsp;</th>
+	<th>Turno</th><th>Orden Visita</th>
+	<th>Medico</th><th>Especialidad</th>
+	<th>Categoria</th><th>Num. Visita</th><th>Estado</th><th>&nbsp;</th><th>&nbsp;</th></tr>";
+	$sql="select c.turno, m.ap_pat_med, m.ap_mat_med, m.nom_med, cd.categoria_med, cd.cod_especialidad, 
+	cd.orden_visita, c.cod_contacto, cd.estado, m.cod_med
+	from rutero c, rutero_detalle cd, medicos m
+	where c.codigo_gestion='$codigo_gestion' and c.cod_ciclo='$cod_ciclo' and c.codigo_linea='$global_linea' 
+	and c.dia_contacto='$dia_registro' and c.cod_visitador=$global_visitador and m.cod_med=cd.cod_med and
+	c.cod_visitador=cd.cod_visitador and c.cod_contacto=cd.cod_contacto order by c.turno,cd.orden_visita";
+	
+	$resp=mysql_query($sql);
+	$bandera=0;
+	$indice=1;
+	while($dat=mysql_fetch_array($resp))
+	{   $turno=$dat[0];
+		$ap_pat=$dat[1];
+		$ap_mat=$dat[2];
+		$nom=$dat[3];
+		$categoria=$dat[4];
+		$especialidad=$dat[5];
+		$orden_visita=$dat[6];
+		$cod_contacto=$dat[7];
+		$estado=$dat[8];
+		$cod_med=$dat[9];
+		$nombre_medico="$ap_pat $ap_mat $nom";
+		$valor="$cod_contacto-$orden_visita-$global_visitador-$fecha_registro";
+		$sql_baja_dias="select bd.codigo_linea from baja_dias b, baja_dias_detalle bd, baja_dias_detalle_visitador bv
+		where b.codigo_baja=bd.codigo_baja and bd.codigo_linea='$global_linea' and b.ciclo='$ciclo_global' and b.gestion='$codigo_gestion'
+		and	b.codigo_ciudad='$global_agencia' and b.dia_contacto='$dia_registro' and b.turno='$turno'
+		and bd.codigo_baja=bv.codigo_baja and bd.codigo_linea=bv.codigo_linea and bv.codigo_visitador='$global_visitador';";
+		$resp_baja_dias=mysql_query($sql_baja_dias);
+		$filas_baja_dias=mysql_num_rows($resp_baja_dias);
+		for($l=0;$l<=20;$l++)
+		{	//echo "$dias[$l] $fechas[$l] dias[]<br>";
+			if($dias[$l]==$dia_registro)
+			{	$fecha_registro=$fechas[$l];
+				$idDiaContacto=$l+1;
+			}
+		}
+		
+		
+		$fecha_registro_real=$fecha_registro[6].$fecha_registro[7].$fecha_registro[8].$fecha_registro[9]."-".$fecha_registro[3].$fecha_registro[4]."-".$fecha_registro[0].$fecha_registro[1];
+		$sql_baja_medico=mysql_query("select cod_med from baja_medicos where cod_med='$cod_med' and 
+		inicio<='$fecha_registro_real' and fin>='$fecha_registro_real' and codigo_linea='$global_linea'");
+		$filas_baja_medico=mysql_num_rows($sql_baja_medico);
+		if($estado==0)
+		{	$val_estado="<img src='imagenes/pendiente.png'>";
+			$checkbox="<input type='checkbox' value='$valor' name='cod_contacto$indice' onclick='desactiva_checkbox(this,this.form)'>";
+		}
+		if($estado==1)
+		{	$val_estado="<img src='imagenes/si.png'>";
+			$checkbox="&nbsp";
+			$bandera=1;
+			$cod_contacto_registro=$cod_contacto;
+		}
+		if($estado==2)
+		{	$val_estado="<img src='imagenes/no.png'>";
+			$checkbox="&nbsp";
+			$bandera=1;
+			$cod_contacto_registro=$cod_contacto;
+		}
+		if($filas_baja_dias!=0)
+		{	$checkbox="&nbsp";
+			$fondo_fila="#66CCFF";
+		}
+		else
+		{	$fondo_fila="";
+		}
+		if($filas_baja_medico!=0)
+		{	$checkbox="&nbsp";
+			$fondo_fila="#AAAAAA";
+		}
+		$sqlFrecEspecial="select md.cod_med_frec, md.`cod_dia_agrupado`, md.`nro_visita` from `medico_frec_especial` m, 
+		`medico_frec_especialdetalle` md where m.cod_med_frec=md.cod_med_frec and  m.`cod_ciclo` = '$ciclo_global' and m.`cod_gestion` = '$codigo_gestion' and 
+		m.`cod_med` = '$cod_med' and m.`cod_visitador`='$global_visitador' and md.`cod_dia_agrupado`=$idDiaContacto order by md.cod_dia_agrupado";
+		
+		
+		$respFrecEspecial=mysql_query($sqlFrecEspecial);
+		$numFrecEspecial=mysql_num_rows($respFrecEspecial);
+		if($numFrecEspecial>0){
+			$fondo_fila="#aaaaff";
+		}
+		$cadFrecEspecial="";
+		while($datFrecEspecial=mysql_fetch_array($respFrecEspecial)){
+			$codMedFrec=$datFrecEspecial[0];
+			$cadFrecEspecial.=$datFrecEspecial[2]."-";
+		}
+		$numCaracteres=strlen($cadFrecEspecial);
+		$cadFrecEspecial=substr($cadFrecEspecial,0,$numCaracteres-1);
+
+		//VERIFICAMOS EL NUMERO DE VISITA Q SE LA HACE A UN MEDICO
+		$sqlNumVis="select count(*) from `rutero_utilizado` r, `rutero_detalle_utilizado` rd, `orden_dias` o
+			where r.`cod_contacto`=rd.`cod_contacto` and r.`cod_visitador`='$global_visitador' and 
+			r.`cod_ciclo`='$ciclo_global' and r.`codigo_gestion`='$codigo_gestion' and r.`dia_contacto`=o.`dia_contacto` and
+			rd.`cod_med`='$cod_med' and o.id<='$idDiaContacto'";
+		$respNumVis=mysql_query($sqlNumVis);
+		$numVisita=mysql_result($respNumVis,0,0);
+		//VERIFICAMOS SI HACE LINEA DE VISITA
+		$sqlLineaVis="select l.codigo_l_visita from `lineas_visita` l,
+     `lineas_visita_visitadores` lv, `lineas_visita_especialidad` le 
+      where l.`codigo_l_visita`=lv.`codigo_l_visita` and l.`codigo_l_visita`=le.`codigo_l_visita` 
+      and lv.`codigo_l_visita`=le.`codigo_l_visita` and l.`codigo_linea`='$global_linea'
+      and lv.`codigo_funcionario`='$global_visitador' and le.`cod_especialidad`='$especialidad'";
+    $respLineaVis=mysql_query($sqlLineaVis);
+    $codLineaVisita=mysql_result($respLineaVis,0,0); 
+    if($codLineaVisita==""){
+    	$codLineaVisita=0;
+    } 
+				
+		echo "<tr bgcolor='$fondo_fila'>
+		<td align='center'>$checkbox</td>
+		<td align='center'>$turno</td>
+		<td align='center'>$orden_visita</td>
+		<td>$nombre_medico</td>
+		<td align='center'>$especialidad </td>
+		<td align='center'>$categoria </td>
+		<td align='center'>$numVisita</td>
+		<td align='center'>$val_estado</td>";
+		$sqlVeriEncuesta="select * from encuestamedicos where cod_med='$cod_med'";
+		$respVeriEncuesta=mysql_query($sqlVeriEncuesta);
+		$numFilasEncuesta=mysql_num_rows($respVeriEncuesta);
+		if($numFilasEncuesta==0){
+			$cadEncuesta="<a href='registrarEncuesta.php?cod_med=$cod_med&nombre_med=$nombre_medico&cod_espe=$especialidad' target='_BLANK'>Encuesta";
+		}
+		else{
+			$cadEncuesta="Encuestado";
+		}
+		echo "<td>$cadEncuesta</td>";
+		if($numFrecEspecial==0){
+			echo "<td align='center'>
+			<a href='registrarVisitaParrilla.php?codMed=$cod_med&codMedFrec=0&codEspe=$especialidad&codCat=$categoria&codContacto=$cod_contacto&nombreMed=$nombre_medico&codLineaVisita=$codLineaVisita&numVisita=$numVisita&diaContacto=$idDiaContacto' target='_blank'>Registrar Visita</a></td>";
+			echo "</tr>";
+		}else{
+			$cadLink="registrarVisitaParrilla.php?codMed=$cod_med&codMedFrec=$codMedFrec$&codEspe=$especialidad&codCat=$categoria&codContacto=$cod_contacto&nombreMed=$nombre_medico&codLineaVisita=$codLineaVisita&numVisita=";		
+			echo "<td><a href='javascript:funcionEnvia($numFrecEspecial, \"$cadFrecEspecial\",\"$cadLink\")'>Registrar Visita</a></td>";
+		} 
+		$indice++;
+	}
+	echo "</table><br>";
+	echo"\n<table align='center'><tr><td><a href='principal_visitador.php'><img  border='0' src='imagenes/home.gif'>Principal</a></td></tr></table>";
+	echo "<center><table border='0'><tr>";
+	$sql_fecha_registro="select min(fecha_registro) from registro_visita where cod_contacto='$cod_contacto'";
+	$resp_fecha_registro=mysql_query($sql_fecha_registro);
+	$dat_fecha_registro=mysql_fetch_array($resp_fecha_registro);
+	$fecha_en_que_se_registro=$dat_fecha_registro[0];
+	list($anio,$mes,$dia)=explode("-",$fecha_en_que_se_registro);
+	$dia1=$dia+1;
+	echo "<td><input type='button' value='Editar Contactos' class='boton' onclick='editar_contactos(this.form)'><input type='button' value='Registrar Visita' class='boton' onclick='editar_nav(this.form)'></td><td><input type='button' value='Registrar No Visita' class='boton' onclick='reportar_novisita(this.form)'></td></tr></table></center>";
+	echo "</form>";
+	echo "</table></center>";
+?>

@@ -1,0 +1,6 @@
+<?php
+//$conexion=mysql_connect("72.52.244.48","cofar_marco","4868422");
+$conexion=mysql_connect("localhost","root","4868422");
+$bd=mysql_select_db("hermes1612");
+//$bd=mysql_select_db("cofar_visitamedica");
+?>

@@ -1,0 +1,6 @@
+<?php
+
+$codDia=$codDia;
+echo $codDia;
+
+?>

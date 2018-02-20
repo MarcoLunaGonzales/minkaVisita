@@ -1,0 +1,81 @@
+<html>
+<head>
+</head>
+<body>
+<form name="" action="">
+<table width="100%"  border="0" align="center" cellspacing="0" class="texto">
+  <tr>
+    <td>Apellido Paterno </td>
+    <td><input name="ap_paterno" type="text" id="ap_paterno"></td>
+    <td>Apellido Materno </td>
+    <td><input name="ap_materno" type="text" id="ap_materno"></td>
+    </tr>
+  <tr>
+    <td>Nombres</td>
+    <td><input name="nombres" type="text" id="nombres"></td>
+    <td>Fecha de Nacimiento </td>
+    <td><select name="select">
+      <?
+	  	for($i=1;$i<=31;$i++)
+		{
+			echo "<option value='$i'>$i</option>";
+		}
+	  ?>
+	  </select>
+	  <select name="select2">
+      <option value="Enero">Enero</option>
+      <option value="Febrero">Febrero</option>
+      <option value="Marzo">Marzo</option>
+      <option value="Abril">Abril</option>
+      <option value="Mayo">Mayo</option>
+      <option value="Junio">Junio</option>
+      <option value="Julio">Julio</option>
+      <option value="Agosto">Agosto</option>
+      <option value="Septiembre">Septiembre</option>
+      <option value="Octubre">Octubre</option>
+      <option value="Noviembre">Noviembre</option>
+      <option value="Diciembre">Diciembre</option>
+            </select>
+    <select name="anio">
+	<?
+	  	for($i=1930;$i<=2000;$i++)
+		{
+			echo "<option value='$i'>$i</option>";
+		}
+	  ?>
+    </select></td>
+    </tr>
+  <tr>
+    <td>Tel&eacute;fono</td>
+    <td><input name="telefono" type="text" id="telefono"></td>
+    <td>Tel&eacute;fono Celular </td>
+    <td><input name="telf_celular" type="text" id="telf_celular"></td>
+    </tr>
+  <tr>
+    <td>Correo Electronico </td>
+    <td><input name="email" type="text" id="email"></td>
+    <td>Hobbie</td>
+    <td><input name="hobbie" type="text" id="hobbie"></td>
+    </tr>
+  <tr>
+    <td>Estado Civil </td>
+    <td><select name="estado_civil" id="estado_civil">
+      <option>-- Seleccionar --</option>
+      <option value="Soltero(a)">Soltero(a)</option>
+      <option value="Casado(a)">Casado(a)</option>
+      <option value="Divorciado(a)c">Divorciado(a)</option>
+      <option value="Viudo(a)">Viudo(a)</option>
+    </select></td>
+    <td>Nombre Secretaria </td>
+    <td><input name="nombre_secretaria" type="text" id="nombre_secretaria"></td>
+    </tr>
+  <tr>
+    <td>Perfil Psicografico </td>
+    <td><input name="perfil_psicografico" type="text" id="perfil_psicografico"></td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    </tr>
+</table>
+</form>
+</body>
+</html>

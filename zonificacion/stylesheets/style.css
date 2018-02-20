@@ -1,0 +1,436 @@
+@charset "iso-8859-1";
+
+/* `Main Styles and Grid Overrides
+----------------------------------------------------------------------------------------------------*/
+/* Set some colors that will be used in the layout */
+body {background-color:#f0f0f0;}
+
+.color-one {background-color: #4A456C;} /* light purple */
+.color-two {background-color:#353153 ;} /* dark purple */ 
+.color-three {background-color: #201A16;} /* brown */
+.color-four {background-color:#000000 ;} /*light brown*/
+.color-five {background-color:#dddddd;} /*dark gray */
+
+.container, .section {
+    padding:0;
+    margin:0;
+    /* Prevents horizontal scrollling for off-canvas elements */
+    overflow-x: hidden;
+}
+
+/* Set the width of the site rows */
+.row {
+    width:1024px;
+    /*width:100%;*/
+}
+
+/* Make sure that the bands stretch to 100% width */
+.full-width, .site-footer {
+    min-width:100%; 
+    position: relative; 
+    z-index:9999;
+}
+
+
+/* `PRIMARY NAVBAR
+----------------------------------------------------------------------------------------------------*/
+
+/* nav bar floats to the right of the row */ 
+#mainNav {float:right;}
+
+
+.nav-bar {
+    /* override foundation styles */	
+    background-color:transparent;
+    border:none; 
+}
+
+.nav-bar > li {
+    /* removes borders */
+    box-shadow:0 0 0 0;
+    border:none;
+    /*centers nav bar to the logo */
+    line-height: 60px;
+    background-color:#201a16;
+    -webkit-transition: all .2s ease-in-out;
+    -moz-transition: all .2s ease-in-out;
+    -ms-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+
+}
+
+.nav-bar>li:last-child {
+    border:none;
+    /* removes borders */
+    box-shadow:0 0 0 0; 
+} 
+
+.nav-bar > li:hover {
+    border-bottom: 4px white solid;
+    -webkit-transition: all .2s ease-in-out;
+    -moz-transition: all .2s ease-in-out;
+    -ms-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .4) inset; /* Opera 10.5, IE9, FF4+, Chrome 6+, iOS 5 */
+    background-color:#110E0C;
+}
+
+.nav-bar > li a {
+    border:none;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+    /* px used instead of em to ensure nav bar doesn't break into multiple lines */
+    font-size: 15px !important; 
+}
+
+/* `TYPOGRAPHY
+----------------------------------------------------------------------------------------------------*/
+h1 {
+    /* remove h1 text from the viewport */
+    position: absolute;
+    top:-9999px;
+    left:-9999px;
+}
+
+h1, h2, h3, .callout p {
+    font-family:'Open Sans', sans-serif;
+    text-align:center;
+    color:000;
+    font-size:2em;
+    font-weight:600;
+}
+
+h3 {
+    font-size:1.7em;
+    position: relative;}
+
+p {
+    color:white;
+    font-size: 1.3em;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 300;
+}
+
+/* CALLOUT PANEL */
+
+.callout p {
+    font-family:'Open Sans', sans-serif;
+    text-align:center;
+    color:white;
+    font-size:2em;
+    font-weight:600;
+    color:#222222;
+    margin-bottom: 0;
+}
+
+@font-face {
+    font-family: 'IcoMoon';
+    src: url('../fonts/IcoMoon.eot');
+    src: url('../fonts/IcoMoon.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/IcoMoon.svg#IcoMoon') format('svg'),
+        url('../fonts/IcoMoon.woff') format('woff'),
+        url('../fonts/IcoMoon.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+/* `BUTTONS
+----------------------------------------------------------------------------------------------------*/
+.button {
+    background-color:#dddddd;
+    border-color: #cccccc;
+    color:#222222;
+}
+
+.button:hover {
+    background-color: #bbb;
+    -webkit-box-shadow: 0px 0px 10px rgba(0, 0, 0, .8) inset; /* Saf3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+    -moz-box-shadow: 0px 0px 10px rgba(0, 0, 0, .8) inset; /* FF3.5 - 3.6 */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, .8) inset; /* Opera 10.5, IE9, FF4+, Chrome 6+, iOS 5 */
+    border-color: #444444;
+    color:#222222;
+}
+
+.button:focus {
+    -webkit-box-shadow: 0 0 4px #ffffff, 0 1px 0 rgba(255, 255, 255, 0.5) inset; /* Saf3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+    -moz-box-shadow: 0 0 4px #ffffff, 0 1px 0 rgba(255, 255, 255, 0.5) inset; /* FF3.5 - 3.6 */
+    box-shadow: 0 0 4px #ffffff, 0 1px 0 rgba(255, 255, 255, 0.5) inset; /* Opera 10.5, IE9, FF4+, Chrome 6+, iOS 5 */
+    color: #222;
+}
+
+
+/* `FORMS
+----------------------------------------------------------------------------------------------------*/
+label {
+    font-family: 'Open Sans', sans-serif;
+    font-size:1.3em;
+    color:white;
+    font-weight: 300;
+    padding: 15px 0 5px 0;
+}
+
+input[type="text"], textarea {
+    border-radius:5px;
+    background-color:#110E0C;
+    border:1px solid #0A0807;
+    /*-webkit-box-shadow: 0 2px 7px rgba(0, 0, 0, .5) inset;*/
+    /*box-shadow: 0 2px 7px rgba(0, 0, 0, .5) inset;*/
+    height: 45px;
+    color:white;		
+}
+
+input[type="text"]:focus, textarea:focus {
+    /* change the font color on focus */
+    color:black;
+}
+
+textarea {
+    min-height:300px;
+    font-family: sans-serif;
+    font-size: 13px;
+    overflow-y: hidden;
+    margin-top: 15px
+}
+
+aside { float: left; width: 25%; }
+#map { width: 74%; float: right; position: relative; }
+#map_canvas { height: 600px; width: 99%; border: 1px solid black; }
+
+/* `LAYOUT
+----------------------------------------------------------------------------------------------------*/
+
+/* HEADER */
+
+.logo {
+    position: relative;
+    /*top:20px;*/
+}
+
+.logo img {
+    /* Remove border in ie */
+    border:none;}
+
+.first {
+    /* add the border under the header */
+    border-bottom: 5px solid #755F4F;}
+
+header {min-height: 80px;}
+
+/* SLIDER */
+#featured > img {width:100%;}
+
+/*CALLOUT */
+.callout {padding:20px 0 20px 0;}
+
+/* SERVICES AREA */
+.service {padding-bottom: 30px;}
+
+/* Use Data-icon in the HTML to use the icon font */
+[data-icon]:before {
+    /* providing a fallback bg color for browsers that don't support rgba*/
+    background-color:#000000;
+    background-color: rgba(0,0,0,.4);
+    /* Sets the background disc and shadow */
+    -webkit-box-shadow: 0 1px 1px rgba(255,255,255,0.3), 0 1px 0 rgba(0, 0, 0, 0.33) inset;
+    box-shadow: 0 1px 1px rgba(255,255,255,0.3), 0 1px 0 rgba(0, 0, 0, 0.33) inset;
+    border-radius: 60px;
+    /* inserts the icon font as pseudo-content */
+    content: attr(data-icon);
+    display: block;
+    font-family: 'IcoMoon';
+    /* We want the icons to be fixed size (like an image), so we use px instead of em */
+    font-size: 60px;
+    height: 120px;
+    /* Centers the icon in the disc */
+    line-height:120px; 
+}
+
+h3.service-icon span {
+    /* give the span width */
+    display: block; 
+    /* centers the icon and its background */
+    margin: 0 auto; 
+    width: 120px; 
+    margin-bottom:20px;
+}
+
+.service > span {
+    padding: 20px 0 30px 0; 
+    width:100%; 
+    display:block; 
+    /* Centers the button, since the button fills its parent with 100% width */
+    text-align:center; 
+}
+
+/*Featured Project */
+.featured {
+    padding-bottom: 30px;
+}
+
+.featured img {
+    /* centers the image to the middle of the .columns div */
+    position: relative;
+    left: 50%;
+    margin-left:-300px;
+    border: none;
+}
+
+/* FOOTER */
+.site-footer {text-align: center; padding: 40px 0}
+.site-footer p {font-size: 1.2em;}
+
+
+/*GEOCODER*/
+
+#geocoder { 
+    display: block;
+    overflow: hidden;
+    background: rgba(50,50,50,0.6);
+    position: absolute;
+    top: 0;
+    left: 100px;
+    z-index: 99999;
+    width:70%;
+    /*    opacity:0.6;
+        filter:alpha(opacity=60); */
+    padding: 20px;
+    border-left: 1px solid whiteSmoke;
+    border-right: 1px solid whiteSmoke;
+    border-bottom: 1px solid whiteSmoke;
+    -webkit-border-bottom-right-radius: 10px;
+    -webkit-border-bottom-left-radius: 10px;
+    -moz-border-radius-bottomright: 10px;
+    -moz-border-radius-bottomleft: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+#geocoder h4 {
+    color: #fff;
+    font-size: 1.2em;
+}
+
+#geocoder input[type="textbox"]{
+    padding: 5px;
+    border-radius: 5px 5px 5px 5px;
+    width: 85%
+}
+#geocoder input[type="submit"] {
+    background: -moz-linear-gradient(center top , #C1D0DE 0%, #A7B4C0 100%) repeat scroll 0 0 transparent;
+    border-color: #D0DFED #676F76 #676F76 #D0DFED;
+    border-radius: 5px 5px 5px 5px;
+    border-style: solid;
+    border-width: 1px;
+    bottom: 0.3em;
+    color: #1D2022;
+    float: right;
+    font-size: 1.1em;
+    padding: 0.2em 0.6em;
+    position: relative;
+    text-shadow: 0 1px 0 #BAC9D6;
+    margin-top: 7px;
+    cursor:  pointer;
+}
+#geocode {
+    margin-bottom: 0;
+}
+
+.accordion {
+    width: 265px;
+    border-bottom: solid 1px #c4c4c4;
+}
+.accordion h3 {
+    background: #e9e7e7 url(images/arrow-square.gif) no-repeat right -51px;
+    padding: 7px 15px;
+    margin: 0;
+    font: bold 120%/100% Arial, Helvetica, sans-serif;
+    border: solid 1px #c4c4c4;
+    border-bottom: none;
+    cursor: pointer;
+}
+.accordion h3:hover {
+    background-color: #e3e2e2;
+}
+.accordion h3.active {
+    background-position: right 5px;
+}
+.accordion p {
+    background: #f7f7f7;
+    margin-bottom: 0;
+    /*    padding: 10px 15px 20px;*/
+    border-left: solid 1px #c4c4c4;
+    border-right: solid 1px #c4c4c4;
+    color: #000
+}
+
+.color-button {
+    width: 14px;
+    height: 14px;
+    font-size: 0;
+    margin: 2px;
+    float: left;
+    cursor: pointer;
+}
+
+/* `OFF CANVAS
+----------------------------------------------------------------------------------------------------*/
+
+[role="complementary"], [role="main"] {
+    /* remove the default padding */
+    padding:0;
+}
+
+@media all and (min-width: 768px) { 
+
+    .js [role="complementary"] { 
+        /* Sets both the complementary and main sections at 100% width instead of main content / sidebar layout */
+        width: 100%;
+    } 
+    .js [role="main"] { 
+        width: 100%; padding: 0 0; 
+    } 
+} /* end media query */
+
+[role="main"]:before {
+    content:"";
+    /* Changes the bg color of the flyout panel */
+    background-color: #322820;
+}
+
+/* `MEDIA QUERIES
+----------------------------------------------------------------------------------------------------*/
+@media only screen and (max-width: 767px) {
+
+    .nav-bar > li:hover {
+        border-bottom: none;}
+
+    .nav-bar > li > a.main {
+        border:none;}
+
+    .menu-button {
+        /* Add a margin betwen the logo and the 'Menu' button */
+        margin-top:30px;}
+
+    .first {
+        padding-bottom:0 !important;
+        border-bottom: none;}
+
+    .full-width {padding-bottom: 10px;}
+
+    .service {
+        /* add a 1px bottom border between the service panels */
+        padding: 15px 15px 30px 15px; 
+        border-bottom: 1px solid rgba(0,0,0,.2);}
+
+    .service:last-child {
+        /* Removes the bottom border on the last service panel */ 
+        border:none;}
+
+    /* ensures that the featured project div fills 100% of its parent */
+    .featured {width:100%;}
+
+    /* Removes the centering of the featured image and resizes the image as the viewport is scaled down */
+    .featured img {width:100%; left:0; margin-left:0;}
+} /* end media query */
