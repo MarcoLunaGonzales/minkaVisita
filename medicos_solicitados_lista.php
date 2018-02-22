@@ -4,7 +4,14 @@
     $(document).ready(function(){
         $(".eliminar").click(function(){
             var codd = $("input:checked").attr('value');
-            sendData(codd)
+			if(codd == undefined || codd == ''){
+                alert("Debe seleccionar un registro.");
+            }else{
+                if(confirm('Esta seguro de eliminar los datos')){
+				var codd = $("input:checked").attr('value');
+				sendData(codd)
+				}	
+            }
         })
         $(".editar").click(function(){
             var codd = $("input:checked").attr('value');
@@ -24,17 +31,20 @@ require("estilos_administracion.inc");
 <?php
 $sql = mysql_query("SELECT * from medicos where cod_visitador = $global_visitador order by cod_med DESC");
 ?>
-<h1>M&#233;dicos que ha solicitado</h1>
+<h1>M&#233;dicos solicitados para alta</h1>
 
 
     <div class="divBotones">
+		<input type="button" onclick="javascript:location.href='adicionar_medico.php'" class="boton" value="Adicionar">
+        <input type="button" onclick="javascript:void(0)" class="boton editar" value="Editar">
+        <input type="button" onclick="javascript:void(0)" class="boton2 eliminar" value="Eliminar">
+			<!--a href="javascript:void(0)" class="boton editar">Editar</a>
             <a href="adicionar_medico.php" class="boton">Adicionar</a>
-            <a href="javascript:void(0)" class="boton editar">Editar</a>
-            <a href="javascript:void(0)" class="boton eliminar">Eliminar</a>
+			<a href="javascript:void(0)" class="boton eliminar">Eliminar</a-->
     </div>
 <!--table align='center'>
     <tr>
-        <td><a href='navegador_medicos1.php'><img  border='0'src='imagenes/volver.gif' width='15' height='8'>Volver Atras</a></td>
+        <td><a href='navegador_medicos1.php'><img  border='0'src='imagenes/back.png' width='40'>Volver Atras</a></td>
     </tr>
 </table-->
 
@@ -153,10 +163,11 @@ $sql = mysql_query("SELECT * from medicos where cod_visitador = $global_visitado
                 <td align='center'>&nbsp;<?php echo $especialidad ?></td>
                 <td align='center'>&nbsp;<?php echo $direccion_medico ?></td>
                 <td align='center'>&nbsp;<?php 
-                    if($estado_registro == 4){ echo "<span style='color:red; font-weight: bold'> M&eacute;dico rechazado</span>";}
-                    if($estado_registro == 3){ echo "M&eacute;dico solicitado para alta";}
-                    if($estado_registro == 2){ echo "M&eacute;dico pre-aprobado";}
-                    if($estado_registro == 1){ echo "M&eacute;dico aprobado";}
+                    if($estado_registro == 4){ 
+						echo "<span style='color:red; font-weight: bold'> $estado_registro_medico </span>";
+					}else{
+						echo $estado_registro_medico;
+					}
                 ?></td>
             </tr>
             <?php
@@ -167,13 +178,13 @@ $sql = mysql_query("SELECT * from medicos where cod_visitador = $global_visitado
 </center>
 <table align='center'>
     <tr>
-        <td><a href='navegador_medicos1.php'><img  border='0'src='imagenes/volver.gif' width='15' height='8'>Volver Atras</a></td>
+        <td><a href='navegador_medicos1.php'><img  border='0'src='imagenes/back.png' width='40'>Volver Atras</a></td>
     </tr>
 </table>
 
 
     <div class="divBotones">
-            <a href="adicionar_medico.php" class="boton">Adicionar</a>
-            <a href="javascript:void(0)" class="boton editar" >Editar</a>
-            <a href="javascript:void(0)" class="boton eliminar" >Eliminar</a>
-    </div>
+		<input type="button" onclick="javascript:location.href='adicionar_medico.php'" class="boton" value="Adicionar">
+        <input type="button" onclick="javascript:void(0)" class="boton editar" value="Editar">
+        <input type="button" onclick="javascript:void(0)" class="boton2 eliminar" value="Eliminar">
+	</div>

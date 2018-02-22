@@ -1,4 +1,6 @@
 <?php
+require("conexion.inc");
+
 $esta = $_GET['esta'];
 $codigg = $_GET['cod'];
 ?>
@@ -140,16 +142,17 @@ $codigg = $_GET['cod'];
             f.espe1.focus();
             return(false);
         }
-        if(f.edad.value == 0 && f.consulta.value=='' ){
+        
+		/*if(f.edad.value == 0 && f.consulta.value=='' ){
             alert("Debe llenar los datos de la pestana DATOS DE CATEGORIZACION");
             f.name_farm_1.focus();
             return(false);
         }
-        /*if(f.name_farm_1.value == 'vacio' ){
+        if(f.name_farm_1.value == 'vacio' ){
             alert("Debe ingresar al menos yuna farmacia de referencia")
             f.name_farm_1.focus();
             return(false);
-        }*/
+        }
         if(f.edad.value==0)
         {   alert('Debe seleccionar el rango de edad al que pertenece.');
             f.espe1.focus();
@@ -163,7 +166,7 @@ $codigg = $_GET['cod'];
         if(f.consulta.value=='')
         {   alert('Debe ingresar el costo.');
             return(false);
-        }
+        }*/
         f.action='guardar_medico_solicitud_vm.php?cod='+<?php echo $codigg; ?>;
         f.submit();
     }
@@ -251,14 +254,7 @@ $codigg = $_GET['cod'];
     #manto { width: 100%; height: 100%; background: #000; opacity:0.60; filter:Alpha(Opacity=60);  position: absolute; top: 0; left: 0; display: none; z-index: 100 }
 </style>
 <?php
-/**
- * Desarrollado por Datanet.
- * 
- * @autor : Marco Antonio Luna Gonzales
- * @copyright 2005
- */
 require("estilos_administracion.inc");
-require("conexion.inc");
 $cod_med = $_GET['cod'];
 
 $sql_linea_editado = mysql_query("Select codigo_linea from categorias_lineas where cod_med = $cod_med");
@@ -376,10 +372,10 @@ while ($datEspe = mysql_fetch_array($respEspe)) {
 ?>
 <html>
     <body onload="">
-        <table width="100%"  border="0" cellspacing="0" class="textotit"><tr><td align='center'><div align="center">EDITAR MEDICO</div><br></td></tr></table>
+        <h1>Editar Medico</h1>
         <ul class="tabs">
             <li><a href="#tab1">Datos Generales</a></li>
-            <li><a href="#tab2">Datos Categorizacion</a></li>
+            <!--li><a href="#tab2">Datos Categorizacion</a></li-->
         </ul>
         <div class="tab_container">
             <div id="tab1" class="tab_content">
@@ -515,7 +511,6 @@ while ($datEspe = mysql_fetch_array($respEspe)) {
                                     ?>
                                 </select> 
                             </td>
-                            <td align='center' colspan="2">&nbsp;</td>
                         </tr>
                         <!-- xxxxxxxx -->
                         <tr><th colspan="5" class="texto"><br>Datos Complementarios<br>&nbsp;</th></tr>
@@ -770,7 +765,7 @@ while ($datEspe = mysql_fetch_array($respEspe)) {
                     </div>
             </div>
             <input type='hidden' name='cod_med' value='<?php echo "$cod_med"; ?>'>
-            <table align='center'><tr><td><a href='medicos_solicitados_lista.php'><img border='0' src='imagenes/volver.gif' width='15' height='8' />Volver Atras</a></td></tr></table>
+            <table align='center'><tr><td><a href='medicos_solicitados_lista.php'><img border='0' src='imagenes/back.png' width='40' />Volver Atras</a></td></tr></table>
             <table class="texto" border="0" align="center"><tr><td align='center'><input type="button" class="boton" value="Guardar Cambios" onClick='validar(this.form)'></td></tr></table>
         </form>
 </body>

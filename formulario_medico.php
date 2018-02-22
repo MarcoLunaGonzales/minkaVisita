@@ -126,7 +126,7 @@ while ($row_ciudad = mysql_fetch_assoc($resp_sql_ciudad)) {
 <div id="manto"></div>
 <center style="color: #5F7BA9; font-size: 1.5em; font-family: Vernada">Registro de Categorizaci&oacute;n del M&eacute;dico</center>
 <center style="color: #5F7BA9; font-size: 1.5em; font-family: Vernada"><?php echo $nombre_medico ?></center>
-<table align='center'><tr><td><a href='categorizacion_medica_lista.php'><img  border='0'src='imagenes/volver.gif' width='15' height='8'>Volver Atras</a></td></tr></table>
+<table align='center'><tr><td><a href='categorizacion_medica_lista.php'><img  border='0'src='imagenes/back.png' width='40'>Volver Atras</a></td></tr></table>
 
 <table align="left" border="0" style="margin-top:25px; margin-bottom: 10px" width="100%">
     <tr>

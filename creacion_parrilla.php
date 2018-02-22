@@ -431,7 +431,7 @@ require("conexion.inc");
 	}
 	echo "</table><br>";
 
-	echo"\n<table align='center'><tr><td><a href='navegador_parrillas_espe_ciclos.php?ciclo_trabajo=$ciclo_trabajo'><img  border='0'src='imagenes/volver.gif' width='15' height='8'>Volver Atras</a></td></tr></table>";
+	echo"\n<table align='center'><tr><td><a href='navegador_parrillas_espe_ciclos.php?ciclo_trabajo=$ciclo_trabajo'><img  border='0'src='imagenes/back.png' width='40'>Volver Atras</a></td></tr></table>";
 	echo "<input type='button' value='Guardar' class='boton' onClick='prueba(this.form,$numero_total)'>";
 	echo "<center><table border='0' class='texto' width='90%'><tr><th>Nota: El Orden Promocional puede ser cambiado de acuerdo a necesidad, especialmente en el caso de Productos Extras.</th></tr></table></center><br>";
 

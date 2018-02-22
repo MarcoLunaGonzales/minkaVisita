@@ -25,7 +25,7 @@ echo "<td align='center'><input type='text' class='texto' name='tipo_material' v
 echo "<tr><th align='left'>Definición de Tipo de Material</th>";
 echo "<td align='center'><textarea class='texto' name='obs_tipo_material' cols='40' rows='5'>$obs_tipomaterial</textarea></td></tr>";
 echo "</table><br>";
-echo"\n<table align='center'><tr><td><a href='navegador_tiposmaterial.php'><img  border='0'src='imagenes/volver.gif' width='15' height='8'>Volver Atras</a></td></tr></table>";
+echo"\n<table align='center'><tr><td><a href='navegador_tiposmaterial.php'><img  border='0'src='imagenes/back.png' width='40'>Volver Atras</a></td></tr></table>";
 echo "<input type='button' class='boton' value='Guardar' onClick='validar(this.form)'></center>";
 echo "</form>";
 ?>

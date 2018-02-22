@@ -110,7 +110,7 @@ function ajaxVisitador(codigo, diaContacto, codGestion, codCiclo){
 	echo "</table></center></div>";
 	
 	
-	echo"\n<table align='center'><tr><td><a href='navegador_territorios.php'><img  border='0'src='imagenes/volver.gif' width='15' height='8'>Volver Atras</a></td></tr></table>";
+	echo"\n<table align='center'><tr><td><a href='navegador_territorios.php'><img  border='0'src='imagenes/back.png' width='40'>Volver Atras</a></td></tr></table>";
 	echo "<center><table border='0' class='texto'>";
 	echo "<tr><td><td><input type='button' value='Guardar' name='guardar' class='boton' onclick='guardarAsesoria(this.form,\"$diaContacto\",$codGestion,$codCiclo)'></td></td></tr></table></center>";
 	echo "</form>";

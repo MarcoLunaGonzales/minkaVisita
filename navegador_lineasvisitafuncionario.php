@@ -90,7 +90,7 @@ $cad_cod_espe = substr($cad_cod_espe, 0, -1);
         $indice_tabla++;
     }
     echo "</table></center><br>";
-    echo"\n<table align='center'><tr><td><a href='navegador_lineas_visita.php?ciclo=$ciclo&gestion=$codigo_gestion'><img  border='0'src='imagenes/volver.gif' width='15' height='8'>Volver Atras</a></td></tr></table>";
+    echo"\n<table align='center'><tr><td><a href='navegador_lineas_visita.php?ciclo=$ciclo&gestion=$codigo_gestion'><img  border='0'src='imagenes/back.png' width='40'>Volver Atras</a></td></tr></table>";
     $sql_veri = mysql_query("SELECT estado from lineas_visitadores_estados where ciclo = $ciclo and gestion = $codigo_gestion");
     $num_veri = mysql_num_rows($sql_veri);
     if ($num_veri >= 1) {

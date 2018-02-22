@@ -33,7 +33,7 @@ require("conexion.inc");
 require("estilos_visitador.inc");
 ?>
 <center style="color: #5F7BA9; font-size: 1.5em; font-family: Vernada">Registro de Categorizaci&oacute;n<br /> de M&eacute;dicos</center>
-<table align='center'><tr><td><a href='ingreso_lineas_visitador_detalle.php'><img  border='0'src='imagenes/volver.gif' width='15' height='8'>Volver Atras</a></td></tr></table>
+<table align='center'><tr><td><a href='ingreso_lineas_visitador_detalle.php'><img  border='0'src='imagenes/back.png' width='40'>Volver Atras</a></td></tr></table>
 <table width="99%" border="1" cellpadding="10" id="myTable" class="tablesorter">
     <thead>
         <tr>

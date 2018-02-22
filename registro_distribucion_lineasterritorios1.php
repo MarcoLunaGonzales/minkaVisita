@@ -428,7 +428,7 @@ while($dat_territorios=mysql_fetch_array($resp_territorios))
         echo "</table><br>";
 
         echo "<table align='center'>";
-        echo "<tr><td><a href='navegador_lineas_distribucion.php'><img border='0' src='imagenes/volver.gif' width='15' height='8'>Volver Atras</a></td></tr>";
+        echo "<tr><td><a href='navegador_lineas_distribucion.php'><img border='0' src='imagenes/back.png' width='40'>Volver Atras</a></td></tr>";
         echo "</table>";
         echo "<center><input type='button' onClick='envia_campos(this.form)' value='Guardar' class='boton' id='deshabilitado'><div id='loader'><img src='imagenes/ajax-loader.gif' alt=''  />Procesando...</div></center>";
         echo "<center><input type='button' value='Guardar' class='boton' id='enviounavez'></center>";

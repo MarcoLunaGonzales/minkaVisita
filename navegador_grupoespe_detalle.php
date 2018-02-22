@@ -109,7 +109,7 @@ while ($dat = mysql_fetch_array($resp)) {
 echo "</table><br>";
 echo "<table align='center'>";
 echo "<tr>";
-echo "<td><a href='javascript:history.back(1);'><img  border='0'src='imagenes/volver.gif' width='15' height='8'>Volver Atras</a></td>";
+echo "<td><a href='javascript:history.back(1);'><img  border='0'src='imagenes/back.png' width='40'>Volver Atras</a></td>";
 echo "</tr>";
 echo "</table>";
 echo "<table border='0' class='texto'>";

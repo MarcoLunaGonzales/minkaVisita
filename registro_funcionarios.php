@@ -80,7 +80,7 @@ echo "</select></td>";
 echo "<td></td><td></td>";
 echo "</tr>";
 echo "</table><br>";
-echo"\n<table align='center'><tr><td><a href='navegador_funcionarios.php?cod_ciudad=$ciudad_volver'><img  border='0'src='imagenes/volver.gif' width='15' height='8'>Volver Atras</a></td></tr></table>";
+echo"\n<table align='center'><tr><td><a href='navegador_funcionarios.php?cod_ciudad=$ciudad_volver'><img  border='0'src='imagenes/back.png' width='40'>Volver Atras</a></td></tr></table>";
 
 echo "<input type='hidden' name'cod_ciudad' value='$codciudad'>";
 echo "<input type='button' class='boton' value='Guardar' onClick='validar(this.form)'>";

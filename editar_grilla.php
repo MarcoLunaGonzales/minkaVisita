@@ -160,7 +160,7 @@ echo "<input type='hidden' name='codigo' value='$j_codigo'>";
 echo "<input type='hidden' name='cod_ciudad' value='$cod_ciudad'>";
 echo "<input type='hidden' name='codigo_linea' value='$global_linea'>";
 
-echo"\n<table align='center'><tr><td><a href='javascript:history.back(-1);'><img  border='0'src='imagenes/volver.gif' width='15' height='8'>Volver Atras</a></td></tr></table>";
+echo"\n<table align='center'><tr><td><a href='javascript:history.back(-1);'><img  border='0'src='imagenes/back.png' width='40'>Volver Atras</a></td></tr></table>";
 echo "<center><input type='button' class='boton' value='Guardar' onClick='valida(this.form)'></center>";
 echo "</form>";
 ?>

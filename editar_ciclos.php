@@ -65,7 +65,7 @@ echo "<script language='JavaScript'>
     		echo" click_element_id='imagenFecha1'></DLCALENDAR>";
     		echo"  </center></TD></TR>";
 	echo "</table></center><br>";
-	echo"\n<table align='center'><tr><td><a href='javascript:history.back(-1);'><img  border='0'src='imagenes/volver.gif' width='15' height='8'>Volver Atras</a></td></tr></table>";
+	echo"\n<table align='center'><tr><td><a href='javascript:history.back(-1);'><img  border='0'src='imagenes/back.png' width='40'>Volver Atras</a></td></tr></table>";
 	echo"<center><input type='button' class='boton' value='Modificar' onClick='validar(this.form)'></center>";
 	echo "</form>";
 	echo "</div>";

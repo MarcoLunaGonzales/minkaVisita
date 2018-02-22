@@ -27,6 +27,6 @@
 		echo "<tr><td align='center'>$nom_espe</td><td align='center'><a href='medicos_asignados_especialidadfuncionario.php?cod_espe=$cod_espe&visitador=$visitador'>Ver Medicos >></a></td></tr>";
 	}
 	echo "</table></center><br>";
-	echo"\n<table align='center'><tr><td><a href='javascript:history.back(-1)'><img  border='0'src='imagenes/volver.gif' width='15' height='8'>Volver Atras</a></td></tr></table>";
+	echo"\n<table align='center'><tr><td><a href='javascript:history.back(-1)'><img  border='0'src='imagenes/back.png' width='40'>Volver Atras</a></td></tr></table>";
 	echo "</form>";
 ?>

@@ -171,7 +171,7 @@
 		<td align='center'>$fecha_creacion</td><td align='center'>$fecha_modi</td><td align='center'>$desc_estado</td><td align='center'><a href='ver_grilla.php?codigo_grilla=$codigo&codigo_linea=$codigo_linea'>Ver--></a></td></tr>";
 	}
 	echo "</table><br>";
-		echo"\n<table align='center'><tr><td><a href='grilla_ciudades.php'><img  border='0'src='imagenes/volver.gif' width='15' height='8'>Volver Atras</a></td></tr></table>";
+		echo"\n<table align='center'><tr><td><a href='grilla_ciudades.php'><img  border='0'src='imagenes/back.png' width='40'>Volver Atras</a></td></tr></table>";
 	echo "<center><table border='0' class='texto'>";
 	echo "<tr><td><input type='button' value='Adicionar' name='adicionar' class='boton' onclick='enviar_nav()'></td>
 	<td><input type='button' value='Eliminar' name='eliminar' class='boton' onclick='eliminar_nav(this.form)'></td></center>

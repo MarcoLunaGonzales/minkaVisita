@@ -85,7 +85,7 @@ echo" input_element_id='exafinicial' ";
 echo" click_element_id='imagenFecha'></DLCALENDAR></td></tr>";
 echo "</table><br>";
 
-echo"\n<table align='center'><tr><td><a href='navegador_material.php'><img  border='0'src='imagenes/volver.gif' width='15' height='8'>Volver Atras</a></td></tr></table>";
+echo"\n<table align='center'><tr><td><a href='navegador_material.php'><img  border='0'src='imagenes/back.png' width='40'>Volver Atras</a></td></tr></table>";
 echo "<center><input type='button' class='boton enviar' value='Guardar'></center>";
 echo "</form>";
 echo "<script type='text/javascript' language='javascript'  src='dlcalendar.js'></script>";

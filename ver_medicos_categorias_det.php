@@ -83,7 +83,7 @@
 		}
 	}
 	echo "</table></center><br>";
-	echo"\n<table align='center'><tr><td><a href='asignar_med_categoria.php?visitador=$visitador'><img  border='0'src='imagenes/volver.gif' width='15' height='8'>Volver Atras</a></td></tr></table>";
+	echo"\n<table align='center'><tr><td><a href='asignar_med_categoria.php?visitador=$visitador'><img  border='0'src='imagenes/back.png' width='40'>Volver Atras</a></td></tr></table>";
 	echo "<center><table border='0' class='texto'>";
 	echo "<tr><td><input type='button' value='Asignar' class='boton' onclick='asignar_medico(this.form)'></td></tr></table></center>";
 	echo "</form>";

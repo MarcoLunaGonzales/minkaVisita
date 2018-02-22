@@ -476,7 +476,7 @@ if($j_cod_parrilla!="")
 				echo "</tr>";
 			}
 	echo "</table><br>";
-	echo"\n<table align='center'><tr><td><a href='navegador_parrilla_especial_ciclos.php?ciclo_trabajo=$ciclo_trabajo'><img  border='0'src='imagenes/volver.gif' width='15' height='8'>Volver Atras</a></td></tr></table>";
+	echo"\n<table align='center'><tr><td><a href='navegador_parrilla_especial_ciclos.php?ciclo_trabajo=$ciclo_trabajo'><img  border='0'src='imagenes/back.png' width='40'>Volver Atras</a></td></tr></table>";
 	echo "<input type='button' value='Modificar' class='boton' onClick='prueba(this.form,$h_numero_total,0)'>";
 	echo "<input type='button' value='Guardar como nueva' class='boton' onClick='prueba(this.form,$h_numero_total,1)'>";
 	echo "<input type='button' value='Modificar PGEA' class='boton' onClick='prueba(this.form,$h_numero_total,2)'>";

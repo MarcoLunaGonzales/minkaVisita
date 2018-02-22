@@ -97,7 +97,7 @@ echo "<script language='Javascript'>
 		echo "<tr><td><input type='checkbox' name='codigo' value='$cod_distrito'></td><td align='center'>$desc_distrito</td><td>$cadena_zonas</td><td align='center'><a href='navegador_zonas.php?cod_territorio=$cod_territorio&cod_distrito=$cod_distrito'>Ver Zonas >></a></td></tr>";
 	}
 	echo "</table></center><br>";
-	echo"\n<table align='center'><tr><td><a href='navegador_territorios.php'><img  border='0'src='imagenes/volver.gif' width='15' height='8'>Volver Atras</a></td></tr></table>";
+	echo"\n<table align='center'><tr><td><a href='navegador_territorios.php'><img  border='0'src='imagenes/back.png' width='40'>Volver Atras</a></td></tr></table>";
 	echo "<center><table border='0' class='texto'>";
 	echo "<tr><td><input type='button' value='Adicionar' name='adicionar' class='boton' onclick='enviar_nav()'></td><td><input type='button' value='Eliminar' name='eliminar' class='boton' onclick='eliminar_nav(this.form)'></td><td><input type='button' value='Editar' name='Editar' class='boton' onclick='editar_nav(this.form)'></td></tr></table></center>";
 	echo "</form>";

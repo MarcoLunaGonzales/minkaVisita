@@ -27,7 +27,7 @@ include("datosUsuario.php");
 			[<? echo $fechaSistemaSesion?>][<? echo $horaSistemaSesion;?>]			
 		<div>
 		<div style="position:absolute; width:95%; height:50px; text-align:left; top:0px; font-size: 9px; font-weight: bold; color: #fff;">
-			[<? echo $nombreUsuarioSesion?>]  [<? echo $nombreLineaSesion;?>]  [<? echo $nombreAgenciaSesion;?>]
+			[<? echo $nombreUsuarioSesion?>]  [<? echo $nombreAgenciaSesion;?>]  <span style="color:yellow;">[<? echo $nombreLineaSesion;?>]</span>
 		<div>
 		
 	</div>

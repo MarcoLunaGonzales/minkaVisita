@@ -49,7 +49,7 @@ $sql_ciclos = mysql_query("Select cod_ciclo from ciclos where codigo_gestion = $
                 </table>
                 <input type="submit" class="boton" value="Proseguir" />
             </form>
-            <table align='center'><tr><td><a href='navegador_lineas_visita.php'><img  border='0'src='imagenes/volver.gif' width='15' height='8'>Volver Atras</a></td></tr></table>
+            <table align='center'><tr><td><a href='navegador_lineas_visita.php'><img  border='0'src='imagenes/back.png' width='40'>Volver Atras</a></td></tr></table>
         </section>
     </center>
 

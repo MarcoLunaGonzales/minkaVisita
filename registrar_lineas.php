@@ -18,7 +18,7 @@ echo "<center><table border='1' class='texto' cellspacing='0'>";
 echo "<tr><th>Nombre Línea</th></tr>";
 echo "<tr><td align='center'><input type='text' class='texto' name='linea' size='40'></td></tr>";
 echo "</table><br>";
-echo"\n<table align='center'><tr><td><a href='navegador_lineas.php'><img  border='0'src='imagenes/volver.gif' width='15' height='8'>Volver Atras</a></td></tr></table>";
+echo"\n<table align='center'><tr><td><a href='navegador_lineas.php'><img  border='0'src='imagenes/back.png' width='40'>Volver Atras</a></td></tr></table>";
 echo "<input type='button' class='boton' value='Guardar' onClick='validar(this.form)'></center>";
 echo "</form>";
 ?>

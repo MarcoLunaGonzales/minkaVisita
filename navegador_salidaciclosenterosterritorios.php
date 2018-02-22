@@ -98,5 +98,5 @@
 		$indice_tabla++;
 	}
 	echo "</table></center><br>";
-	echo"\n<table align='center'><tr><td><a href='navegador_salidaciclosenteros.php'><img  border='0' src='imagenes/volver.gif' width='15' height='8'>Volver Atras</a></td></tr></table>";
+	echo"\n<table align='center'><tr><td><a href='navegador_salidaciclosenteros.php'><img  border='0' src='imagenes/back.png' width='40'>Volver Atras</a></td></tr></table>";
 ?>

@@ -85,7 +85,7 @@
 			echo "<tr><td align='center'><input type='checkbox' name='codigos_medicos' value=$cod_med></td><td align='center'>$nombre_medico</td><td align='center' class='texto'>$numero_asig</td></tr>";			
 		}
 		echo "</table></center><br>";
-		echo"\n<table align='center'><tr><td><a href='javascript:history.back();'><img  border='0'src='imagenes/volver.gif' width='15' height='8'>Volver Atras</a></td></tr></table>";
+		echo"\n<table align='center'><tr><td><a href='javascript:history.back();'><img  border='0'src='imagenes/back.png' width='40'>Volver Atras</a></td></tr></table>";
 		echo "<center><table border='0' class='texto'>";
 		echo "<tr><td><input type='button' value='Asignar' class='boton' onclick='asignar_med(this.form)'></td></tr></table></center>";
 		echo "<br><center><table border='0' class='texto' width='81%'>";

@@ -64,7 +64,7 @@
 		echo"<tr><td><input type='checkbox' name='codigo' value='$cod_rutero'></td><td align='center'>$nombre_rutero</td><td align='center'>$estado_desc</td><td align='center'><a href='funcionario_rutero_maestro_importar.php?j_funcionario=$j_funcionario&linea_importada=$linea_importada&rutero_importado=$cod_rutero&visitador_importado=$visitador_importado'>Ver Todo >></a></td></tr>";
 	}
 	echo "</table><br>";
-echo"\n<table align='center'><tr><td><a href='importar_rutero_linea?visitador=$j_funcionario&linea_importada=$linea_importada'><img  border='0'src='imagenes/volver.gif' width='15' height='8'>Volver Atras</a></td></tr></table>";
+echo"\n<table align='center'><tr><td><a href='importar_rutero_linea?visitador=$j_funcionario&linea_importada=$linea_importada'><img  border='0'src='imagenes/back.png' width='40'>Volver Atras</a></td></tr></table>";
 echo "<center><table border='0' class='texto'>";
 echo "<tr><td><input type='button' value='Importar' class='boton' onclick='importar_rutero(this.form)'></td></tr></table></center>";
 echo "</form>";

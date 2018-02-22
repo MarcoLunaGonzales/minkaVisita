@@ -251,7 +251,7 @@ else
 	}
 	echo "</tr>";
 	echo "</table>";
-	echo"\n<br><table align='center'><tr><td><a href='registro_distribucion_lineasterritorios1.php?global_linea=$global_linea'><img  border='0'src='imagenes/volver.gif' width='15' height='8'>Volver Atras</a></td></tr></table>";
+	echo"\n<br><table align='center'><tr><td><a href='registro_distribucion_lineasterritorios1.php?global_linea=$global_linea'><img  border='0'src='imagenes/back.png' width='40'>Volver Atras</a></td></tr></table>";
 	echo "<center><input type='button' onClick='envia_campos(this.form)' value='Guardar' class='boton'></center>";
 	echo "</form>";
 ?>

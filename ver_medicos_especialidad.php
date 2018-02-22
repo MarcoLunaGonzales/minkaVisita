@@ -150,7 +150,7 @@ error_reporting(0);
 	$especialidad=$dat_cab[0];
 	echo "<center><table border='0' class='textotit'><tr><td>M�dicos Especialidad $especialidad</td></tr></table></center><br>";
 
-	echo"\n<table align='center'><tr><td><a href='navegador_medicos_especialidad.php'><img  border='0'src='imagenes/volver.gif' width='15' height='8'>Volver Atras</a></td></tr></table>";
+	echo"\n<table align='center'><tr><td><a href='navegador_medicos_especialidad.php'><img  border='0'src='imagenes/back.png' width='40'>Volver Atras</a></td></tr></table>";
 	echo "<center><table border='0' class='texto'>";
 	echo "<tr><td><input type='button' value='Eliminar de la L�nea' name='eliminar' class='boton' onclick='eliminar_medico(this.form)'></td><td><input type='button' value='Editar Espe/Cat' name='Editar' class='boton' onclick='editar_medico(this.form)'></td><td><input type='button' value='Editar Perfil Prescriptivo' class='boton' onclick='editar_perfil(this.form)'></td><td><input type='button' value='Productos Objetivo' class='boton' onclick='producto_objetivo(this.form)'></td><td><input type='button' value='Filtrar Productos' class='boton' alt='Filtra Productos especificos que no se deseen promocionar a un medico en particular.' onclick='denegar_producto(this.form)'></td></tr></table></center><br>";
 
@@ -191,7 +191,7 @@ error_reporting(0);
 		$indice_tabla++;
 	}
 	echo "</table></center><br>";
-	echo"\n<table align='center'><tr><td><a href='navegador_medicos_especialidad.php'><img  border='0'src='imagenes/volver.gif' width='15' height='8'>Volver Atras</a></td></tr></table>";
+	echo"\n<table align='center'><tr><td><a href='navegador_medicos_especialidad.php'><img  border='0'src='imagenes/back.png' width='40'>Volver Atras</a></td></tr></table>";
 	echo "<center><table border='0' class='texto'>";
 	echo "<tr><td><input type='button' value='Eliminar de la L&iacute;nea' name='eliminar' class='boton' onclick='eliminar_medico(this.form)'></td><td><input type='button' value='Editar Espe/Cat' name='Editar' class='boton' onclick='editar_medico(this.form)'></td><td><input type='button' value='Editar Perfil Prescriptivo' class='boton' onclick='editar_perfil(this.form)'></td><td><input type='button' value='Productos Objetivo' class='boton' onclick='producto_objetivo(this.form)'></td><td><input type='button' value='Filtrar Productos' class='boton' alt='Filtra Productos especificos que no se deseen promocionar a un medico en particular.' onclick='denegar_producto(this.form)'></td></tr></table></center>";
 	echo "</form>";

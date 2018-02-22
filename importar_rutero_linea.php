@@ -21,5 +21,5 @@
 		echo "<tr><td>&nbsp$nombre_funcionario</td><td align='center'><a href='importar_rutero_visitador.php?j_funcionario=$visitador&linea_importada=$linea_importada&visitador_importado=$codigo_funcionario'>Importar >></a></td></tr>";	
 	}
 	echo "</table><br>";
-	echo"\n<table align='center'><tr><td><a href='importar_rutero_maestro.php?j_funcionario=$visitador'><img  border='0'src='imagenes/volver.gif' width='15' height='8'>Volver Atras</a></td></tr></table>";	
+	echo"\n<table align='center'><tr><td><a href='importar_rutero_maestro.php?j_funcionario=$visitador'><img  border='0'src='imagenes/back.png' width='40'>Volver Atras</a></td></tr></table>";	
 ?>

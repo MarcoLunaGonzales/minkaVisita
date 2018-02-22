@@ -70,6 +70,8 @@ echo "<script language='Javascript'>
 	
 	require("conexion.inc");
 	require("estilos_visitador.inc");
+	
+if($global_linea!=""){
 	echo "<form method='post' action='opciones_medico.php'>";
 	//esta parte saca el ciclo activo
 	$sql="SELECT r.cod_ciclo, r.codigo_gestion, r.cod_contacto, r.cod_visitador, r.dia_contacto, r.turno, r.zona_viaje from rutero r, orden_dias o where r.cod_ciclo='$ciclo_global' and r.codigo_gestion='$codigo_gestion' and r.codigo_linea='$global_linea' and r.cod_visitador=$global_visitador and r.dia_contacto=o.dia_contacto order by o.id";
@@ -159,4 +161,8 @@ echo "<script language='Javascript'>
 	echo "<tr><td align='left'>Cobertura: </td><td>$cobertura %</td><td></td></tr></table></center>";//echo "<center><table border='0' class='texto'>";
 
 	echo "</form>";
+}else{
+	
+	echo "<h1>Debe Seleccionar una linea de Trabajo!</h1>";
+}
 ?>

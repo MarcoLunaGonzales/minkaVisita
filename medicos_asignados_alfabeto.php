@@ -53,7 +53,7 @@ $resp=mysql_query($sql);
 echo "<form>";
 echo "<center><table border='0' class='textotit'><tr><th>Medicos Asignados<br>Visitador: $nombre_funcionario</th></tr></table></center><br>";
 $indice_tabla=1;
-echo"\n<table align='center'><tr><td><a href='navegador_funcionarios_regional.php'><img  border='0'src='imagenes/volver.gif' width='15' height='8'>Volver Atras</a></td></tr></table><br>";
+echo"\n<table align='center'><tr><td><a href='navegador_funcionarios_regional.php'><img  border='0'src='imagenes/back.png' width='40'>Volver Atras</a></td></tr></table><br>";
 echo "<center><table class='texto' border=1 cellspacing='0'>";
 echo "<tr><td><input type='checkbox' name='todo' onClick='sel_todo(this.form)'>Seleccionar Todo</td></tr></table></center>";
 echo "<center><table border='0' class='texto'>";
@@ -80,7 +80,7 @@ while($dat=mysql_fetch_array($resp)) {
 	$indice_tabla++;
 }
 echo "</table></center><br>";
-echo"\n<table align='center'><tr><td><a href='navegador_funcionarios_regional.php'><img  border='0'src='imagenes/volver.gif' width='15' height='8'>Volver Atras</a></td></tr></table>";
+echo"\n<table align='center'><tr><td><a href='navegador_funcionarios_regional.php'><img  border='0'src='imagenes/back.png' width='40'>Volver Atras</a></td></tr></table>";
 echo "<center><table border='0' class='texto'>";
 echo "<tr><td><input type='button' value='Eliminar' class='boton' onclick='eliminar_nav(this.form)'></td></tr></table></center>";
 echo "</form>";

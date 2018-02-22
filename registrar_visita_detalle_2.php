@@ -274,7 +274,7 @@ $codigo_parrilla = $_GET['codigo_parrilla'];
 					echo "</select></td><td>&nbsp;</td></tr>";
 				}
 				echo "</table><br>";
-				echo"\n<table align='center'><tr><td><a href='javascript:history.back(-1);'><img  border='0'src='imagenes/volver.gif' width='15' height='8'>Volver Atras</a></td></tr></table>";
+				echo"\n<table align='center'><tr><td><a href='javascript:history.back(-1);'><img  border='0'src='imagenes/back.png' width='40'>Volver Atras</a></td></tr></table>";
 				echo "<table border='0' align='center'>";
 				echo "<input type='hidden' name='valores' value='$contacto-$orden_visita-$parrilla-$i'>";
 				echo "<input type='hidden' name='cod_contacto' value='$cod_contacto'>";

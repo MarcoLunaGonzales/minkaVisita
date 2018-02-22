@@ -65,7 +65,7 @@
 		echo "<tr><td align='center'><input type='checkbox' name='codigos_ciclos' value=$cod></td><td align='center'>$cod</td><td align='center' class='texto'>$nombre_completo</td><td align='center'>&nbsp;$especialidad</td></tr>";
 	}
 	echo "</table></center><br>";
-	echo"\n<table align='center'><tr><td><a href='asignar_med_fun.php?j_funcionario=$visitador'><img  border='0'src='imagenes/volver.gif' width='15' height='8'>Volver Atras</a></td></tr></table>";
+	echo"\n<table align='center'><tr><td><a href='asignar_med_fun.php?j_funcionario=$visitador'><img  border='0'src='imagenes/back.png' width='40'>Volver Atras</a></td></tr></table>";
 	echo "<center><table border='0' class='texto'>";
 	echo "<tr><td><input type='button' value='Asignar' class='boton' onclick='asignar_medico(this.form)'></td></tr></table></center>";
 	echo "</form>";

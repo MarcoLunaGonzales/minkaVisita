@@ -1,3 +1,6 @@
+<?php
+require("conexion.inc");
+?>
 <script type="text/javascript" src="lib/jquery-1.7.1.js"></script>
 <script type="text/javascript" src="lib/jquery.placeholder.min.js"></script>
 <script type="text/javascript" src="lib/jquery.maskedinput-1.3.min.js"></script>
@@ -110,16 +113,18 @@ function validar(f) {
         f.espe1.focus();
         return(false);
     }
-    if(f.name_farm_1.value == 'vacio' && f.name_farm_2.value == 'vacio' && f.name_farm_3.value == 'vacio' && f.edad.value == 0 && f.consulta.value=='' ){
+    
+	/*
+	if(f.name_farm_1.value == 'vacio' && f.name_farm_2.value == 'vacio' && f.name_farm_3.value == 'vacio' && f.edad.value == 0 && f.consulta.value=='' ){
         alert("Debe llenar los datos de la pestana DATOS DE CATEGORIZACION");
         f.name_farm_1.focus();
         return(false);
     }
-    /*if(f.name_farm_1.value == 'vacio' ){
+	if(f.name_farm_1.value == 'vacio' ){
         alert("Debe ingresar al menos una farmacia de referencia")
         f.name_farm_1.focus();
         return(false);
-    }*/
+    }
     if(f.edad.value==0) {   
         alert('Debe seleccionar el rango de edad al que pertenece.');
         f.espe1.focus();
@@ -133,7 +138,7 @@ function validar(f) {
     if(f.consulta.value=='') {  
        alert('Debe ingresar el costo.');
        return(false);
-	}
+	}*/
 	if(f.espe1.value==f.espe2.value){
 		alert('No puede insertar dos especialidades iguales.');
 		return(false);
@@ -216,8 +221,9 @@ td.deleteSlide	{
 #manto  { width: 100%; height: 100%; background: #000; opacity:0.60; filter:Alpha(Opacity=60);  position: absolute; top: 0; left: 0; display: none; z-index: 100 }
 </style>
 <?php
+
 require("estilos_administracion.inc");
-require("conexion.inc");
+
 $sql_cod_ciudad = mysql_query("SELECT cod_ciudad from funcionarios where codigo_funcionario = $global_visitador");
 while ($row_cod_ciudad = mysql_fetch_assoc($sql_cod_ciudad)) {
     $cod_ciudad = $row_cod_ciudad['cod_ciudad'];
@@ -230,12 +236,10 @@ while ($row_cod_ciudad = mysql_fetch_assoc($sql_cod_ciudad)) {
 	}
 }
 ?>
-<table width="100%"  border="0" cellspacing="0" class="textotit">
-    <tr><td align='center'><div align="center">REGISTRO DE M&Eacute;DICOS</div><br></td></tr>
-</table>
+<h1>Alta de Medicos</h1>
 <ul class="tabs">
     <li><a href="#tab1">Datos Generales</a></li>
-    <li><a href="#tab2">Datos Categorizacion</a></li>
+    <!--li><a href="#tab2">Datos Categorizacion</a></li-->
 </ul>
 <div class="tab_container">
     <div id="tab1" class="tab_content">
@@ -342,7 +346,6 @@ while ($row_cod_ciudad = mysql_fetch_assoc($sql_cod_ciudad)) {
                             ?>
                         </select> 						
                     </td>
-                    <td align='center' colspan="2">&nbsp;</td>
                 </tr>
                 <tr>
                     <th colspan="5" class="texto"><br>Datos Complementarios<br>&nbsp;</th>
@@ -539,7 +542,7 @@ while ($row_cod_ciudad = mysql_fetch_assoc($sql_cod_ciudad)) {
         </div>
     </div>
     <?php
-    echo "<table align='center'><tr><td><a href='medicos_solicitados_lista.php?cod_ciudad=$cod_ciudad'><img  border='0'src='imagenes/volver.gif' width='15' height='8'>Volver Atras</a></td></tr></table>";
+    echo "<table align='center'><tr><td><a href='medicos_solicitados_lista.php?cod_ciudad=$cod_ciudad'><img  border='0'src='imagenes/back.png' width='40'>Volver Atras</a></td></tr></table>";
     ?>
     <table class="texto" border="0" align="center">
         <tr>

@@ -193,7 +193,7 @@ for($i=1;$i<=$num_medicos;$i++) {
 }
 echo "</table></center><br>";
 
-echo"\n<table align='center'><tr><td><a href='rutero_maestro_todo.php?rutero=$rutero'><img  border='0'src='imagenes/volver.gif' width='15' height='8'>Volver Atras</a></td></tr></table>";
+echo"\n<table align='center'><tr><td><a href='rutero_maestro_todo.php?rutero=$rutero'><img  border='0'src='imagenes/back.png' width='40'>Volver Atras</a></td></tr></table>";
 
 echo "<div class='divBotones'>
 <input type='button' value='Guardar' onClick='envia(this.form)' class='boton'>

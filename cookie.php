@@ -172,7 +172,7 @@ if ($cod_cargo == 1017) {
     <tr><td>Usuario</td><td><input type='text' name='usuario' ></td></tr>
     <tr><td>Email</td><td><input type='text' name='email' ></td></tr>
     </table></center>
-    <table align='center'><tr><td><a href='index1.html'><img  border='0' src='imagenes/volver.gif' width='15' height='8'>Volver Atras</a></td></tr></table>
+    <table align='center'><tr><td><a href='index1.html'><img  border='0' src='imagenes/back.png' width='40'>Volver Atras</a></td></tr></table>
     <center><table><tr><td><input class='boton' type='submit' name='aceptar' value='Aceptar'></td></tr></table></center>
     </form>";
 }

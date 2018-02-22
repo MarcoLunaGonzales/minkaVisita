@@ -68,7 +68,7 @@ while ($dat = mysql_fetch_array($resp)) {
     $indice_tabla++;
 }
 echo "</table></center><br>";
-echo"\n<table align='center'><tr><td><a href='navegador_lineas_visita.php?ciclo=$ciclo&gestion=$codigo_gestion'><img  border='0'src='imagenes/volver.gif' width='15' height='8'>Volver Atras</a></td></tr></table>";
+echo"\n<table align='center'><tr><td><a href='navegador_lineas_visita.php?ciclo=$ciclo&gestion=$codigo_gestion'><img  border='0'src='imagenes/back.png' width='40'>Volver Atras</a></td></tr></table>";
 echo "<center><table border='0' class='texto'>";
 $sql_veri = mysql_query("select estado from lineas_visitadores_estados where ciclo = $ciclo and gestion = $codigo_gestion");
 $num_veri = mysql_num_rows($sql_veri);

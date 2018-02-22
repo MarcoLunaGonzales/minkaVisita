@@ -72,6 +72,6 @@ else{
 	echo "<center><div style='color:#FF5733;font-size:14pt;width:300px;'>Ya existe un rutero creado para el $nombreCicloSiguiente, no puede crear mas de un rutero por ciclo.</div></center>";
 
 }
-echo"<br/><table align='center'><tr><td><a href='javascript:history.back(-1)'><img  border='0'src='imagenes/volver.gif' width='15' height='8'>Volver Atras</a></td></tr></table>";
+echo"<br/><table align='center'><tr><td><a href='javascript:history.back(-1)'><img  border='0'src='imagenes/back.png' width='40'>Volver Atras</a></td></tr></table>";
 echo "</form>";
 ?>

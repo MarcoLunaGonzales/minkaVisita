@@ -56,8 +56,11 @@ function editar_nav(f) {
 		}
 	}
 }
-</script>
-";
+</script>";
+
+//$global_linea;
+//$global_visitador;
+
 echo "<form method='post' action='opciones_medico.php'>";
 if($vista==2){
 	$nombreTabla="rutero_maestro_cab_aprobado";
@@ -75,20 +78,20 @@ $sql_nom_rutero=mysql_query("SELECT nombre_rutero from $nombreTabla where cod_ru
 $dat_nom_rutero=mysql_fetch_array($sql_nom_rutero);
 $nombre_rutero=$dat_nom_rutero[0];
 
-echo "<h1>Registro de Rutero Medico Maestro<br>Rutero: $nombre_rutero</h1>";
+echo "<h1>Registro de Rutero Maestro<br>Rutero: $nombre_rutero</h1>";
 
 echo "<table border='0' class='textomini'>
 <tr><th>Leyenda: </th><th>Medico con Frecuencia Reducida</th><th bgcolor='#AAAAFF' width='30%'></th></tr>
 </table>";
 
-echo"<table align='center'><tr><td><a href='navegador_rutero_maestro.php'><img  border='0'src='imagenes/volver.gif' width='15' height='8'>Volver Atras</a></td></tr></table>";
+echo"<table align='center'><tr><td><a href='navegador_rutero_maestro.php'><img  border='0'src='imagenes/back.png' width='40'>Volver Atras</a></td></tr></table>";
 
 if($aprobado!=1) {	
 	echo "<div class='divBotones'>";
 	if($filas_rutero==0 and $global_zona_viaje==0) {	
-		echo "<input type='button' value='Replicar Rutero' class='boton' onclick='recuperar_contactos()'>";
+		echo "<input type='button' name='replicar' value='Replicar Rutero' class='boton' onclick='recuperar_contactos()'>";
 	}
-	echo "<input type='button' value='Adicionar' name='adicionar' class='boton' onclick='enviar_nav()'>
+	echo "&nbsp;<input type='button' value='Adicionar' name='adicionar' class='boton' onclick='enviar_nav()'>
 			<input type='button' value='Editar' name='Editar' class='boton' onclick='editar_nav(this.form)'>
 			<input type='button' value='Completar 1/2 ciclo' class='boton' onclick='completar_ciclo(this.form)'>
 			<input type='button' value='Eliminar' name='eliminar' class='boton2' onclick='eliminar_nav(this.form)'>
@@ -133,6 +136,8 @@ while($dat=mysql_fetch_array($resp)) {
 		$zona_f        = $dat1[9];
 		$nombre_medico = "$pat $mat $nombre";
 
+		
+		
 		$sqlFrecEspecial = "SELECT md.cod_dia_agrupado, md.nro_visita from medico_frec_especial m, medico_frec_especialdetalle md where m.cod_ciclo = '$ciclo_global' and m.cod_gestion = '$codigo_gestion' and m.cod_med = '$cod_med' and m.cod_visitador='$global_visitador'";
 
 		$respFrecEspecial = mysql_query($sqlFrecEspecial);
@@ -143,9 +148,28 @@ while($dat=mysql_fetch_array($resp)) {
 			$fondo_filaDet = "";
 		}
 
+		//verificamos si el medico esta fuera de la linea y fuera de la asignacion del visitador
+		$sqlVeriLinea="select count(*) from categorias_lineas c where 
+			c.cod_med='$cod_med' and c.codigo_linea='$global_linea' and c.cod_especialidad='$espe' and c.categoria_med='$cat'";
+		$respVeriLinea=mysql_query($sqlVeriLinea);
+		$banderaVeriLinea=mysql_result($respVeriLinea,0,0);
+		$txtVeriLinea="";
+		if($banderaVeriLinea==0){
+			$txtVeriLinea="<span style='color:red'>[Retirado/Linea]</span>";
+		}
+		
+		$sqlVeriAsignacion="select count(*) from medico_asignado_visitador m where m.cod_med='$cod_med' and 
+			m.codigo_visitador='$global_visitador' and m.codigo_linea='$global_linea'";
+		$respVeriAsignacion=mysql_query($sqlVeriAsignacion);
+		$banderaVeriAsignacion=mysql_result($respVeriAsignacion,0,0);
+		$txtVeriAsignacion="";
+		if($banderaVeriAsignacion==0){
+			$txtVeriAsignacion="<span style='color:red'>[Retirado/Visitador]</span>";
+		}
+
 		$contacto=$contacto."<tr bgcolor='$fondo_filaDet'><td align='center'>$dat1[0]</td><td>$indice</td>
 		<td>&nbsp;$nombre_medico</td><td>&nbsp;$espe</td><td align='center'>$cat</td><td>&nbsp;$direccion </td>
-		<td align='center'>$zona_f</td><td>obs</td></tr>";
+		<td align='center'>$zona_f</td><td>$txtVeriLinea $txtVeriAsignacion</td></tr>";
 		$indice++;
 	}
 	$contacto=$contacto."</table>";
@@ -156,14 +180,15 @@ while($dat=mysql_fetch_array($resp)) {
 	}
 }
 echo "</table></center><br>";
-echo"\n<table align='center'><tr><td><a href='navegador_rutero_maestro.php'><img  border='0'src='imagenes/volver.gif' width='15' height='8'>Volver Atras</a></td></tr></table>";
+
+echo"\n<table align='center'><tr><td><a href='navegador_rutero_maestro.php'><img  border='0'src='imagenes/back.png' width='40'>Volver Atras</a></td></tr></table>";
 
 if($aprobado!=1) {	
 	echo "<div class='divBotones'>";
-	if($filas_rutero==0 and $global_zona_viaje==0) {	
+	if($filas_rutero==0) {	
 		echo "<input type='button' value='Replicar Rutero' class='boton' onclick='recuperar_contactos()'>";
 	}
-	echo "<input type='button' value='Adicionar' name='adicionar' class='boton' onclick='enviar_nav()'>
+	echo "&nbsp;<input type='button' value='Adicionar' name='adicionar' class='boton' onclick='enviar_nav()'>
 			<input type='button' value='Editar' name='Editar' class='boton' onclick='editar_nav(this.form)'>
 			<input type='button' value='Completar 1/2 ciclo' class='boton' onclick='completar_ciclo(this.form)'>
 			<input type='button' value='Eliminar' name='eliminar' class='boton2' onclick='eliminar_nav(this.form)'>

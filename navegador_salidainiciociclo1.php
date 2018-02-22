@@ -173,7 +173,7 @@ for($i=0;$i<=$indice_m_m;$i++)
 	echo "</tr>";
 }
 echo "</table>";
-echo"\n<table align='center'><tr><td><a href='navegador_salidamuestras.php'><img  border='0' src='imagenes/volver.gif' width='15' height='8'>Volver Atras</a></td></tr></table>";
+echo"\n<table align='center'><tr><td><a href='navegador_salidamuestras.php'><img  border='0' src='imagenes/back.png' width='40'>Volver Atras</a></td></tr></table>";
 echo "<center><input type='button' class='boton' value='Guardar' onClick='validar(this.form)'></center>";
 echo "</form>";
 echo "</div></body>";
