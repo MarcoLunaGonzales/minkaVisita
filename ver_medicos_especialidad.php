@@ -156,7 +156,7 @@ error_reporting(0);
 
 	$indice_tabla=1;
 	echo "<center><table border='1' class='textomini' width='70%' cellspacing='0'>";
-	echo "<tr><th>&nbsp;</th><th>&nbsp;</th><th>RUC</th><th>Nombre</th><th>Categor�a</th><th>Productos Objetivo</th><th>Productos Filtrados</th><th></th></tr>";
+	echo "<tr><th>&nbsp;</th><th>&nbsp;</th><th>Codigo</th><th>Nombre</th><th>Categor�a</th><th>Productos Objetivo</th><th>Productos Filtrados</th><th></th></tr>";
 	while($dat=mysql_fetch_array($resp))
 	{
 		$cod=$dat[0];

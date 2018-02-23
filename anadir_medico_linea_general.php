@@ -124,7 +124,7 @@ echo "<script language='Javascript'>
 	echo "<tr><td><input type='checkbox' name='todo' onClick='sel_todo(this.form)'>Seleccionar Todo</td></tr></table>";	
 	echo "<center><table border='1' class='textosupermini' cellspacing='0' width='80%'>";
 	$indice_tabla=1;
-	echo "<tr><th>&nbsp;</th><th>&nbsp;</th><th>RUC</th><th>Nombre</th><th>Nacimiento</th><th>Especialidades</th>
+	echo "<tr><th>&nbsp;</th><th>&nbsp;</th><th>Codigo</th><th>Nombre</th><th>Nacimiento</th><th>Especialidades</th>
 	<th>Direcciones</th><th>Linea / Visitador</th></tr>";
 	while($dat=mysql_fetch_array($resp))
 	{

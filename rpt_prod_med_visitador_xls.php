@@ -18,7 +18,7 @@ if($medico!="" || ($medico=="" && $obj=="" && $filtrado==""))
 	$resp=mysql_query($sql);
 	echo "<center>Productos Objetivo y Filtrados x Medico<br>";
 	echo "<center><table border='1' class='textomini' width='100%' cellspacing='0'>";
-	echo "<tr><th>RUC</th><th>Nombre</th><th>Especialidades</th><th>Productos Objetivo</th><th>Productos Filtrados</th></tr>";
+	echo "<tr><th>Codigo</th><th>Nombre</th><th>Especialidades</th><th>Productos Objetivo</th><th>Productos Filtrados</th></tr>";
 	while($dat=mysql_fetch_array($resp))
 	{
 		$cod=$dat[0];
@@ -84,7 +84,7 @@ if($obj!="" && $bandera==0)
 	$descripcion_prod_obj=$dat_cab_obj[0];	$presentacion_prod_obj=$dat_cab_obj[1];
 	echo "<center>Medicos que tienen como producto objetivo: $descripcion_prod_obj $presentacion_prod_obj</center><br>";
 	echo "<center><table border='1' class='textomini' width='80%' cellspacing='0'>";
-	echo "<tr><th>RUC</th><th>Nombre</th><th>Especialidades</th></tr>";		
+	echo "<tr><th>Codigo</th><th>Nombre</th><th>Especialidades</th></tr>";		
 	$sql_medicos="select distinct m.cod_med,m.ap_pat_med,m.ap_mat_med,m.nom_med
 		 from medicos m, categorias_lineas c, productos_objetivo p
 		 where m.cod_ciudad='$global_agencia' and m.cod_med=c.cod_med and c.codigo_linea=$global_linea and p.cod_med=m.cod_med and p.codigo_muestra='$obj'
@@ -126,7 +126,7 @@ if($filtrado!="" && $bandera==0)
 	$descripcion_prod_filtrado=$dat_cab_filtrado[0];	$presentacion_prod_filtrado=$dat_cab_filtrado[1];
 	echo "<center>Medicos que tienen como producto filtrado: $descripcion_prod_filtrado $presentacion_prod_filtrado</center><br>";
 	echo "<center><table border='1' class='textomini' width='80%' cellspacing='0'>";
-	echo "<tr><th>RUC</th><th>Nombre</th><th>Especialidades</th></tr>";		
+	echo "<tr><th>Codigo</th><th>Nombre</th><th>Especialidades</th></tr>";		
 	$sql_medicos="select distinct m.cod_med,m.ap_pat_med,m.ap_mat_med,m.nom_med
 		 from medicos m, categorias_lineas c, muestras_negadas mn
 		 where m.cod_ciudad='$global_agencia' and m.cod_med=c.cod_med and c.codigo_linea=$global_linea and mn.cod_med=m.cod_med and mn.codigo_muestra='$filtrado'

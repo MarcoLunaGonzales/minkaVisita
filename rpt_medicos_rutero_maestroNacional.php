@@ -38,7 +38,7 @@ echo "<center><table border='0' class='textotit'><tr><th>M&eacute;dicos en Ruter
 <br> Gestion: $nombreGestion Ciclo: $codigoCiclo</th></tr></table></center><br>";
 
 echo "<center><table border='1' class='textomini' cellspacing='0' width='60%'>";
-echo "<tr><th>&nbsp;</th><th>CodigoBPH</th><th>Codigo CloseUp</th><th>RUC</th><th>Territorio</th><th>Medico</th><th>Especialidad</th><th>Categoria</th><th>Linea</th><th>CodVisitador</th><th>Visitador</th>
+echo "<tr><th>&nbsp;</th><th>CodigoBPH</th><th>Codigo CloseUp</th><th>Codigo</th><th>Territorio</th><th>Medico</th><th>Especialidad</th><th>Categoria</th><th>Linea</th><th>CodVisitador</th><th>Visitador</th>
 <th>Contactos</th></tr>";
 
 for ($i = 0; $i <= $tamVectorVisitador - 1; $i++) {

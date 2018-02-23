@@ -64,11 +64,11 @@ echo"<form method='post'>";
 	echo"</tr>";
 	echo"\n <tr>";
 	echo "<th align='left'>Visualizar por</th><td><select name='vista' class='texto' onChange='envia_select(this.form)'>";
-	if($vista==0){echo "<option value='0' selected>Alfabetico</option><option value='1'>Especialidad</option><option value='2'>RUC</option></select>";}
-	if($vista==1){echo "<option value='0'>Alfabetico</option><option value='1' selected>Especialidad</option><option value='2'>RUC</option></select>";}
-	if($vista==2){echo "<option value='0'>Alfabetico</option><option value='1'>Especialidad</option><option value='2' selected>RUC</option></select>";}
+	if($vista==0){echo "<option value='0' selected>Alfabetico</option><option value='1'>Especialidad</option><option value='2'>Codigo</option></select>";}
+	if($vista==1){echo "<option value='0'>Alfabetico</option><option value='1' selected>Especialidad</option><option value='2'>Codigo</option></select>";}
+	if($vista==2){echo "<option value='0'>Alfabetico</option><option value='1'>Especialidad</option><option value='2' selected>Codigo</option></select>";}
 	if($vista!=0 and $vista!=1 and $vista!=2)
-	{	echo "<option value='0'>Alfabetico</option><option value='1'>Especialidad</option><option value='2'>RUC</option></select>";
+	{	echo "<option value='0'>Alfabetico</option><option value='1'>Especialidad</option><option value='2'>Codigo</option></select>";
 	}
 	echo"</td></tr>";
 	echo "<tr><th align='left'>Parametro</th><td><select name='parametro' class='texto'>";

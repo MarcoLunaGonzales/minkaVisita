@@ -26,7 +26,7 @@
 	echo "<input type='hidden' name='codAgencia' value='$territorio'>";
 	
 	echo "<center><table border='1' class='textomini' cellspacing='0'>";
-	echo "<tr><th>&nbsp;</th><th>&nbsp;</th><th>RUC</th><th>Nombre</th><th>Especialidades</th><th>Territorio</th><th>&nbsp;</th></tr>";
+	echo "<tr><th>&nbsp;</th><th>&nbsp;</th><th>Codigo</th><th>Nombre</th><th>Especialidades</th><th>Territorio</th><th>&nbsp;</th></tr>";
 	while($dat=mysql_fetch_array($resp))
 	{
 		$cod=$dat[0];

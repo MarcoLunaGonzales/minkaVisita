@@ -88,10 +88,10 @@ if($rpt_vista==2)
 	if($filas!=0)
 	{
 		if($linea_rpt==0)
-		{	echo "<center><table border='0' class='texto'><tr><th>L&iacute;nea $nombre_linea M&eacute;dicos ordenados por RUC</th></tr></table></center><br>";	
+		{	echo "<center><table border='0' class='texto'><tr><th>L&iacute;nea $nombre_linea M&eacute;dicos ordenados por Codigo</th></tr></table></center><br>";	
 		}
 		else
-		{	echo "<center><table border='0' class='texto'><tr><th>M&eacute;dicos ordenados por RUC</th></tr></table></center><br>";
+		{	echo "<center><table border='0' class='texto'><tr><th>M&eacute;dicos ordenados por Codigo</th></tr></table></center><br>";
 		}
 	}
 }
@@ -102,11 +102,11 @@ $indice_tabla=1;
 	{
 		if($rpt_formato==0)
 		{	echo "<center><table border='1' class='textomini' cellspacing='0' width='50%'>";
-			echo "<tr><th>&nbsp;</th><th>RUC</th><th>Nombre</th><th>Especialidades</th></tr>";
+			echo "<tr><th>&nbsp;</th><th>Codigo</th><th>Nombre</th><th>Especialidades</th></tr>";
 		}
 		else
 		{	echo "<center><table border='1' class='textomini' cellspacing='0'>";
-			echo "<tr><th>&nbsp;</th><th>RUC</th><th>Nombre</th><th>Nacimiento</th><th>Especialidades</th><th>Direcciones</th><th>Tel&eacute;fonos</th><th>C&eacute;lular</th><th>Correo Electr&oacute;nico</th><th>Secretaria</th><th>Perfil Psicografico</th><th>Estado Civil</th><th>Hobbie</th></tr>";
+			echo "<tr><th>&nbsp;</th><th>Codigo</th><th>Nombre</th><th>Nacimiento</th><th>Especialidades</th><th>Direcciones</th><th>Tel&eacute;fonos</th><th>C&eacute;lular</th><th>Correo Electr&oacute;nico</th><th>Secretaria</th><th>Perfil Psicografico</th><th>Estado Civil</th><th>Hobbie</th></tr>";
 		}
 	}
 	while($dat=mysql_fetch_array($resp))

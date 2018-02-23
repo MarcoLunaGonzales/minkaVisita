@@ -71,7 +71,7 @@ else
 	where rmc.cod_rutero=rm.cod_rutero and rm.cod_contacto=rmd.cod_contacto and m.cod_med=rmd.cod_med and rmc.cod_rutero='$rutero_maestro' and rmc.cod_visitador='$visitador' and rmd.cod_visitador='$visitador' and rmd.cod_especialidad='$parametro' order by rmd.categoria_med, m.ap_pat_med, m.ap_mat_med, m.nom_med";
 	$resp_medicos=mysql_query($sql_medicos);
 	echo "<center><table border='1' class='textomini' cellspacing='0' width='60%'>";
-	echo "<tr><th>&nbsp;</th><th>RUC</th><th>Nombre</th><th>Categoria</th><th>Contactos</th></tr>";
+	echo "<tr><th>&nbsp;</th><th>Codigo</th><th>Nombre</th><th>Categoria</th><th>Contactos</th></tr>";
 	$indice_tabla=1;
 	$numero_a=0;
 	$numero_b=0;

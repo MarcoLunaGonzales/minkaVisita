@@ -161,7 +161,7 @@
 	echo "<center><table class='texto' border=1 cellspacing='0'>";
 	echo "<tr><td><input type='checkbox' name='todo' onClick='sel_todo(this.form)'>Seleccionar Todo</td></tr></table>";
 	echo "<center><table border='1' class='textomini' cellspacing='0' width='100%'>";
-	echo "<tr><th>&nbsp;</th><th>&nbsp;</th><th>RUC</th><th>Nombre</th><th>Especialidad</th><th>Frec. Linea</th><th>Frec. Especial</th><th>Perfil<br>Prescriptivo</th><th>Direcciones</th><th>Asignado a</th></tr>";
+	echo "<tr><th>&nbsp;</th><th>&nbsp;</th><th>Codigo</th><th>Nombre</th><th>Especialidad</th><th>Frec. Linea</th><th>Frec. Especial</th><th>Perfil<br>Prescriptivo</th><th>Direcciones</th><th>Asignado a</th></tr>";
 	while($dat=mysql_fetch_array($resp))
 	{
 		$cod=$dat[0];

@@ -24,7 +24,7 @@
 		<a href='anadir_medico_linea_general.php?codCiudadGlobal=$p_cod_ciudad&ver=1'>Lista Orden Alfabetico>></a>
 		</td>
 		<td align='center'>
-		<a href='anadir_medico_linea_general.php?codCiudadGlobal=$p_cod_ciudad&ver=2'>Lista Orden RUC>></a>
+		<a href='anadir_medico_linea_general.php?codCiudadGlobal=$p_cod_ciudad&ver=2'>Lista Orden Codigo>></a>
 		</td>
 		</tr>";
 	}

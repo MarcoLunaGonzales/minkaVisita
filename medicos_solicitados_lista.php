@@ -55,7 +55,7 @@ $sql = mysql_query("SELECT * from medicos where cod_visitador = $global_visitado
         <tr>
             <th>&nbsp;</th>
             <th>&nbsp;</th>
-            <th>RUC</th>
+            <th>Codigo</th>
             <th>Nombre</th>
             <th>Especialidades</th>
             <th>Direcciones</th>

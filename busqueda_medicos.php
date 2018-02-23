@@ -36,7 +36,7 @@ echo "<script language='Javascript'>
 			<option value='2'>Apellido Paterno</option>
 			<option value='3'>Apellido Materno</option>
 			<option value='4'>Especialidad</option>
-			<option value='1'>RUC</option>
+			<option value='1'>Codigo</option>
 			</select></td></tr>";
 	echo "<tr><td>Parametro de Búsqueda: </td>";
 	echo "<td><input type='text' class='texto' name='parametro'></td></tr>";

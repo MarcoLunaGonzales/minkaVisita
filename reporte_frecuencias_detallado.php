@@ -61,7 +61,7 @@ $territorios_explode = explode(",", $territorios);
                 <table border="1">
                     <tr>
                         <th></th>
-                        <th>RUC</th>
+                        <th>Codigo</th>
                         <th>Nombre</th>
                         <th>Categoria Closeup</th>
                         <th>Closeup</th>

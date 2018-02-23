@@ -71,7 +71,7 @@ for($i=0;$i<=$tamVectorVisitador-1;$i++) {
 	
 	$resp_medicos=mysql_query($sql_medicos);
 	echo "<center><table border='1' class='textomini' cellspacing='0' width='60%'>";
-	echo "<tr><th>&nbsp;</th><th>RUC</th><th>Visitador</th><th>Nombre</th><th>Especialidad</th><th>Categoria</th>
+	echo "<tr><th>&nbsp;</th><th>Codigo</th><th>Visitador</th><th>Nombre</th><th>Especialidad</th><th>Categoria</th>
 	<th>Contactos</th><th>Contactos Grilla</th><th>Diferencia</th></tr>";
 	$indice_tabla=1;
 	while($dat_medicos=mysql_fetch_array($resp_medicos)) {	

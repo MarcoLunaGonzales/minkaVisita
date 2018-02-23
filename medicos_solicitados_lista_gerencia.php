@@ -196,7 +196,7 @@ require("estilos_administracion.inc");
                 <tr>
                     <th>&nbsp;</th>
                     <th>&nbsp;</th>
-                    <th>RUC</th>
+                    <th>Codigo</th>
                     <th>Nombre</th>
                     <th>Nacimiento</th>
                     <th>Especialidades</th>
@@ -343,7 +343,7 @@ require("estilos_administracion.inc");
                 <tr>
                     <th>&nbsp;</th>
                     <th>&nbsp;</th>
-                    <th>RUC</th>
+                    <th>Codigo</th>
                     <th>Nombre</th>
                     <th>Nacimiento</th>
                     <th>Especialidades</th>
@@ -487,7 +487,7 @@ require("estilos_administracion.inc");
                         <tr>
                             <th>&nbsp;</th>
                             <th>&nbsp;</th>
-                            <th>RUC</th>
+                            <th>Codigo</th>
                             <th>Nombre</th>
                             <th>Nacimiento</th>
                             <th>Especialidades</th>

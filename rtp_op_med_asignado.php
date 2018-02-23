@@ -65,7 +65,7 @@
 					if($ver=="Alfabetico"){echo "<option value='Alfabetico' selected>Alfabetico</option>";}else{echo "<option value='Alfabetico'>Alfabetico</option>";}
 					if($ver=="Categoria"){echo "<option value='Categoria' selected>Categoria</option>";}else{echo "<option value='Categoria'>Categoria</option>";}
 					if($ver=="Especialidad"){echo "<option value='Especialidad' selected>Especialidad</option>";}else{echo "<option value='Especialidad'>Especialidad</option>";}
-					if($ver=="RUC"){echo "<option value='RUC' selected>RUC</option></select></td></tr>";}else{echo "<option value='RUC'>RUC</option></select></td></tr>";}
+					if($ver=="RUC"){echo "<option value='RUC' selected>Codigo</option></select></td></tr>";}else{echo "<option value='RUC'>Codigo</option></select></td></tr>";}
 
 	echo "</table><br>";
 	

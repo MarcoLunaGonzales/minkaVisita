@@ -34,7 +34,7 @@ echo "<script language='Javascript'>
 	
 	echo "<tr><td>Buscar por:</td>";
 	echo "<td><select name='campo' class='texto'>
-			<option value='cod_med'>RUC</option>
+			<option value='cod_med'>Codigo</option>
 			<option value='ap_pat_med'>Apellido Paterno</option>
 			<option value='ap_mat_med'>Apellido Materno</option>
 			<option value='especialidad'>Especialidad</option>

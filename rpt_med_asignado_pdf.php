@@ -40,10 +40,10 @@ if($ver=="Categoria")
 echo "<center><table border='0' class='textotit'><tr><td>Medicos Asignados</td></tr></table></center><br>";
 	echo "<center><table border='1' class='textomini' cellspacing='0'>";
 	if($formato=="Detallado")
-	{	echo "<tr><th>RUC</th><th>Nombre</th><th>Nacimiento</th><th>Especialidades</th><th>Direcciones</th><th>Teléfonos</th><th>Célular</th><th>Correo Electrónico</th><th>Secretaria</th><th>Perfil Psicografico</th><th>Estado Civil</th><th>Hobbie</th></tr>";
+	{	echo "<tr><th>Codigo</th><th>Nombre</th><th>Nacimiento</th><th>Especialidades</th><th>Direcciones</th><th>Teléfonos</th><th>Célular</th><th>Correo Electrónico</th><th>Secretaria</th><th>Perfil Psicografico</th><th>Estado Civil</th><th>Hobbie</th></tr>";
 	}
 	if($formato=="Resumido")
-	{	echo "<tr><th>RUC</th><th>Nombre</th><th>Especialidades</th></tr>";
+	{	echo "<tr><th>Codigo</th><th>Nombre</th><th>Especialidades</th></tr>";
 	}
 	while($dat=mysql_fetch_array($resp))
 	{

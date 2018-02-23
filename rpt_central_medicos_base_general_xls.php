@@ -76,7 +76,7 @@ if($rpt_vista==2)
 		 where cod_ciudad='$global_agencia' order by cod_med $orden";
 	}
 	$resp=mysql_query($sql);
-	echo "<center>Medicos ordenados por RUC</center><br>";
+	echo "<center>Medicos ordenados por Codigo</center><br>";
 }
 //sacamos los medicos y los listamos
 $indice_tabla=1;
@@ -86,19 +86,19 @@ $indice_tabla=1;
 		if($rpt_formato==0)
 		{	echo "<center><table border='1' class='textomini' cellspacing='0' width='100%'>";
 			if($global_agencia==0)
-			{	echo "<tr><th>&nbsp;</th><th>RUC</th><th>Nombre</th><th>Especialidades</th><th>Asignado a</th><th>Territorio</th></tr>";
+			{	echo "<tr><th>&nbsp;</th><th>Codigo</th><th>Nombre</th><th>Especialidades</th><th>Asignado a</th><th>Territorio</th></tr>";
 			}
 			else
-			{	echo "<tr><th>&nbsp;</th><th>RUC</th><th>Nombre</th><th>Especialidades</th><th>Asignado a</th></tr>";
+			{	echo "<tr><th>&nbsp;</th><th>Codigo</th><th>Nombre</th><th>Especialidades</th><th>Asignado a</th></tr>";
 			}
 		}
 		else
 		{	echo "<center><table border='1' class='textomini' cellspacing='0'>";
 			if($global_agencia==0)
-			{	echo "<tr><th>&nbsp;</th><th>RUC</th><th>Nombre</th><th>Nacimiento</th><th>Especialidades</th><th>Asignado a</th><th>Direcciones</th><th>Teléfonos</th><th>Célular</th><th>Correo Electrónico</th><th>Secretaria</th><th>Perfil Psicografico</th><th>Estado Civil</th><th>Hobbie</th><th>Territorio</th></tr>";
+			{	echo "<tr><th>&nbsp;</th><th>Codigo</th><th>Nombre</th><th>Nacimiento</th><th>Especialidades</th><th>Asignado a</th><th>Direcciones</th><th>Teléfonos</th><th>Célular</th><th>Correo Electrónico</th><th>Secretaria</th><th>Perfil Psicografico</th><th>Estado Civil</th><th>Hobbie</th><th>Territorio</th></tr>";
 			}
 			else
-			{	echo "<tr><th>&nbsp;</th><th>RUC</th><th>Nombre</th><th>Nacimiento</th><th>Especialidades</th><th>Asignado a</th><th>Direcciones</th><th>Teléfonos</th><th>Célular</th><th>Correo Electrónico</th><th>Secretaria</th><th>Perfil Psicografico</th><th>Estado Civil</th><th>Hobbie</th></tr>";
+			{	echo "<tr><th>&nbsp;</th><th>Codigo</th><th>Nombre</th><th>Nacimiento</th><th>Especialidades</th><th>Asignado a</th><th>Direcciones</th><th>Teléfonos</th><th>Célular</th><th>Correo Electrónico</th><th>Secretaria</th><th>Perfil Psicografico</th><th>Estado Civil</th><th>Hobbie</th></tr>";
 			}
 		}
 	}

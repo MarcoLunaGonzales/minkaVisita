@@ -39,7 +39,7 @@ Territorio: $nombre_territorio<br>Gestion: $nombreGestion Ciclo: $rpt_ciclo<br>
 Visitador: $nombreVisitadorX</th></tr></table></center><br>";*/
 $indice_tabla=1;
 
-echo "Indice;Gestion;Ciclo;Visitador;Linea;RUC;Medico;Esp.;Cat;Nro. Boleta;Fecha Programada;Fecha de Visita;Hora Visita;Observaciones;Firma;GR";
+echo "Indice;Gestion;Ciclo;Visitador;Linea;Codigo;Medico;Esp.;Cat;Nro. Boleta;Fecha Programada;Fecha de Visita;Hora Visita;Observaciones;Firma;GR";
 echo "\r\n";
 
 

@@ -41,10 +41,10 @@ echo "<center>Medicos Asignados</center><br>";
 echo "<center>Medicos Asignados que no se encuentran en el rutero del ciclo en curso se encuentran en celdas obscuras.<br>";
 	echo "<center><table border='1' class='textomini' cellspacing='0'  width='100%'>";
 	if($formato=="Detallado")
-	{	echo "<tr><th>&nbsp;</th><th>RUC</th><th>Nombre</th><th>Nacimiento</th><th>Especialidades</th><th>Direcciones</th><th>Teléfonos</th><th>Célular</th><th>Correo Electrónico</th><th>Secretaria</th><th>Perfil Psicografico</th><th>Estado Civil</th><th>Hobbie</th></tr>";
+	{	echo "<tr><th>&nbsp;</th><th>Codigo</th><th>Nombre</th><th>Nacimiento</th><th>Especialidades</th><th>Direcciones</th><th>Teléfonos</th><th>Célular</th><th>Correo Electrónico</th><th>Secretaria</th><th>Perfil Psicografico</th><th>Estado Civil</th><th>Hobbie</th></tr>";
 	}
 	if($formato=="Resumido")
-	{	echo "<tr><th>RUC</th><th>Nombre</th><th>Especialidades</th></tr>";
+	{	echo "<tr><th>Codigo</th><th>Nombre</th><th>Especialidades</th></tr>";
 	}
 	$indice=1;
 	while($dat=mysql_fetch_array($resp))

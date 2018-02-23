@@ -59,7 +59,7 @@ echo "<tr><td><input type='checkbox' name='todo' onClick='sel_todo(this.form)'>S
 echo "<center><table border='0' class='texto'>";
 echo "<tr><td><input type='button' value='Eliminar' class='boton' onclick='eliminar_nav(this.form)'></td></tr></table></center>";
 echo "<center><table border='1' class='textomini' width='50%' cellspacing='0'>";
-echo "<tr><th>&nbsp;</th><th>&nbsp;</th><th>RUC</th><th>Nombre</th><th>Especialidades</th></tr>";
+echo "<tr><th>&nbsp;</th><th>&nbsp;</th><th>Codigo</th><th>Nombre</th><th>Especialidades</th></tr>";
 while($dat=mysql_fetch_array($resp)) {
 
 	$cod=$dat[0];

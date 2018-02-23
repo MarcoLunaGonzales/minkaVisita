@@ -72,7 +72,7 @@ $resp = mysql_query($sql);
 echo "<center><table border='0' class='textotit'><tr><td>M&eacute;dicos Pertenecientes al Grupo</td></tr></table></center><br>";
 $indice_tabla = 1;
 echo "<center><table border='1' class='textomini' cellspacing='0' width='80%'>";
-echo "<tr><th>&nbsp;</th><th>&nbsp;</th><th>RUC</th><th>Nombre</th><th>Especialidades</th></tr>"; 
+echo "<tr><th>&nbsp;</th><th>&nbsp;</th><th>Codigo</th><th>Nombre</th><th>Especialidades</th></tr>"; 
 while ($dat = mysql_fetch_array($resp)) {
     $nombre_completo = $dat[0];
     $especialidad    = $dat[1];

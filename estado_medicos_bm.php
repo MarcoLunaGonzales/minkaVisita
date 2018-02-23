@@ -74,7 +74,7 @@ $regionales_finales_explode = explode(", ", $regionales_finales);
                     <h2 style="color: #5F7BA9; font-size: 1.3em; font-family: Vernada; text-align: left"><?php echo $territorios_nombre; ?></h2>
                     <table border="1">
                         <tr>
-                            <th>RUC</th>
+                            <th>Codigo</th>
                             <th>Nombre M&eacute;dicos</th>
                             <th>Ciclo Inicio</th>
                             <th>Ciclo Final</th>

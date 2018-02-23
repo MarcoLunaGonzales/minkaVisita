@@ -40,9 +40,9 @@
 		 from medicos m, categorias_lineas c
 		 where m.cod_ciudad='$global_agencia' and m.cod_med=c.cod_med and c.codigo_linea=$global_linea order by m.cod_med";
 	$resp=mysql_query($sql);
-	echo "<center><table border='0' class='textotit'><tr><th>Asignar Medicos<br>Listado por RUC<br>Visitador:$nombre_funcionario</th></tr></table></center><br>";
+	echo "<center><table border='0' class='textotit'><tr><th>Asignar Medicos<br>Listado por Codigo<br>Visitador:$nombre_funcionario</th></tr></table></center><br>";
 	echo "<center><table border='1' class='textomini' width='50%' cellspacing='0'>";
-	echo "<tr><th>&nbsp;</th><th>RUC</th><th>Nombre</th><th>Especialidades</th></tr>";
+	echo "<tr><th>&nbsp;</th><th>Codigo</th><th>Nombre</th><th>Especialidades</th></tr>";
 	while($dat=mysql_fetch_array($resp))
 	{
 		$cod=$dat[0];

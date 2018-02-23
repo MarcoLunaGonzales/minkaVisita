@@ -39,19 +39,24 @@ function verifica_fecha_caducidad($usuario){
     }
 }
 
-
+//este cookie es para el visitador
 if ($num_filas != 0) {
     $dat = mysql_fetch_array($resp);
     $cod_cargo = $dat[0];
     $cod_ciudad = $dat[1];
-    //echo "$cod_cargo $cod_ciudad";
-    //este cookie es para el visitador
     if ($cod_cargo == 1011) {
         setcookie("global_visitador", $usuario);
         setcookie("global_usuario", $usuario);
         setcookie("global_agencia", $cod_ciudad);
 		header("location:indexVisitador.php");
  }
+ 
+//este cookie es para el jefe regional o el supervisor
+if ($cod_cargo == 1001 or $cod_cargo == 1002) {
+    setcookie("global_usuario", $usuario);
+    setcookie("global_agencia", $cod_ciudad);
+	header("location:indexSupervision.php");
+}
  
  //este cookie es para el jefe de linea
 if ($cod_cargo == 1007 or $cod_cargo == 1012) {
@@ -60,18 +65,8 @@ if ($cod_cargo == 1007 or $cod_cargo == 1012) {
     //header("location:inicio_administracion.php");
     header("location:index_central.html");
 }
-    //este cookie es para el jefe regional o el supervisor
-if ($cod_cargo == 1001 or $cod_cargo == 1002) {
-    setcookie("global_usuario", $usuario);
-    // verifica_fecha_caducidad($usuario);
-        if ($usuario == 1034) {  //header("location:inicio_supernt.php");
-        header("location:index_supervisor.html");
-    } else {
-        setcookie("global_agencia", $cod_ciudad);
-            //header("location:inicio_jefe.php");
-        header("location:index_supervisor.html");
-    }
-}
+
+
 
 //este cookie es para el GG(solo reportes) o jefe promocion medica
 //PRIMERA MODIFICACION DE MINKA

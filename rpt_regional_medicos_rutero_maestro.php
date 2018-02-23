@@ -117,7 +117,7 @@ else
 
 	$resp_medicos=mysql_query($sql_medicos);
 	echo "<center><table border='1' class='textomini' cellspacing='0' width='60%'>";
-	echo "<tr><th>&nbsp;</th><th>RUC</th><th>Nombre</th><th>Especialidad</th><th>Categoria</th><th>Contactos</th></tr>";
+	echo "<tr><th>&nbsp;</th><th>Codigo</th><th>Nombre</th><th>Especialidad</th><th>Categoria</th><th>Contactos</th></tr>";
 	$indice_tabla=1;
 	$numero_a=0;
 	$numero_b=0;

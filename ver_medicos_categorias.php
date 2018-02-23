@@ -148,7 +148,7 @@
 	echo "<center><table border='0' class='texto'>";
 	echo "<tr><td><input type='button' value='Eliminar de la Línea' name='eliminar' class='boton' onclick='eliminar_medico(this.form)'></td><td><input type='button' value='Editar Espe/Cat' name='Editar' class='boton' onclick='editar_medico(this.form)'></td><td><input type='button' value='Editar Perfil Prescriptivo' class='boton' onclick='editar_perfil(this.form)'></td><td><input type='button' value='Productos Objetivo' class='boton' onclick='producto_objetivo(this.form)'></td><td><input type='button' value='Filtrar Productos' class='boton' alt='Filtra Productos especificos que no se deseen promocionar a un medico en particular.' onclick='denegar_producto(this.form)'></td></tr></table></center><br>";
 	echo "<center><table border='1' class='textomini' width='70%' cellspacing='0'>";
-	echo "<tr><th>&nbsp;</th><th>&nbsp;</th><th>RUC</th><th>Nombre</th><th>Especialidades</th><th>Productos Objetivo</th><th>Productos Filtrados</th></tr>";
+	echo "<tr><th>&nbsp;</th><th>&nbsp;</th><th>Codigo</th><th>Nombre</th><th>Especialidades</th><th>Productos Objetivo</th><th>Productos Filtrados</th></tr>";
 	while($dat=mysql_fetch_array($resp))
 	{
 		$cod=$dat[0];

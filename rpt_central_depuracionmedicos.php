@@ -21,7 +21,7 @@ $nombreTerritorio=$datNomTerritorio[0];
 	echo "<center><table border='0' class='textotit'><tr><th>Depuracion de Medicos<br>Linea: $nombreLinea Territorio: $nombreTerritorio</th></tr></table></center><br>";
 	echo "<center><table border='0' class='textomini'><tr><td>Leyenda:</td><td>Medicos que no se encuentran en Rutero Maestro</td><td bgcolor='#66CCFF' width='30%'></td></tr></table></center><br>";
 	echo "<center><table border='1' class='textomini' cellspacing='0'  width='70%'>";
-	echo "<tr><th>&nbsp;</th><th>RUC</th><th>Nombre</th><th>Especialidades</th></tr>";
+	echo "<tr><th>&nbsp;</th><th>Codigo</th><th>Nombre</th><th>Especialidades</th></tr>";
 	$indice_tabla=1;
 	while($dat=mysql_fetch_array($resp))
 	{

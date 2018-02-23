@@ -66,7 +66,7 @@ function adicionar_medico(f) {
  echo "<center><table border='1' class='textomini' cellspacing='0' width='50%'>";
  echo "<tr>";
  echo "<th>&nbsp;</th>";
- echo "<th>RUC</th>";
+ echo "<th>Codigo</th>";
  echo "<th>Nombre</th>";
  echo "<th>Especialidades</th>";
  //echo "<th>Linea Visita</th>";

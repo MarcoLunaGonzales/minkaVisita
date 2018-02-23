@@ -13,7 +13,7 @@ $count = 1;
 <table cellpadding="0" cellspacing="0" border="0" class="display" id="tabla_listado_materiales">
     <thead>
         <tr>
-            <th scope="col">RUC.</th>
+            <th scope="col">Codigo</th>
             <th scope="col">Ciudad</th>
             <th scope="col">M&eacute;dico</th>
             <th scope="col">Especialidad</th>

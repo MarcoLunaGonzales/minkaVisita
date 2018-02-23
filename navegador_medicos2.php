@@ -92,7 +92,7 @@ function editar_medico(f)
  echo "<tr><td><input type='button' value='Adicionar' name='adicionar' class='boton' onclick='enviar_registro()'></td><td><input type='button' value='Eliminar' name='eliminar' class='boton' onclick='eliminar_medico(this.form)'></td><td><input type='button' value='Editar' name='Editar' class='boton' onclick='editar_medico(this.form)'></td></tr></table></center>";
 
  echo "<center><table border='1' class='textosupermini' cellspacing='0' width='100%'>";
- echo "<tr><td>&nbsp;</td><th>&nbsp;</th><th>RUC</th><th>Nombre</th><th>Especialidades</th><th>Direcciones</th><th>Estado</th>
+ echo "<tr><td>&nbsp;</td><th>&nbsp;</th><th>Codigo</th><th>Nombre</th><th>Especialidades</th><th>Direcciones</th><th>Estado</th>
  <th>L&#237;neas / Visitadores</th><th>Categorizacion</th></tr>";
  $indice_tabla=1;
  while($dat=mysql_fetch_array($resp))

@@ -44,17 +44,17 @@ if($rpt_vista==2)
 		 from medicos m, categorias_lineas c
 		 where m.cod_ciudad='$global_agencia' and m.cod_med=c.cod_med and c.codigo_linea=$global_linea order by m.cod_med $orden";
 	$resp=mysql_query($sql);
-	echo "<center><table border='0' class='textotit'><tr><td>M&eacute;dicos de la L&iacute;nea ordenados por RUC <br>Territorio: $nombre_territorio</td></tr></table></center><br>";
+	echo "<center><table border='0' class='textotit'><tr><td>M&eacute;dicos de la L&iacute;nea ordenados por Codigo <br>Territorio: $nombre_territorio</td></tr></table></center><br>";
 }
 //sacamos los medicos y los listamos
 $indice_tabla=1;
 	if($rpt_formato==0)
 	{	echo "<center><table border='1' class='textomini' cellspacing='0' width='50%'>";
-		echo "<tr><th>&nbsp;</th><th>RUC</th><th>Nombre</th><th>Especialidades</th></tr>";
+		echo "<tr><th>&nbsp;</th><th>Codigo</th><th>Nombre</th><th>Especialidades</th></tr>";
 	}
 	else
 	{	echo "<center><table border='1' class='textomini' cellspacing='0'>";
-		echo "<tr><th>&nbsp;</th><th>RUC</th><th>Nombre</th><th>Nacimiento</th><th>Especialidades</th><th>Direcciones</th><th>Tel&eacute;fonos</th><th>C&eacute;lular</th><th>Correo Electr&oacute;nico</th><th>Secretaria</th><th>Perfil Psicografico</th><th>Estado Civil</th><th>Hobbie</th></tr>";
+		echo "<tr><th>&nbsp;</th><th>Codigo</th><th>Nombre</th><th>Nacimiento</th><th>Especialidades</th><th>Direcciones</th><th>Tel&eacute;fonos</th><th>C&eacute;lular</th><th>Correo Electr&oacute;nico</th><th>Secretaria</th><th>Perfil Psicografico</th><th>Estado Civil</th><th>Hobbie</th></tr>";
 	}
 	while($dat=mysql_fetch_array($resp))
 	{
