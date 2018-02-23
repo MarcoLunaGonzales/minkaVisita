@@ -75,7 +75,7 @@ echo "<script language='Javascript'>
 			echo "<tr><td><input type='checkbox' name='codigo' value='$codigo_mm'></td><td>$mm</td><td>$pres</td></tr>";
 		}
 		echo "</table></center><br>";
-		echo"\n<table align='center'><tr><td><a href='javascript:history.back(-1)'><img  border='0'src='imagenes/back.png' width='40'>Volver Atras</a></td></tr></table>";
+		echo"\n<table align='center'><tr><td><a href='javascript:history.back(-1)'><img  border='0'src='imagenes/back.png' width='40'></a></td></tr></table>";
 		echo "<center><table border='0' class='texto'>";
 		echo "<tr><td><input type='button' value='Adicionar' name='adicionar' class='boton' onclick='enviar_nav()'></td><td><input type='button' value='Eliminar' name='eliminar' class='boton' onclick='eliminar_nav(this.form)'></td></tr></table></center>";
 		echo "</form>";
@@ -83,7 +83,7 @@ echo "<script language='Javascript'>
 	else
 	{	echo "<center><table border='0' class='texto' cellspacing='0'>";
 		echo "<tr><th>No existen Productos Objetivo para este Medico</th></tr></table><br>";
-		echo"\n<table align='center'><tr><td><a href='javascript:history.back(-1)'><img  border='0'src='imagenes/back.png' width='40'>Volver Atras</a></td></tr></table>";
+		echo"\n<table align='center'><tr><td><a href='javascript:history.back(-1)'><img  border='0'src='imagenes/back.png' width='40'></a></td></tr></table>";
 		echo "<center><table border='0' class='texto'>";
 		echo "<tr><td><input type='button' value='Adicionar' name='adicionar' class='boton' onclick='enviar_nav()'></td></tr></table></center>";
 		echo "</form>";

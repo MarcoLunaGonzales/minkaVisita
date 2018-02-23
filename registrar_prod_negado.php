@@ -55,7 +55,7 @@ echo "<form method='post'>";
 // $sql="SELECT codigo,descripcion,presentacion from muestras_medicas where estado = 1 order by descripcion";
 $sql="SELECT DISTINCT pd.codigo_muestra, CONCAT(m.descripcion,' ',m.presentacion) from parrilla p , parrilla_detalle pd, muestras_medicas m where p.codigo_parrilla = pd.codigo_parrilla and m.codigo = pd.codigo_muestra and p.codigo_gestion = $codigo_gestion and p.cod_ciclo = $ciclo_global and p.cod_especialidad = '$dat[0]' and p.categoria_med = '$dat[1]' and p.codigo_linea = $global_linea and p.agencia = $dat_cab[3]";
 $resp=mysql_query($sql);
-echo"\n<table align='center'><tr><td><a href='javascript:history.back(-1)'><img  border='0'src='imagenes/back.png' width='40'>Volver Atras</a></td></tr></table>";
+echo"\n<table align='center'><tr><td><a href='javascript:history.back(-1)'><img  border='0'src='imagenes/back.png' width='40'></a></td></tr></table>";
 echo "<center><table border='0' class='texto'>";
 echo "<tr><td><input type='button' value='Quitar' class='boton' onclick='anadir_categoria(this.form)'></td></tr></table></center>";
 echo "<br><center><table class='texto' border=1 cellspacing='0'>";
@@ -88,7 +88,7 @@ while($dat=mysql_fetch_array($resp)) {
 	}		
 }
 echo "</table></center><br>";
-echo"\n<table align='center'><tr><td><a href='javascript:history.back(-1)'><img  border='0'src='imagenes/back.png' width='40'>Volver Atras</a></td></tr></table>";
+echo"\n<table align='center'><tr><td><a href='javascript:history.back(-1)'><img  border='0'src='imagenes/back.png' width='40'></a></td></tr></table>";
 echo "<center><table border='0' class='texto'>";
 echo "<tr><td><input type='button' value='Quitar' class='boton' onclick='anadir_categoria(this.form)'></td></tr></table></center>";
 echo "</form>";

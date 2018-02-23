@@ -61,7 +61,7 @@ echo "<script language='Javascript'>
 		}		
 	}
 		echo "</table></center><br>";
-		echo"\n<table align='center'><tr><td><a href='javascript:history.back(-1);'><img  border='0'src='imagenes/back.png' width='40'>Volver Atras</a></td></tr></table>";
+		echo"\n<table align='center'><tr><td><a href='javascript:history.back(-1);'><img  border='0'src='imagenes/back.png' width='40'></a></td></tr></table>";
 		echo "<center><table border='0' class='texto'>";
 		echo "<tr><td><input type='button' value='Añadir a Línea Visita' class='boton' onclick='anadir_categoria(this.form)'></td></tr></table></center>";
 		echo "</form>";

@@ -87,7 +87,7 @@ function editar_medico(f)
 //echo $sql;
  $resp=mysql_query($sql);
  echo "<center><table border='0' class='textotit'><tr><td>M&#233;dicos Listado Madre</td></tr></table></center><br>";
- echo "<table align='center'><tr><td><a href='navegador_medicos1.php'><img  border='0'src='imagenes/back.png' width='40'>Volver Atras</a></td></tr></table>";
+ echo "<table align='center'><tr><td><a href='navegador_medicos1.php'><img  border='0'src='imagenes/back.png' width='40'></a></td></tr></table>";
  echo "<center><table border='0' class='texto'>";
  echo "<tr><td><input type='button' value='Adicionar' name='adicionar' class='boton' onclick='enviar_registro()'></td><td><input type='button' value='Eliminar' name='eliminar' class='boton' onclick='eliminar_medico(this.form)'></td><td><input type='button' value='Editar' name='Editar' class='boton' onclick='editar_medico(this.form)'></td></tr></table></center>";
 
@@ -200,7 +200,7 @@ function editar_medico(f)
      $indice_tabla++;
     }
  echo "</table></center><br>";
- echo "<table align='center'><tr><td><a href='navegador_medicos1.php'><img  border='0'src='imagenes/back.png' width='40'>Volver Atras</a></td></tr></table>";
+ echo "<table align='center'><tr><td><a href='navegador_medicos1.php'><img  border='0'src='imagenes/back.png' width='40'></a></td></tr></table>";
  echo "<center><table border='0' class='texto'>";
  echo "<tr><td><input type='button' value='Adicionar' name='adicionar' class='boton' onclick='enviar_registro()'></td><td><input type='button' value='Eliminar' name='eliminar' class='boton' onclick='eliminar_medico(this.form)'></td><td><input type='button' value='Editar' name='Editar' class='boton' onclick='editar_medico(this.form)'></td></tr></table></center>";
  echo "</form>";

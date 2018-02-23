@@ -65,14 +65,16 @@
 
 	$resp=mysql_query($sql);
 	echo "<form>";
-	echo "<center><table border='0' class='textotit'><tr><th>Medicos Asignados<br>Visitador: $nombre_funcionario Especialidad: $cod_espe</th></tr></table></center><br>";
+	echo "<h1>Medicos Asignados<br>Visitador: $nombre_funcionario Especialidad: $cod_espe</h1>";
 	$indice_tabla=1;
-	echo"\n<table align='center'><tr><td><a href='navegador_funcionarios_regional.php'><img  border='0'src='imagenes/back.png' width='40'>Volver Atras</a></td></tr></table><br>";
-	echo "<center><table class='texto' border=1 cellspacing='0'>";
+	echo"\n<table align='center'><tr><td><a href='navegador_funcionarios_regional.php'><img  border='0'src='imagenes/back.png' width='40'></a></td></tr></table><br>";
+	echo "<center><table class='texto' border=0 cellspacing='0'>";
 	echo "<tr><td><input type='checkbox' name='todo' onClick='sel_todo(this.form)'>Seleccionar Todo</td></tr></table>";
-	echo "<center><table border='0' class='texto'>";
+
+	echo "<center><table class='texto'>";
 	echo "<tr><td><input type='button' value='Eliminar' class='boton' onclick='eliminar_nav(this.form)'></td></tr></table></center>";
-	echo "<center><table border='1' class='textomini' width='50%' cellspacing='0'>";
+	
+	echo "<center><table class='texto'>";
 	echo "<tr><th>&nbsp;</th><th>&nbsp;</th><th>Codigo</th><th>Nombre</th><th>Especialidades</th></tr>";
 	while($dat=mysql_fetch_array($resp))
 	{
@@ -97,7 +99,7 @@
 		$indice_tabla++;
 	}
 	echo "</table></center><br>";
-	echo"\n<table align='center'><tr><td><a href='navegador_funcionarios_regional.php'><img  border='0'src='imagenes/back.png' width='40'>Volver Atras</a></td></tr></table>";
+	echo"\n<table align='center'><tr><td><a href='navegador_funcionarios_regional.php'><img  border='0'src='imagenes/back.png' width='40'></a></td></tr></table>";
 	echo "<center><table border='0' class='texto'>";
 	echo "<tr><td><input type='button' value='Eliminar' class='boton' onclick='eliminar_nav(this.form)'></td></tr></table></center>";
 	echo "</form>";

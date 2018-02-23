@@ -23,6 +23,6 @@
 		echo "<tr class='texto'><td>&nbsp;&nbsp;$dia_contacto</td><td align='center'><a href='rutero_maestro_dia_detalle.php?dia_contacto=$dia_contacto&rutero=$rutero&aprobado=$aprobado'>Ver >></a></td></tr>";
 	}
 	echo "</table></center><br>";
-	echo"\n<table align='center'><tr><td><a href='javascript:history.back(-1)'><img  border='0'src='imagenes/back.png' width='40'>Volver Atras</a></td></tr></table>";
+	echo"\n<table align='center'><tr><td><a href='javascript:history.back(-1)'><img  border='0'src='imagenes/back.png' width='40'></a></td></tr></table>";
 	
 ?>

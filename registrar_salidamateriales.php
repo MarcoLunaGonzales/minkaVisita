@@ -280,7 +280,7 @@ for($indice_detalle=1;$indice_detalle<=$cantidad_material;$indice_detalle++)
 	echo "</tr>";
 }
 echo "</table><br>";
-echo"\n<table align='center'><tr><td><a href='navegador_salidamuestras.php'><img  border='0'src='imagenes/back.png' width='40'>Volver Atras</a></td></tr></table>";
+echo"\n<table align='center'><tr><td><a href='navegador_salidamuestras.php'><img  border='0'src='imagenes/back.png' width='40'></a></td></tr></table>";
 //echo "<center><input type='button' class='boton' value='Guardar' onClick='validar(this.form)'></center>";
 echo "<center><input type='button' class='boton' value='Actualizar' onClick='enviar_form(this.form)'><input type='button' class='boton' value='Guardar' onClick='validar(this.form)'></center>";
 echo "</form>";

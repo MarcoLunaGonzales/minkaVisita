@@ -100,6 +100,6 @@ if($contador>0){
 }
 	echo"\n<center>
 	<a href='rutero_maestro_todo.php?rutero=$rutero_trabajo'>
-	<img  border='0' src='imagenes/back.png' width='40'>Volver Atras</a>
+	<img  border='0' src='imagenes/back.png' width='40'></a>
 	</center>";
 ?>

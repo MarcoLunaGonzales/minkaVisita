@@ -84,7 +84,7 @@ echo "<table border='0' class='textomini'>
 <tr><th>Leyenda: </th><th>Medico con Frecuencia Reducida</th><th bgcolor='#AAAAFF' width='30%'></th></tr>
 </table>";
 
-echo"<table align='center'><tr><td><a href='navegador_rutero_maestro.php'><img  border='0'src='imagenes/back.png' width='40'>Volver Atras</a></td></tr></table>";
+echo"<table align='center'><tr><td><a href='navegador_rutero_maestro.php'><img  border='0'src='imagenes/back.png' width='40'></a></td></tr></table>";
 
 if($aprobado!=1) {	
 	echo "<div class='divBotones'>";
@@ -181,7 +181,7 @@ while($dat=mysql_fetch_array($resp)) {
 }
 echo "</table></center><br>";
 
-echo"\n<table align='center'><tr><td><a href='navegador_rutero_maestro.php'><img  border='0'src='imagenes/back.png' width='40'>Volver Atras</a></td></tr></table>";
+echo"\n<table align='center'><tr><td><a href='navegador_rutero_maestro.php'><img  border='0'src='imagenes/back.png' width='40'></a></td></tr></table>";
 
 if($aprobado!=1) {	
 	echo "<div class='divBotones'>";

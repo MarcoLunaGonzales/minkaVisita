@@ -39,7 +39,7 @@ if($adicionar)
 		echo" \n		</table>";
 		echo" \n </td></tr>";
 		echo" \n </table></center><br>";
-		echo"\n<table align='center'><tr><td><a href='navegador_especialidades.php'><img  border='0'src='imagenes/back.png' width='40'>Volver Atras</a></td></tr></table>";
+		echo"\n<table align='center'><tr><td><a href='navegador_especialidades.php'><img  border='0'src='imagenes/back.png' width='40'></a></td></tr></table>";
 		echo" \n <center><table border='0' class='texto'>";
 		echo" \n <tr>";
 		echo" \n <td><input class='boton' type='button' name='aceptar' value='Aceptar' onClick='return validar(formulario)'></td>";
@@ -99,7 +99,7 @@ if($editar)
 		echo" \n		</table>";
 		echo" \n </td></tr>";
 		echo" \n </table></center><br>";
-		echo"\n<table align='center'><tr><td><a href='navegador_especialidades.php'><img  border='0'src='imagenes/back.png' width='40'>Volver Atras</a></td></tr></table>";
+		echo"\n<table align='center'><tr><td><a href='navegador_especialidades.php'><img  border='0'src='imagenes/back.png' width='40'></a></td></tr></table>";
 		echo" \n <center><table border='0' class='texto'>";
 		echo" \n <tr>";
 		echo" \n <td><input class='boton' type='button' name='aceptar' value='Aceptar' onClick='return validar(formulario)'></td>";

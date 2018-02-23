@@ -51,14 +51,17 @@ $nombre_funcionario="$dat_cab[0] $dat_cab[1] $dat_cab[2]";
 $sql="SELECT distinct m.cod_med, m.ap_pat_med, m.ap_mat_med, m.nom_med from medicos m, categorias_lineas c,medico_asignado_visitador v where m.cod_ciudad = '$global_agencia' and m.cod_med = c.cod_med and m.cod_med = v.cod_med and v.codigo_visitador = '$visitador'and v.codigo_linea = $global_linea order by m.ap_pat_med";
 $resp=mysql_query($sql);
 echo "<form>";
-echo "<center><table border='0' class='textotit'><tr><th>Medicos Asignados<br>Visitador: $nombre_funcionario</th></tr></table></center><br>";
+echo "<h1>Medicos Asignados<br>Visitador: $nombre_funcionario</h1>";
 $indice_tabla=1;
-echo"\n<table align='center'><tr><td><a href='navegador_funcionarios_regional.php'><img  border='0'src='imagenes/back.png' width='40'>Volver Atras</a></td></tr></table><br>";
-echo "<center><table class='texto' border=1 cellspacing='0'>";
+
+echo"\n<table align='center'><tr><td><a href='navegador_funcionarios_regional.php'><img  border='0'src='imagenes/back.png' width='40'></a></td></tr></table><br>";
+
+echo "<center><table class='texto'>";
 echo "<tr><td><input type='checkbox' name='todo' onClick='sel_todo(this.form)'>Seleccionar Todo</td></tr></table></center>";
 echo "<center><table border='0' class='texto'>";
 echo "<tr><td><input type='button' value='Eliminar' class='boton' onclick='eliminar_nav(this.form)'></td></tr></table></center>";
-echo "<center><table border='1' class='textomini' width='50%' cellspacing='0'>";
+
+echo "<center><table class='texto'>";
 echo "<tr><th>&nbsp;</th><th>&nbsp;</th><th>Codigo</th><th>Nombre</th><th>Especialidades</th></tr>";
 while($dat=mysql_fetch_array($resp)) {
 
@@ -80,7 +83,7 @@ while($dat=mysql_fetch_array($resp)) {
 	$indice_tabla++;
 }
 echo "</table></center><br>";
-echo"\n<table align='center'><tr><td><a href='navegador_funcionarios_regional.php'><img  border='0'src='imagenes/back.png' width='40'>Volver Atras</a></td></tr></table>";
+echo"\n<table align='center'><tr><td><a href='navegador_funcionarios_regional.php'><img  border='0'src='imagenes/back.png' width='40'></a></td></tr></table>";
 echo "<center><table border='0' class='texto'>";
 echo "<tr><td><input type='button' value='Eliminar' class='boton' onclick='eliminar_nav(this.form)'></td></tr></table></center>";
 echo "</form>";

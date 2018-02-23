@@ -60,7 +60,7 @@ while($dat=mysql_fetch_array($resp))
 echo "</select></td></tr>";
 echo "</tr>";
 echo "</table><br>";
-echo"\n<table align='center'><tr><td><a href='navegador_muestras_medicas.php'><img  border='0'src='imagenes/back.png' width='40'>Volver Atras</a></td></tr></table>";
+echo"\n<table align='center'><tr><td><a href='navegador_muestras_medicas.php'><img  border='0'src='imagenes/back.png' width='40'></a></td></tr></table>";
 echo "<input type='button' class='boton' value='Guardar' onClick='validar(this.form)'></center>";
 echo "</form>";
 ?>

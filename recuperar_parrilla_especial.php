@@ -108,7 +108,7 @@ echo "<script language='Javascript'>
 	echo "</table></center><br>";
 	echo "<input type='hidden' name='cod_ciclo' value='$cod_ciclo'>";
 	echo "<input type='hidden' name='ciclo_trabajo' value='$ciclo_trabajo'>";
-	echo"\n<table align='center'><tr><td><a href='navegador_parrilla_especial_ciclos.php?ciclo_trabajo=$ciclo_trabajo'><img  border='0'src='imagenes/back.png' width='40'>Volver Atras</a></td></tr></table>";
+	echo"\n<table align='center'><tr><td><a href='navegador_parrilla_especial_ciclos.php?ciclo_trabajo=$ciclo_trabajo'><img  border='0'src='imagenes/back.png' width='40'></a></td></tr></table>";
 	echo "<center><table border='0' class='texto'>";
 	echo "<tr><td><input type='button' value='Recuperar' name='adicionar' class='boton' onclick='recuperar(this.form)'></td></tr>";
 	echo "</form>";

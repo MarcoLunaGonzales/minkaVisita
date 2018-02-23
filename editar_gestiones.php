@@ -22,7 +22,7 @@ echo "<tr><th>Gestión</th></tr>";
 echo "<input type='hidden' name='codigo' value='$cod_gestion'>";
 echo "<tr><td align='center'><input type='text' class='texto' name='nombre' value='$nombre' size='40'></td></tr>";
 echo "</table><br>";
-echo"\n<table align='center'><tr><td><a href='navegador_gestiones.php'><img  border='0'src='imagenes/back.png' width='40'>Volver Atras</a></td></tr></table>";
+echo"\n<table align='center'><tr><td><a href='navegador_gestiones.php'><img  border='0'src='imagenes/back.png' width='40'></a></td></tr></table>";
 echo "<input type='button' class='boton' value='Guardar' onClick='validar(this.form)'></center>";
 echo "</form>";	
 ?>

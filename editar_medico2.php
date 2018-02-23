@@ -739,7 +739,7 @@ function cargarZonas(f, zona1, zona2, zona3){
         <!--</table>-->
     <!--</center><br>-->
     <input type='hidden' name='cod_med' value='<?php echo "$cod_med"; ?>'>
-    <table align='center'><tr><td><a href='navegador_medicos2.php?cod_ciudad=<?php echo "$cod_ciudad"; ?>'><img  border='0'src='imagenes/back.png' width='40'>Volver Atras</a></td></tr></table>
+    <table align='center'><tr><td><a href='navegador_medicos2.php?cod_ciudad=<?php echo "$cod_ciudad"; ?>'><img  border='0'src='imagenes/back.png' width='40'></a></td></tr></table>
     <table class="texto" border="0" align="center"><tr><td align='center'><input type="button" class="boton" value="Registrar" onClick='validar(this.form)'></td></tr></table>
 </form>
 <script type='text/javascript' language='javascript' src='dlcalendar.js'></script>

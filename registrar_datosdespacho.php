@@ -77,10 +77,10 @@ echo "</tr></table>";
 echo "<input type='hidden' name='codigo_salida' value='$codigo_registro'>";
 echo "<input type='hidden' name='tipo_material' value='$grupo_salida'>";
 if($tipo_material==1)
-{	echo"\n<br><table align='center'><tr><td><a href='navegador_salidamuestras.php'><img  border='0'src='imagenes/back.png' width='40'>Volver Atras</a></td></tr></table>";
+{	echo"\n<br><table align='center'><tr><td><a href='navegador_salidamuestras.php'><img  border='0'src='imagenes/back.png' width='40'></a></td></tr></table>";
 }
 else
-{	echo"\n<br><table align='center'><tr><td><a href='navegador_salidamateriales.php'><img  border='0'src='imagenes/back.png' width='40'>Volver Atras</a></td></tr></table>";
+{	echo"\n<br><table align='center'><tr><td><a href='navegador_salidamateriales.php'><img  border='0'src='imagenes/back.png' width='40'></a></td></tr></table>";
 }
 echo "<table border='0' align='center' class='texto'>";
 echo "<tr><td><input type='button' value='Guardar' name='adicionar' OnClick='validar(this.form)' class='boton'></td></tr></table>";

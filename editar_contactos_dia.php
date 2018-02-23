@@ -294,7 +294,7 @@ for($i=1;$i<=$num_medicos;$i++)
 
 }
 echo "</table></center><br>";
-echo"\n<table align='center'><tr><td><a href='registrar_visita_medica.php?dia_registro=$dia_contacto&cod_ciclo=$ciclo_global'><img  border='0'src='imagenes/back.png' width='40'>Volver Atras</a></td></tr></table>";
+echo"\n<table align='center'><tr><td><a href='registrar_visita_medica.php?dia_registro=$dia_contacto&cod_ciclo=$ciclo_global'><img  border='0'src='imagenes/back.png' width='40'></a></td></tr></table>";
 echo "<input type='hidden' name='codigo_contacto' value=$codigo_contacto>";
 echo "<center><input type='button' value='Modificar' onClick='envia(this.form)' class='boton'></center>";
 echo "<input type='hidden' name='rutero' value='$rutero'>";

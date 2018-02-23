@@ -73,7 +73,7 @@ echo "<tr><th align='left'>Estado</th><td align='left'><select name='estado' cla
 echo "</td></tr>";
 echo "<input type='hidden' name='cod_muestra' value='$cod_muestra'>";
 echo "</table><br>";
-echo"\n<table align='center'><tr><td><a href='navegador_muestras_medicas.php'><img  border='0'src='imagenes/back.png' width='40'>Volver Atras</a></td></tr></table>";
+echo"\n<table align='center'><tr><td><a href='navegador_muestras_medicas.php'><img  border='0'src='imagenes/back.png' width='40'></a></td></tr></table>";
 echo "<input type='button' class='boton' value='Guardar' onClick='validar(this.form)'></center>";
 echo "</form>";
 ?>

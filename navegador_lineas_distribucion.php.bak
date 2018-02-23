@@ -35,5 +35,5 @@ while($dat=mysql_fetch_array($resp))
 	$indice_tabla++;
 }
 echo "</table></center>";
-echo"\n<br><table align='center'><tr><td><a href='navegador_distribucion_ciclos.php'><img  border='0'src='imagenes/back.png' width='40'>Volver Atras</a></td></tr></table>";
+echo"\n<br><table align='center'><tr><td><a href='navegador_distribucion_ciclos.php'><img  border='0'src='imagenes/back.png' width='40'></a></td></tr></table>";
 ?>

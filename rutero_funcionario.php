@@ -69,17 +69,15 @@ $resp_cab = mysql_query($sql_cab);
 $dat_cab = mysql_fetch_array($resp_cab);
 $nombre_funcionario = "$dat_cab[0] $dat_cab[1] $dat_cab[2]";
 echo "<form method='post' action=''>";
-echo "<center><table border='0' class='textotit'><tr><th>Ruteros Medicos Maestro<br>Visitador: $nombre_funcionario</th></tr></table></center><br>";
-echo "<center><table border='1' width='50%' cellspacing='0' class='texto'><tr><th>&nbsp;</th><th>Nombre de Rutero</th><th>Ciclo Asociado</th><th>Estado</th><th>&nbsp;</th><th>&nbsp;</th></tr>";
+echo "<h1>Ruteros Medicos Maestro<br>Visitador: $nombre_funcionario</h1>";
+
+echo "<center><table class='texto'><tr><th>&nbsp;</th><th>Nombre de Rutero</th>
+	<th>Ciclo Asociado</th><th>Estado</th><th>Ver</th></tr>";
 
 $sql_cargo = mysql_query("SELECT cod_cargo from funcionarios where codigo_funcionario = $visitador");
 $cargo = mysql_result($sql_cargo, 0, 0);
 
-if($cargo == 1022){
-	$global_linea = 0;
-}
 $sql = "SELECT cod_rutero, nombre_rutero, estado_aprobado, codigo_ciclo, codigo_gestion from rutero_maestro_cab  where cod_visitador='$visitador' and codigo_linea='$global_linea' order by nombre_rutero";
-// echo $sql;
 $resp = mysql_query($sql);
 $filas_ruteros = mysql_num_rows($resp);
 while ($dat = mysql_fetch_array($resp)) {
@@ -112,13 +110,14 @@ while ($dat = mysql_fetch_array($resp)) {
     } 
     echo"<tr><td>&nbsp;$check</td><td align='center'>$nombre_rutero</td><td>$codCiclo/$nombreGestion</td><td align='center'>$estado_desc</td>
     <td align='center'>
-		<a href='funcionario_rutero_maestro_todo.php?rutero=$cod_rutero&visitador=$visitador'>Ver</a> --- 
-		<a href='ruteroConsolidado.php?codCiclo=$codCiclo&codGestion=$codigoGestion&visitador=$visitador&vista=0'>Consolidado</a>
-		</td>
-		<td align='center'><a href='funcionario_rutero_maestro_dia.php?rutero=$cod_rutero&visitador=$visitador'>Ver por Dia >></a></td></tr>";
+		<a href='funcionario_rutero_maestro_todo.php?rutero=$cod_rutero&visitador=$visitador'>
+			<img src='imagenes/detalle.png' width='40' title='Ver Rutero Linea'></a> -- 
+		<a href='ruteroConsolidado.php?codCiclo=$codCiclo&codGestion=$codigoGestion&visitador=$visitador&vista=0'>
+			<img src='imagenes/detalles.png' width='40' title='Consolidado'></a>
+		</td></tr>";
 } 
 echo "</table><br>";
-echo"\n<table align='center'><tr><td><a href='navegador_funcionarios_regional.php'><img  border='0'src='imagenes/back.png' width='40'>Volver Atras</a></td></tr></table>";
+echo"\n<table align='center'><tr><td><a href='navegador_funcionarios_regional.php'><img  border='0'src='imagenes/back.png' width='40'></a></td></tr></table>";
 echo "<center><table border='0' class='texto'>";
 echo "<tr><td><input type='button' value='Aprobar' class='boton' onclick='aprobar_rutero(this.form)'>
 <input type='button' value='Rechazar' class='boton' onclick='rechazar_rutero(this.form)'>

@@ -30,7 +30,7 @@ echo "<tr><td align='center'><input type='text' class='texto' name='zona' size='
 echo "<input type='hidden' name='cod_territorio' value=$cod_territorio>";
 echo "<input type='hidden' name='cod_distrito' value=$cod_distrito>";
 echo "</table><br>";
-echo"\n<table align='center'><tr><td><a href='navegador_zonas.php?cod_territorio=$cod_territorio&cod_distrito=$cod_distrito'><img  border='0'src='imagenes/back.png' width='40'>Volver Atras</a></td></tr></table>";
+echo"\n<table align='center'><tr><td><a href='navegador_zonas.php?cod_territorio=$cod_territorio&cod_distrito=$cod_distrito'><img  border='0'src='imagenes/back.png' width='40'></a></td></tr></table>";
 echo "<input type='button' class='boton' value='Guardar' onClick='validar(this.form)'></center>";
 echo "</form>";
 ?>

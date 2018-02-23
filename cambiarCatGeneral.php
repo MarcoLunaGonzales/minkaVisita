@@ -45,7 +45,7 @@
 	}
 		echo "<input type='hidden' name='cantidadLineas' value='$indice'>";
 		echo "</table></center><br>";
-		echo"\n<table align='center'><tr><td><a href='busqueda_medicos_lineas.php'><img  border='0'src='imagenes/back.png' width='40'>Volver Atras</a></td></tr></table>";
+		echo"\n<table align='center'><tr><td><a href='busqueda_medicos_lineas.php'><img  border='0'src='imagenes/back.png' width='40'></a></td></tr></table>";
 		
 		echo "<center><table border='0' class='texto'>";
 		echo "<tr><td><input type='submit' value='Guardar' class='boton'></td></tr></table></center>";

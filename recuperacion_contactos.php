@@ -11,7 +11,7 @@ echo "<script language='Javascript'>
 
 echo "<form action=''>";
 echo "<center><table class='textotit'><tr><th>Seleccionar Rutero para replicar.<br>Rutero: $rutero_trabajo</th></tr></table>";
-echo"\n<br><table align='center'><tr><td><a href='rutero_maestro_todo.php?rutero=$rutero_trabajo'><img  border='0'src='imagenes/back.png' width='40'>Volver Atras</a></td></tr></table>";
+echo"\n<br><table align='center'><tr><td><a href='rutero_maestro_todo.php?rutero=$rutero_trabajo'><img  border='0'src='imagenes/back.png' width='40'></a></td></tr></table>";
 echo "<br><table border=1 cellspacing='0' class='texto' width='80%'>";
 $sql = "select cod_rutero, nombre_rutero from rutero_maestro_cab where cod_visitador='$global_visitador' and codigo_linea='$global_linea' 
 	and cod_rutero<>$rutero_trabajo order by nombre_rutero";
@@ -74,7 +74,7 @@ if($rutero_rec>0){
 	echo "<tr><td><input type='button' value='Recuperar' name='adicionar' class='boton' onclick='recuperar(this.form)'></td></tr>";	
 }
 
-echo"\n<br><table align='center'><tr><td><a href='rutero_maestro_todo.php?rutero=$rutero_trabajo'><img  border='0'src='imagenes/back.png' width='40'>Volver Atras</a></td></tr></table>";
+echo"\n<br><table align='center'><tr><td><a href='rutero_maestro_todo.php?rutero=$rutero_trabajo'><img  border='0'src='imagenes/back.png' width='40'></a></td></tr></table>";
 echo "</form>";
 echo "</table></center><br>";
 ?>

@@ -870,7 +870,7 @@ while ($datEspe = mysql_fetch_array($respEspe)) {
         <table align='center'>
             <tr>
                 <td>
-                    <a href='medicos_solicitados_lista_gerencia.php'><img  border='0'src='imagenes/back.png' width='40'>Volver Atras</a>
+                    <a href='medicos_solicitados_lista_gerencia.php'><img  border='0'src='imagenes/back.png' width='40'></a>
                 </td>
             </tr>
         </table>

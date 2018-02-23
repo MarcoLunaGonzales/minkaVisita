@@ -15,12 +15,13 @@
 	$resp_visitador=mysql_query($sql_visitador);
 	$dat_vis=mysql_fetch_array($resp_visitador);
 	$nombre_vis_impor="$dat_vis[0] $dat_vis[1] $dat_vis[2]";
-	echo "<center><table border='0' class='textotit'><tr><th>Importar Rutero Maestro<br>Visitador: $nombre_funcionario<br>Línea a importar el rutero maestro: $nombre_linea<br>Visitador a importar el rutero maestro: $nombre_vis_impor</th></tr></table></center><br>";
+	echo "<h1>Importar Rutero Maestro<br>Visitador: $nombre_funcionario<br>Línea a importar el rutero maestro: $nombre_linea<br>Visitador a importar el rutero maestro: $nombre_vis_impor</h1>";
 	
 	//esta parte saca el ciclo activo
 	$sql="select r.cod_contacto, r.cod_rutero, r.cod_visitador, r.dia_contacto, r.turno, r.zona_viaje from rutero_maestro r, orden_dias o where r.cod_visitador=$visitador_importado and r.cod_rutero='$rutero_importado' and r.dia_contacto=o.dia_contacto order by o.id";
 	$resp=mysql_query($sql);
-	echo "<center><table border='1' class='textomini' cellspacing='0' width='90%'>";
+	
+	echo "<center><table class='texto'>";
 	echo "<tr><th>Dia Contacto</th><th>Turno</th><th>Contactos</th></tr>";
 	while($dat=mysql_fetch_array($resp))
 	{
@@ -51,7 +52,7 @@
 	}
 	echo "</table></center><br>";
 	
-	echo"\n<table align='center'><tr><td><a href='javascript:history.back(-1)'><img  border='0'src='imagenes/back.png' width='40'>Volver Atras</a></td></tr></table>";
+	echo"\n<table align='center'><tr><td><a href='javascript:history.back(-1)'><img  border='0'src='imagenes/back.png' width='40'></a></td></tr></table>";
 	//<td align='center'><input type='checkbox' name='cod_contacto' value=$cod_contacto></td>
 	//echo "<center><table border='0' class='texto'>";
 	//echo "<tr><td><input type='button' value='Adicionar' name='adicionar' class='boton' onclick='enviar_nav()'></td><td><input type='button' value='Eliminar' name='eliminar' class='boton' onclick='eliminar_nav(this.form)'></td><td><input type='button' value='Editar' name='Editar' class='boton' onclick='editar_nav(this.form)'></td></tr></table></center>";

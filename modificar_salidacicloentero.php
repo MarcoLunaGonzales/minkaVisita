@@ -244,7 +244,7 @@ for($i=0;$i<=$indice_m_m;$i++)
 	echo "</tr>";
 }
 echo "</table><br>";
-echo"\n<table align='center'><tr><td><a href='navegador_salidaciclosenterosterritorios.php?codigo_ciclo=$codigo_ciclo'><img  border='0' src='imagenes/back.png' width='40'>Volver Atras</a></td></tr></table>";
+echo"\n<table align='center'><tr><td><a href='navegador_salidaciclosenterosterritorios.php?codigo_ciclo=$codigo_ciclo'><img  border='0' src='imagenes/back.png' width='40'></a></td></tr></table>";
 echo "<center><input type='button' class='boton' value='Guardar' onClick='validar(this.form)'></center>";
 echo "</form>";
 echo "</div></body>";

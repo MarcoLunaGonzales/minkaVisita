@@ -33,7 +33,7 @@ echo "<tr><th>$codigo_funcionario</th><td align='center'><input type='text' clas
 echo "<input type='hidden' name='codigo_funcionario' value='$codigo_funcionario'>";
 echo "<input type='hidden' name='cod_territorio' value='$cod_territorio'>";
 echo "</table><br>";
-echo"\n<table align='center'><tr><td><a href='navegador_funcionarios.php?cod_ciudad=$cod_territorio'><img  border='0'src='imagenes/back.png' width='40'>Volver Atras</a></td></tr></table>";
+echo"\n<table align='center'><tr><td><a href='navegador_funcionarios.php?cod_ciudad=$cod_territorio'><img  border='0'src='imagenes/back.png' width='40'></a></td></tr></table>";
 echo "<input type='button' class='boton' value='Guardar' onClick='validar(this.form)'></center>";
 echo "</form>";
 echo "<center><table border='0' width='40%'><tr><th>Nota: La contraseña debe tener al menos 8 caracteres.</th></tr><tr><th>Debe contener 1 caracter especial, 1 numero y una mayuscula.</th></tr></table></center>";

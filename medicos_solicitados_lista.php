@@ -44,7 +44,7 @@ $sql = mysql_query("SELECT * from medicos where cod_visitador = $global_visitado
     </div>
 <!--table align='center'>
     <tr>
-        <td><a href='navegador_medicos1.php'><img  border='0'src='imagenes/back.png' width='40'>Volver Atras</a></td>
+        <td><a href='navegador_medicos1.php'><img  border='0'src='imagenes/back.png' width='40'></a></td>
     </tr>
 </table-->
 
@@ -178,7 +178,7 @@ $sql = mysql_query("SELECT * from medicos where cod_visitador = $global_visitado
 </center>
 <table align='center'>
     <tr>
-        <td><a href='navegador_medicos1.php'><img  border='0'src='imagenes/back.png' width='40'>Volver Atras</a></td>
+        <td><a href='navegador_medicos1.php'><img  border='0'src='imagenes/back.png' width='40'></a></td>
     </tr>
 </table>
 

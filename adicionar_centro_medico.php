@@ -53,7 +53,7 @@ require("conexion.inc");
                 </td>
             </tr>
         </table>
-        <table align='center'><tr><td><a href='centro_medico_lista.php'><img  border='0'src='imagenes/back.png' width='40'>Volver Atras</a></td></tr></table>
+        <table align='center'><tr><td><a href='centro_medico_lista.php'><img  border='0'src='imagenes/back.png' width='40'></a></td></tr></table>
         <table class="texto" border="0" align="center"><tr><td align='center'><input type="button" class="boton" id="guardar" value="Enviar"></td></tr></table>
     </form>
 </center>

@@ -112,7 +112,7 @@ echo "<script language='Javascript'>
 		echo "<tr><td align='center'>$dia_contacto</td><td align='center'>$turno</td><td align='center'>$contacto</td></tr>";
 	}
 	echo "</table></center><br>";
-	echo"\n<table align='center'><tr><td><a href='javascript:history.back(-1)'><img  border='0'src='imagenes/back.png' width='40'>Volver Atras</a></td></tr></table>";
+	echo"\n<table align='center'><tr><td><a href='javascript:history.back(-1)'><img  border='0'src='imagenes/back.png' width='40'></a></td></tr></table>";
 	//<td align='center'><input type='checkbox' name='cod_contacto' value=$cod_contacto></td>
 	//echo "<center><table border='0' class='texto'>";
 	//echo "<tr><td><input type='button' value='Adicionar' name='adicionar' class='boton' onclick='enviar_nav()'></td><td><input type='button' value='Eliminar' name='eliminar' class='boton' onclick='eliminar_nav(this.form)'></td><td><input type='button' value='Editar' name='Editar' class='boton' onclick='editar_nav(this.form)'></td></tr></table></center>";

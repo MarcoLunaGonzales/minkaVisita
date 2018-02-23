@@ -66,7 +66,7 @@ echo "<script language='Javascript'>
 	$resp=mysql_query($sql);
 	echo "<center><table border='0' class='textotit'><tr><td>Resultados de la Búsqueda</td></tr></table></center><br>";
 	$indice_tabla=1;
-	echo"\n<table align='center'><tr><td><a href='busqueda_medicos_lineas.php'><img  border='0'src='imagenes/back.png' width='40'>Volver Atras</a></td></tr></table>";
+	echo"\n<table align='center'><tr><td><a href='busqueda_medicos_lineas.php'><img  border='0'src='imagenes/back.png' width='40'></a></td></tr></table>";
 	echo "<center><table border='0' class='texto'>";
 	echo "<center><table border='0' class='textomini'><tr><th>Leyenda:</th><th>Medicos ya asignados a la Línea</th><td bgcolor='#66CCFF' width='30%'></td></tr></table></center>";
 	echo "<table align='center' border='0' class='textomini'><tr><th>Leyenda:</th><th>Especialidad del Medico en la línea se visualiza con negrita.</th></tr></table><br>";
@@ -143,7 +143,7 @@ echo "<script language='Javascript'>
 			$indice_tabla++;
 	}
 		echo "</table></center><br>";
-		echo"\n<table align='center'><tr><td><a href='busqueda_medicos_lineas.php'><img  border='0'src='imagenes/back.png' width='40'>Volver Atras</a></td></tr></table>";
+		echo"\n<table align='center'><tr><td><a href='busqueda_medicos_lineas.php'><img  border='0'src='imagenes/back.png' width='40'></a></td></tr></table>";
 		echo "<center><table border='0' class='texto'>";
 		echo "<tr><td><input type='button' value='Añadir Categorias' class='boton' onclick='anadir_categoria(this.form)'></td></tr></table></center>";
 		echo "</form>";

@@ -132,7 +132,7 @@ function adicionar_medico(f) {
  echo "</center><br>";
  echo "<table align='center'>";
  echo "<tr>";
- echo "<td><a href='javascript:history.go(-1)'><img  border='0'src='imagenes/back.png' width='40'>Volver Atras</a></td>";
+ echo "<td><a href='javascript:history.go(-1)'><img  border='0'src='imagenes/back.png' width='40'></a></td>";
  echo "</tr>";
  echo "</table>";
  echo "<center>";

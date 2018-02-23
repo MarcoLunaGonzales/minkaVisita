@@ -765,7 +765,7 @@ while ($datEspe = mysql_fetch_array($respEspe)) {
                     </div>
             </div>
             <input type='hidden' name='cod_med' value='<?php echo "$cod_med"; ?>'>
-            <table align='center'><tr><td><a href='medicos_solicitados_lista.php'><img border='0' src='imagenes/back.png' width='40' />Volver Atras</a></td></tr></table>
+            <table align='center'><tr><td><a href='medicos_solicitados_lista.php'><img border='0' src='imagenes/back.png' width='40' /></a></td></tr></table>
             <table class="texto" border="0" align="center"><tr><td align='center'><input type="button" class="boton" value="Guardar Cambios" onClick='validar(this.form)'></td></tr></table>
         </form>
 </body>

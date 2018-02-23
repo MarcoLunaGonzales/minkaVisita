@@ -213,10 +213,10 @@ while($dat_detalle_salida=mysql_fetch_array($resp_detalle_salida))
 }
 echo "</table>";
 if($grupo_ingreso==1)
-{	echo"\n<table align='center'><tr><td><a href='navegador_ingresomuestrastransito.php'><img border='0' src='imagenes/back.png' width='40'>Volver Atras</a></td></tr></table>";
+{	echo"\n<table align='center'><tr><td><a href='navegador_ingresomuestrastransito.php'><img border='0' src='imagenes/back.png' width='40'></a></td></tr></table>";
 }	
 else
-{	echo"\n<table align='center'><tr><td><a href='navegador_ingresomaterialapoyotransito.php'><img border='0' src='imagenes/back.png' width='40'>Volver Atras</a></td></tr></table>";
+{	echo"\n<table align='center'><tr><td><a href='navegador_ingresomaterialapoyotransito.php'><img border='0' src='imagenes/back.png' width='40'></a></td></tr></table>";
 }
 echo "<center><input type='button' class='boton' value='Guardar' onClick='validar(this.form)'></center>";
 echo "</form>";

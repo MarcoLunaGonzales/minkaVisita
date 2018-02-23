@@ -53,7 +53,7 @@ echo "</table>";
 echo "<br>";
 
 echo "<table border='0' class='texto'><tr>";
-echo "<td><td><a href='javascript:history.back(1);'><img  border='0'src='../../imagenes/volver.gif' width='15' height='8'>Volver Atras</a></td>";
+echo "<td><td><a href='javascript:history.back(1);'><img  border='0'src='../../imagenes/volver.gif' width='15' height='8'></a></td>";
 echo "</tr></table>";
 
 echo "<table border='0' class='texto'><tr>";

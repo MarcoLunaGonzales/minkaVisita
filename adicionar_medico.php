@@ -542,7 +542,7 @@ while ($row_cod_ciudad = mysql_fetch_assoc($sql_cod_ciudad)) {
         </div>
     </div>
     <?php
-    echo "<table align='center'><tr><td><a href='medicos_solicitados_lista.php?cod_ciudad=$cod_ciudad'><img  border='0'src='imagenes/back.png' width='40'>Volver Atras</a></td></tr></table>";
+    echo "<table align='center'><tr><td><a href='medicos_solicitados_lista.php?cod_ciudad=$cod_ciudad'><img  border='0'src='imagenes/back.png' width='40'></a></td></tr></table>";
     ?>
     <table class="texto" border="0" align="center">
         <tr>

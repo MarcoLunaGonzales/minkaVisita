@@ -71,7 +71,7 @@
 	$dat=mysql_fetch_array($sql_ciclo);
 	$cod_ciclo=$dat[0];
 	echo "<center><table border='0' class='textotit'><tr><td align='center'>Registro de Parrillas Especiales<br>Ciclo Trabajo:$ciclo_trabajo</td></tr></table></center><br>";
-	echo"\n<table align='center'><tr><td><a href='navegador_parrillas_especial_ciclos.php'><img  border='0'src='imagenes/back.png' width='40'>Volver Atras</a></td></tr></table>";
+	echo"\n<table align='center'><tr><td><a href='navegador_parrillas_especial_ciclos.php'><img  border='0'src='imagenes/back.png' width='40'></a></td></tr></table>";
 	echo "<center><table border='0' class='textomini'><tr><td>Leyenda:</td><td>Producto Extra</td><td bgcolor='#66CCFF' width='30%'></td></tr></table></center><br>";
 	$total_parrillas=0;
 
@@ -147,7 +147,7 @@
 			echo "</table></center><br>";
 		}
 	}
-	echo"\n<table align='center'><tr><td><a href='navegador_parrillas_especial_ciclos_grupos.php?ciclo_trabajo=$ciclo_trabajo'><img  border='0'src='imagenes/back.png' width='40'>Volver Atras</a></td></tr></table>";
+	echo"\n<table align='center'><tr><td><a href='navegador_parrillas_especial_ciclos_grupos.php?ciclo_trabajo=$ciclo_trabajo'><img  border='0'src='imagenes/back.png' width='40'></a></td></tr></table>";
 	echo "<center><table border='0' class='texto'><tr>";
 	if($total_parrillas==0)
 	{	echo "<td><input type='button' value='Replicar' class='boton' onclick='recuperar(this.form)'></td>";

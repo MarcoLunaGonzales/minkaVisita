@@ -25,7 +25,7 @@ echo "<tr><th>Tipo de Almacen</th><td><select name='tipo_almacen' class='texto'>
 </select></td>";
 echo "</tr>";
 echo "</table><br>";
-echo"\n<table align='center'><tr><td><a href='navegador_tipossalida.php'><img  border='0'src='imagenes/back.png' width='40'>Volver Atras</a></td></tr></table>";
+echo"\n<table align='center'><tr><td><a href='navegador_tipossalida.php'><img  border='0'src='imagenes/back.png' width='40'></a></td></tr></table>";
 echo "<input type='button' class='boton' value='Guardar' onClick='validar(this.form)'></center>";
 echo "</form>";
 ?>

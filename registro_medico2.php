@@ -472,7 +472,7 @@ while ($dat = mysql_fetch_array($resp)) {
 </td><td>Visitado Como</td>
 </tr>
 </table></center><br>
-<table align='center'><tr><td><a href='navegador_medicos2.php?cod_ciudad=<?=$cod_ciudad?>'><img  border='0'src='imagenes/back.png' width='40'>Volver Atras</a></td></tr></table>
+<table align='center'><tr><td><a href='navegador_medicos2.php?cod_ciudad=<?=$cod_ciudad?>'><img  border='0'src='imagenes/back.png' width='40'></a></td></tr></table>
 <table class="texto" border="0" align="center"><tr><td align='center'><input type="button" class="boton" value="Registrar" onClick='validar(this.form)'></td></tr></table>
 </form>
 </div>

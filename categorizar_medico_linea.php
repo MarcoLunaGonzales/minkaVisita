@@ -206,7 +206,7 @@ echo "</table><br>";
 	echo "<table border=0 class='texto'><tr><th>Nota: Si no asigna visitador el medico no sera registrado en la linea.</th></tr></table>";
 
 
-echo"\n<table align='center'><tr><td><a href='javascript:history.back(-1)'><img  border='0'src='imagenes/back.png' width='40'>Volver Atras</a></td></tr></table>";
+echo"\n<table align='center'><tr><td><a href='javascript:history.back(-1)'><img  border='0'src='imagenes/back.png' width='40'></a></td></tr></table>";
 echo "<center><input type='button' name='x' value='Guardar' class='boton' onClick='crearJson2(this.form);'></center>";
 echo "</div>";
 echo "</form>";

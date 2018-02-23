@@ -169,7 +169,7 @@ require("estilos_administracion.inc");
 </center>
 <table align='center'>
     <tr>
-        <td><a href='navegador_medicos1.php'><img  border='0'src='imagenes/back.png' width='40'>Volver Atras</a></td>
+        <td><a href='navegador_medicos1.php'><img  border='0'src='imagenes/back.png' width='40'></a></td>
     </tr>
 </table>
 <center>
@@ -648,7 +648,7 @@ require("estilos_administracion.inc");
 
 <table align='center'>
     <tr>
-        <td><a href='navegador_medicos1.php'><img  border='0'src='imagenes/back.png' width='40'>Volver Atras</a></td>
+        <td><a href='navegador_medicos1.php'><img  border='0'src='imagenes/back.png' width='40'></a></td>
     </tr>
 </table>
 <center>
