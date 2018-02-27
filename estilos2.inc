@@ -23,6 +23,6 @@ $paterno_usu=$dat[0];
 $materno_usu=$dat[1];
 $nombre_usu=$dat[2];
 $nombre_completo="$paterno_usu $materno_usu $nombre_usu";
-echo "<center><table border=1 cellspacing='0' width='100%' class='linea'><tr><th colspan='4'>Modulo de Gesti&oacute;n Central</th></tr><tr><th>L&iacute;nea $linea</th><th>Usuario: $nombre_completo</th><th>Gesti&oacute;n: $gestion</th><th>Ciclo: $ciclo_global</th></tr></table></center>";
+//echo "<center><table border=1 cellspacing='0' width='100%' class='linea'><tr><th colspan='4'>Modulo de Gesti&oacute;n Central</th></tr><tr><th>L&iacute;nea $linea</th><th>Usuario: $nombre_completo</th><th>Gesti&oacute;n: $gestion</th><th>Ciclo: $ciclo_global</th></tr></table></center>";
 
 ?>

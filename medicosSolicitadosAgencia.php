@@ -2,14 +2,8 @@
 error_reporting(0);
 require("conexion.inc");
 require("estilos_administracion.inc");
-//if ($global_agencia == ''){
-//    $aux = mysql_query("select cod_ciudad from funcionarios where codigo_funcionario = $global_usuario ");
-//    while($row_c = mysql_fetch_assoc($aux)){
-//        $global_agencia  = $row_c['cod_ciudad'];
-//    }
-//}else{
-//    $global_agencia = $global_agencia;
-//}
+
+
 ?>
 <script type="text/javascript" src="lib/jquery-1.7.1.js"></script>
 <script type="text/javascript" src="lib/jquery.tablesorter.min.js"></script>
@@ -43,7 +37,7 @@ require("estilos_administracion.inc");
         $(".editar").click(function(){
             var codd = $("input:checked").attr('value');
             var estadoo = $("input:checked").attr('estadoo');
-            window.location = "editar_medico_gerencia.php?cod="+codd+"&esta="+estadoo;
+            window.location = "editar_medico_agencia.php?cod="+codd+"&esta="+estadoo;
         })
         $(".rechazar").click(function(){
             var codd = $("input:checked").attr('value')
@@ -160,18 +154,16 @@ require("estilos_administracion.inc");
         display: block;
     }
 </style>
-
-<h1>Aprobacion de alta de Medicos</h1>
-
+<h1>Medicos Solicitados para alta</h1>
 
 <div class="divBotones">
-	<input type="button" class="boton editar"  value="Aprobar">
-	<input type="button" class="boton2 rechazar"  value="Rechazar">
+	<input type="button" class="boton editar" value="Revisar">
+	<input type="button" class="boton2 rechazar" value="Rechazar">
 </div>
 
 <ul class="tabs">
-    <li><a href="#tab1">Revisados</a></li>
-    <li><a href="#tab2">Aprobados</a></li>
+    <li><a href="#tab1">Solicitados</a></li>
+    <li><a href="#tab2">Revisados y Aprobados</a></li>
     <!--<li><a href="#tab3">Aprobados</a></li>-->
 </ul>
 
@@ -193,7 +185,7 @@ require("estilos_administracion.inc");
                 </tr>
                 <?php
 //                $sql = mysql_query("SELECT * from medicos where estado_registro = 3 and cod_ciudad = $global_agencia ORDER BY cod_med DESC ");
-                $sql = mysql_query("SELECT * from medicos where estado_registro = 2  ORDER BY cod_med DESC ");
+                $sql = mysql_query("SELECT * from medicos where estado_registro = 3 and cod_ciudad = '$global_agencia' ORDER BY cod_med DESC ");
                 $indice_tabla = 1;
                 while ($dat = mysql_fetch_array($sql)) {
                     $cod = $dat[0];
@@ -213,10 +205,9 @@ require("estilos_administracion.inc");
                     $perfil = $dat[12];
                     $ciudad = $dat[13];
                     $funcionario = $dat[17];
-					
 					$codEstadoMedico=$dat[16];
-                    
-					$nombre_completo = "$pat $mat $nom";
+				
+                    $nombre_completo = "$pat $mat $nom";
                     $sql1 = "select direccion from direcciones_medicos where cod_med=$cod order by direccion asc";
                     $resp1 = mysql_query($sql1);
 
@@ -318,8 +309,7 @@ require("estilos_administracion.inc");
                         <td align='center'>&nbsp;<?php echo $direccion_medico ?></td>
                         <td align='center'>&nbsp;<?php echo $funcionario_final ?></td>
                         <td align='center'>&nbsp;<?php echo $ciudad_final ?></td>
-						<td align='center'>&nbsp;<?php echo $estado_registro_medico ?></td>
-						
+                        <td align='center'>&nbsp;<?php echo $estado_registro_medico ?></td>
                     </tr>
                     <?php
                     $indice_tabla++;
@@ -345,7 +335,7 @@ require("estilos_administracion.inc");
                 </tr>
                 <?php
 //                $sql = mysql_query("SELECT * from medicos where estado_registro = 2 and cod_ciudad = $global_agencia ORDER BY cod_med DESC");
-                $sql = mysql_query("SELECT * from medicos where estado_registro = 1 ORDER BY cod_med DESC");
+                $sql = mysql_query("SELECT * from medicos where estado_registro in (2,1) and cod_ciudad='$global_agencia' ORDER BY cod_med DESC");
                 $indice_tabla = 1;
                 while ($dat = mysql_fetch_array($sql)) {
                     $cod = $dat[0];
@@ -364,8 +354,9 @@ require("estilos_administracion.inc");
                     $secre = $dat[11];
                     $perfil = $dat[12];
                     $ciudad = $dat[13];
-					$codEstadoMedico=$dat[16];
                     $funcionario = $dat[17];
+					$codEstadoMedico = $dat[16];
+					
                     $nombre_completo = "$pat $mat $nom";
                     $sql1 = "select direccion from direcciones_medicos where cod_med=$cod order by direccion asc";
                     $resp1 = mysql_query($sql1);
@@ -464,7 +455,8 @@ require("estilos_administracion.inc");
                         <td align='center'>&nbsp;<?php echo $direccion_medico ?></td>
                         <td align='center'>&nbsp;<?php echo $funcionario_final ?></td>
                         <td align='center'>&nbsp;<?php echo $ciudad_final ?></td>
-                        <td align='center'>&nbsp;<?php echo $estado_registro_medico ?></td>
+						<td align='center'>&nbsp;<?php echo $estado_registro_medico ?></td>
+						
                     </tr>
                     <?php
                     $indice_tabla++;
@@ -601,7 +593,7 @@ require("estilos_administracion.inc");
             $est_civil = "&nbsp;";
         }
         ?>
-                                                <tr>
+                                                <tr bgcolor='<?php echo $color_reg ?>'>
                                                     <td align='center'><?php echo $indice_tabla ?></td>
                                                     <td align='center'><input type='radio' name='codigos_ciclos' value='<?php echo $cod ?>' class="chekboxx" estadoo="2" /></td>
                                                     <td align='center'><?php echo $cod ?></td>
@@ -639,8 +631,8 @@ require("estilos_administracion.inc");
 </div>
 
 <div class="divBotones">
-	<input type="button" class="boton editar"  value="Aprobar">
-	<input type="button" class="boton2 rechazar"  value="Rechazar">
+	<input type="button" class="boton editar" value="Revisar">
+	<input type="button" class="boton2 rechazar" value="Rechazar">
 </div>
 
 <div class="modal"></div>

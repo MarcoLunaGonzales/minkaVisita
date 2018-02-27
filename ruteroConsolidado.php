@@ -34,10 +34,10 @@
 		and rc.codigo_ciclo=$codCiclo and r.dia_contacto=o.dia_contacto order by o.id, turno, linea";
 	
 	$resp=mysql_query($sql);
-	echo "<center><table border='0' class='textotit'><tr><th>Rutero Medico Maestro Consolidado
-		<br>Visitador: $nombre_funcionario<br>Ciclo: $codCiclo</th></tr></table></center><br>";
+	echo "<h1>Rutero Maestro Consolidado
+		<br>Visitador: $nombre_funcionario<br>Ciclo: $codCiclo</h1>";
 	
-	echo "<center><table border='1' class='textomini' cellspacing='0' width='90%'>";
+	echo "<center><table class='texto'>";
 	echo "<tr><th>Dia Contacto</th><th>Turno</th><th>Linea</th><th>Contactos</th></tr>";
 	$indice=1;
 	while($dat=mysql_fetch_array($resp))

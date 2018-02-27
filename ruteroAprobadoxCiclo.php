@@ -6,10 +6,13 @@ $resp_cab = mysql_query($sql_cab);
 $dat_cab = mysql_fetch_array($resp_cab);
 $nombre_funcionario = "$dat_cab[0] $dat_cab[1] $dat_cab[2]";
 echo "<form method='post' action=''>";
-echo "<center><table border='0' class='textotit'><tr><th>Ruteros Medicos Maestro Aprobados x Ciclo<br>
-							Visitador: $nombre_funcionario</th></tr></table></center><br>";
-echo "<center><table border='1' width='50%' cellspacing='0' class='texto'><tr><th>&nbsp;</th>
-<th>Nombre de Rutero</th><th>Ciclo Asociado</th><th>Estado</th><th>&nbsp;</th></tr>";
+echo "<h1>Ruteros Aprobados x Ciclo<br>
+		Visitador: $nombre_funcionario</h1>";
+
+echo "<center><table class='texto'>
+<tr><th>&nbsp;</th><th>Nombre de Rutero</th><th>Ciclo Asociado</th><th>Estado</th><th>Ver</th></tr>";
+
+
 $sql = "select cod_rutero, nombre_rutero, estado_aprobado, codigo_ciclo, codigo_gestion from rutero_maestro_cab_aprobado 
 				where cod_visitador='$visitador' and codigo_linea='$global_linea' order by codigo_gestion desc, codigo_ciclo desc";
 $resp = mysql_query($sql);
@@ -39,8 +42,13 @@ while ($dat = mysql_fetch_array($resp)) {
     <td align='center'>$nombre_rutero</td><td>$codCiclo/$nombreGestion</td>
     <td align='center'>$estado_desc</td>
     <td align='center'>
-	<a href='funcionario_rutero_maestro_todo.php?rutero=$cod_rutero&visitador=$visitador&vista=2'>Ver</a>--- 
-	<a href='ruteroConsolidado.php?codCiclo=$codCiclo&codGestion=$codigoGestion&visitador=$visitador&vista=1'>Consolidado</a>
+	<a href='funcionario_rutero_maestro_todo.php?rutero=$cod_rutero&visitador=$visitador&vista=2'>
+		<img src='imagenes/detalle.png' width='40' title='Ver Rutero Linea'>
+	</a> 
+	--- 
+	<a href='ruteroConsolidado.php?codCiclo=$codCiclo&codGestion=$codigoGestion&visitador=$visitador&vista=1'>
+		<img src='imagenes/detalles.png' width='40' title='Consolidado'>
+	</a>
 	</td></tr>";
 } 
 echo "</table><br>";

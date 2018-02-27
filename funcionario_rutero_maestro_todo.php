@@ -24,8 +24,11 @@
 	{	$sql="select r.cod_contacto, r.cod_rutero, r.cod_visitador, r.dia_contacto, r.turno, r.zona_viaje from rutero_maestro r, orden_dias o where r.cod_visitador=$visitador and r.cod_rutero='$rutero' and r.zona_viaje='0' and r.dia_contacto=o.dia_contacto order by o.id";
 	}
 	$resp=mysql_query($sql);
-	echo "<center><table border='0' class='textotit'><tr><th>Rutero Medico Maestro<br>Visitador: $nombre_funcionario<br>Rutero: $nombreRutero</th></tr></table></center><br>";
-	echo "<center><table border='1' class='textomini' cellspacing='0' width='90%'>";
+	
+	echo "<h1>Rutero Medico Maestro<br>Visitador: $nombre_funcionario<br>Rutero: $nombreRutero
+	</h1>";
+	
+	echo "<center><table class='texto'>";
 	echo "<tr><th>Dia Contacto</th><th>Turno</th><th>Contactos</th></tr>";
 	while($dat=mysql_fetch_array($resp))
 	{

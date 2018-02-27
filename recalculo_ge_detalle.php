@@ -17,7 +17,6 @@ $global_linea = 1021;
 <html lang="en-US">
 <head>
     <meta charset="iso-8859-1">
-    <title>Banco De Muestras</title>
     <link type="text/css" href="css/style.css" rel="stylesheet" />
     <link type="text/css" href="js/tableDnD/tablednd.css" rel="stylesheet" />
     <link type="text/css" href="responsive/stylesheets/foundation.css" rel="stylesheet" />
@@ -154,7 +153,7 @@ body.loading .modal {
     <div id="container">
         <?php require("estilos2.inc"); ?>
         <?php 
-			$global_gestion = 1014; 
+			$global_gestion = $global_gestion; 
 		?>
         <header id="titulo" style="min-height: 50px">
             <h3 style="color: #5F7BA9; font-size: 1.5em; font-family: Vernada">Grupos Especiales</h3>

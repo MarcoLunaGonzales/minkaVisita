@@ -18,10 +18,9 @@ $regionales_finales = array_combine($cod_ciudades, $nom_ciudades);
 <html lang="en-US">
 <head>
     <meta charset="iso-8859-1">
-    <title>Aprobar Baja Medicos</title>
     <link type="text/css" href="css/style.css" rel="stylesheet" />
-    <link type="text/css" href="responsive/stylesheets/foundation.css" rel="stylesheet" />
-    <link rel="stylesheet" href="responsive/stylesheets/style.css">
+    <!--link type="text/css" href="responsive/stylesheets/foundation.css" rel="stylesheet" />
+    <link rel="stylesheet" href="responsive/stylesheets/style.css"-->
     <script type="text/javascript" src="lib/jquery-1.7.1.js"></script>
     <script type="text/javascript">
     jQuery(document).ready(function($) {
@@ -73,58 +72,29 @@ $regionales_finales = array_combine($cod_ciudades, $nom_ciudades);
 	}
 
 </script>
-<style type="text/css">
-table tr th {
-    padding: 5px 10px    
-} 
-table tbody tr td {
-    padding: 5px 10px !important   
-}
-.modal {
-    display:    none;
-    position:   fixed;
-    z-index:    1000;
-    top:        0;
-    left:       0;
-    height:     100%;
-    width:      100%;
-    background: rgba( 0, 0, 0,.8 ) 
-    url('http://i.stack.imgur.com/FhHRx.gif') 
-    50% 50% 
-    no-repeat;
-}
-body.loading {
-    overflow: hidden;   
-}
-body.loading .modal {
-    display: block;
-}
-</style>
+
 </head>
 <body>
-    <div id="container">
-        <?php require("estilos3.inc"); ?>
-        <header id="titulo" style="min-height: 50px">
-            <h3 style="color: #5F7BA9; font-size: 1.5em; font-family: Vernada">Aprobar Baja Medicos</h3>
-            <h3 style="color: #5F7BA9; font-size: 1.0em; font-family: Vernada">Para las regionales: <?php 
+        <?php 
+		require("estilos_regional_pri.inc"); 		
+		?>
+        <h1>
+            Aprobar Baja Medicos
+            Para las regionales: <?php 
             foreach ($regionales_finales as $cod_ciudades => $nom_ciudades) {
                 echo $nom_ciudades.", ";
             }
-            ?> </h3>
-        </header>
-        <div class="row">
+            ?> 
+		</h1>
+        
 		
-			<div class="row" style="margin-top: 20px">
-                        <div class="four columns">
-                            <input type="checkbox" onclick="toggleCheckedA(this.checked)"> Seleccionar TODO (Aprobados)
-                        </div>
-            </div>
-            <?php 
+		<input type="checkbox" onclick="toggleCheckedA(this.checked)"> Seleccionar TODO (Aprobados)
+        
+		<?php 
             foreach($regionales_finales as $cod_ciudades => $nom_ciudades){ 
                 ?>
-                <div class="twelve columns centered">
                     <h2 style="color: #5F7BA9; font-size: 1.3em; font-family: Vernada; text-align: left"><?php echo $nom_ciudades; ?></h2>
-                    <table border="1">
+                    <center><table class="texto">
                         <tr>
                             <th></th>
                             <th>Nombre Funcionario</th>
@@ -162,19 +132,14 @@ body.loading .modal {
                             <?php  
                         }
                         ?>
-                    </table>
-                </div>
+                    </table></center>
                 <?php
             } 
             ?>
+		
+        <div class="divBotones">
+                <input type="button" onclick='javascript:void(0)' class='boton' id='aprobar' value="Aprobar Seleccionados">
+                <input type="button" onclick='javascript:void(0)' class='boton2' id='rechazar' value="Rechazar Seleccionados">
         </div>
-        <div class="row centered">
-            <center>
-                <a href='javascript:void(0)' class='button' id='aprobar'>Aprobar Seleccionados</a>
-                <a href='javascript:void(0)' class='button' id='rechazar'>Rechazar Seleccionados</a>
-            </center>
-        </div>
-    </div>
-    <div class="modal"></div>
 </body>
 </html>

@@ -10,6 +10,18 @@ h1 {
 	text-align: center;
 }
 
+h2 {
+    display: block;
+    font-size: 12pt;
+    -webkit-margin-before: 0.83em;
+    -webkit-margin-after: 0.83em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    font-family: Verdana;
+	color: #651FFF;
+	text-align: center;
+}
+
 table {
     *border-collapse: collapse; /* IE7 and lower */
     border-spacing: 0;

@@ -47,7 +47,7 @@ include("datosUsuario.php");
 			<li><span>Gestión de Medicos</span>
 				<ul>
 					<li><a href="navegador_medicos1.php" target="contenedorPrincipal">Medicos Listado Madre</a></li>
-					<li><a href="medicos_solicitados_lista_gerencia.php" target="contenedorPrincipal">Alta de Medicos</a></li>
+					<li><a href="medicos_solicitados_lista_gerencia.php" target="contenedorPrincipal">Aprobacion de Alta de Medicos</a></li>
 					<li><a href="medicos_lineas.php" target="contenedorPrincipal">Medicos Territorio</a></li>
 					<li><span>Añadir Medicos</span>
 						<ul>

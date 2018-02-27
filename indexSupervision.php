@@ -45,6 +45,8 @@ include("datosUsuario.php");
 
 			<li><a href="navegador_funcionarios_regional.php" target="contenedorPrincipal">Visitadores</a></li>
 
+			<li><a href="medicosSolicitadosAgencia.php" target="contenedorPrincipal">Revisar Alta de Medicos</a></li>
+
 			<li><a href="cambiar_contrasena_regional.php" target="contenedorPrincipal">Cambiar Clave de Acceso</a></li>
 			
 			<li><a href="aprobar_bajas_medicos.php" target="contenedorPrincipal">Aprobacion de Baja de Medicos</a></li>
