@@ -63,8 +63,8 @@ function calcula_frecuencia(f,n)
 		$resp=mysql_query($sql);
 		$dat=mysql_fetch_array($resp);
 		$ciudad=$dat[1];
-		echo "<center><table border='0' class='textotit'>";
-		echo "<tr><th>Edicion de Grillas</center></th></tr></table><br>";
+		echo "<h1>Edicion de Grilla</h1>";
+		
 		echo "<center><table border='0' cellspacing='0' class='texto'>";
 		
 		echo "<tr><th>Territorio $ciudad</th></tr></table><br></center>";

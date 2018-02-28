@@ -2,14 +2,12 @@
 error_reporting(0);
 require("conexion.inc");
 ?>
-<!DOCTYPE HTML>
 <html lang="en-US">
-<head>
     <meta charset="iso-8859-1">
     <title>Aprobar Bajas</title>
-    <link type="text/css" href="css/style.css" rel="stylesheet" />
+    <!--link type="text/css" href="css/style.css" rel="stylesheet" />
     <link type="text/css" href="responsive/stylesheets/foundation.css" rel="stylesheet" />
-    <link rel="stylesheet" href="responsive/stylesheets/style.css">
+    <link rel="stylesheet" href="responsive/stylesheets/style.css"-->
     <script type="text/javascript" src="lib/jquery-1.7.1.js"></script>
     <script type="text/javascript">
     jQuery(document).ready(function($) {
@@ -21,23 +19,14 @@ require("conexion.inc");
         })  
     });
     </script>
-    <style type="text/css">
-    table tr th {
-        padding: 0 10px    
-    }
-    </style>
-</head>
 <body>
-    <div id="container">
-        <?php require("estilos3.inc"); ?>
-        <header id="titulo" style="min-height: 50px">
-            <h3 style="color: #5F7BA9; font-size: 1.5em; font-family: Vernada">Aprobar Bajas</h3>
-        </header>
-        <div id="contenido">
-            <div class="row">
-                <div class="twelve columns">
+        <?php require("estilos_gerencia.inc"); ?>
+        <h1>
+            Aprobar Bajas
+        </h1>
+		
                     <center>
-                        <table border="1">
+                        <table class="texto">
                             <tr>
                                 <th>Territorio</th>
                                 <td>
@@ -51,11 +40,8 @@ require("conexion.inc");
                                 </td>
                             </tr>
                         </table>
-                        <a href="javascript:void(0)" rel="aprobar_baja_medicos_detalle_dr.php" class="button" id="continuar">Continuar</a>
+						<input type="button" onclick="javascript:void(0)" rel="aprobar_baja_medicos_detalle_dr.php" class="boton" id="continuar" value="Continuar">
+                        <!--a href="javascript:void(0)" rel="aprobar_baja_medicos_detalle_dr.php" class="button" id="continuar">Continuar</a-->
                     </center>
-                </div>
-            </div>
-        </div>
-    </div>
 </body>
 </html>

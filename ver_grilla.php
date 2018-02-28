@@ -5,11 +5,11 @@
 	$codigo_linea=$_GET['codigo_linea'];
 	$global_linea=$codigo_linea;
 	
-	echo "<center><table border='0' class='textotit'>";
-	echo "<tr><td align='center'>Grilla</center></td></tr></table><br>";
-	echo "<center><table border='1' cellspacing='0' class='texto' width='60%'>";
+	echo "<h1>Grilla</h1>";
+	
+	echo "<center><table class='texto'>";
 	echo "<tr><th>Nombre Grilla</th><th>Territorio</th><th>Distrito</th>
-	<th>Fecha de Creacion</th><th>Fecha de Modificacion</th><th>&nbsp</th></tr>";
+	<th>Fecha de Creacion</th><th>Fecha de Modificacion</th></tr>";
 	
 	$sql="select g.codigo_grilla, g.nombre_grilla, g.agencia, g.total_medicos, g.total_contactos, g.total_visitadores, 
 		g.contactos_visitador, g.fecha_creacion, g.fecha_modificacion, 
@@ -40,7 +40,7 @@
 	$sql_det="select * from grilla_detalle where codigo_grilla='$codigo' order by cod_especialidad,cod_categoria";
 
 	$resp_detalle=mysql_query($sql_det);
-	echo "<center><table border='1' cellspacing='0' class='texto' width='30%'>";
+	echo "<center><table class='texto'>";
 	echo "<tr><th>Especialidad</th><th>Categoria</th><th>Frecuencia</th></tr>";
 	while($dat_detalle=mysql_fetch_array($resp_detalle))
 	{
@@ -54,5 +54,5 @@
 	}
 	echo "</table><br>";
 
-	echo "<a href='navegador_grillas.php?cod_ciudad=$cod_ciudad&codigo_linea=$global_linea'><--Volver Atras</a>";
+	echo "<a href='navegador_grillas.php?cod_ciudad=$cod_ciudad&codigo_linea=$global_linea'><img src='imagenes/back.png' width='40'></a>";
 ?>

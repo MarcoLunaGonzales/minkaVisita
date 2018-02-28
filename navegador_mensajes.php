@@ -37,7 +37,9 @@ echo "<script language='Javascript'>
 	require("conexion.inc");
 	require("estilos_gerencia.inc");
 	echo "<form method='post' action=''>";
+	
 	echo "<h1>Mensajes Hermes</h1>";
+	
 	echo "<table class='texto'>";
 	echo "<tr><th>&nbsp;</th><th>Mensaje</th><th>Fecha</th></tr>";
 	$sql="select cod_mensaje, mensaje, fecha_mensaje from mensajes order by fecha_mensaje desc";
@@ -53,7 +55,9 @@ echo "<script language='Javascript'>
 		<td>$fecha</td></tr>";
 	}
 	echo "</table><br>";
-	echo "<center><table class='texto'>";
-	echo "<tr><td><input type='button' value='Adicionar' name='adicionar' class='boton' onclick='enviar_nav()'></td><td><input type='button' value='Eliminar' name='eliminar' class='boton' onclick='eliminar_nav(this.form)'></td></tr></table></center><br>";
+	echo "<div id='divBotones'>
+			<input type='button' value='Adicionar' name='adicionar' class='boton' onclick='enviar_nav()'>
+			<input type='button' value='Eliminar' name='eliminar' class='boton2' onclick='eliminar_nav(this.form)'>
+		</div>";
 	echo "</form>";
 ?>

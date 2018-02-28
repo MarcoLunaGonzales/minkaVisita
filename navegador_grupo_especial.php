@@ -71,6 +71,13 @@ $sql = "select g.codigo_grupo_especial, g.nombre_grupo_especial, (select descrip
 //echo "$sql";
 $resp = mysql_query($sql);
 echo "<h1>Registro de Grupos Especiales</h1>";
+
+echo "<div class='divBotones'>
+	<input type='button' value='Adicionar' name='adicionar' class='boton' onclick='enviar_nav();'>
+    <input type='button' value='Editar' class='boton' onclick='editar_nav(this.form);'>
+    <input type='button' value='Eliminar' name='eliminar' class='boton2' onclick='eliminar_nav(this.form);'>";
+echo "</div>";
+
 $indice_tabla=1;
 echo "<center><table class='texto'>";
 //echo "<tr><td>&nbsp;</td><td>&nbsp;</td><th>Nombre Grupo Especial</th><th>Especialidad</th><th>Visitadores Grupo Especial</th><th>&nbsp;</th><th>&nbsp;</th></tr>";
@@ -103,11 +110,12 @@ while ($dat = mysql_fetch_array($resp)) {
 echo "</table></center><br>";
 
 //require("home_regional1.inc");
-echo "<center><table border='0' class='texto'><tr>
-    <td><input type='button' value='Adicionar' name='adicionar' class='boton' onclick='enviar_nav();'></td>
-    <td><input type='button' value='Editar' class='boton' onclick='editar_nav(this.form);'></td>
-    <td><input type='button' value='Eliminar' name='eliminar' class='boton' onclick='eliminar_nav(this.form);'></td>";
-echo "</tr></table></center>";
+echo "<div class='divBotones'>
+	<input type='button' value='Adicionar' name='adicionar' class='boton' onclick='enviar_nav();'>
+    <input type='button' value='Editar' class='boton' onclick='editar_nav(this.form);'>
+    <input type='button' value='Eliminar' name='eliminar' class='boton2' onclick='eliminar_nav(this.form);'>";
+echo "</div>";
+
 echo "</form>";
 
 ?>

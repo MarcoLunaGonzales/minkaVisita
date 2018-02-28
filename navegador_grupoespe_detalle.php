@@ -43,25 +43,8 @@ $sql_cab = "SELECT g.nombre_grupo_especial FROM grupo_especial g where g.codigo_
 $resp_cab = mysql_query($sql_cab);
 $dat_cab = mysql_fetch_array($resp_cab);
 $nombre_grupo_espe = $dat_cab[0];
-echo "<center>";
-echo "<table border='0' class='textotit'><tr><td align='center'>";
-/*$sql = "SELECT distinct lv.codigo_l_visita, lv.nombre_l_visita FROM grupo_especial ge, grupoespecial_lineavisita gelv, 
-lineas_visita lv WHERE ge.codigo_grupo_especial=$cod_grupo AND ge.codigo_grupo_especial=gelv.cod_grupo AND 
-ge.codigo_linea=$codigo_linea AND gelv.cod_l_visita=lv.codigo_l_visita AND ge.codigo_linea=lv.codigo_linea AND ge.agencia=$cod_ciudad";
-$rs1 = mysql_query($sql);
-$cadLineasVisita = "";
-while ($reg = mysql_fetch_array($rs1)) {
-    $cadLineaVisita = $reg[0];
-    $nomLineaVisita = $reg[1];
-    if ($cadLineasVisita != "") {
-        $cadLineasVisita.=", $nomLineaVisita";
-    } else {
-        $cadLineasVisita.="$nomLineaVisita";
-    }
-}*/
-echo "Registro de Grupos Especiales<br>Grupo Especial: <strong>$nombre_grupo_espe</strong></strong><br>";
-echo "</td></tr></table>";
-echo "</center><br>";
+
+echo "<h1>Registro de Grupos Especiales<br>Grupo Especial: $nombre_grupo_espe</h1>";
 
 $sql = " SELECT concat(m.ap_pat_med, ' ',m.ap_mat_med,' ',m.nom_med) as nom, c.cod_especialidad,c.categoria_med,m.cod_med from 
 grupo_especial g, grupo_especial_detalle gd, medicos m, categorias_lineas c where g.codigo_grupo_especial = gd.codigo_grupo_especial 
@@ -71,7 +54,8 @@ g.codigo_grupo_especial = $cod_grupo ORDER BY g.nombre_grupo_especial, nom, c.co
 $resp = mysql_query($sql);
 echo "<center><table border='0' class='textotit'><tr><td>M&eacute;dicos Pertenecientes al Grupo</td></tr></table></center><br>";
 $indice_tabla = 1;
-echo "<center><table border='1' class='textomini' cellspacing='0' width='80%'>";
+
+echo "<center><table class='texto'>";
 echo "<tr><th>&nbsp;</th><th>&nbsp;</th><th>Codigo</th><th>Nombre</th><th>Especialidades</th></tr>"; 
 while ($dat = mysql_fetch_array($resp)) {
     $nombre_completo = $dat[0];
@@ -106,18 +90,21 @@ while ($dat = mysql_fetch_array($resp)) {
     echo "</tr>";
     $indice_tabla++;
 }
-echo "</table><br>";
+echo "</table></center>";
+
 echo "<table align='center'>";
 echo "<tr>";
 echo "<td><a href='javascript:history.back(1);'><img  border='0'src='imagenes/back.png' width='40'></a></td>";
 echo "</tr>";
 echo "</table>";
-echo "<table border='0' class='texto'>";
-echo "<tr>";
-echo "<td><input type='button' value='Adicionar' name='adicionar' class='boton' onclick='enviar_nav()'></td>";
-echo "<td><input type='button' value='Eliminar' name='eliminar' class='boton' onclick='eliminar_nav(this.form)'></td>";
+
+echo "<div class='divBotones'>
+	<input type='button' value='Adicionar' name='adicionar' class='boton' onclick='enviar_nav()'>
+	<input type='button' value='Eliminar' name='eliminar' class='boton2' onclick='eliminar_nav(this.form)'>
+	</div>";
+	
 echo "</tr>";
 echo "</table>";
-echo "</center>";
+
 echo "</form>";
 ?>

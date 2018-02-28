@@ -13,8 +13,10 @@ echo "<script language='Javascript'>
 require("conexion.inc");
 require("estilos_gerencia.inc");
 echo "<form action='guarda_mensaje.php' method='post'>";
-echo "<center><table border='0' class='textotit'><tr><td>Registrar Mensaje</td></tr></table></center><br>";
-echo "<center><table border='1' class='texto' cellspacing='0'>";
+
+echo "<h1>Registrar Mensaje</h1>";
+
+echo "<center><table class='texto'>";
 echo "<tr><th>Mensaje</th></tr>";
 echo "<tr><td align='center'><input type='text' class='texto' name='mensaje' size='100'></td>";
 echo "</tr></table><br>";

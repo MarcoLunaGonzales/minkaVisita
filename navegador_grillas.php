@@ -50,7 +50,7 @@
 				}
 			}
 			if(j==0)
-			{	alert('Debe seleccionar al menos una Grilla para proceder a su eliminación.');
+			{	alert('Debe seleccionar al menos una Grilla para proceder a su eliminacion.');
 			}
 			else
 			{
@@ -137,15 +137,14 @@
 	$dat=mysql_fetch_array($resp);
 	$ciudad=$dat[1];
 	echo "<form>";
-	echo "<center><table border='0' class='textotit'>";
-	echo "<tr><td align='center'>Registro de Grillas</center></td></tr></table><br>";
-	echo "<center><table border='0' cellspacing='0' class='texto'>";
-	echo "<tr><th>Linea: $nombre_linea <br> Territorio: $ciudad</th></tr></table><br>";
-	echo "<center><table border='1' cellspacing='0' class='texto' width='70%'>";
 	
+	echo "<h1>Registro de Grillas</h1>";
 	
-	echo "<tr><th>&nbsp</th><th>Nombre Grilla</th><th>Distrito</th><th>Fecha de Creación</th>
-	<th>Fecha de Modificación</th><th>Estado</th><th>&nbsp</th></tr>";
+	echo "<h2>Linea: $nombre_linea <br> Territorio: $ciudad</h2>";
+	
+	echo "<center><table class='texto'>";	
+	echo "<tr><th>&nbsp</th><th>Nombre Grilla</th><th>Distrito</th><th>Creacion</th>
+	<th>Modificacion</th><th>Estado</th><th>&nbsp</th></tr>";
 	
 	$sql="select g.codigo_grilla, g.nombre_grilla, g.fecha_creacion, g.fecha_modificacion, g.estado, 
 	(select d.descripcion from distritos d where d.cod_dist=g.cod_distrito)distrito, g.cod_distrito 
@@ -168,15 +167,24 @@
 		echo "<tr><td><input type='checkbox' name='codigo' value='$codigo'></td>
 		<td align='center'>$nombre</td>
 		<td align='center'>$distrito</td>
-		<td align='center'>$fecha_creacion</td><td align='center'>$fecha_modi</td><td align='center'>$desc_estado</td><td align='center'><a href='ver_grilla.php?codigo_grilla=$codigo&codigo_linea=$codigo_linea'>Ver--></a></td></tr>";
+		<td align='center'>$fecha_creacion</td>
+		<td align='center'>$fecha_modi</td>
+		<td align='center'>$desc_estado</td>
+		<td align='center'>
+			<a href='ver_grilla.php?codigo_grilla=$codigo&codigo_linea=$codigo_linea'>
+			<img src='imagenes/detalle.png' width='40'>
+			</a></td></tr>";
 	}
-	echo "</table><br>";
-		echo"\n<table align='center'><tr><td><a href='grilla_ciudades.php'><img  border='0'src='imagenes/back.png' width='40'></a></td></tr></table>";
-	echo "<center><table border='0' class='texto'>";
-	echo "<tr><td><input type='button' value='Adicionar' name='adicionar' class='boton' onclick='enviar_nav()'></td>
-	<td><input type='button' value='Eliminar' name='eliminar' class='boton' onclick='eliminar_nav(this.form)'></td></center>
-	<td><input type='button' value='Editar' class='boton' onclick='editar_nav(this.form)'></td>
-	<td><input type='button' value='Replicar' class='boton' onclick='replicar(this.form)'></td>
-	<td><input type='button' value='Activar Grilla' class='boton' onclick='activar(this.form,$codDistrito)'></td></tr></table>";
+	echo "</table></center><br>";
+	
+	echo"\n<table align='center'><tr><td><a href='grilla_ciudades.php'><img  border='0'src='imagenes/back.png' width='40'></a></td></tr></table>";
+	
+	echo "<div class='divBotones'>
+		<input type='button' value='Adicionar' name='adicionar' class='boton' onclick='enviar_nav()'>
+		<input type='button' value='Editar' class='boton' onclick='editar_nav(this.form)'>
+		<input type='button' value='Replicar' class='boton' onclick='replicar(this.form)'>
+		<input type='button' value='Activar Grilla' class='boton' onclick='activar(this.form,$codDistrito)'>
+		<input type='button' value='Eliminar' name='eliminar' class='boton2' onclick='eliminar_nav(this.form)'>
+	</div>";
 	echo "</form>";
 ?>

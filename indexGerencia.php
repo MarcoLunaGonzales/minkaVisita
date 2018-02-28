@@ -58,16 +58,16 @@ include("datosUsuario.php");
 			<li><span>Distribución de Material por Ciclo</span>
 				<ul>
 					<li><a href="navegador_distribucion_ciclos.php" target="contenedorPrincipal">Distribución General de MM y MA</a></li>
-					<li><a href="navegador_distribucion_ciclos.php" target="contenedorPrincipal">Distribución General de MM y MA GE</a></li>
+					<!--li><a href="navegador_distribucion_ciclos.php" target="contenedorPrincipal">Distribución General de MM y MA GE</a></li-->
 				</ul>
 			</li>
 			
-			<li><span>Ruteros</span>
+			<!--li><span>Ruteros</span>
 				<ul>
 					<li><a href="aprobar_rutero_conjunto.php" target="contenedorPrincipal">Aprobar Ruteros</a></li>
 					<li><a href="rechazar_rutero_conjunto.php" target="contenedorPrincipal">Rechazar Ruteros</a></li>
 				</ul>
-			</li>
+			</li-->
 			
 			<li><span>Baja de Medicos para Cobertura</span>
 				<ul>

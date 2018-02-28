@@ -18,10 +18,10 @@ $regionales_finales = array_combine($cod_ciudades, $nom_ciudades);
 <html lang="en-US">
 <head>
     <meta charset="iso-8859-1">
-    <title>Aprobar Baja Medicos</title>
-    <link type="text/css" href="css/style.css" rel="stylesheet" />
+
+    <!--link type="text/css" href="css/style.css" rel="stylesheet" />
     <link type="text/css" href="responsive/stylesheets/foundation.css" rel="stylesheet" />
-    <link rel="stylesheet" href="responsive/stylesheets/style.css">
+    <link rel="stylesheet" href="responsive/stylesheets/style.css"-->
     <script type="text/javascript" src="lib/jquery-1.7.1.js"></script>
     <script type="text/javascript">
         jQuery(document).ready(function($) {
@@ -190,16 +190,18 @@ function toggleCheckedD(status) {
 </head>
 <body>
     <div id="container">
-        <?php require("estilos3.inc"); ?>
+        <?php require("estilos_gerencia.inc"); ?>
         <header id="titulo" style="min-height: 50px">
-            <h3 style="color: #5F7BA9; font-size: 1.5em; font-family: Vernada">Aprobar Baja Medicos</h3>
-            <h3 style="color: #5F7BA9; font-size: 1.0em; font-family: Vernada">Para las regionales: <?php 
+            <h1>Aprobar Baja Medicos</h1>
+            <h2>Para las regionales: <?php 
                 foreach ($regionales_finales as $cod_ciudades => $nom_ciudades) {
                     echo $nom_ciudades.", ";
                 }
-                ?> </h3>
-            </header>
-            <ul class="tabs">
+                ?> 
+			</h2>
+        </header>
+        
+		<ul class="tabs">
                 <li><a href="#tab1">Aprobados</a></li>
                 <li><a href="#tab2">Rechazados</a></li>
             </ul>
@@ -216,7 +218,7 @@ function toggleCheckedD(status) {
                             ?>
                             <div class="twelve columns centered">
                                 <h2 style="color: #5F7BA9; font-size: 1.3em; font-family: Vernada; text-align: left"><?php echo $nom_ciudades; ?></h2>
-                                <table border="1">
+                                <center><table class="texto">
                                     <tr>
                                         <th></th>
                                         <th>Nombre Funcionario</th>
@@ -263,7 +265,7 @@ function toggleCheckedD(status) {
                                         <?php  
                                     }
                                     ?>
-                                </table>
+                                </table></center>
                             </div>
                             <?php
                         } 
@@ -282,7 +284,7 @@ function toggleCheckedD(status) {
                             ?>
                             <div class="twelve columns centered">
                                 <h2 style="color: #5F7BA9; font-size: 1.3em; font-family: Vernada; text-align: left"><?php echo $nom_ciudades; ?></h2>
-                                <table border="1">
+                                <center><table class="texto">
                                     <tr>
                                         <th></th>
                                         <th>Nombre Funcionario</th>
@@ -323,7 +325,7 @@ function toggleCheckedD(status) {
                                         <?php  
                                     }
                                     ?>
-                                </table>
+                                </table></center>
                             </div>
                             <?php
                         } 
@@ -333,11 +335,9 @@ function toggleCheckedD(status) {
 
             </div>
             
-            <div class="row centered" style="margin: 10px 0">
-                <center>
-                    <a href='javascript:void(0)' class='button' id='aprobar'>Aprobar Seleccionados</a>
-                    <a href='javascript:void(0)' class='button' id='rechazar'>Rechazar Seleccionados</a>
-                </center>
+            <div class="divBotones">
+                    <input type="button" onclick='javascript:void(0)' class='boton' id='aprobar' value="Aprobar">
+                    <input type="button" onclick='javascript:void(0)' class='boton2' id='rechazar' value="Rechazar">
             </div>
         </div>
         <div class="modal"></div>
