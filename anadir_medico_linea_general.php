@@ -93,6 +93,7 @@ echo "<script language='Javascript'>
 			}
 		}
 		</script>";
+		
 	require("conexion.inc");
 	require("estilos_gerencia.inc");
 	require("funcion_nombres.php");
@@ -114,17 +115,19 @@ echo "<script language='Javascript'>
     
 	//m.ap_pat_med, m.ap_mat_med, m.nom_med
 	$resp=mysql_query($sql);
-	echo "<center><table border='0' class='textotit'><tr><td>A&ntildeadir M&eacute;dicos a la L&iacute;nea</td></tr></table></center><br>";
-	//echo "<center><table border='0' class='textomini'><tr><th>Leyenda:</th><th>M&eacute;dicos ya asignados a la L&iacute;nea</th><td bgcolor='#66CCFF' width='30%'></td></tr></table></center>";
-	echo "<table align='center' border='0' class='textomini'><tr><th>Leyenda:</th><th>Especialidad del M&eacute;dico en la l&iacute;nea se visualiza con negrita.</th></tr></table><br>";
-	require("home_regional1.inc");
-	echo "<center><table border='0' class='texto'>";
-	echo "<tr><td><input type='button' value='A&ntilde;adir / Editar' class='boton' onclick='anadir_categoria(this.form, $codCiudadGlobal)'></td></tr></table></center>";
-	echo "<center><table class='texto' border=1 cellspacing='0'>";
-	echo "<tr><td><input type='checkbox' name='todo' onClick='sel_todo(this.form)'>Seleccionar Todo</td></tr></table>";	
-	echo "<center><table border='1' class='textosupermini' cellspacing='0' width='80%'>";
+
+	echo "<h1>Asignar/Quitar Medicos de Lineas</h1>";
+
+	echo "<div class='divBotones'>
+	<input type='button' value='Asignar / Quitar' class='boton' onclick='anadir_categoria(this.form, $codCiudadGlobal)'>
+	</div>";
+	
+	echo "<center><table class='texto' border=0 cellspacing='0'>";
+	echo "<tr><td><input type='checkbox' name='todo' onClick='sel_todo(this.form)'>Seleccionar Todo</td></tr></table></center>";	
+
+	echo "<center><table class='texto'>";
 	$indice_tabla=1;
-	echo "<tr><th>&nbsp;</th><th>&nbsp;</th><th>Codigo</th><th>Nombre</th><th>Nacimiento</th><th>Especialidades</th>
+	echo "<tr><th>&nbsp;</th><th>&nbsp;</th><th>Codigo</th><th>Nombre</th><th>Especialidades</th>
 	<th>Direcciones</th><th>Linea / Visitador</th></tr>";
 	while($dat=mysql_fetch_array($resp))
 	{
@@ -202,8 +205,8 @@ echo "<script language='Javascript'>
 			$cad_lineas="$cad_lineas</table>";
 			
 			echo "<tr bgcolor='$med_en_linea'><td align='center'>$indice_tabla</td><td align='center'>
-			<input type='checkbox' name='codigos_ciclos' value=$cod></td><td align='center'>$cod</td><td class='textomini'>&nbsp;$nombre_completo</th>
-			<td align='center'>&nbsp;$fecha_nac</th><td align='center'>&nbsp;$especialidad</th><td align='center'>&nbsp;$direccion_medico</th>
+			<input type='checkbox' name='codigos_ciclos' value=$cod></td><td align='center'>$cod</td><td class='texto'>&nbsp;$nombre_completo</th>
+			<td align='center'>&nbsp;$especialidad</th><td align='center'>&nbsp;$direccion_medico</th>
 			<td>&nbsp;$cad_lineas</td></tr>";
 			/*if($filas_aux==0)
 			{	echo "<tr bgcolor='$med_en_linea'><td align='center'>$indice_tabla</td><td align='center'><input type='checkbox' name='codigos_ciclos' value=$cod></td><td align='center'>$cod</td><td class='textomini'>&nbsp;$nombre_completo</th><td align='center'>&nbsp;$fecha_nac</th><td align='center'>&nbsp;$especialidad</th><td align='center'>&nbsp;$direccion_medico</th><td align='center'>&nbsp;$telf</th><td align='center'>&nbsp;$cel</th><td>&nbsp;$visitadores</td></tr>";
@@ -215,10 +218,11 @@ echo "<script language='Javascript'>
 		
 	}
 		echo "</table></center><br>";
-		require("home_regional1.inc");
-		echo "<center><table border='0' class='texto'>";
-		echo "<tr><td><input type='button' value='A&ntilde;adir / Editar' class='boton' onclick='anadir_categoria(this.form, $codCiudadGlobal)'></td></tr></table></center>";
-		echo "</form>";
-echo"</div>";
 
+		echo "<div class='divBotones'>
+		<input type='button' value='Asignar / Quitar' class='boton' onclick='anadir_categoria(this.form, $codCiudadGlobal)'>
+		</div>";
+		
+	echo "</div>";
+		echo "</form>";
 ?>

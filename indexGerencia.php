@@ -22,11 +22,14 @@ include("datosUsuario.php");
 <div id="page">
 	<div class="header">
 		<a href="#menu"><span></span></a>
-		MINKA V++
-		<div style="position:absolute; width:90%; height:50px; text-align:right; top:0px; font-size: 10px; font-weight: bold; color: #fff;">
-			Usuario: <? echo $nombreUsuarioSesion?>
+		MINKA V++<span style="color:yellow;">(Modulo Administracion)</span>
+		<div style="position:absolute; width:95%; height:50px; text-align:right; top:0px; font-size: 9px; font-weight: bold; color: #fff;">
+			[<? echo $fechaSistemaSesion?>][<? echo $horaSistemaSesion;?>]			
 		<div>
-		
+
+		<div style="position:absolute; width:95%; height:50px; text-align:left; top:0px; font-size: 9px; font-weight: bold; color: #fff;">
+			[<? echo $nombreUsuarioSesion?>]</span>
+		<div>		
 	</div>
 	
 	
@@ -46,22 +49,9 @@ include("datosUsuario.php");
 			
 			<li><span>Gestión de Medicos</span>
 				<ul>
-					<li><a href="navegador_medicos1.php" target="contenedorPrincipal">Medicos Listado Madre</a></li>
-					<li><a href="medicos_solicitados_lista_gerencia.php" target="contenedorPrincipal">Aprobacion de Alta de Medicos</a></li>
-					<li><a href="medicos_lineas.php" target="contenedorPrincipal">Medicos Territorio</a></li>
-					<li><span>Añadir Medicos</span>
-						<ul>
-							<li><a href="medicosCiudadesGeneral.php" target="contenedorPrincipal">Listado General</a></li>
-							<li><a href="busqueda_medicos_lineas.php" target="contenedorPrincipal">Búsqueda</a></li>
-							<li><a href="busquedaMedAnadir.php" target="contenedorPrincipal">Añadir Medicos por busqueda</a></li>							
-						</ul>
-					</li>
-					<li><span>Medicos de la Linea</span>
-						<ul>
-							<li><a href="navegador_medicos_lineas.php" target="contenedorPrincipal">Detallado</a></li>
-							<li><a href="busquedaMedCat.php" target="contenedorPrincipal">Cambiar Categorias</a></li>
-						</ul>	
-					</li>
+					<li><a href="medicos_solicitados_lista_gerencia.php" target="contenedorPrincipal">Aprobar Alta de Medicos</a></li>
+					<li><a href="navegador_medicos1.php" target="contenedorPrincipal">Editar Datos de Medico</a></li>
+					<li><a href="medicosCiudadesGeneral.php" target="contenedorPrincipal">Asignar/Quitar Medicos de Lineas</a></li>
 				</ul>
 			</li>
 			

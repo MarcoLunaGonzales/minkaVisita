@@ -120,7 +120,7 @@ echo "</table><br>";
 echo"\n<table align='center'><tr><td><a href='navegador_funcionarios_regional.php'><img  border='0'src='imagenes/back.png' width='40'></a></td></tr></table>";
 echo "<center><table border='0' class='texto'>";
 echo "<tr><td><input type='button' value='Aprobar' class='boton' onclick='aprobar_rutero(this.form)'>
-<input type='button' value='Rechazar' class='boton' onclick='rechazar_rutero(this.form)'>
+<input type='button' value='Rechazar' class='boton2' onclick='rechazar_rutero(this.form)'>
 </td></tr></table></center>";
 echo "</form>";
 

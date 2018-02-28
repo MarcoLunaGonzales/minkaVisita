@@ -77,7 +77,7 @@ echo "<div id='divRecuadroExt' style='background-color:#666; position:fixed; wid
 	
 echo "<div id='divEx'>";
 echo "<br>";
-echo "<center><table border='0' class='textotit'><tr><td>Anadir/Editar Categoria de Medicos</td></tr></table></center><br>";
+echo "<h1>Asignar / Quitar Medicos de Lineas</h1>";
 for($k=0;$k<=$n;$k++)
 {	$valor_vector=$vector[$k];
 	$cadena=$cadena."|".$valor_vector;
@@ -85,7 +85,7 @@ for($k=0;$k<=$n;$k++)
 
 //echo "<input type='hidden' name='cadena' value='$cadena'>";
 
-echo "<center><table border='1' class='textomini' cellspacing='0'>";
+echo "<center><table class='texto'>";
 echo "<tr><th>&nbsp;</th><th>Medico</th><th>Linea</th><th>Especialidades</th><th>Categoria</th><th>Visitador</th><th>Observaciones</th></tr>";
 $codPivot=0;
 $jj=0;
@@ -201,13 +201,17 @@ for($i=0;$i<$n;$i++)
 	
 }
 //echo "<input type='hidden' name='cantidad' value='$jj' id='cantidad'>";
-echo "</table><br>";
+echo "</table></center><br>";
 
 	echo "<table border=0 class='texto'><tr><th>Nota: Si no asigna visitador el medico no sera registrado en la linea.</th></tr></table>";
 
 
 echo"\n<table align='center'><tr><td><a href='javascript:history.back(-1)'><img  border='0'src='imagenes/back.png' width='40'></a></td></tr></table>";
-echo "<center><input type='button' name='x' value='Guardar' class='boton' onClick='crearJson2(this.form);'></center>";
+
+echo "<div class='divBotones'>
+<input type='button' name='x' value='Guardar' class='boton' onClick='crearJson2(this.form);'>
+</div>";
+
 echo "</div>";
 echo "</form>";
 ?>

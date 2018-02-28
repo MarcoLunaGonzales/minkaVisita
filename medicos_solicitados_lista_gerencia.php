@@ -161,7 +161,7 @@ require("estilos_administracion.inc");
     }
 </style>
 
-<h1>Aprobacion de alta de Medicos</h1>
+<h1>Aprobar alta de Medicos</h1>
 
 
 <div class="divBotones">

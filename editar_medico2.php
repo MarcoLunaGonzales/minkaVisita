@@ -208,7 +208,9 @@ function cargarZonas(f, zona1, zona2, zona3){
 ?>
 <html>
 <body onload="">
-<table width="100%"  border="0" cellspacing="0" class="textotit"><tr><td align='center'><div align="center">EDITAR MEDICO</div><br></td></tr></table>
+
+<h1>Editar Medico</h1>
+
 <form action="registro_medico.php" method="post" name="form1">
     <table border="1" align="center" cellspacing="0" class="texto">
         <tr><th colspan="5" class="texto"><br>Datos Obligatorios<br>&nbsp;</th></tr>
@@ -369,9 +371,7 @@ function cargarZonas(f, zona1, zona2, zona3){
  }
 ?>
                 </select>
-            </td>
-			
-            <td align='center' colspan="1">&nbsp;</td>
+            </td>			
         </tr>
         <!-- xxxxxxxx -->
         <tr><th colspan="5" class="texto"><br>Datos Complementarios<br>&nbsp;</th></tr>

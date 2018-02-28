@@ -86,14 +86,18 @@ function editar_medico(f)
     }
 //echo $sql;
  $resp=mysql_query($sql);
- echo "<center><table border='0' class='textotit'><tr><td>M&#233;dicos Listado Madre</td></tr></table></center><br>";
+ echo "<h1>Editar Datos de Medico</h1>";
+ 
  echo "<table align='center'><tr><td><a href='navegador_medicos1.php'><img  border='0'src='imagenes/back.png' width='40'></a></td></tr></table>";
- echo "<center><table border='0' class='texto'>";
- echo "<tr><td><input type='button' value='Adicionar' name='adicionar' class='boton' onclick='enviar_registro()'></td><td><input type='button' value='Eliminar' name='eliminar' class='boton' onclick='eliminar_medico(this.form)'></td><td><input type='button' value='Editar' name='Editar' class='boton' onclick='editar_medico(this.form)'></td></tr></table></center>";
-
- echo "<center><table border='1' class='textosupermini' cellspacing='0' width='100%'>";
+ 
+ //echo "<tr><td><input type='button' value='Adicionar' name='adicionar' class='boton' onclick='enviar_registro()'></td><td><input type='button' value='Eliminar' name='eliminar' class='boton' onclick='eliminar_medico(this.form)'></td><td><input type='button' value='Editar' name='Editar' class='boton' onclick='editar_medico(this.form)'></td></tr></table></center>";
+ echo "<div class='divBotones'>
+	<input type='button' value='Editar' name='Editar' class='boton' onclick='editar_medico(this.form)'>
+ </div>";
+ 
+ echo "<center><table class='texto'>";
  echo "<tr><td>&nbsp;</td><th>&nbsp;</th><th>Codigo</th><th>Nombre</th><th>Especialidades</th><th>Direcciones</th><th>Estado</th>
- <th>L&#237;neas / Visitadores</th><th>Categorizacion</th></tr>";
+ <th>L&#237;neas / Visitadores</th></tr>";
  $indice_tabla=1;
  while($dat=mysql_fetch_array($resp))
     {$cod=$dat[0];
@@ -130,7 +134,7 @@ function editar_medico(f)
      $direccion_medico="$direccion_medico</table>";
      $sql2="select cod_especialidad from especialidades_medicos where cod_med=$cod order by cod_especialidad asc";
      $resp2=mysql_query($sql2);
-     $especialidad="<table border=0 class='textomini' width='50%'>";
+     $especialidad="<table border=0 class='texto' width='50%'>";
      while($dat2=mysql_fetch_array($resp2))
         {$espe=$dat2[0];
          $especialidad="$especialidad<tr><td align='left'>$espe</td></tr>";
@@ -139,12 +143,7 @@ function editar_medico(f)
      $sql_auxiliar="select * from categorias_lineas where cod_med='$cod'";
      $resp_auxiliar=mysql_query($sql_auxiliar);
      $registrado_en_linea=mysql_num_rows($resp_auxiliar);
-     if($registrado_en_linea==0)
-        {$color_reg="";
-        }
-     else
-        {	$color_reg="#00ffff";
-        }
+
      
 	 $lineas_medico="select distinct(l.nombre_linea), c.cod_especialidad, c.categoria_med, l.codigo_linea from lineas l, 
 	 categorias_lineas c where c.cod_med='$cod' and l.codigo_linea=c.codigo_linea and l.estado=1";
@@ -166,43 +165,25 @@ function editar_medico(f)
     $cad_lineas="$cad_lineas</table>";
 	 
 
-     //
-     $consulta = "select nombre_perfil_psicografico from perfil_psicografico where cod_perfil_psicografico=$perfil";
-     $rs = mysql_query($consulta);
-     if (mysql_num_rows($rs)==1) {
-         $reg = mysql_fetch_array($rs);
-         $perfil = $reg[0];
-     } else {
-         $perfil = "&nbsp;";
-     }
-     //
-     $consulta = "SELECT e.nombre_estadocivil FROM estado_civil e WHERE e.cod_estadocivil=$est_civil";
-     $rs = mysql_query($consulta);
-     if (mysql_num_rows($rs)==1) {
-         $reg = mysql_fetch_array($rs);
-         $est_civil = $reg[0];
-     } else {
-         $est_civil = "&nbsp;";
-     }
-     //
      echo "<tr bgcolor='$color_reg'>
          <td align='center'>$indice_tabla</td>
          <td align='center'><input type='checkbox' name='codigos_ciclos' value='$cod'></td>
          <td align='center'>$cod</td>
-         <td align='left' class='textomini'>$nombre_completo</td>
+         <td align='left'>$nombre_completo</td>
          <td align='center'>&nbsp;$especialidad</td>
          <td align='center'>&nbsp;$direccion_medico</td>
 		 <td align='center'><span style='font-size: 15px;'>$estado_registro_medico</span></td>
-         <td align='center'>$cad_lineas</td>
-         <td align='center'><a href='formulario_medico.php?cod_medico=$cod'>Categorizacion</td>
-        
+         <td align='center'>$cad_lineas</td>        
          </tr>";
      $indice_tabla++;
     }
  echo "</table></center><br>";
  echo "<table align='center'><tr><td><a href='navegador_medicos1.php'><img  border='0'src='imagenes/back.png' width='40'></a></td></tr></table>";
- echo "<center><table border='0' class='texto'>";
- echo "<tr><td><input type='button' value='Adicionar' name='adicionar' class='boton' onclick='enviar_registro()'></td><td><input type='button' value='Eliminar' name='eliminar' class='boton' onclick='eliminar_medico(this.form)'></td><td><input type='button' value='Editar' name='Editar' class='boton' onclick='editar_medico(this.form)'></td></tr></table></center>";
+
+ echo "<div class='divBotones'>
+	<input type='button' value='Editar' name='Editar' class='boton' onclick='editar_medico(this.form)'>
+ </div>";
+ 
  echo "</form>";
 
 ?>

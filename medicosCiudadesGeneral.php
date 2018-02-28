@@ -10,10 +10,10 @@
 	
 	$sql="select cod_ciudad,descripcion from ciudades order by descripcion";
 	$resp=mysql_query($sql);
-	echo "<center><table border='0' class='textotit'>";
-	echo "<tr><td align='center'>Medicos por Territorio<br><strong>$nombre_linea</strong></center></td></tr></table><br>";
-	echo "<center><table  width='60%' border='1' cellspacing='0' class='texto'>";
-	echo "<tr><th>Territorio</th><th>&nbsp;</th></tr>";
+	echo "<h1>Asignar/Quitar Medicos de Lineas<br>$nombre_linea</h1>";
+
+	echo "<center><table class='texto'>";
+	echo "<tr><th>Territorio</th><th>Alfabetico</th><th>Codigo</th></tr>";
 	//echo "<tr><td>Nacional</td><td><a href='grilla_nacional.php'>Ver >></a></td></tr>";
 	while($dat=mysql_fetch_array($resp))
 	{
@@ -21,10 +21,10 @@
 		$p_agencia=$dat[1];
 		echo "<tr><td align='left'>&nbsp;&nbsp;$p_agencia</td>
 		<td align='center'>
-		<a href='anadir_medico_linea_general.php?codCiudadGlobal=$p_cod_ciudad&ver=1'>Lista Orden Alfabetico>></a>
+		<a href='anadir_medico_linea_general.php?codCiudadGlobal=$p_cod_ciudad&ver=1'><img src='imagenes/flecha.png' width='40'></a>
 		</td>
 		<td align='center'>
-		<a href='anadir_medico_linea_general.php?codCiudadGlobal=$p_cod_ciudad&ver=2'>Lista Orden Codigo>></a>
+		<a href='anadir_medico_linea_general.php?codCiudadGlobal=$p_cod_ciudad&ver=2'><img src='imagenes/flecha.png' width='40'></a>
 		</td>
 		</tr>";
 	}

@@ -1,7 +1,7 @@
 <html>
 <head>
 	<meta charset="utf-8" />
-	<title>Modulo Visitador <span style="color:yellow;">(Modulo Visita)</span></title>
+	<title>Modulo Visitador</title>
 
 	<link type="text/css" rel="stylesheet" href="menuLibs/css/demo.css" />
 	<link type="text/css" rel="stylesheet" href="menuLibs/dist/jquery.mmenu.css" />
@@ -22,7 +22,7 @@ include("datosUsuario.php");
 <div id="page">
 	<div class="header">
 		<a href="#menu"><span></span></a>
-		MINKA V++
+		MINKA V++<span style="color:yellow;">(Modulo Visita)</span>
 		<div style="position:absolute; width:95%; height:50px; text-align:right; top:0px; font-size: 9px; font-weight: bold; color: #fff;">
 			[<? echo $fechaSistemaSesion?>][<? echo $horaSistemaSesion;?>]			
 		<div>
