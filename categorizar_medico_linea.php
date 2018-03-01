@@ -99,10 +99,10 @@ for($i=0;$i<$n;$i++)
 	
 	if($codPivot==$cod_med){
 	}else{
-		if($color=="<img src='imagenes/banderaazul.png' width='30'>"){
-			$color="<img src='imagenes/banderanaranja.png' width='30'>";
+		if($color=="<img src='imagenes/banderaazul.png' width='50'>"){
+			$color="<img src='imagenes/banderanaranja.png' width='50'>";
 		}else{
-			$color="<img src='imagenes/banderaazul.png' width='30'>";
+			$color="<img src='imagenes/banderaazul.png' width='50'>";
 		}
 		$codPivot=$cod_med;
 	}
@@ -124,12 +124,7 @@ for($i=0;$i<$n;$i++)
 			$codEspeVeri=$datVeri[1];
 		}
 		
-		$sqlVisAsig="select m.codigo_visitador from medico_asignado_visitador m where m.codigo_linea='$codLinea' and m.cod_med='$cod_med'";
-		$respVisAsig=mysql_query($sqlVisAsig);
-		$codVisitadorAsig=0;
-		while($datVisAsig=mysql_fetch_array($respVisAsig)){
-			$codVisitadorAsig=$datVisAsig[0];
-		}
+
 
 		
 		$cadMostrar="";
@@ -169,11 +164,20 @@ for($i=0;$i<$n;$i++)
 		//echo $sqlF;
 		$respF=mysql_query($sqlF);
 		$numF=mysql_num_rows($respF);
-		$cadMostrar=$cadMostrar."<select name='func$jj' class='texto'><option value='0'>--</option>";
+		$cadMostrar=$cadMostrar."<select name='func$jj' class='texto' multiple size='4'>";
 		while($datF=mysql_fetch_array($respF))
 		{	$codigoFunc=$datF[0];
 			$nombreFunc=$datF[1];
-			if($codVisitadorAsig==$codigoFunc){
+			
+			$sqlVisAsig="select m.codigo_visitador from medico_asignado_visitador m where 
+				m.codigo_linea='$codLinea' and m.cod_med='$cod_med' and m.codigo_visitador='$codigoFunc'";
+			$respVisAsig=mysql_query($sqlVisAsig);
+			$codVisitadorAsig=0;
+			while($datVisAsig=mysql_fetch_array($respVisAsig)){
+				$codVisitadorAsig=$datVisAsig[0];
+			}
+			
+			if($codVisitadorAsig!="0"){
 				$cadMostrar=$cadMostrar."<option value='$codigoFunc' selected>$nombreFunc</option>";	
 			}else{
 				$cadMostrar=$cadMostrar."<option value='$codigoFunc'>$nombreFunc</option>";	

@@ -53,8 +53,8 @@ function sel_todo(f)
 		categorias_lineas c
 		where m.cod_ciudad='$global_agencia' and m.cod_med=c.cod_med and 
 		c.codigo_linea=$global_linea and c.cod_med not in 
-		(select mv.cod_med from medico_asignado_visitador mv where mv.cod_med=c.cod_med and c.codigo_linea=mv.codigo_linea 
-		and codigo_visitador not in ($visitador))
+		(select mv.cod_med from medico_asignado_visitador mv where c.codigo_linea=mv.codigo_linea 
+		and codigo_visitador in ($visitador))
 		order by m.cod_med desc";
 		
 		//echo $sql;
