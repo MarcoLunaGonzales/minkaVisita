@@ -8,7 +8,7 @@ if(!function_exists('register_globals')){
 }else{
 }
 
-$conexion  = mysql_connect("localhost","root","4868422marco");
-$bd        = mysql_select_db("visita1017", $conexion);
+$conexion  = mysql_connect("localhost","root","4868422Marco");
+$bd        = mysql_select_db("minkavisita", $conexion);
 
 ?>

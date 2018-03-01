@@ -86,7 +86,7 @@ for($k=0;$k<=$n;$k++)
 //echo "<input type='hidden' name='cadena' value='$cadena'>";
 
 echo "<center><table class='texto'>";
-echo "<tr><th>&nbsp;</th><th>Medico</th><th>Linea</th><th>Especialidades</th><th>Categoria</th><th>Visitador</th><th>Observaciones</th></tr>";
+echo "<tr><th>&nbsp;</th><th>Medico</th><th>Linea</th><th>Especialidades</th><th>Categoria</th><th>Visitador</th><th>Observaciones</th><th>&nbsp;</th></tr>";
 $codPivot=0;
 $jj=0;
 for($i=0;$i<$n;$i++)
@@ -99,10 +99,10 @@ for($i=0;$i<$n;$i++)
 	
 	if($codPivot==$cod_med){
 	}else{
-		if($color=="#F3F781"){
-			$color="#81DAF5";
+		if($color=="<img src='imagenes/banderaazul.png' width='30'>"){
+			$color="<img src='imagenes/banderanaranja.png' width='30'>";
 		}else{
-			$color="#F3F781";
+			$color="<img src='imagenes/banderaazul.png' width='30'>";
 		}
 		$codPivot=$cod_med;
 	}
@@ -133,7 +133,7 @@ for($i=0;$i<$n;$i++)
 
 		
 		$cadMostrar="";
-		$cadMostrar=$cadMostrar."<tr bgcolor='$color'><td>$indice</td><td>$nombre_completo</td><td>$nombreLinea</td>";
+		$cadMostrar=$cadMostrar."<tr><td>$indice</td><td>$nombre_completo</td><td>$nombreLinea</td>";
 		$sql2="select em.cod_especialidad from especialidades_medicos em, especialidades e where 
 		em.cod_med='$cod_med' and em.cod_especialidad=e.cod_especialidad order by em.cod_especialidad";
 		$resp2=mysql_query($sql2);
@@ -187,7 +187,7 @@ for($i=0;$i<$n;$i++)
 			$cadMostrar=$cadMostrar."<td>&nbsp;</td>";
 		}
 		
-		$cadMostrar=$cadMostrar."</tr>";
+		$cadMostrar=$cadMostrar."<td>$color</td></tr>";
 		
 		if($numF>=1){
 			echo $cadMostrar;
