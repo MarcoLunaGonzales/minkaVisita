@@ -6,7 +6,17 @@ function crearJson2(f){
 			var data=new Object();
 			var especialidad=f.elements[i].value;
 			var categoria=f.elements[i+1].value;
-			var visitador=f.elements[i+2].value;
+			
+			var arrayVisitador=new Array();
+			var j=0;
+			//al0ert(f.elements[i+2])
+			for(var k=0;k<=f.elements[i+2].options.length-1;k++)
+			{	if(f.elements[i+2].options[k].selected)
+				{	arrayVisitador[j]=f.elements[i+2].options[k].value;
+					j++;
+				}
+			}
+			var visitador=arrayVisitador;
 			var medico=f.elements[i+3].value;
 			var linea=f.elements[i+4].value;
 			
