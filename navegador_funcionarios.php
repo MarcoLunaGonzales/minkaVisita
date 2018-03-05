@@ -71,12 +71,9 @@ echo "<script language='Javascript'>
                         location.href='navegador_funcionarios.php?cod_ciudad=$cod_ciudad&vista='+modo_vista+'';
                 }
                 </script>";
-        if($usuario_rrhh!="")
-		{	require("estilos_rrhh.php");
-		}
-		else
-		{	require("estilos_administracion.inc");
-		}
+
+				require("estilos_gerencia.inc");
+	
 		$sql_cab="select descripcion from ciudades where cod_ciudad=$cod_ciudad";
                 $resp_cab=mysql_query($sql_cab);
                 $dat_cab=mysql_fetch_array($resp_cab);
@@ -107,18 +104,22 @@ echo "<script language='Javascript'>
 		order by c.cargo,f.paterno";
         }
 		$resp=mysql_query($sql);
-        echo "<center><table border='0' class='textotit'><tr><th>Registro de Funcionarios<br>Territorio $nombre_ciudad</th></tr></table></center><br>";
+
+        echo "<h1>Funcionarios<br>Territorio $nombre_ciudad</h1>";
+		
         echo "<table align='center' class='texto'><tr><th>Ver funcionarios: </th><td><select name='vista' class='texto' onChange='cambiar_vista(this, this.form)'>";
         if($vista==0)   echo "<option value='0' selected>Activos</option><option value='1'>Retirados</option><option value='2'>Todo</option>";
         if($vista==1)   echo "<option value='0'>Activos</option><option value='1' selected>Retirados</option><option value='2'>Todo</option>";
         if($vista==2)   echo "<option value='0'>Activos</option><option value='1'>Retirados</option><option value='2' selected>Todo</option>";
         echo "</select>";
         echo "</td></tr></table><br>";
-		 echo "<center><table border='0' class='textomini'><tr><th>Leyenda:</th><th>Funcionarios Retirados</th><td bgcolor='#ff6666' width='30%'></td></tr></table></center><br>";
-        echo "<center><table border='1' class='textomini' cellspacing='0' width='100%'>";
-	echo "<tr><th>&nbsp;</th><th>&nbsp;</th><th>Cargo</th><th>Nombre</th>
-				<th>Correo Electrónico</th><th>Línea Clave</th><th>Alta en sistema</th>
-				<th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th></tr>";
+
+		echo "<center><table class='texto'><tr><th>Leyenda:</th><th>Funcionarios Retirados</th><td bgcolor='#ff6666' width='30%'></td></tr></table></center><br>";
+        
+		echo "<center><table class='texto'>";
+		echo "<tr><th>&nbsp;</th><th>&nbsp;</th><th>Cargo</th><th>Nombre</th>
+				<th>Email</th><th>Alta en sistema</th>
+				<th>Lineas</th><th>Dar Alta</th><th>Restablecer Clave</th></tr>";
         $indice_tabla=1;
 	while($dat=mysql_fetch_array($resp))
         {
@@ -139,57 +140,60 @@ echo "<script language='Javascript'>
                 if($estado==0)
                 {
                         $fondo_fila="#ff6666";
-                        $ver_lineas="Ver Líneas >>";
-                        $restablecer="Restablecer contraseña";
-                        $agenciasFuncionario="Agencias";
+                        $ver_lineas="-";
+                        $restablecer="-";
+                        $agenciasFuncionario="-";
                 }
                 else
                 {
                         $fondo_fila="";
-                        $ver_lineas="<a href='anadir_funcionario_linea.php?j_funcionario=$codigo&cod_territorio=$cod_ciudad'>Ver Líneas >></a>";
-                        $restablecer="<a href='restablecer_contrasena.php?codigo_funcionario=$codigo&cod_territorio=$cod_ciudad'>Restablecer contraseña</a>";
+                        $ver_lineas="<a href='anadir_funcionario_linea.php?j_funcionario=$codigo&cod_territorio=$cod_ciudad'>
+						<img src='imagenes/go2.png' width='40'></a>";
+                        $restablecer="<a href='restablecer_contrasena.php?codigo_funcionario=$codigo&cod_territorio=$cod_ciudad'>
+						<img src='imagenes/go2.png' width='40'></a>";
                         $agenciasFuncionario="<a href='navegadorFuncionariosAgencias.php?codigo_funcionario=$codigo'>Agencias</a>";
                 }
                 $sql_alta_sistema="select * from usuarios_sistema where codigo_funcionario='$codigo'";
                 $resp_alta_sistema=mysql_query($sql_alta_sistema);
                 $filas_alta=mysql_num_rows($resp_alta_sistema);
                 if($estado==0)
-                {	$alta_sistema="<img src='imagenes/no.gif'>";
-							  	$dar_alta="Dar alta en Sistema >>";
-							  	$restablecer="Restablecer contraseña";
-				  				$agenciasFuncionario="Agencias";
-								}
-								if($estado==1)
+                {	$alta_sistema="<img src='imagenes/no2.png' width='40'>";
+						$dar_alta="-";
+						$restablecer="-";
+						$agenciasFuncionario="-";
+					}
+					if($estado==1)
                 	{		if($filas_alta==0)
                 			{
-												$alta_sistema="<img src='imagenes/no.gif'>";  
-												$dar_alta="<a href='alta_funcionario_sistema.php?codigo_funcionario=$codigo&cod_territorio=$cod_ciudad'>Dar alta en Sistema >></a>";
-											}
-											else
-											{
-						  					$alta_sistema="<img src='imagenes/si.gif'>";
-												$dar_alta="Dar alta en Sistema >>";
-											}
+								$alta_sistema="<img src='imagenes/no.png' width='40'>";  
+								$dar_alta="<a href='alta_funcionario_sistema.php?codigo_funcionario=$codigo&cod_territorio=$cod_ciudad'>
+								<img src='imagenes/go2.png' width='40'></a>";
+							}
+							else
+							{
+								$alta_sistema="<img src='imagenes/si.png' width='40'>";
+								$dar_alta="-";
+							}
                 	}
 									echo "<tr bgcolor='$fondo_fila'><td align='center'>$indice_tabla</td>
 										<td align='center'><input type='checkbox' name='cod_contacto' value='$codigo'></td>
 											<td>&nbsp;$cargo</td><td>$nombre_f</td>
 										<td align='left'>&nbsp;$email</td>
-										<td align='left'>&nbsp;$linea_clave</td>
 										<td align='center'>$alta_sistema</td>
 										<td align='center'>$ver_lineas</td>
 										<td align='center'>$dar_alta</td>
-										<td align='center'>$restablecer</td>
-										<td align='center'>$agenciasFuncionario</td></tr>";
+										<td align='center'>$restablecer</td></tr>";
         						$indice_tabla++;
 					}
         echo "</table></center><br>";
+		
         echo"\n<table align='center'><tr><td><a href='navegador_funcionarios1.php'><img  border='0'src='imagenes/back.png' width='40'></a></td></tr></table>";
-        echo "<center><table border='0' class='texto'>";
-        echo "<tr><td><input type='button' value='Adicionar' name='adicionar' class='boton' onclick='enviar_nav()'></td><td>
-		<input type='button' value='Editar' name='Editar' class='boton' onclick='editar_nav(this.form)'></td>
-		<td><input type='button' value='Eliminar' name='eliminar' class='boton' onclick='eliminar_nav(this.form)' disabled='true'></td>
-		</tr></table></center>";
+        
+		echo "<div class='divBotones'>
+		<input type='button' value='Adicionar' name='adicionar' class='boton' onclick='enviar_nav()'>
+		<input type='button' value='Editar' name='Editar' class='boton' onclick='editar_nav(this.form)'>
+		<input type='button' value='Eliminar' name='eliminar' class='boton2' onclick='eliminar_nav(this.form)' disabled='true'>
+		</div>";
         echo "</form>";
 ?>
 

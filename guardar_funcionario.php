@@ -1,16 +1,8 @@
 <?php
-/**
- * Desarrollado por Datanet.
- * @autor: Marco Antonio Luna Gonzales
- * @copyright 2005
-*/
 require("conexion.inc");
-if($usuario_rrhh!="")
-{	require("estilos_rrhh.php");
-}
-else
-{	require("estilos_administracion.inc");
-}$fecha=$exafinicial;
+require("estilos_administracion.inc");
+
+$fecha=$exafinicial;
 $fecha_real=$fecha[6].$fecha[7].$fecha[8].$fecha[9]."-".$fecha[3].$fecha[4]."-".$fecha[0].$fecha[1];
 //verifica que no exista repeticion de datos en nuestra estructura
 $sql_pre="select codigo_funcionario from funcionarios order by codigo_funcionario desc";
@@ -28,6 +20,10 @@ else
 $sql="insert into funcionarios values($codigo_funcionario,'$cargo','$paterno','$materno','$nombres','$fecha_real','$direccion','$telefono',
 '$celular','$email','$agencia',1,0,0)";
 $resp=mysql_query($sql);
+
+$sql="insert into funcionarios_agencias values($codigo_funcionario,'$agencia')";
+$resp=mysql_query($sql);
+
 echo "<script language='Javascript'>
 			alert('Los datos se registraron satisfactoriamente');
 			location.href='navegador_funcionarios.php?cod_ciudad=$agencia';

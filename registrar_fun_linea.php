@@ -28,12 +28,12 @@ echo "<script language='Javascript'>
 	$sql_cab=mysql_query("select paterno, materno, nombres from funcionarios where codigo_funcionario='$j_funcionario'");
 	$dat_cab=mysql_fetch_array($sql_cab);
 	$nombre_funcionario="$dat_cab[2] $dat_cab[0] $dat_cab[1]";
-	echo "<center><table border='0' class='textotit'><tr><td>Adicionar Líneas x Funcionario</td></tr></table></center>";
-	echo "<center><table border='0' class='textotit'><tr><td>Funcionario: $nombre_funcionario</td></tr></table></center><br>";
+	echo "<h1>Adicionar Lineas a Funcionario<br>Funcionario: $nombre_funcionario</h1>";
+
 	echo "<form method='post'>";
 	$sql="select codigo_linea, nombre_linea from lineas where linea_promocion=1 and estado=1 order by nombre_linea";
 	$resp=mysql_query($sql);
-	echo "<center><table border='1' cellspacing='0' class='texto'>";
+	echo "<center><table class='texto'>";
 	echo "<tr><th>&nbsp;</th><th>Producto</th></tr>";
 	while($dat=mysql_fetch_array($resp))
 	{	$codigo_linea=$dat[0];
