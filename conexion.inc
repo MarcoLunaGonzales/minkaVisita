@@ -1,6 +1,7 @@
 <?php
 
 header('Content-Type: text/html; charset=UTF-8'); 
+date_default_timezone_set('America/La_Paz');
 
 if(!function_exists('register_globals')){
 	include('register_globals.php');

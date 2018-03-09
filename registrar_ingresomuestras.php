@@ -92,19 +92,23 @@ echo "<script language='Javascript'>
 	}
 	</script>";
 require("conexion.inc");
-if($global_tipoalmacen==1)
-{	require("estilos_almacenes_central.inc");
-}
-else
-{	require("estilos_almacenes.inc");
-}
+require("estilos_almacenes.inc");
+
+
 if($fecha=="")
 {	$fecha=date("d/m/Y");
 }
+
 echo "<form action='' method='post'>";
-echo "<table border='0' class='textotit' align='center'><tr><th>Registrar Ingreso de Muestras</th></tr></table><br>";
-echo "<table border='1' class='texto' cellspacing='0' align='center' width='90%'>";
-echo "<tr><th>N&uacute;mero de Ingreso</th><th>Fecha</th><th>Tipo de Ingreso</th><th>Nota Entrega</th></tr>";
+$grupoIngreso=$_GET["grupoIngreso"];
+if($grupoIngreso==1){
+	echo "<h1>Registrar Ingreso de Muestras</h1>";
+}else{
+	echo "<h1>Registrar Ingreso de Material</h1>";
+}
+
+echo "<center><table class='texto'>";
+echo "<tr><th>Nro. de Ingreso</th><th>Fecha</th><th>Tipo de Ingreso</th><th>Nota Entrega</th></tr>";
 $sql="select nro_correlativo from ingreso_almacenes where cod_almacen='$global_almacen' and grupo_ingreso='1' order by cod_ingreso_almacen desc";
 $resp=mysql_query($sql);
 $dat=mysql_fetch_array($resp);
@@ -144,7 +148,8 @@ echo "<td align='center'><input type='text' class='texto' name='nota_entrega' va
 echo "<tr><th colspan='4'>Observaciones</th></tr>";
 echo "<tr><td align='center' colspan='4'><input type='text' class='texto' name='observaciones' value='$observaciones' size='100'></td></tr>";
 echo "</table><br>";
-echo "<table border=1 class='texto' width='100%' align='center'>";
+
+echo "<table class='texto'>";
 echo "<tr><th colspan='5'>Cantidad de Materiales a ingresar:  <select name='cantidad_material' OnChange='enviar_form(this.form)' class='texto'>";
 for($i=0;$i<=50;$i++)
 {	if($i==$cantidad_material)
@@ -158,22 +163,27 @@ echo "</select><th></tr>";
 echo "<tr><th width='5%'>&nbsp;</th><th width='35%'>Material</th><th width='20%'>Nro. Lote</th><th width='20%'>Fecha Vencimiento</th><th width='20%'>Cantidad Unitaria</th></tr>";
 for($indice_detalle=1;$indice_detalle<=$cantidad_material;$indice_detalle++)
 {	echo "<tr><td align='center'>$indice_detalle</td>";
-	$sql_materiales="select codigo, descripcion, presentacion from muestras_medicas order by descripcion";
+	
+	if($grupoIngreso==1){
+		$sql_materiales="select codigo,concat(descripcion,' ',presentacion) from muestras_medicas order by 2";
+	}else{
+		$sql_materiales="select codigo_material, descripcion_material from material_apoyo order by 2";
+	}
 	$resp_materiales=mysql_query($sql_materiales);
 	//obtenemos los valores de las variables creadas en tiempo de ejecucion
 	$var_material="materiales$indice_detalle";
 	$valor_material=$$var_material;
-	echo "<td align='center'><select name='materiales$indice_detalle' class='textomini'>";
+	echo "<td align='center'><select name='materiales$indice_detalle' style='width:400px'>";
 	echo "<option></option>";
 	while($dat_materiales=mysql_fetch_array($resp_materiales))
 	{	$cod_material=$dat_materiales[0];
 		$nombre_material=$dat_materiales[1];
 		$presentacion_material=$dat_materiales[2];
 		if($cod_material==$valor_material)
-		{	echo "<option value='$cod_material' selected>$nombre_material $presentacion_material</option>";
+		{	echo "<option value='$cod_material' selected>$nombre_material</option>";
 		}
 		else
-		{	echo "<option value='$cod_material'>$nombre_material $presentacion_material</option>";
+		{	echo "<option value='$cod_material'>$nombre_material</option>";
 		}
 	}
 	echo "</select></td>";
@@ -197,9 +207,12 @@ for($indice_detalle=1;$indice_detalle<=$cantidad_material;$indice_detalle++)
 	echo "<td align='center'><input type='text' name='cantidad_unitaria$indice_detalle' value='$valor_cant_unit' class='texto' onKeypress='if (event.keyCode < 48 || event.keyCode > 57 ) event.returnValue = false;'></td>";
 	echo "</tr>";
 }
-echo "</table><br>";
-echo"\n<table align='center'><tr><td><a href='navegador_ingresomuestras.php'><img  border='0'src='imagenes/back.png' width='40'></a></td></tr></table>";
-echo "<center><input type='button' class='boton' value='Guardar' onClick='validar(this.form)'></center>";
+echo "</table></center>";
+
+echo "<div class='divBotones'>
+<input type='button' class='boton' value='Guardar' onClick='validar(this.form)'>
+<input type='button' class='boton2' value='Cancelar' onClick='location.href=\"navegador_ingresomuestras.php?grupoIngreso=$grupoIngreso\"'>
+</div>";
 echo "</form>";
 echo "</div></body>";
 echo "<script type='text/javascript' language='javascript'  src='dlcalendar.js'></script>";
