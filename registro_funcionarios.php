@@ -1,11 +1,4 @@
 <?php
-
-/**
- * Desarrollado por Datanet-Bolivia.
- * @autor: Marco Antonio Luna Gonzales
- * Sistema de Visita Médica
- * * @copyright 2006
-*/
 echo "<script language='Javascript'>
 function validar(f)
 {
@@ -24,21 +17,17 @@ f.submit();
 }
 </script>";
 require("conexion.inc");
-if($usuario_rrhh!="")
-	{	require("estilos_rrhh.php");
-}
-else
-	{	require("estilos_administracion.inc");
-}
+require("estilos_gerencia.inc");
+
 $ciudad_volver=$cod_ciudad;
-echo "<center><table border=0 cellspacing=0 class='textotit'><tr><th>Adición de Funcionarios</th></tr></table><br>";
+echo "<h1>Registro de Funcionario</h1>";
 echo "<form action='guardar_funcionario.php' method='get'>";
-echo "<table border=1 cellspacing=0 class='texto'><tr><th colspan=4>Registro de Datos Personales</th></tr>";
+echo "<center><table border=1 cellspacing=0 class='texto'>";
 echo "<tr><th>Paterno</th><th>Materno (*)</th><th>Nombres (*)</th><th>Fecha de Nacimiento</th></tr>";
 echo "<tr>";
-echo "<td align='center'><input type='text' name='paterno' class='texto'></td>";
-echo "<td align='center'><input type='text' name='materno' class='texto'></td>";
-echo "<td align='center'><input type='text' name='nombres' class='texto'></td>";
+echo "<td align='center'><input type='text' name='paterno' style='text-transform:uppercase;' class='texto'></td>";
+echo "<td align='center'><input type='text' name='materno' style='text-transform:uppercase;' class='texto'></td>";
+echo "<td align='center'><input type='text' name='nombres' style='text-transform:uppercase;' class='texto'></td>";
 echo "<td align='center'><INPUT  type='text' class='texto' id='exafinicial' size='10' name='exafinicial'>";
 echo" <IMG id='imagenFecha' src='imagenes/fecha.bmp'>";
 echo" <DLCALENDAR tool_tip='Seleccione la Fecha' ";
@@ -47,9 +36,9 @@ echo" navbar_style='background-color: 7992B7; color:ffffff;' ";
 echo" input_element_id='exafinicial' ";
 echo" click_element_id='imagenFecha'></DLCALENDAR></td>";
 echo "</tr>";
-echo "<tr><th>Direccion</th><th>Telefono Domicilio</th><th>Telefono Celular</th><th>Cargo</th></tr>";
+echo "<tr><th>Direccion</th><th>Telefono</th><th>Celular</th><th>Cargo</th></tr>";
 echo "<tr>";
-echo "<td align='center'><input type='text' name='direccion' class='texto'></td>";
+echo "<td align='center'><input type='text' name='direccion' style='text-transform:uppercase;' class='texto'></td>";
 echo "<td align='center'><input type='text' name='telefono' class='texto'></td>";
 echo "<td align='center'><input type='text' name='celular' class='texto'></td>";
 echo "<td align='center'><select name='cargo' class='texto'>";
@@ -61,7 +50,7 @@ while($dat_cargo=mysql_fetch_array($sql_cargo))
 	}
 	echo "</select></td>";
 	echo "</tr>";
-	echo "<tr><th>Correo Electrónico</th><th>Agencia (*)</th><th></th><th></th></tr>";
+	echo "<tr><th>Email</th><th>Agencia (*)</th><th></th><th></th></tr>";
 	echo "<tr>";
 	echo "<td align='center'><input type='text' name='email' class='texto'></td>";
 	echo "<td align='center'><select name='agencia' class='texto'>";
@@ -86,7 +75,6 @@ echo "<input type='hidden' name'cod_ciudad' value='$codciudad'>";
 echo "<input type='button' class='boton' value='Guardar' onClick='validar(this.form)'>";
 echo "</form>";
 echo "</center>";
-echo "<center><table class='texto'><tr><th>Los campos marcados con (*) deben ser llenados obligatoriamente.<br>Al registrar un funcionario este ingresa a la base de datos como funcionario activo.</th></tr></table></center>";
 echo "</div>";
 echo "<script type='text/javascript' language='javascript'  src='dlcalendar.js'></script>";
 ?>

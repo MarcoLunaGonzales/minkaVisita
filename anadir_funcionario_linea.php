@@ -1,6 +1,6 @@
 <?php
 		require("conexion.inc");
-	require("estilos_administracion.inc");
+	require("estilos_gerencia.inc");
 
 echo "<script language='Javascript'>
 		function enviar_nav()
@@ -70,11 +70,14 @@ echo "<script language='Javascript'>
 			}
 		}
 		</script>";
-	$sql_cab=mysql_query("select paterno, materno, nombres from funcionarios where codigo_funcionario='$j_funcionario'");
+	$sql_cab=mysql_query("select paterno, materno, nombres, cod_ciudad from funcionarios where codigo_funcionario='$j_funcionario'");
 	$dat_cab=mysql_fetch_array($sql_cab);
+	
 	$nombre_funcionario="$dat_cab[2] $dat_cab[0] $dat_cab[1]";
-	echo "<center><table border='0' class='textotit'><tr><th>Líneas asignadas a Funcionario</th></tr></table></center>";
-	echo "<center><table border='0' class='textotit'><tr><th>Funcionario: $nombre_funcionario</th></tr></table></center><br>";
+	$codTerritorio=$dat_cab[3];
+	echo "<h1>Funcionarios Lineas Asignadas 
+	Funcionario: $nombre_funcionario</h1>";
+
 	echo "<form>";
 	$sql="select l.codigo_linea, l.nombre_linea
 		 from lineas l,funcionarios_lineas f where f.codigo_linea=l.codigo_linea and f.codigo_funcionario='$j_funcionario' order by l.nombre_linea";
@@ -83,7 +86,7 @@ echo "<script language='Javascript'>
 	if($numero_filas!=0)
 	{
 		echo "<center><table border='1' class='texto' cellspacing='0' width='25%'>";
-		echo "<tr><th>&nbsp;</th><th>Línea</th><th>Línea Clave</th></tr>";
+		echo "<tr><th>&nbsp;</th><th>Linea</th><th>Linea Clave</th></tr>";
 		while($dat=mysql_fetch_array($resp))
 		{
 			$codigo_linea=$dat[0];
@@ -99,15 +102,18 @@ echo "<script language='Javascript'>
 			}			
 		}
 		echo "</table></center><br>";
-		echo"\n<table align='center'><tr><td><a href='navegador_funcionarios.php?cod_ciudad=$cod_territorio'><img  border='0'src='imagenes/back.png' width='40'></a></td></tr></table>";
-		echo "<center><table border='0' class='texto'>";
-		echo "<tr><td><input type='button' value='Adicionar' name='adicionar' class='boton' onclick='enviar_nav()'></td><td><input type='button' value='Eliminar' name='eliminar' class='boton' onclick='eliminar_nav(this.form)'></td><td><input type='button' value='Definir Línea Clave' class='boton' onclick='definir_lineaclave(this.form)'></td></tr></table></center>";
+		echo"\n<table align='center'><tr><td><a href='navegador_funcionarios.php?cod_ciudad=$codTerritorio'><img  border='0'src='imagenes/back.png' width='40'></a></td></tr></table>";
+		
+		echo "<div class='divBotones'>
+		<input type='button' value='Adicionar' name='adicionar' class='boton' onclick='enviar_nav()'>
+		<input type='button' value='Eliminar' name='eliminar' class='boton2' onclick='eliminar_nav(this.form)'>
+		</div>";
 		echo "</form>";
 	}
 	else
 	{	echo "<center><table border='0' class='texto' cellspacing='0'>";
-		echo "<tr><th>No existen Líneas definidas para este Funcionario</th></tr></table><br>";
-		echo"\n<table align='center'><tr><td><a href='navegador_funcionarios.php?cod_ciudad=$cod_territorio'><img  border='0'src='imagenes/back.png' width='40'></a></td></tr></table>";
+		echo "<tr><th>No existen Lineas definidas para este Funcionario</th></tr></table><br>";
+		echo"\n<table align='center'><tr><td><a href='navegador_funcionarios.php?cod_ciudad=$codTerritorio'><img  border='0'src='imagenes/back.png' width='40'></a></td></tr></table>";
 		echo "<center><table border='0' class='texto'>";
 		echo "<tr><td><input type='button' value='Adicionar' name='adicionar' class='boton' onclick='enviar_nav()'></td></tr></table></center>";
 		echo "</form>";

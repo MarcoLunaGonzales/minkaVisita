@@ -1,7 +1,7 @@
 <html>
 <head>
 	<meta charset="utf-8" />
-	<title>Gestion Estrategica</title>
+	<title>Minka V++ Administracion</title>
 
 	<link type="text/css" rel="stylesheet" href="menuLibs/css/demo.css" />
 	<link type="text/css" rel="stylesheet" href="menuLibs/dist/jquery.mmenu.css" />
@@ -22,7 +22,7 @@ include("datosUsuario.php");
 <div id="page">
 	<div class="header">
 		<a href="#menu"><span></span></a>
-		MINKA V++<span style="color:yellow;">(Modulo Administracion)</span>
+		MINKA V++<span style="color:yellow;">  (Modulo Administracion)</span>
 		<div style="position:absolute; width:95%; height:50px; text-align:right; top:0px; font-size: 9px; font-weight: bold; color: #fff;">
 			[<? echo $fechaSistemaSesion?>][<? echo $horaSistemaSesion;?>]			
 		<div>
@@ -41,12 +41,18 @@ include("datosUsuario.php");
 	<nav id="menu">
 		<ul>
 			
-			<li><a href="navegador_activar_ciclos.php" target="contenedorPrincipal">Activar Ciclo</a></li>
-			<li><a href="grilla_lineas.php" target="contenedorPrincipal">Grillas</a></li>
-			<li><a href="navegador_grupo_especial.php" target="contenedorPrincipal">Grupos Especiales</a></li>
-			<li><a href="navegador_mensajes.php" target="contenedorPrincipal">Envio de Mensajes</a></li>	
-			<li><a href="cambiar_contrasena_central.php" target="contenedorPrincipal">Cambiar Contraseña</a></li>	
-			
+			<li><span>Configuracion General</span>
+				<ul>
+					<li><a href="navegador_activar_ciclos.php" target="contenedorPrincipal">Activar Ciclo</a></li>
+					<li><a href="grilla_lineas.php" target="contenedorPrincipal">Grillas</a></li>
+					<li><a href="navegador_funcionarios1.php" target="contenedorPrincipal">Funcionarios</a></li>
+					<li><a href="navegador_grupo_especial.php" target="contenedorPrincipal">Grupos Especiales</a></li>
+					<li><a href="navegador_mensajes.php" target="contenedorPrincipal">Envio de Mensajes</a></li>	
+					<li><a href="cambiar_contrasena_central.php" target="contenedorPrincipal">Cambiar Contraseña</a></li>	
+				</ul>
+			</li>
+
+					
 			<li><span>Gestión de Medicos</span>
 				<ul>
 					<li><a href="medicos_solicitados_lista_gerencia.php" target="contenedorPrincipal">Aprobar Alta de Medicos</a></li>
