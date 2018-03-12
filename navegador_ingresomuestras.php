@@ -59,7 +59,7 @@ function ajaxBuscarIngresos(f){
 function enviar_nav(grupoIngreso){	
 	location.href='registrar_ingresomuestras.php?grupoIngreso='+grupoIngreso;
 }
-function editar_ingreso(f)
+function editar_ingreso(f, grupoIngreso)
 {
 	var i;
 	var j=0;
@@ -103,7 +103,7 @@ function editar_ingreso(f)
 				
 				if(hoy==fecha_registro)
 				{	
-				location.href='editar_ingresomuestras.php?codigo_registro='+j_cod_registro+'&grupo_ingreso=1&valor_inicial=1';	
+				location.href='editar_ingresomuestras.php?codigo_registro='+j_cod_registro+'&grupoIngreso='+grupoIngreso+'&valor_inicial=1';	
 				}
 				else{	
 					alert('Usted no esta autorizado(a) para modificar el ingreso.');

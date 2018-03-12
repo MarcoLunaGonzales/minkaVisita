@@ -24,7 +24,7 @@ if($notaIngreso!="")
 if($fechaIniBusqueda!="--" && $fechaFinBusqueda!="--")
    {$consulta = $consulta."AND '$fechaIniBusqueda'<=i.fecha AND i.fecha<='$fechaFinBusqueda' ";
    }
-if($provBusqueda!=""){
+if($provBusqueda!=0){
 	$consulta=$consulta." AND id.cod_material='$provBusqueda' ";
 }   
 $consulta = $consulta."ORDER BY i.nro_correlativo DESC";

@@ -19,6 +19,8 @@ echo "<script language='Javascript'>
 		cantidad_material=f.cantidad_material.value;
 		nota_entrega=f.nota_entrega.value;
 		codigo_registro=f.codigo_registro.value;
+		var grupoIngreso=f.grupoIngreso.value;
+		
 		if(f.fecha.value=='')
 		{	alert('El campo Fecha esta vacio.');
 			f.fecha.focus();
@@ -29,15 +31,32 @@ echo "<script language='Javascript'>
 			f.nota_entrega.focus();
 			return(false);
 		}
-		for(i=5;i<=f.length-2;i++)
-		{
-			variables[i]=f.elements[i].value;
-			if(f.elements[i].value=='')
-			{
-				alert('Algun elemento no tiene valor');
+		
+		
+		//validamos los elementos formatos y demas situaciones
+		var nroFilasDet=f.cantidad_material.value;
+		for(xx=1;xx<=nroFilasDet;xx++){
+			if(document.getElementById('materiales'+xx).value==''){
+				alert('El item no puede estar vacio. Fila: '+xx);
 				return(false);
 			}
-		}
+			if(grupoIngreso==1){
+				if(document.getElementById('nrolote'+xx).value==''){
+					alert('El Nro. de lote no puede estar vacio. Fila: '+xx);
+					return(false);
+				}
+				if(document.getElementById('fecha_vencimiento'+xx).value==''){
+					alert('La fecha de vencimiento esta vacia o no tiene el formato correcto. Fila: '+xx);
+					return(false);
+				}	
+			}
+			if(document.getElementById('cantidad_unitaria'+xx).value==''){
+				alert('La cantidad no puede estar vacia. Fila: '+xx);
+				return(false);
+			}
+		}		
+		//fin validar
+		
 		indice=0;
 		for(j=0;j<=f.length-1;j++)
 		{
@@ -70,37 +89,44 @@ echo "<script language='Javascript'>
 				indice++;	
 			}
 		}
-		var buscado,cant_buscado;
-		for(k=0;k<=indice;k++)
-		{	buscado=vector_nrolote[k];
-			cant_buscado=0;
-			for(m=0;m<=indice;m++)
-			{	if(buscado==vector_nrolote[m])
-				{	cant_buscado=cant_buscado+1;
+		if(grupoIngreso==1){
+			var buscado,cant_buscado;
+			for(k=0;k<=indice;k++)
+			{	buscado=vector_nrolote[k];
+				cant_buscado=0;
+				for(m=0;m<=indice;m++)
+				{	if(buscado==vector_nrolote[m])
+					{	cant_buscado=cant_buscado+1;
+					}
+				}
+				if(cant_buscado>1)
+				{	alert('Los Número de Lote no pueden repetirse.');
+					return(false);
 				}
 			}
-			if(cant_buscado>1)
-			{	alert('Los Número de Lote no pueden repetirse.');
-				return(false);
-			}
 		}
-		location.href='guarda_editaringresomuestras.php?vector_material='+vector_material+'&vector_nrolote='+vector_nrolote+'&vector_fechavenci='+vector_fechavenci+'&vector_cantidades='+vector_cantidades+'&fecha='+fecha+'&tipo_ingreso='+tipo_ingreso+'&observaciones='+observaciones+'&cantidad_material='+cantidad_material+'&vector_tipomaterial='+vector_tipomaterial+'&nota_entrega='+nota_entrega+'&codigo_registro='+codigo_registro+'';
+		location.href='guarda_editaringresomuestras.php?vector_material='+vector_material+'&vector_nrolote='+vector_nrolote+'&vector_fechavenci='+vector_fechavenci+'&vector_cantidades='+vector_cantidades+'&fecha='+fecha+'&tipo_ingreso='+tipo_ingreso+'&observaciones='+observaciones+'&cantidad_material='+cantidad_material+'&vector_tipomaterial='+vector_tipomaterial+'&nota_entrega='+nota_entrega+'&codigo_registro='+codigo_registro+'&grupoIngreso='+grupoIngreso+'';
 	}
 	</script>";
 require("conexion.inc");
-if($global_tipoalmacen==1)
-{	require("estilos_almacenes_central.inc");
-}
-else
-{	require("estilos_almacenes.inc");
-}
+require("funciones.php");
+
+require("estilos_almacenes.inc");
+
+
 if($fecha=="")
 {	$fecha=date("d/m/Y");
 }
+
 echo "<form action='editar_ingresomuestras.php' method='post'>";
-echo "<table border='0' class='textotit' align='center'><tr><th>Editar Ingreso de Muestras</th></tr></table><br>";
-echo "<table border='1' class='texto' cellspacing='0' align='center' width='90%'>";
+
+echo "<h1>Editar Ingreso de Muestras</h1>";
+
+echo "<center><table class='texto'>";
 //sacamos los valores iniciales para la edicion
+
+echo "<input type='hidden' name='grupoIngreso' id='grupoIngreso' value='$grupoIngreso'>";
+
 if($valor_inicial==1)
 {	$sql_val_inicial="select cod_ingreso_almacen, cod_almacen, cod_tipoingreso, fecha, hora_ingreso, observaciones, 
 				grupo_ingreso, cod_salida_almacen, nota_entrega, nro_correlativo from ingreso_almacenes
@@ -132,7 +158,7 @@ if($valor_inicial==1)
 }
 //fin sacar valores iniciales
 
-echo "<tr><th>Número de Ingreso</th><th>Fecha</th><th>Tipo de Ingreso</th><th>Nota Entrega</th></tr>";
+echo "<tr><th>Nro. Ingreso</th><th>Fecha</th><th>Tipo de Ingreso</th><th>Nota Entrega</th></tr>";
 echo "<input type='hidden' name='nro_correlativo' value='$nro_correlativo'>";
 echo "<input type='hidden' name='codigo_registro' value='$codigo_registro'>";
 echo "<tr>";
@@ -140,11 +166,8 @@ echo "<td align='center'>$nro_correlativo</td>";
 echo "<td align='center'>";
 	echo"<INPUT type='text' disabled='true' class='texto' value='$fecha' id='fecha' size='10' name='fecha'>";
 	echo" <IMG id='imagenFecha' src='imagenes/fecha.bmp'>";
-	/*echo" <DLCALENDAR tool_tip='Seleccione la Fecha' ";
-	echo" daybar_style='background-color: DBE1E7; font-family: verdana; color:000000;' ";
-	echo" navbar_style='background-color: 7992B7; color:ffffff;' ";
-	echo" input_element_id='fecha'";
-	echo" click_element_id='imagenFecha'></DLCALENDAR></td>";*/
+
+	
 $sql1="select cod_tipoingreso, nombre_tipoingreso from tipos_ingreso where tipo_almacen='$global_tipoalmacen' order by nombre_tipoingreso";
 $resp1=mysql_query($sql1);
 echo "<td align='center'><select name='tipo_ingreso' class='texto'>";
@@ -163,8 +186,9 @@ echo "<td align='center'><input type='text' class='texto' name='nota_entrega' va
 echo "<tr><th colspan='4'>Observaciones</th></tr>";
 echo "<tr><td align='center' colspan='4'><input type='text' class='texto' name='observaciones' value='$observaciones' size='100'></td></tr>";
 echo "</table><br>";
-echo "<table border=1 class='texto' width='100%' align='center'>";
-echo "<tr><th colspan='5'>Cantidad de Materiales a ingresar:  <select name='cantidad_material' OnChange='enviar_form(this.form)' class='texto'>";
+
+echo "<table class='texto'";
+echo "<tr><th colspan='5'>Cantidad de Materiales:  <select name='cantidad_material' OnChange='enviar_form(this.form)' class='texto'>";
 for($i=0;$i<=50;$i++)
 {	if($i==$cantidad_material)
 	{	echo "<option value='$i' selected>$i</option>";
@@ -183,7 +207,7 @@ for($indice_detalle=1;$indice_detalle<=$cantidad_material;$indice_detalle++)
 	//obtenemos los valores de las variables creadas en tiempo de ejecucion
 	$var_material="materiales$indice_detalle";
 	$valor_material=$$var_material;
-	echo "<td align='center'><select name='materiales$indice_detalle' class='textomini'>";
+	echo "<td align='center'><select name='materiales$indice_detalle' id='materiales$indice_detalle'>";
 	echo "<option></option>";
 	while($dat_materiales=mysql_fetch_array($resp_materiales))
 	{	$cod_material=$dat_materiales[0];
@@ -200,27 +224,30 @@ for($indice_detalle=1;$indice_detalle<=$cantidad_material;$indice_detalle++)
 	
 	$var_nrolote="nrolote$indice_detalle";
 	$valor_nrolote=$$var_nrolote;
-	echo "<td align='center'><input type='text' name='nrolote$indice_detalle' value='$valor_nrolote' class='texto' onKeyUp='javascript:this.value=this.value.toUpperCase();'></td>";
+	
+	echo "<td align='center'><input type='text' name='nrolote$indice_detalle' id='nrolote$indice_detalle' value='$valor_nrolote' onKeyUp='javascript:this.value=this.value.toUpperCase();'></td>";
 	
 	$var_fecha_vencimiento="fecha_vencimiento$indice_detalle";
 	$valor_fecha_vencimiento=$$var_fecha_vencimiento;
+	
+	$valor_fecha_vencimiento=formateaFechaVista($valor_fecha_vencimiento);
+	
 	echo "<td align='center'>";
-	echo" <INPUT type='text' class='texto' value='$valor_fecha_vencimiento' id='fecha_vencimiento$indice_detalle' size='10' name='fecha_vencimiento$indice_detalle'>";
-	echo" <IMG id='imagenFecha$indice_detalle' src='imagenes/fecha.bmp'>";
-	echo" <DLCALENDAR tool_tip='Seleccione la Fecha' ";
-	echo" daybar_style='background-color: DBE1E7; font-family: verdana; color:000000;' ";
-	echo" navbar_style='background-color: 7992B7; color:ffffff;' ";
-	echo" input_element_id='fecha_vencimiento$indice_detalle'";
-	echo" click_element_id='imagenFecha$indice_detalle'></DLCALENDAR></td>";
+
+	echo" <INPUT type='date' value='$valor_fecha_vencimiento' id='fecha_vencimiento$indice_detalle' size='10' name='fecha_vencimiento$indice_detalle'>";
+
 	$var_cant_unit="cantidad_unitaria$indice_detalle";
 	$valor_cant_unit=$$var_cant_unit;
-	echo "<td align='center'><input type='text' name='cantidad_unitaria$indice_detalle' value='$valor_cant_unit' class='texto' onKeypress='if (event.keyCode < 48 || event.keyCode > 57 ) event.returnValue = false;'></td>";
+	
+	echo "<td align='center'><input type='number' min='1' max='5000000' name='cantidad_unitaria$indice_detalle'  id='cantidad_unitaria$indice_detalle' value='$valor_cant_unit'></td>";
+	
 	echo "</tr>";
 }
-echo "</table><br>";
-echo"\n<table align='center'><tr><td><a href='navegador_ingresomuestras.php'><img  border='0'src='imagenes/back.png' width='40'></a></td></tr></table>";
-echo "<center><input type='button' class='boton' value='Guardar' onClick='validar(this.form)'></center>";
+echo "</table></center>";
+echo "<div class='divBotones'>
+<input type='button' class='boton' value='Guardar' onClick='validar(this.form)'>
+<input type='button' class='boton2' value='Cancelar' onClick='location.href=\"navegador_ingresomuestras.php?grupoIngreso=$grupoIngreso\"'>
+</div>";
 echo "</form>";
 echo "</div></body>";
-echo "<script type='text/javascript' language='javascript'  src='dlcalendar.js'></script>";
 ?>
