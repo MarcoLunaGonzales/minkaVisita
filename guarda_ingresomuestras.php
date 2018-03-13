@@ -48,14 +48,15 @@ grupo_ingreso, cod_salida_almacen, nota_entrega, nro_correlativo, ingreso_anulad
  
 $sql_inserta=mysqli_query($enlaceCon, $txtSqlInsert);
 
-echo "inserta: ".$sql_inserta;
+//echo "inserta: ".$sql_inserta;
 
 if($sql_inserta==1){
 	for($i=0;$i<=$cantidad_material-1;$i++)
 	{	$cod_material=$vector_material[$i];
 		$numero_lote=$vector_nrolote[$i];
 		$fecha_vencimiento=$vector_fechavenci[$i];
-		$fecha_sistema_vencimiento=$fecha_vencimiento[6].$fecha_vencimiento[7].$fecha_vencimiento[8].$fecha_vencimiento[9]."-".$fecha_vencimiento[3].$fecha_vencimiento[4]."-".$fecha_vencimiento[0].$fecha_vencimiento[1];
+		$fecha_sistema_vencimiento=$fecha_vencimiento;
+		//$fecha_sistema_vencimiento=$fecha_vencimiento[6].$fecha_vencimiento[7].$fecha_vencimiento[8].$fecha_vencimiento[9]."-".$fecha_vencimiento[3].$fecha_vencimiento[4]."-".$fecha_vencimiento[0].$fecha_vencimiento[1];
 		$cantidad=$vector_cantidades[$i];
 		$sql_inserta2=mysqli_query($enlaceCon, "insert into ingreso_detalle_almacenes values($codigo,'$cod_material','$numero_lote','$fecha_sistema_vencimiento',$cantidad,$cantidad,0)");
 		echo "inserta2 ".$sql_inserta2;

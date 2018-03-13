@@ -2,12 +2,6 @@
 	require("conexion.inc");
 	require('function_formatofecha.php');
 
-/**
- * Desarrollado por Datanet-Bolivia.
- * @autor: Marco Antonio Luna Gonzales
- * Sistema de Visita M�dica
- * * @copyright 2008
-*/
 error_reporting(0);
 echo "<script language='Javascript'>
 		function enviar_nav()
@@ -176,21 +170,14 @@ echo "<script language='Javascript'>
 			}
 		}
 		</script>";
-	if($global_tipoalmacen==1)
-	{	require("estilos_almacenes_central.inc");
-	}
-	else
-	{	require("estilos_almacenes.inc");
-	}
+	
+	require("estilos_almacenes.inc");
+	
 	echo "<form method='get' action=''>";
 	$fecha_sistema=date("d-m-Y");
+
 	echo "<input type='hidden' name='fecha_sistema' value='$fecha_sistema'>";
-                   if($global_usuario == 1100 ){
-                        // $variable = "and a.cod_ciudad =". $global_agencia;
-                   	$variable = "";
-                    }else{
-                        $variable = "";
-                    }
+	
 	if($campo_busqueda=='nro_salida')
 	{	$sql="select DISTINCT ( s.cod_salida_almacenes), s.fecha, s.hora_salida, ts.nombre_tiposalida, c.descripcion, a.nombre_almacen, s.observaciones, s.estado_salida, s.nro_correlativo, s.salida_anulada, s.almacen_destino
 		FROM salida_almacenes s, tipos_salida ts, ciudades c, almacenes a
@@ -209,30 +196,31 @@ echo "<script language='Javascript'>
 		and a.cod_almacen=s.almacen_destino and s.grupo_salida=1 $variable order by 
 		s.fecha desc, s.nro_correlativo desc limit 0,150";
 	}
-           // echo $sql;
+
 	$resp=mysql_query($sql);
-	echo "<center><table border='0' class='textotit'><tr><th>Salida de Muestras</th></tr></table></center><br>";
-	echo "<table border='1' class='textomini' cellspacing='0' width='90%'><tr><th>Leyenda:</th><th>Salidas Despachadas a otras agencias</th><td bgcolor='#bbbbbb' width='5%'></td><th>Salidas recepcionadas</th><td bgcolor='#33ccff' width='5%'></td><th>Salidas Anuladas</th><td bgcolor='#ff8080' width='5%'></td><th>Salidas en proceso de despacho</th><td bgcolor='#ffff99' width='5%'></td><th>Salidas locales</th><td bgcolor='#66ff99' width='5%'></td><th>Salidas pendientes</th><td bgcolor='' width='10%'>&nbsp;</td></tr></table><br>";
-	require('home_almacen.php');
-	echo "<center><table border='0' class='texto'>";
+	if($grupoSalida==1){
+		echo "<h1>Salida de Muestras</h1>";
+	}else{
+		echo "<h1>Salida de Material</h1>";
+	}
 	
-	if($global_usuario==1062)
-	{	echo "<tr><td><input type='button' value='Registrar Salida' name='adicionar' class='boton' onclick='enviar_nav()'></td><td><input type='button' value='Editar Salida' class='boton' onclick='editar_salida(this.form)'></td><td><input type='button' value='Anular Salida' class='boton' onclick='anular_salida(this.form)'></td></tr></table></center>";
-	}
-	if($global_usuario==1061)
-	{	echo "<tr><td><input type='button' value='Preparar Despacho' class='boton' onclick='preparar_despacho(this.form)'></td>
-		<td><input type='button' value='Registrar Despacho' class='boton' onclick='enviar_datosdespacho(this.form)'></td>
-		<td><input type='button' value='Imprimir en Conjunto' class='boton' onclick='imprimirNotas(this.form)'></td>
-		</tr></table></center>";
-	}
-	if($global_usuario!=1061 and $global_usuario!=1062 and $global_usuario!=1120 and $global_usuario!=1129)
-	{	echo "<tr><td><input type='button' value='Registrar Salida' name='adicionar' class='boton' onclick='enviar_nav()'></td><td><input type='button' value='Editar Salida' class='boton' onclick='editar_salida(this.form)'></td><td><input type='button' value='Registrar Despacho' class='boton' onclick='enviar_datosdespacho(this.form)'></td><td><input type='button' value='Anular Salida' class='boton' onclick='anular_salida(this.form)'></td></tr></table></center>";
-	}
+	echo "<table border='1' class='textomini' cellspacing='0' width='90%'><tr><th>Leyenda:</th><th>Salidas Despachadas a otras agencias</th><td bgcolor='#bbbbbb' width='5%'></td><th>Salidas recepcionadas</th><td bgcolor='#33ccff' width='5%'></td><th>Salidas Anuladas</th><td bgcolor='#ff8080' width='5%'></td><th>Salidas en proceso de despacho</th><td bgcolor='#ffff99' width='5%'></td><th>Salidas locales</th><td bgcolor='#66ff99' width='5%'></td><th>Salidas pendientes</th><td bgcolor='' width='10%'>&nbsp;</td></tr></table><br>";
+
+	echo "<div class='divBotones'>";
+	echo "<input type='button' value='Registrar Salida' name='adicionar' class='boton' onclick='enviar_nav()'>
+		<input type='button' value='Editar Salida' class='boton' onclick='editar_salida(this.form)'>
+		<input type='button' value='Anular Salida' class='boton2' onclick='anular_salida(this.form)'>
+		<input type='button' value='Preparar Despacho' class='boton' onclick='preparar_despacho(this.form)'>
+		<input type='button' value='Registrar Despacho' class='boton' onclick='enviar_datosdespacho(this.form)'>
+		<input type='button' value='Imprimir en Conjunto' class='boton' onclick='imprimirNotas(this.form)'>
+		</div>";
+	
+	//echo "<tr><td><input type='button' value='Registrar Salida' name='adicionar' class='boton' onclick='enviar_nav()'></td><td><input type='button' value='Editar Salida' class='boton' onclick='editar_salida(this.form)'></td><td><input type='button' value='Registrar Despacho' class='boton' onclick='enviar_datosdespacho(this.form)'></td><td><input type='button' value='Anular Salida' class='boton' onclick='anular_salida(this.form)'></td></tr></table></center>";
 	
 	
 	//echo "<tr><td><input type='button' value='Registrar Salida' name='adicionar' class='boton' onclick='enviar_nav()'></td><td><input type='button' value='Editar Salida' class='boton' onclick='editar_salida(this.form)'></td><td><input type='button' value='Preparar Despacho' class='boton' onclick='preparar_despacho(this.form)'></td><td><input type='button' value='Registrar Despacho' class='boton' onclick='enviar_datosdespacho(this.form)'></td><td><input type='button' value='Anular Salida' class='boton' onclick='anular_salida(this.form)'></td></tr></table></center>";
-	echo "<br><center><table border='1' class='texto' cellspacing='0' width='100%'>";
-	echo "<tr><th>&nbsp;</th><th>N&uacute;mero Salida</th><th>Fecha/Hora<br>Registro Salida</th><th>Tipo de Salida</th><th>Territorio<br>Destino</th><th>Almacen Destino</th><th>Funcionario Destino</th><th>Observaciones</th><th>&nbsp;</th><th>&nbsp;</th></tr>";
+	echo "<br><center><table class='texto'>";
+	echo "<tr><th>&nbsp;</th><th>Nro. Salida</th><th>Fecha/Hora<br>Registro Salida</th><th>Tipo de Salida</th><th>Territorio<br>Destino</th><th>Almacen Destino</th><th>Funcionario Destino</th><th>Observaciones</th><th>&nbsp;</th><th>&nbsp;</th></tr>";
 	while($dat=mysql_fetch_array($resp))
 	{
 		$codigo=$dat[0];
@@ -249,8 +237,9 @@ echo "<script language='Javascript'>
 		$cod_almacen_destino=$dat[10];
 		echo "<input type='hidden' name='fecha_salida$nro_correlativo' value='$fecha_salida_mostrar'>";
 		$estado_preparado=0;
+		$color_fondo="#FFFFFF";
 		if($estado_almacen==0)
-		{	$color_fondo="";
+		{	$color_fondo="#ffffff";
 			$chk="<input type='checkbox' name='codigo' value='$codigo'>";
 		}
 		//salida despachada
@@ -288,24 +277,20 @@ echo "<script language='Javascript'>
 		echo "<tr bgcolor='$color_fondo'>";
 		echo "<td align='center'>$chk</td><td align='center'>$nro_correlativo</td><td align='center'>$fecha_salida_mostrar $hora_salida</td><td>$nombre_tiposalida</td><td>$nombre_ciudad</td><td>&nbsp;$nombre_almacen</td><td>&nbsp;$nombre_funcionario</td><td>&nbsp;$obs_salida</td>";
 		$url_notaremision="navegador_detallesalidamuestras.php?codigo_salida=$codigo";
-		echo "<td><a href='javascript:llamar_preparado(this.form, $estado_preparado, $codigo)'><img src='imagenes/detalles.gif' border='0' alt='Ver Detalles de la Salida Interna'>Nota Remisi�n</a></td>";
-		echo "<td><a target='_BLANK' href='navegador_detallesalidaenvio.php?codigo_salida=$codigo'><img src='imagenes/detalles.gif' border='0' alt='Ver Detalles de la Salida Interna'>Detalles de envio</a></td></tr>";
+		echo "<td><a href='javascript:llamar_preparado(this.form, $estado_preparado, $codigo)'><img src='imagenes/detalle.png' border='0' title='Ver Detalles de la Salida Interna' width='40'></a></td>";
+		echo "<td><a target='_BLANK' href='navegador_detallesalidaenvio.php?codigo_salida=$codigo'><img src='imagenes/detalle.png' border='0' title='Ver Detalles de la Salida Interna' width='40'></a></td></tr>";
 
 	}
-	echo "</table></center><br>";
-	require('home_almacen.php');
-	echo "<center><table border='0' class='texto'>";
+	echo "</table></center><br>";	
 	
-	
-	if($global_usuario==1062)
-	{	echo "<tr><td><input type='button' value='Registrar Salida' name='adicionar' class='boton' onclick='enviar_nav()'></td><td><input type='button' value='Editar Salida' class='boton' onclick='editar_salida(this.form)'></td><td><input type='button' value='Anular Salida' class='boton' onclick='anular_salida(this.form)'></td></tr></table></center>";
-	}
-	if($global_usuario==1061)
-	{	echo "<tr><td><input type='button' value='Iniciar/Parar Despacho' class='boton' onclick='preparar_despacho(this.form)'></td><td><input type='button' value='Registrar Despacho' class='boton' onclick='enviar_datosdespacho(this.form)'></td></tr></table></center>";
-	}
-	if($global_usuario!=1061 and $global_usuario!=1062 and $global_usuario!=1120 and $global_usuario!=1129)
-	{	echo "<tr><td><input type='button' value='Registrar Salida' name='adicionar' class='boton' onclick='enviar_nav()'></td><td><input type='button' value='Editar Salida' class='boton' onclick='editar_salida(this.form)'></td><td><input type='button' value='Registrar Despacho' class='boton' onclick='enviar_datosdespacho(this.form)'></td><td><input type='button' value='Anular Salida' class='boton' onclick='anular_salida(this.form)'></td></tr></table></center>";
-	}
+	echo "<div class='divBotones'>";
+	echo "<input type='button' value='Registrar Salida' name='adicionar' class='boton' onclick='enviar_nav()'>
+		<input type='button' value='Editar Salida' class='boton' onclick='editar_salida(this.form)'>
+		<input type='button' value='Anular Salida' class='boton2' onclick='anular_salida(this.form)'>
+		<input type='button' value='Preparar Despacho' class='boton' onclick='preparar_despacho(this.form)'>
+		<input type='button' value='Registrar Despacho' class='boton' onclick='enviar_datosdespacho(this.form)'>
+		<input type='button' value='Imprimir en Conjunto' class='boton' onclick='imprimirNotas(this.form)'>
+		</div>";
 	
 	echo "</form>";
 ?>

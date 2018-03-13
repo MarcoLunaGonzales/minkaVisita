@@ -210,7 +210,17 @@ for($indice_detalle=1;$indice_detalle<=$cantidad_material;$indice_detalle++)
 	
 	$var_nrolote="nrolote$indice_detalle";
 	$valor_nrolote=$$var_nrolote;
-	echo "<td align='center'><input type='text' name='nrolote$indice_detalle' id='nrolote$indice_detalle' value='$valor_nrolote' class='texto' onKeyUp='javascript:this.value=this.value.toUpperCase();'></td>";
+	
+	if($grupoIngreso==1){
+		echo "<td align='center'>
+		<input type='text' name='nrolote$indice_detalle' id='nrolote$indice_detalle' value='$valor_nrolote' class='texto' onKeyUp='javascript:this.value=this.value.toUpperCase();'>
+		</td>";
+	}else{
+		echo "<td align='center'>
+		<input type='text' name='nrolote$indice_detalle' id='nrolote$indice_detalle' value='$valor_nrolote' class='texto' onKeyUp='javascript:this.value=this.value.toUpperCase();' disabled>
+		</td>";
+	}
+	
 	
 	$var_fecha_vencimiento="fecha_vencimiento$indice_detalle";
 	$valor_fecha_vencimiento=$$var_fecha_vencimiento;
@@ -218,9 +228,17 @@ for($indice_detalle=1;$indice_detalle<=$cantidad_material;$indice_detalle++)
 	if($valor_fecha_vencimiento==""){
 		$valor_fecha_vencimiento=date("Y-m-d");
 	}
-	echo "<td align='center'>";
-	echo" <INPUT type='date' class='texto' value='$valor_fecha_vencimiento' id='fecha_vencimiento$indice_detalle' size='10' name='fecha_vencimiento$indice_detalle'>
-	</td>";
+	
+	if($grupoIngreso==1){
+		echo "<td align='center'>";
+		echo" <INPUT type='date' class='texto' value='$valor_fecha_vencimiento' id='fecha_vencimiento$indice_detalle' size='10' name='fecha_vencimiento$indice_detalle'>
+		</td>";	
+	}else{
+		echo "<td align='center'>";
+		echo" <INPUT type='date' class='texto' value='$valor_fecha_vencimiento' id='fecha_vencimiento$indice_detalle' size='10' name='fecha_vencimiento$indice_detalle' disabled>
+		</td>";	
+	}
+
 	$var_cant_unit="cantidad_unitaria$indice_detalle";
 	$valor_cant_unit=$$var_cant_unit;
 	if($valor_cant_unit==""){

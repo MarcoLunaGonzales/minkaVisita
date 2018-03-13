@@ -202,22 +202,25 @@ echo "<tr><th width='5%'>&nbsp;</th><th width='35%'>Material</th><th width='20%'
 for($indice_detalle=1;$indice_detalle<=$cantidad_material;$indice_detalle++)
 {	
 	echo "<tr><td align='center'>$indice_detalle</td>";
-	$sql_materiales="select codigo, descripcion, presentacion from muestras_medicas order by descripcion";
+	if($grupoIngreso==1){
+		$sql_materiales="select codigo, concat(descripcion, ' ', presentacion) from muestras_medicas order by 2";	
+	}else{
+		$sql_materiales="select codigo_material, descripcion_material from material_apoyo order by 2";
+	}
 	$resp_materiales=mysql_query($sql_materiales);
 	//obtenemos los valores de las variables creadas en tiempo de ejecucion
 	$var_material="materiales$indice_detalle";
 	$valor_material=$$var_material;
-	echo "<td align='center'><select name='materiales$indice_detalle' id='materiales$indice_detalle'>";
+	echo "<td align='center'><select name='materiales$indice_detalle' id='materiales$indice_detalle' style='width:400px'>";
 	echo "<option></option>";
 	while($dat_materiales=mysql_fetch_array($resp_materiales))
 	{	$cod_material=$dat_materiales[0];
 		$nombre_material=$dat_materiales[1];
-		$presentacion_material=$dat_materiales[2];
 		if($cod_material==$valor_material)
-		{	echo "<option value='$cod_material' selected>$nombre_material $presentacion_material</option>";
+		{	echo "<option value='$cod_material' selected>$nombre_material</option>";
 		}
 		else
-		{	echo "<option value='$cod_material'>$nombre_material $presentacion_material</option>";
+		{	echo "<option value='$cod_material'>$nombre_material</option>";
 		}
 	}
 	echo "</select></td>";
@@ -225,16 +228,32 @@ for($indice_detalle=1;$indice_detalle<=$cantidad_material;$indice_detalle++)
 	$var_nrolote="nrolote$indice_detalle";
 	$valor_nrolote=$$var_nrolote;
 	
-	echo "<td align='center'><input type='text' name='nrolote$indice_detalle' id='nrolote$indice_detalle' value='$valor_nrolote' onKeyUp='javascript:this.value=this.value.toUpperCase();'></td>";
+	if($grupoIngreso==1){
+		echo "<td align='center'>
+			<input type='text' name='nrolote$indice_detalle' id='nrolote$indice_detalle' value='$valor_nrolote' onKeyUp='javascript:this.value=this.value.toUpperCase();'>
+			</td>";	
+	}else{
+		echo "<td align='center'>
+			<input type='text' name='nrolote$indice_detalle' id='nrolote$indice_detalle' value='$valor_nrolote' onKeyUp='javascript:this.value=this.value.toUpperCase();' disabled>
+			</td>";	
+	}
+	
 	
 	$var_fecha_vencimiento="fecha_vencimiento$indice_detalle";
 	$valor_fecha_vencimiento=$$var_fecha_vencimiento;
 	
 	$valor_fecha_vencimiento=formateaFechaVista($valor_fecha_vencimiento);
 	
-	echo "<td align='center'>";
+	if($grupoIngreso==1){
+		echo "<td align='center'>
+		<INPUT type='date' value='$valor_fecha_vencimiento' id='fecha_vencimiento$indice_detalle' size='10' name='fecha_vencimiento$indice_detalle'>
+		</td>";	
+	}else{
+		echo "<td align='center'>
+		<INPUT type='date' value='$valor_fecha_vencimiento' id='fecha_vencimiento$indice_detalle' size='10' name='fecha_vencimiento$indice_detalle' disabled>
+		</td>";
+	}
 
-	echo" <INPUT type='date' value='$valor_fecha_vencimiento' id='fecha_vencimiento$indice_detalle' size='10' name='fecha_vencimiento$indice_detalle'>";
 
 	$var_cant_unit="cantidad_unitaria$indice_detalle";
 	$valor_cant_unit=$$var_cant_unit;

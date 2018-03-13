@@ -43,20 +43,18 @@ include("datosUsuario.php");
 			<li><span>Ingresos</span>
 				<ul>
 					<li><a href="navegador_ingresomuestras.php?grupoIngreso=1" target="contenedorPrincipal">Muestras -> Listado de Ingresos</a></li>
-					<li><a href="navegador_ingresomuestrastransito.php" target="contenedorPrincipal">Muestras -> Listado Ingresos en Transito</a></li>
+					<li><a href="navegador_ingresomuestrastransito.php?grupoIngreso=1" target="contenedorPrincipal">Muestras -> Traspasos pendientes de Ingreso</a></li>
 					
 					<li><a href="navegador_ingresomuestras.php?grupoIngreso=2" target="contenedorPrincipal">Materiales -> Listado Ingresos</a></li>
-					<li><a href="navegador_ingresomaterialapoyotransito.php" target="contenedorPrincipal">Materiales -> Listado Ingresos en Transito</a></li>
+					<li><a href="navegador_ingresomuestrastransito.php?grupoIngreso=2" target="contenedorPrincipal">Materiales -> Traspasos pendientes de Ingreso</a></li>
 				</ul>
 			</li>
 			
 			<li><span>Salidas</span>
 				<ul>
-					<li><a href="navegador_salidabusqueda.php?grupo_salida=1" target="contenedorPrincipal">Muestras -> Busqueda de Salidas</a></li>
-					<li><a href="navegador_salidamuestras.php" target="contenedorPrincipal">Muestras -> Listado Salidas</a></li>
+					<li><a href="navegador_salidamuestras.php?grupoSalida=1" target="contenedorPrincipal">Muestras -> Listado Salidas</a></li>
 					
-					<li><a href="navegador_salidabusqueda.php?grupo_salida=2" target="contenedorPrincipal">Materiales -> Busqueda de Salidas</a></li>
-					<li><a href="navegador_salidamateriales.php" target="contenedorPrincipal">Materiales -> Listado Salidas</a></li>
+					<li><a href="navegador_salidamateriales.php?grupoSalida=2" target="contenedorPrincipal">Materiales -> Listado Salidas</a></li>
 				</ul>
 			</li>
 			

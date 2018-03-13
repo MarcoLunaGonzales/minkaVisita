@@ -1,11 +1,7 @@
 <?php
 	require("conexion.inc");
-	if($global_tipoalmacen==1)
-	{	require('estilos_almacenes_central_sincab.php');
-	}
-	else
-	{	require('estilos_almacenes_sincab.inc');
-	}
+	require('estilos_almacenes_sincab.inc');
+	
 	$grupoIngreso=$_GET["grupoIngreso"];
 	
 	echo "<form method='post' action=''>";
