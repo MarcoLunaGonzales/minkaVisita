@@ -2,12 +2,8 @@
 	require("conexion.inc");
 	require("estilos_administracion.inc");
 
-/**
- * Desarrollado por Datanet-Bolivia.
- * @autor: Marco Antonio Luna Gonzales
- * Sistema de Visita Médica
- * * @copyright 2006 
-*/ 
+
+	
 echo "<script language='Javascript'>
 		function enviar_nav()
 		{	location.href='registrar_zona.php?cod_territorio=$cod_territorio&cod_distrito=$cod_distrito';
@@ -83,8 +79,9 @@ echo "<script language='Javascript'>
 	echo "<form method='post' action=''>";
 	$sql="select * from zonas where cod_ciudad=$cod_territorio and cod_dist=$cod_distrito order by zona";
 	$resp=mysql_query($sql);
-	echo "<center><table border='0' class='textotit'><tr><th>Registro de Zonas<br>Territorio $nombre_ciudad<br>Distrito $nombre_distrito</th></tr></table></center><br>";
-	echo "<center><table border='1' class='texto' cellspacing='0' width='40%'>";
+	echo "<h1>Registro de Zonas<br>Territorio $nombre_ciudad<br>Distrito $nombre_distrito</h1>";
+
+	echo "<center><table class='texto'>";
 	echo "<tr><th>&nbsp;</th><th>Zonas</th></tr>";
 	while($dat=mysql_fetch_array($resp))
 	{
@@ -93,8 +90,13 @@ echo "<script language='Javascript'>
 		echo "<tr><td align='center'><input type='checkbox' name='codigo' value='$cod_zona'></td><td align='center'>$desc_zona</td></tr>";
 	}
 	echo "</table></center><br>";
-	echo"\n<table align='center'><tr><td><a href='navegador_distritos.php?cod_territorio=$cod_territorio'><img  border='0'src='imagenes/back.png' width='40'></a></td></tr></table>";
-	echo "<center><table border='0' class='texto'>";
-	echo "<tr><td><input type='button' value='Adicionar' name='adicionar' class='boton' onclick='enviar_nav()'></td><td><input type='button' value='Eliminar' name='eliminar' class='boton' onclick='eliminar_nav(this.form)'></td><td><input type='button' value='Editar' name='Editar' class='boton' onclick='editar_nav(this.form)'></td></tr></table></center>";
+	
+	echo "<div class='divBotones'>
+			<input type='button' value='Adicionar' name='adicionar' class='boton' onclick='enviar_nav()'>
+			<input type='button' value='Editar' name='Editar' class='boton' onclick='editar_nav(this.form)'>
+			<input type='button' value='Eliminar' name='eliminar' class='boton2' onclick='eliminar_nav(this.form)'>
+			<input type='button' value='Cancelar-' name='cancelar' class='boton2' onclick='location.href=\"navegador_distritos.php?cod_territorio=$cod_territorio\"'>
+		</div>";
+		
 	echo "</form>";
 ?>

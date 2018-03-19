@@ -34,7 +34,7 @@ function HiddenBuscar(){
 	document.getElementById('divProfileDetail').style.visibility='hidden';
 }
 
-function ajaxBuscarIngresos(f){
+function ajaxBuscarIngresos(f, grupoIngreso){
 	var fechaIniBusqueda, fechaFinBusqueda, notaIngreso, verBusqueda, global_almacen, provBusqueda;
 	fechaIniBusqueda=document.getElementById('fechaIniBusqueda').value;
 	fechaFinBusqueda=document.getElementById('fechaFinBusqueda').value;
@@ -45,7 +45,7 @@ function ajaxBuscarIngresos(f){
 	contenedor = document.getElementById('divCuerpo');
 	ajax=nuevoAjax();
 
-	ajax.open('GET', 'ajaxNavIngresos.php?fechaIniBusqueda='+fechaIniBusqueda+'&fechaFinBusqueda='+fechaFinBusqueda+'&notaIngreso='+notaIngreso+'&global_almacen='+global_almacen+'&provBusqueda='+provBusqueda,true);
+	ajax.open('GET', 'ajaxNavIngresos.php?fechaIniBusqueda='+fechaIniBusqueda+'&fechaFinBusqueda='+fechaFinBusqueda+'&notaIngreso='+notaIngreso+'&global_almacen='+global_almacen+'&provBusqueda='+provBusqueda+'&grupoIngreso='+grupoIngreso,true);
 	ajax.onreadystatechange=function() {
 		if (ajax.readyState==4) {
 			contenedor.innerHTML = ajax.responseText;
@@ -252,13 +252,13 @@ echo "</form>";
 			<tr>
 				<td>Fecha Ini(dd/mm/aaaa)</td>
 				<td>
-				<input type='text' name='fechaIniBusqueda' id="fechaIniBusqueda" class='texto'>
+				<input type='date' name='fechaIniBusqueda' id="fechaIniBusqueda" class='texto'>
 				</td>
 			</tr>
 			<tr>
 				<td>Fecha Fin(dd/mm/aaaa)</td>
 				<td>
-				<input type='text' name='fechaFinBusqueda' id="fechaFinBusqueda" class='texto'>
+				<input type='date' name='fechaFinBusqueda' id="fechaFinBusqueda" class='texto'>
 				</td>
 			</tr>
 			<tr>
@@ -293,8 +293,8 @@ echo "</form>";
 			</tr>			
 		</table>	
 		<center>
-			<input class='boton' type='button' value='Buscar' onClick="ajaxBuscarIngresos(this.form)">
-			<input class='boton' type='button' value='Cancelar' onClick="HiddenBuscar()">
+			<input class='boton' type='button' value='Buscar' onClick="ajaxBuscarIngresos(this.form, <?php echo $grupoIngreso; ?>)">
+			<input class='boton2' type='button' value='Cancelar' onClick="HiddenBuscar()">
 			
 		</center>
 	</div>

@@ -1,10 +1,8 @@
 <?php
-/**
- * Desarrollado por Datanet-Bolivia.
- * @autor: Marco Antonio Luna Gonzales
- * Sistema de Visita Médica
- * * @copyright 2005
-*/
+
+	require("conexion.inc");
+	require("estilos_administracion.inc");
+
 echo "<script language='Javascript'>
 		function enviar_nav()
 		{	location.href='registrar_lineas.php';
@@ -24,7 +22,7 @@ echo "<script language='Javascript'>
 				}
 			}
 			if(j==0)
-			{	alert('Debe seleccionar al menos una línea para proceder a su eliminación.');
+			{	alert('Debe seleccionar al menos una linea para proceder a su eliminación.');
 			}
 			else
 			{
@@ -54,13 +52,13 @@ echo "<script language='Javascript'>
 				}
 			}
 			if(j>1)
-			{	alert('Debe seleccionar solamente una línea para editar sus datos.');
+			{	alert('Debe seleccionar solamente una linea para editar sus datos.');
 			}
 			else
 			{
 				if(j==0)
 				{
-					alert('Debe seleccionar una línea para editar sus datos.');
+					alert('Debe seleccionar una linea para editar sus datos.');
 				}
 				else
 				{
@@ -70,28 +68,35 @@ echo "<script language='Javascript'>
 		}
 		</script>
 	";
-	require("conexion.inc");
-	require("estilos_administracion.inc");
 	echo "<form method='post' action=''>";
 	$sql="select * from lineas where estado=1 and linea_promocion=1 order by nombre_linea";
 	$resp=mysql_query($sql);
-	echo "<center><table border='0' class='textotit'><tr><td>Registro de Líneas</td></tr></table></center><br>";
-	echo "<center><table border='1' class='texto' cellspacing='0' width='30%'>";
-	echo "<tr><td>&nbsp;</td><th>&nbsp;</th><th>Líneas</th><th>&nbsp;</th></tr>";
+
+	echo "<h1>Registro de Lineas</h1>";
+
+	echo "<center><table class='texto'>";
+	//echo "<tr><th>&nbsp;</th><th>&nbsp;</th><th>Linea</th><th>Funcionarios</th></tr>";
+	echo "<tr><th>&nbsp;</th><th>&nbsp;</th><th>Linea</th></tr>";
 	$indice_tabla=1;
 	while($dat=mysql_fetch_array($resp))
 	{
 		$codigo=$dat[0];
 		$nombre=$dat[1];
-		echo "<tr><td align='center'>$indice_tabla</td><td align='center'>
-		<input type='checkbox' name='codigo' value='$codigo'></td>
+		echo "<tr>
+		<td align='center'>$indice_tabla</td>
+		<td align='center'><input type='checkbox' name='codigo' value='$codigo'></td>
 		<td>$nombre</td>
-		<td><a href='navLineasFuncionarios.php?codigoLinea=$codigo'>Funcionarios</a></td>
+		<!--td align='center'><a href='navLineasFuncionarios.php?codigoLinea=$codigo'><img src='imagenes/personal.png' width='40' title='Funcionarios en la Linea'></a></td-->
 		</tr>";
 	$indice_tabla++;
 	}
 	echo "</table></center><br>";
-	echo "<center><table border='0' class='texto'>";
-	echo "<tr><td><input type='button' value='Adicionar' name='adicionar' class='boton' onclick='enviar_nav()'></td><td><input type='button' value='Eliminar' name='eliminar' class='boton' onclick='eliminar_nav(this.form)'></td><td><input type='button' value='Editar' name='Editar' class='boton' onclick='editar_nav(this.form)'></td></tr></table></center>";
+
+	echo "<div class='divBotones'>
+	<input type='button' value='Adicionar' name='adicionar' class='boton' onclick='enviar_nav()'>
+	<input type='button' value='Editar' name='Editar' class='boton' onclick='editar_nav(this.form)'>
+	<input type='button' value='Eliminar' name='eliminar' class='boton2' onclick='eliminar_nav(this.form)'>
+	</div>";
+
 	echo "</form>";
 ?>

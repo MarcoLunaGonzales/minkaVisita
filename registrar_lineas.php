@@ -13,12 +13,16 @@ echo "<script language='Javascript'>
 require("conexion.inc");
 require("estilos_administracion.inc");
 echo "<form action='guarda_lineas.php' method='post'>";
-echo "<center><table border='0' class='textotit'><tr><td>Adicionar Líneas</td></tr></table></center><br>";
-echo "<center><table border='1' class='texto' cellspacing='0'>";
-echo "<tr><th>Nombre Línea</th></tr>";
+
+echo "<h1>Registrar Lineas</h1>";
+
+echo "<center><table class='texto'>";
+echo "<tr><th>Nombre Linea</th></tr>";
 echo "<tr><td align='center'><input type='text' class='texto' name='linea' size='40'></td></tr>";
-echo "</table><br>";
-echo"\n<table align='center'><tr><td><a href='navegador_lineas.php'><img  border='0'src='imagenes/back.png' width='40'></a></td></tr></table>";
-echo "<input type='button' class='boton' value='Guardar' onClick='validar(this.form)'></center>";
+echo "</table><br></center>";
+
+echo "<div class='divBotones'>
+<input type='button' class='boton' value='Guardar' onClick='validar(this.form)'>
+<input type='button' class='boton2' value='Cancelar' onClick='location.href=\"navegador_lineas.php\"'>";
 echo "</form>";
 ?>

@@ -1,6 +1,10 @@
 <?php
+
+require("conexion.inc");
+require("estilos_almacenes.inc");
+
 echo "<script language='Javascript'>
-function validar(f)
+function validar(f, grupoSalida)
 {	if(f.fecha.value=='')
 	{	alert('El campo fecha esta vacio.');
 		return(false);
@@ -24,17 +28,17 @@ function escribe_obs(f)
 	return(true);
 }
 </script>";
-require("conexion.inc");
-if($global_tipoalmacen==1)
-{	require("estilos_almacenes_central.inc");
-}
-else
-{	require("estilos_almacenes.inc");
-}
+
+
+$grupoSalida=$_GET["grupoSalida"];
 echo "<form method='get' action='guarda_datosdespacho.php'>";
-echo "<center><table border='0' class='textotit'><tr><th>Registrar Datos de Despacho<th></tr></table></center><br>";
-echo "<table border='1' class='texto' cellspacing='0' align='center' width='90%'>";
-echo "<tr><th>Número(s) de Salida</th><th>Fecha Despacho</th><th>Número de Guía</th><th>Tipo de Transporte</th></tr>";
+
+echo "<input type='hidden' name='grupoSalida' id='grupoSalida' value='$grupoSalida'>";
+
+echo "<h1>Registrar Datos de Despacho</h1>";
+
+echo "<center><table class='texto'>";
+echo "<tr><th>Numero(s) Salida</th><th>Fecha Despacho</th><th>Nro. Guia</th><th>Tipo de Transporte</th></tr>";
 $vector=explode(",",$datos);
 $n=sizeof($vector);
 $cadena_nrocorrelativo="";
@@ -50,13 +54,8 @@ echo "<input type='hidden' name='datos' value='$datos'>";
 echo "<tr><td align='center'>$cadena_nrocorrelativo</td>";
 $fecha=date("d/m/Y");
 echo "<td align='center'>";
-	echo"<INPUT type='text' class='texto' value='$fecha' id='fecha' size='10' name='fecha'>";
-	echo" <IMG id='imagenFecha' src='imagenes/fecha.bmp'>";
-	echo" <DLCALENDAR tool_tip='Seleccione la Fecha' ";
-	echo" daybar_style='background-color: DBE1E7; font-family: verdana; color:000000;' ";
-	echo" navbar_style='background-color: 7992B7; color:ffffff;' ";
-	echo" input_element_id='fecha'";
-	echo" click_element_id='imagenFecha'></DLCALENDAR></td>";
+echo"<INPUT type='date' class='texto' value='$fecha' id='fecha' size='10' name='fecha'></td>";
+
 echo "<td align='center'><input type='text' name='numero_guia' class='texto'></td>";
 $sql1="select cod_tipotransporte, nombre_tipotransporte from tipos_transporte order by nombre_tipotransporte";
 $resp1=mysql_query($sql1);
@@ -67,25 +66,23 @@ while($dat1=mysql_fetch_array($resp1))
 	echo "<option value='$cod_tipotransporte'>$nombre_tipotransporte</option>";
 }
 echo "</select></td></tr>";
-echo "<tr><th>Número de Cajas</th><th>Monto [Bs]</th><th>Peso [Kg]</th><th>&nbsp;</th></tr>";
-echo "<tr><td align='center'><input type='text' name='nro_cajas' class='texto' OnKeyUp='escribe_obs(this.form)'></td>";
-echo "<td align='center'><input type='text' name='monto' class='texto'></td>";
-echo "<td align='center'><input type='text' name='peso' class='texto'></td><td>&nbsp;</td></tr>";
+echo "<tr><th>Nro. Cajas</th><th>Monto [Bs]</th><th>Peso [Kg]</th><th>&nbsp;</th></tr>";
+echo "<tr><td align='center'><input type='number' name='nro_cajas' class='texto' OnKeyUp='escribe_obs(this.form)'></td>";
+echo "<td align='center'><input type='number' name='monto' class='texto'></td>";
+echo "<td align='center'><input type='number' name='peso' class='texto'></td><td>&nbsp;</td></tr>";
 echo "<tr><th colspan='4'>Observaciones</th></tr>";
 echo "<tr><td align='center' colspan='4'><input type='text' name='observaciones' class='texto' size='100'></td>";
-echo "</tr></table>";  
+echo "</tr></table></center>";  
+
 echo "<input type='hidden' name='codigo_salida' value='$codigo_registro'>";
 echo "<input type='hidden' name='tipo_material' value='$grupo_salida'>";
-if($tipo_material==1)
-{	echo"\n<br><table align='center'><tr><td><a href='navegador_salidamuestras.php'><img  border='0'src='imagenes/back.png' width='40'></a></td></tr></table>";
-}
-else
-{	echo"\n<br><table align='center'><tr><td><a href='navegador_salidamateriales.php'><img  border='0'src='imagenes/back.png' width='40'></a></td></tr></table>";
-}
-echo "<table border='0' align='center' class='texto'>";
-echo "<tr><td><input type='button' value='Guardar' name='adicionar' OnClick='validar(this.form)' class='boton'></td></tr></table>";
-echo "</div></body>";
+
+echo "<div class='divBotones'>
+	<input type='button' value='Guardar' name='adicionar' OnClick='validar(this.form, $grupoSalida)' class='boton'>
+	<input type='button' value='Cancelar' name='cancelar' OnClick='location.href=\"navegador_salidamuestras.php?grupoSalida=$grupoSalida\"' class='boton2'>
+	</div>";
+
+echo "</body>";
 echo "</form>";
-echo "<script type='text/javascript' language='javascript'  src='dlcalendar.js'></script>";
 
 ?>

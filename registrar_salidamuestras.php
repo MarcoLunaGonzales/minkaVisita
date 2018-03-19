@@ -1,6 +1,44 @@
+ <!--meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+ <script type="text/javascript" src="lib/js/xlibPrototipoSimple-v0.1.js"></script>
+ <script type='text/javascript' language='javascript'-->
+
 <?php
+error_reporting(0);
+require("conexion.inc");
+require("estilos_almacenes.inc");
 
 echo "<script language='Javascript'>
+	function nuevoAjax(){	
+	var xmlhttp=false;
+		try {
+				xmlhttp = new ActiveXObject('Msxml2.XMLHTTP');
+		} catch (e) {
+		try {
+			xmlhttp = new ActiveXObject('Microsoft.XMLHTTP');
+		} catch (E) {
+			xmlhttp = false;
+		}
+		}
+		if (!xmlhttp && typeof XMLHttpRequest!='undefined') {
+		xmlhttp = new XMLHttpRequest();
+		}
+		return xmlhttp;
+	}
+	function ajaxStock(ind, grupoSalida){
+		var codmat=document.getElementById('materiales'+ind).value;
+		var codalm=document.getElementById('codalmacen').value;
+		
+		var contenedor;
+		contenedor = document.getElementById('idstock'+ind);
+		ajax=nuevoAjax();
+		ajax.open('GET', 'programas/salidas/ajaxStockSalidaMateriales.php?codmat='+codmat+'&codalm='+codalm+'&indice='+ind+'&grupoSalida='+grupoSalida,true);
+		ajax.onreadystatechange=function() {
+			if (ajax.readyState==4) {
+				contenedor.innerHTML = ajax.responseText
+			}
+		}
+		ajax.send(null)
+	}	
 	function enviar_form(f)
 	{	f.submit();
 	}
@@ -16,7 +54,7 @@ echo "<script language='Javascript'>
 		}
 		window.open('registrar_salidadetallemuestras.php?codigo_muestra='+codigo_material+'&indice='+ind+'','_blank',toolbar=0);
 	}
-	function validar(f)
+	function validar(f, grupoSalida)
 	{
 		var i,j,cantidad_material, cant_unitaria, stock_unitario;
 		variables=new Array(f.length-1);
@@ -47,28 +85,31 @@ echo "<script language='Javascript'>
 			f.focus();
 			return(false);
 		}
-		for(i=6;i<=f.length-2;i++)
-		{
-			variables[i]=f.elements[i].value;
-			if(f.elements[i].value=='')
-			{	//alert(f.elements[i].name);
-				alert('Algun elemento no tiene valor');
+
+		//validamos los elementos formatos y demas situaciones
+		var nroFilasDet=f.cantidad_material.value;
+		for(xx=1;xx<=nroFilasDet;xx++){
+			if(document.getElementById('materiales'+xx).value==''){
+				alert('El item no puede estar vacio. Fila: '+xx);
 				return(false);
 			}
-		}
+			if(document.getElementById('cantidad_unitaria'+xx).value==''){
+				alert('La cantidad no puede estar vacia. Fila: '+xx);
+				return(false);
+			}
+			if(document.getElementById('stock'+xx).value==''){
+				alert('No se tiene el stock del item. Favor volver a escoger el item. Fila: '+xx);
+				return(false);
+			}
+		}		
+		//fin validar
+		
+		
 		indice=0;
 		for(j=0;j<=f.length-1;j++)
 		{
 			if(f.elements[j].name.indexOf('materiales')!=-1)
 			{	vector_material[indice]=f.elements[j].value;
-				indice++;
-			}
-		}
-		indice=0;
-		for(j=0;j<=f.length-1;j++)
-		{
-			if(f.elements[j].name.indexOf('fecha_vencimiento')!=-1)
-			{	vector_fechavenci[indice]=f.elements[j].value;
 				indice++;
 			}
 		}
@@ -94,39 +135,43 @@ echo "<script language='Javascript'>
 				return(false);
 			}
 		}
-		for(k=0;k<=f.length-1;k++)
-		{	if(f.elements[k].name.indexOf('cantidad_unitaria')!=-1)
-			{	cant_unitaria=f.elements[k].value*1;
-				stock_unitario=f.elements[k-1].value*1
-				if(cant_unitaria > stock_unitario)
-				{	alert('No puede sacar cantidades superiores a lo que se tiene en stock.');
-					f.elements[k].focus();
-					return(false);
-				}
+		
+		for(xx=1;xx<=nroFilasDet;xx++){
+			var cantidadX, stockX;
+			cantidadX=document.getElementById('cantidad_unitaria'+xx).value*1;
+			stockX=document.getElementById('stock'+xx).value*1;
+			if(cantidadX > stockX){	
+				//alert('No puede sacar cantidades superiores al stock. Fila: '+xx+ cantidadX+ ' ' +stockX);
+				alert('No puede sacar cantidades superiores al stock. Fila: '+xx);
+				return(false);
 			}
 		}
-		/*if(f.almacen.value!='' && f.funcionario.value!='')
-		{	alert('Los campos Almacen Destino y Funcionario son excluyentes. Seleccione solamente un campo por favor.');
-			return(false);
-		}*/
-		location.href='guarda_salidamuestras.php?vector_material='+vector_material+'&vector_fechavenci='+vector_fechavenci+'&vector_cantidades='+vector_cantidades+'&fecha='+fecha+'&tipo_salida='+tipo_salida+'&observaciones='+observaciones+'&cantidad_material='+cantidad_material+'&almacen='+almacen+'&funcionario='+funcionario+'&territorio='+territorio+'';
+		location.href='guarda_salidamuestras.php?vector_material='+vector_material+'&vector_fechavenci='+vector_fechavenci+'&vector_cantidades='+vector_cantidades+'&fecha='+fecha+'&tipo_salida='+tipo_salida+'&observaciones='+observaciones+'&cantidad_material='+cantidad_material+'&almacen='+almacen+'&funcionario='+funcionario+'&territorio='+territorio+'&grupoSalida='+grupoSalida+'';
 	}
 	</script>";
-error_reporting(0);
-require("conexion.inc");
-if ($global_tipoalmacen == 1) {
-    require("estilos_almacenes_central.inc");
-} else {
-    require("estilos_almacenes.inc");
-}
+
+
 if ($fecha == "") {
     $fecha = date("d/m/Y");
 }
 echo "<form action='' method='get'>";
-echo "<table border='0' class='textotit' align='center'><tr><th>Registrar Salida de Almacen</th></tr></table><br>";
-echo "<table border='1' class='texto' cellspacing='0' align='center' width='90%'>";
-echo "<tr><th>Número de Salida</th><th>Fecha</th><th>Tipo de Salida</th><th>Territorio Destino</th><th>Almacen Destino</th></tr>";
-$sql = "select max(nro_correlativo) as nro_correlativo from salida_almacenes where cod_almacen='$global_almacen' and grupo_salida='1' ";
+
+$grupoSalida=$_GET["grupoSalida"];
+
+echo "<input type='hidden' name='grupoSalida' value='$grupoSalida' id='grupoSalida'>";
+echo "<input type='hidden' name='codalmacen' value='$global_almacen' id='codalmacen'>";
+
+
+if($grupoSalida==1){
+	echo "<h1>Registrar Salida de Muestras</h1>";	
+}else{
+	echo "<h1>Registrar Salida de Material</h1>";
+}
+
+echo "<center><table class='texto'>";
+echo "<tr><th>Nro. Salida</th><th>Fecha</th><th>Tipo de Salida</th><th>Territorio Destino</th><th>Almacen Destino</th></tr>";
+
+$sql = "select max(nro_correlativo) as nro_correlativo from salida_almacenes where cod_almacen='$global_almacen' and grupo_salida='$grupoSalida' ";
 $resp = mysql_query($sql);
 $dat = mysql_fetch_array($resp);
 $num_filas = mysql_num_rows($resp);
@@ -211,7 +256,9 @@ while ($dat2 = mysql_fetch_array($resp2)) {
 echo "</select></td>";
 echo "<td align='center' colspan=3><input type='text' class='texto' name='observaciones' value='$observaciones' size='100'></td></tr>";
 echo "</table><br>";
-echo "<table border=1 class='texto' width='70%' align='center'>";
+
+
+echo "<table class='texto'>";
 echo "<tr><th colspan='3'>Cantidad de Materiales a sacar:  <select name='cantidad_material' OnChange='enviar_form(this.form)' class='texto'>";
 for ($i = 0; $i <= 50; $i++) {
     if ($i == $cantidad_material) {
@@ -225,54 +272,53 @@ echo "<tr><th>&nbsp;</th><th>Material</th><th>Cantidad Unitaria</th><th>Stock</t
 for ($indice_detalle = 1; $indice_detalle <= $cantidad_material; $indice_detalle++) {
     echo "<tr><td align='center'>$indice_detalle</td>";
 	
-    if($global_almacen==1000){
-		$sql_materiales = "select codigo, descripcion, presentacion from muestras_medicas 
-		where codigo not in ('0') order by descripcion";		
+	if($grupoSalida==1){
+		$sql_materiales = "select codigo, concat(descripcion,' ',presentacion) from muestras_medicas 
+		where codigo not in ('0') order by 2";			
 	}else{
-		$sql_materiales = "select codigo, descripcion, presentacion from muestras_medicas 
-		order by descripcion";
+		$sql_materiales = "select codigo_material, descripcion_material from material_apoyo 
+		where codigo_material not in ('0') order by 2";		
 	}
-	
-	
-	//$sql_materiales = "select codigo, descripcion, presentacion from muestras_medicas order by descripcion";
+
 	
 	//echo $sql_materiales;
 	$resp_materiales = mysql_query($sql_materiales);
     //obtenemos los valores de las variables creadas en tiempo de ejecucion
     $var_material = "materiales$indice_detalle";
     $valor_material = $$var_material;
-    //echo "<td align='center'><select name='materiales$indice_detalle' class='textomini' OnChange='enviar_form(this.form)'>";
-    echo "<td align='center'><select name='materiales$indice_detalle' class='textomini'>";
+    echo "<td align='center'><select id='materiales$indice_detalle' name='materiales$indice_detalle' style='width:450px' onChange='ajaxStock($indice_detalle,$grupoSalida)'>";
     echo "<option></option>";
     while ($dat_materiales = mysql_fetch_array($resp_materiales)) {
         $cod_material = $dat_materiales[0];
         $nombre_material = $dat_materiales[1];
-        $presentacion_material = $dat_materiales[2];
         if ($cod_material == $valor_material) {
-            echo "<option value='$cod_material' selected>$nombre_material $presentacion_material</option>";
+            echo "<option value='$cod_material' selected>$nombre_material</option>";
         } else {
-            echo "<option value='$cod_material'>$nombre_material $presentacion_material</option>";
+            echo "<option value='$cod_material'>$nombre_material</option>";
         }
     }
     echo "</select></td>";
     $var_cant_unit = "cantidad_unitaria$indice_detalle";
     $valor_cant_unit = $$var_cant_unit;
-    $sql_stock = "select SUM(id.cantidad_restante) from ingreso_detalle_almacenes id, ingreso_almacenes i
-	where id.cod_material='$valor_material' and i.cod_ingreso_almacen=id.cod_ingreso_almacen and i.ingreso_anulado=0 and i.cod_almacen='$global_almacen'";
-    $resp_stock = mysql_query($sql_stock);
-    $dat_stock = mysql_fetch_array($resp_stock);
-    $stock_real = $dat_stock[0];
-    if ($stock_real == "") {
-        $stock_real = 0;
-    }
-    echo "<input type='hidden' name='stock$indice_detalle' value='$stock_real'>";
-    echo "<td align='center'><input type='text' name='cantidad_unitaria$indice_detalle' value='$valor_cant_unit' class='texto''></td><td align='center'>$stock_real</td>";
+	
+    //echo "<input type='hidden' name='stock$indice_detalle' id='stock$indice_detalle'  value='$stock_real'>";
+	echo "<td align='center'><input type='number' min='1' name='cantidad_unitaria$indice_detalle' id='cantidad_unitaria$indice_detalle' value='$valor_cant_unit'></td>";
+	 
+	echo "<td><div id='idstock$indice_detalle'>";
+    echo "<input type='text' id='stock$indice_detalle' name='stock$indice_detalle' value='$stock_real' size='9' readonly>";
+    echo "</div></td>";
+	
     echo "</tr>";
 }
-echo "</table><br>";
-echo"\n<table align='center'><tr><td><a href='navegador_salidamuestras.php'><img  border='0'src='imagenes/back.png' width='40'></a></td></tr></table>";
-echo "<center><input type='button' class='boton' value='Guardar' onClick='validar(this.form)'><input type='button' class='boton' value='Actualizar Datos' onClick='enviar_form(this.form)'></center>";
-//echo "<center><input type='button' class='boton' value='Guardar' onClick='validar(this.form)'></center>";
+echo "</table><br></center>";
+
+//echo"\n<table align='center'><tr><td><a href='navegador_salidamuestras.php'><img  border='0'src='imagenes/back.png' width='40'></a></td></tr></table>";
+
+echo "<div class='divBotones'>
+<input type='button' class='boton' value='Guardar' onClick='validar(this.form, $grupoSalida)'>
+<input type='button' class='boton2' value='Cancelar' onClick='location.href=\"navegador_salidamuestras.php?grupoSalida=$grupoSalida\"'>
+</div>";
+
 echo "</form>";
 echo "</div></body>";
 ?>

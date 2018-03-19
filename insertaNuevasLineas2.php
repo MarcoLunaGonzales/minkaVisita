@@ -1,8 +1,7 @@
 <?php
 require('conexion.inc');
-$codGestion = 1010;
-$codCiclo = 11;
-$codLinea=1021;
+
+$codLinea=1;
 
 $sql="select f.codigo_funcionario, f.cod_ciudad from funcionarios f, funcionarios_lineas fli
 	where f.codigo_funcionario=fli.codigo_funcionario and 

@@ -7,9 +7,10 @@ $fechaFinBusqueda=$_GET['fechaFinBusqueda'];
 $notaIngreso=$_GET['notaIngreso'];
 $global_almacen=$_GET['global_almacen'];
 $provBusqueda=$_GET['provBusqueda'];
+$grupoIngreso=$_GET['grupoIngreso'];
 
-$fechaIniBusqueda=formateaFechaVista($fechaIniBusqueda);
-$fechaFinBusqueda=formateaFechaVista($fechaFinBusqueda);
+//$fechaIniBusqueda=formateaFechaVista($fechaIniBusqueda);
+//$fechaFinBusqueda=formateaFechaVista($fechaFinBusqueda);
 	
 //
 $consulta = "
@@ -17,6 +18,7 @@ $consulta = "
 	i.nro_correlativo, i.ingreso_anulado
     FROM ingreso_almacenes i, tipos_ingreso ti, ingreso_detalle_almacenes id 
     WHERE i.cod_tipoingreso=ti.cod_tipoingreso and i.cod_ingreso_almacen=id.cod_ingreso_almacen 
+	and i.grupo_ingreso='$grupoIngreso'
     AND i.cod_almacen='$global_almacen'";
 if($notaIngreso!="")
    {$consulta = $consulta."AND i.nota_entrega='$notaIngreso' ";

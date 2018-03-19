@@ -1,22 +1,15 @@
 <?php
-/**
- * Desarrollado por Datanet-Bolivia.
- * @autor: Marco Antonio Luna Gonzales
- * Sistema de Visita Médica
- * * @copyright 2005
-*/
-require("conexion.inc");
 
-if($global_tipoalmacen == 1) {	
-	require('estilos_almacenes_central_sincab.php');
-} else {	
-	require('estilos_almacenes_sincab.inc');
-}
+require("conexion.inc");
+require('estilos_almacenes_sincab.inc');
+
+
 $sql="SELECT s.cod_salida_almacenes, s.fecha, ts.nombre_tiposalida, s.observaciones, s.grupo_salida, s.nro_correlativo, s.territorio_destino, s.almacen_destino FROM salida_almacenes s, tipos_salida ts where s.cod_tiposalida=ts.cod_tiposalida and s.cod_almacen='$global_almacen' and s.cod_salida_almacenes='$codigo_salida'";
 $resp=mysql_query($sql);
-echo "<center><table border='0' class='textotit'><tr><th>Detalle de despacho</th></tr></table></center><br>";
-echo "<table border='1' class='texto' cellspacing='0' width='90%' align='center'>";
-echo "<tr><th>Número de Salida</th><th>Fecha</th><th>Tipo de Salida</th><th>Observaciones</th></tr>";
+echo "<h1>Detalle de despacho</h1>";
+
+echo "<center><table class='texto'>";
+echo "<tr><th>Nro. Salida</th><th>Fecha</th><th>Tipo de Salida</th><th>Observaciones</th></tr>";
 $dat                  = mysql_fetch_array($resp);
 $codigo               = $dat[0];
 $fecha_salida         = $dat[1];
@@ -47,7 +40,8 @@ echo "<tr><td align='center'>$nro_correlativo</td><td align='center'>$fecha_sali
 echo "<tr><th>Territorio Destino</th><th>Almacen Destino</th><th colspan=2>Funcionario Destino</th></tr>";
 echo "<tr><td>$nombre_territorio</td><td>&nbsp;$nombre_almacen_destino</td><td colspan=2>&nbsp;$nombre_func_destino</td></tr>";
 echo "</table><br>";
-echo "<table border='1' class='texto' cellspacing='0' width='90%' align='center'>";
+
+echo "<table class='texto'>";
 echo "<form method='post' action=''>";
 
 $sql_detalle = "SELECT s.despacho_fecha, s.despacho_nroguia, t.nombre_tipotransporte, s.despacho_nrocajas, s.despacho_monto, s.despacho_peso, s.despacho_obs from salida_almacenes s, tipos_transporte t where s.cod_salida_almacenes='$codigo_salida' and s.cod_almacen='$global_almacen' and t.cod_tipotransporte=s.despacho_codtipotransporte";
@@ -64,13 +58,15 @@ while($dat_detalle=mysql_fetch_array($resp_detalle)) {
 	$obs             = $dat_detalle[6];
 
 	echo "<tr><th align='left'>Fecha Despacho</th><td align='left'>$fecha_despacho</td></tr>";
-	echo "<tr><th align='left'>Número de Guía</th><td align='left'>$numero_guia</td></tr>";
+	echo "<tr><th align='left'>Nro. Guia</th><td align='left'>$numero_guia</td></tr>";
 	echo "<tr><th align='left'>Tipo de Transporte</th><td align='left'>$tipo_transporte</td></tr>";
-	echo "<tr><th align='left'>Número de Cajas</th><td align='left'>$nrocajas</td></tr>";
+	echo "<tr><th align='left'>Nro. de Cajas</th><td align='left'>$nrocajas</td></tr>";
 	echo "<tr><th align='left'>Monto [Bs]</th><td align='left'>&nbsp;$monto</td></tr>";
 	echo "<tr><th align='left'>Peso [Kg]</th><td align='left'>&nbsp;$peso</td></tr>";
 	echo "<tr><th align='left'>Observaciones</th><td align='left'>&nbsp;$obs</td></tr>";
 }
-echo "</table>";
-echo "<br><center><table border='0'><tr><td><a href='javascript:window.print();'><IMG border='no' alt='Imprimir esta' src='imagenes/print.gif'>Imprimir</a></td></tr></table>";
+echo "</table></center>";
+
+require("imprimirInc.php");
+
 ?>

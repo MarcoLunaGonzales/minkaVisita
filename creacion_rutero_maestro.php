@@ -193,10 +193,9 @@ for($i=1;$i<=$num_medicos;$i++) {
 }
 echo "</table></center><br>";
 
-echo"\n<table align='center'><tr><td><a href='rutero_maestro_todo.php?rutero=$rutero'><img  border='0'src='imagenes/back.png' width='40'></a></td></tr></table>";
-
 echo "<div class='divBotones'>
 <input type='button' value='Guardar' onClick='envia(this.form)' class='boton'>
+<input type='button' value='Cancelar' onClick='location.href=\"rutero_maestro_todo.php?rutero=$rutero\"' class='boton2'>
 </div>";
 echo "<input type='hidden' name='rutero' value='$rutero'>";
 

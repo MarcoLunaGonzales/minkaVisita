@@ -1,13 +1,7 @@
 <?php
 	require("conexion.inc");
 	require("estilos_administracion.inc");
-
-/**
- * Desarrollado por Datanet-Bolivia.
- * @autor: Marco Antonio Luna Gonzales
- * Sistema de Visita Médica
- * * @copyright 2006 
-*/ 
+ 
 echo "<script language='Javascript'>
 		function enviar_nav()
 		{	location.href='registrar_distrito.php?cod_territorio=$cod_territorio';
@@ -78,8 +72,9 @@ echo "<script language='Javascript'>
 	echo "<form method='post' action=''>";
 	$sql="select * from distritos where cod_ciudad=$cod_territorio order by descripcion";
 	$resp=mysql_query($sql);
-	echo "<center><table border='0' class='textotit'><tr><th>Registro de Distritos<br>Territorio $nombre_ciudad</th></tr></table></center><br>";
-	echo "<center><table border='1' class='texto' cellspacing='0' width='60%'>";
+	echo "<h1>Registro de Distritos<br>Territorio $nombre_ciudad</h1>";
+	
+	echo "<center><table class='texto'>";
 	echo "<tr><th>&nbsp;</th><th>Distrito</th><th>Zonas</th><th>&nbsp;</th></tr>";
 	while($dat=mysql_fetch_array($resp))
 	{
@@ -91,14 +86,25 @@ echo "<script language='Javascript'>
 		while($dat_zonas=mysql_fetch_array($resp_zonas))
 		{	$cod_zona=$dat_zonas[0];
 			$nombre_zona=$dat_zonas[1];
-			$cadena_zonas="$cadena_zonas <tr><td>$nombre_zona $cod_zona</td></tr>";
+			$cadena_zonas="$cadena_zonas <tr><td>$nombre_zona ($cod_zona)</td></tr>";
 		}
 		$cadena_zonas="$cadena_zonas </table>";
-		echo "<tr><td><input type='checkbox' name='codigo' value='$cod_distrito'></td><td align='center'>$desc_distrito</td><td>$cadena_zonas</td><td align='center'><a href='navegador_zonas.php?cod_territorio=$cod_territorio&cod_distrito=$cod_distrito'>Ver Zonas >></a></td></tr>";
+		echo "<tr><td><input type='checkbox' name='codigo' value='$cod_distrito'></td>
+			<td align='center'>$desc_distrito</td>
+			<td>$cadena_zonas</td><td align='center'>
+				<a href='navegador_zonas.php?cod_territorio=$cod_territorio&cod_distrito=$cod_distrito'>
+					<img src='imagenes/puntomapa.png' width='40' title='Ver Zonas'>
+				</a>
+			</td></tr>";
 	}
 	echo "</table></center><br>";
-	echo"\n<table align='center'><tr><td><a href='navegador_territorios.php'><img  border='0'src='imagenes/back.png' width='40'></a></td></tr></table>";
-	echo "<center><table border='0' class='texto'>";
-	echo "<tr><td><input type='button' value='Adicionar' name='adicionar' class='boton' onclick='enviar_nav()'></td><td><input type='button' value='Eliminar' name='eliminar' class='boton' onclick='eliminar_nav(this.form)'></td><td><input type='button' value='Editar' name='Editar' class='boton' onclick='editar_nav(this.form)'></td></tr></table></center>";
+
+	echo "<div class='divBotones'>
+	<input type='button' value='Adicionar' name='adicionar' class='boton' onclick='enviar_nav()'>
+	<input type='button' value='Editar' name='Editar' class='boton' onclick='editar_nav(this.form)'>
+	<input type='button' value='Eliminar' name='eliminar' class='boton2' onclick='eliminar_nav(this.form)'>
+	<input type='button' value='Cancelar' name='eliminar' class='boton2' onclick='location.href=\"navegador_territorios.php\"'>
+	</div>";
+
 	echo "</form>";
 ?>

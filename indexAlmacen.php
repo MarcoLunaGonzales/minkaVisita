@@ -54,7 +54,7 @@ include("datosUsuario.php");
 				<ul>
 					<li><a href="navegador_salidamuestras.php?grupoSalida=1" target="contenedorPrincipal">Muestras -> Listado Salidas</a></li>
 					
-					<li><a href="navegador_salidamateriales.php?grupoSalida=2" target="contenedorPrincipal">Materiales -> Listado Salidas</a></li>
+					<li><a href="navegador_salidamuestras.php?grupoSalida=2" target="contenedorPrincipal">Materiales -> Listado Salidas</a></li>
 				</ul>
 			</li>
 			

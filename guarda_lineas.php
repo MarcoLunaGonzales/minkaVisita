@@ -12,9 +12,16 @@ else
 {	$codigo=$dat[0];
 	$codigo++;
 }
-$sql_inserta=mysql_query("insert into lineas values($codigo,'$linea',1,0,1)");
+$txtInserta="insert into lineas(codigo_linea, nombre_linea, linea_promocion, linea_inventarios, estado, lineazeus) 
+	values($codigo,'$linea',1,1,1,0)";
+
+//echo $txtInserta;
+
+$sql_inserta=mysql_query($txtInserta);
+
 echo "<script language='Javascript'>
 			alert('Los datos fueron insertados correctamente.');
 			location.href='navegador_lineas.php';
 			</script>";
+			
 ?>

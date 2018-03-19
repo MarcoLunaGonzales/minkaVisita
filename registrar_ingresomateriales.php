@@ -34,6 +34,7 @@ echo "<script language='Javascript'>
 			f.nota_entrega.focus();
 			return(false);
 		}
+		
 		if(f.tipo_ingreso.value!=1009){
 			if(f.orden_compra.value=='')
 			{	alert('El campo Orden de Compra esta vacio.');

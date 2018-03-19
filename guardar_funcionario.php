@@ -16,6 +16,10 @@ else
 	$codigo_funcionario=$dat_pre[0];
 	$codigo_funcionario++;
 }
+$paterno=strtoupper($paterno);
+$materno=strtoupper($materno);
+$nombres=strtoupper($nombres);
+
 //estado=1 es activo, 0 es retirado
 $sql="insert into funcionarios values($codigo_funcionario,'$cargo','$paterno','$materno','$nombres','$fecha_real','$direccion','$telefono',
 '$celular','$email','$agencia',1,0,0)";

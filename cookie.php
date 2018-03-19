@@ -5,8 +5,9 @@
 require("conexion.inc");
 require("lib/phpmailer/class.phpmailer.php");
 
-$sql = "SELECT f.cod_cargo, f.cod_ciudad from funcionarios f, usuarios_sistema u where u.codigo_funcionario=f.codigo_funcionario 
-and u.codigo_funcionario='$usuario' and u.contrasena='$contrasena'";
+$sql = "SELECT f.cod_cargo, f.cod_ciudad, f.codigo_funcionario from funcionarios f, usuarios_sistema u 
+where u.codigo_funcionario=f.codigo_funcionario 
+and u.nombre_usuario='$usuario' and u.contrasena='$contrasena'";
 
 //echo $sql;
 
@@ -44,7 +45,14 @@ if ($num_filas != 0) {
     $dat = mysql_fetch_array($resp);
     $cod_cargo = $dat[0];
     $cod_ciudad = $dat[1];
-    if ($cod_cargo == 1011) {
+	$usuario=$dat[2];
+	
+    if ($cod_cargo == 1000) {
+        setcookie("global_usuario", $usuario);
+        setcookie("global_agencia", $cod_ciudad);
+		header("location:indexAdmin.php");
+	}	
+	if ($cod_cargo == 1011) {
         setcookie("global_visitador", $usuario);
         setcookie("global_usuario", $usuario);
         setcookie("global_agencia", $cod_ciudad);
@@ -58,21 +66,23 @@ if ($num_filas != 0) {
 		header("location:indexSupervision.php");
 	}
 	 
-	 //este cookie es para el jefe de linea
+	/*ESTE ESTA PENDIENTE DE REVISION 
+	//este cookie es para el jefe de linea
 	if ($cod_cargo == 1007 or $cod_cargo == 1012) {
 		setcookie("global_usuario", $usuario);
 		// verifica_fecha_caducidad($usuario);
 		//header("location:inicio_administracion.php");
 		header("location:index_central.html");
-	}
+	}*/
 
 	//este cookie es para el administrador Gerente o Jefe de Promocion
 	//PRIMERA MODIFICACION DE MINKA
 		
-	if ($cod_cargo == 1013 or $cod_cargo == 1014) {
-		setcookie("global_usuario", 1052);
+	if ($cod_cargo == 1014) {
+		setcookie("global_visitador", $usuario);
+        setcookie("global_usuario", $usuario);
+        setcookie("global_agencia", $cod_ciudad);
 		setcookie("global_nickname", $usuario);
-		setcookie("global_agencia",0);
 		header("location:indexGerencia.php");
 	}
 
@@ -88,17 +98,11 @@ if ($num_filas != 0) {
 		$almacenXXX=mysql_result($resp_almacen,0,0);
 
 		setcookie("global_almacen", $almacenXXX);
-		if ($cod_ciudad == 115) {
-			setcookie("global_tipoalmacen", 1);
-		} else {
-			setcookie("global_tipoalmacen", 2);
-			//header("location:index_almacenregional.html");
-		}
 		header("location:indexAlmacen.php");
 	}
 
 
-	if ($cod_cargo == 1017) {
+	/*if ($cod_cargo == 1017) {
 		setcookie("global_usuario", $usuario);
 		setcookie("global_agencia", $cod_ciudad);
 		// verifica_fecha_caducidad($usuario);
@@ -111,7 +115,7 @@ if ($num_filas != 0) {
 			setcookie("global_almacen", 1000);
 			header("location:index_almacencentral.html");
 		}
-	}
+	}*/
 
 } 
 else {

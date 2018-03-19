@@ -19,9 +19,9 @@
 	if($nombreLineaSesion==""){
 		$nombreLineaSesion="------";
 	}
-	
-	
+		
 	$sql = "select paterno, materno, nombres, cod_ciudad from funcionarios where codigo_funcionario=$global_usuario";
+	//echo $sql;
 	$resp = mysql_query( $sql );
 	$dat = mysql_fetch_array( $resp );
 	$paterno = $dat[ 0 ];

@@ -13,7 +13,7 @@ echo "<script language='Javascript'>
 require("conexion.inc");
 require("estilos_visitador.inc");
 echo "<form action='guarda_cab_rutero_maestro.php' method='post'>";
-echo "<center><table border='0' class='textotit'><tr><td>Adicionar Rutero Maestro</td></tr></table></center><br>";
+echo "<h1>Adicionar Rutero Maestro</h1>";
 // Obtenemos ciclo siguiente
 $cicloSiguiente = 0;
 $sqlCicloSiguiente="SELECT cod_ciclo
@@ -42,7 +42,7 @@ if ($datVerifRutero=mysql_fetch_array($respVerifRutero)) {
 }
 $nombreCicloSiguiente = "CICLO ".$cicloSiguiente;
 if ($cantRuteros == 0) {
-	echo "<center><table border='1' class='texto' cellspacing='0'>";
+	echo "<center><table class='texto'>";
 	echo "<tr><th>Nombre Rutero Maestro</th><th>Ciclo Asociado</th></tr>";
 	echo "<tr>
 			<td align='center'>";
@@ -64,14 +64,15 @@ if ($cantRuteros == 0) {
 		echo "<option value='$codCiclo|$codGestion'>$codCiclo $nombreGestion</option>";
 	}
 	echo "</select></td></tr>";
-	echo "</table><br/>";
-	echo "<input type='button' class='boton' value='Guardar' onClick='validar(this.form)'></center>";
-
+	echo "</table><br/></center>";
+	
+	echo "<div class='divBotones'>
+	<input type='button' class='boton' value='Guardar' onClick='validar(this.form)'>
+	<input type='button' class='boton2' value='Cancelar' onClick='location.href=\"navegador_rutero_maestro.php\"'>
+	</div>";
 }
 else{
 	echo "<center><div style='color:#FF5733;font-size:14pt;width:300px;'>Ya existe un rutero creado para el $nombreCicloSiguiente, no puede crear mas de un rutero por ciclo.</div></center>";
-
 }
-echo"<br/><table align='center'><tr><td><a href='javascript:history.back(-1)'><img  border='0'src='imagenes/back.png' width='40'></a></td></tr></table>";
 echo "</form>";
 ?>

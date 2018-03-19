@@ -1,19 +1,17 @@
 <?php
 echo "<script language='Javascript'>
-function validar(f)
-{
-	if(f.materno.value=='')
-		{	alert('El campo Apellido Materno esta vacio');
-	f.materno.focus();
+function validar(f){
+	if(f.materno.value==''){	
+		alert('El campo Apellido Materno esta vacio');
+		f.materno.focus();
+		return(false);
+	}
+	if(f.nombres.value=='')
+		{	alert('El campo Nombres esta vacio');
+	f.nombres.focus();
 	return(false);
-}
-if(f.nombres.value=='')
-	{	alert('El campo Nombres esta vacio');
-f.nombres.focus();
-return(false);
-}
-
-f.submit();
+	}
+	f.submit();
 }
 </script>";
 require("conexion.inc");
@@ -22,7 +20,7 @@ require("estilos_gerencia.inc");
 $ciudad_volver=$cod_ciudad;
 echo "<h1>Registro de Funcionario</h1>";
 echo "<form action='guardar_funcionario.php' method='get'>";
-echo "<center><table border=1 cellspacing=0 class='texto'>";
+echo "<center><table class='texto'>";
 echo "<tr><th>Paterno</th><th>Materno (*)</th><th>Nombres (*)</th><th>Fecha de Nacimiento</th></tr>";
 echo "<tr>";
 echo "<td align='center'><input type='text' name='paterno' style='text-transform:uppercase;' class='texto'></td>";
@@ -68,11 +66,14 @@ while($dat_cargo=mysql_fetch_array($sql_cargo))
 echo "</select></td>";
 echo "<td></td><td></td>";
 echo "</tr>";
-echo "</table><br>";
-echo"\n<table align='center'><tr><td><a href='navegador_funcionarios.php?cod_ciudad=$ciudad_volver'><img  border='0'src='imagenes/back.png' width='40'></a></td></tr></table>";
+echo "</table><br></center>";
 
-echo "<input type='hidden' name'cod_ciudad' value='$codciudad'>";
-echo "<input type='button' class='boton' value='Guardar' onClick='validar(this.form)'>";
+echo "<div class='divBotones'>
+		<input type='hidden' name'cod_ciudad' value='$codciudad'>
+		<input type='button' class='boton' value='Guardar' onClick='validar(this.form)'>
+		<input type='button' class='boton2' value='Cancelar' onClick='location.href=\"navegador_funcionarios.php?cod_ciudad=$ciudad_volver\"'>
+	<div>";
+
 echo "</form>";
 echo "</center>";
 echo "</div>";
