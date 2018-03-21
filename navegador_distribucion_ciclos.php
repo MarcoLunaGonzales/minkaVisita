@@ -3,15 +3,16 @@
 require("conexion.inc");
 require("estilos_gerencia.inc");	
 	
-//$sql_gestion="select codigo_gestion from gestiones where estado='Activo'";
-$sql_gestion="select codigo_gestion from gestiones where codigo_gestion=1014";
+$sql_gestion="select codigo_gestion from gestiones where estado='Activo'";
+//$sql_gestion="select codigo_gestion from gestiones where codigo_gestion=1014";
 $resp_gestion=mysql_query($sql_gestion);
 $dat_gestion=mysql_fetch_array($resp_gestion);
 $gestion_activa=$dat_gestion[0];
-/*$sql="select distinct(cod_ciclo), fecha_ini, fecha_fin, estado from ciclos where 
-codigo_gestion='$gestion_activa' order by cod_ciclo desc";*/
 $sql="select distinct(cod_ciclo), fecha_ini, fecha_fin, estado, codigo_gestion from ciclos where 
-codigo_gestion in (1014) order by  codigo_gestion desc, cod_ciclo desc";
+codigo_gestion='$gestion_activa' order by cod_ciclo desc";
+
+/*$sql="select distinct(cod_ciclo), fecha_ini, fecha_fin, estado, codigo_gestion from ciclos where 
+codigo_gestion in (1014) order by  codigo_gestion desc, cod_ciclo desc";*/
 $resp=mysql_query($sql);
 $indice_tabla=1;
 echo "<h1>Distribuci&oacute;n de MM y MA</h1>";

@@ -28,7 +28,7 @@ while($datLeyenda=mysql_fetch_array($respLeyenda)){
 echo "</table>";
 
 
-echo "<table class='texto' border='1' cellspacing='0' cellpading='0' align='center'>
+echo "<table class='texto' border='0' cellspacing='0' cellpading='0' align='center'>
 			<tr><th>Medico</th><th>Especialidad</th><th>Categoria</th><th>Frecuencia</th>";
 
 $sqlDias="select id, dia_contacto from orden_dias order by 1";

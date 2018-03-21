@@ -1,10 +1,8 @@
 <?php
-/**
- * Desarrollado por Datanet-Bolivia.
- * @autor: Marco Antonio Luna Gonzales
- * Sistema de Visita Médica
- * * @copyright 2005
-*/
+
+	require("conexion.inc");
+	require("estilos_administracion.inc");
+
 echo "<script language='Javascript'>
 		function enviar_nav()
 		{	location.href='registrar_muestra_medica.php';
@@ -76,13 +74,18 @@ echo "<script language='Javascript'>
 		}
 		</script>
 	";
-	require("conexion.inc");
-	require("estilos_administracion.inc");
+
+	
 	echo "<form method='post' action=''>";
+	
 	$sql="select m.codigo, m.descripcion, m.presentacion, m.estado, tm.nombre_tipo_muestra, m.codigo_linea
 from muestras_medicas m, tipos_muestra tm
 where m.cod_tipo_muestra=tm.cod_tipo_muestra and m.estado=1 order by m.descripcion";
-	echo "<center><table border='0' class='textotit'><tr><th>Registro de Productos de Visita</th></tr></table></center><br>";
+
+
+	echo "<h1>Registro de Muestras</h1>";
+
+
 	if($vista==1)
 	{
 		$sql="select m.codigo, m.descripcion, m.presentacion, m.estado, tm.nombre_tipo_muestra, m.codigo_linea
@@ -95,19 +98,28 @@ where m.cod_tipo_muestra=tm.cod_tipo_muestra and m.estado=0 order by m.descripci
 from muestras_medicas m, tipos_muestra tm
 where m.cod_tipo_muestra=tm.cod_tipo_muestra order by m.descripcion";
 	}
+	
+	//echo $sql;
+	
 	$resp=mysql_query($sql);
-	echo "<table align='center' class='texto'><tr><th>Ver productos: </th><td><select name='vista' class='texto' onChange='cambiar_vista(this, this.form)'>";
+	echo "<table align='center' class='texto'><tr><th>Ver productos: </th>
+		<th><select name='vista' class='texto' onChange='cambiar_vista(this, this.form)'>";
 	if($vista==0)	echo "<option value='0' selected>Activos</option><option value='1'>Retirados</option><option value='2'>Todo</option>";
 	if($vista==1)	echo "<option value='0'>Activos</option><option value='1' selected>Retirados</option><option value='2'>Todo</option>";
 	if($vista==2)	echo "<option value='0'>Activos</option><option value='1'>Retirados</option><option value='2' selected>Todo</option>";
 	echo "</select>";
-	echo "</td></tr></table><br>";
+	echo "</th></tr></table><br>";
+
 	echo "<center><table border='0' class='textomini'><tr><th>Leyenda:</th><th>Productos Retirados</th><td bgcolor='#ff6666' width='30%'></td></tr></table></center><br>";
-	require("home_administracion.php");
-	echo "<center><table border='0' class='texto'>";
-	echo "<tr><td><input type='button' value='Adicionar' name='adicionar' class='boton' onclick='enviar_nav()'></td><td><input type='button' value='Eliminar' name='eliminar' class='boton' onclick='eliminar_nav(this.form)'></td><td><input type='button' value='Editar' name='Editar' class='boton' onclick='editar_nav(this.form)'></td></tr></table></center><br>";
-	echo "<center><table border='1' class='texto' cellspacing='0' width='95%'>";
-	echo "<tr><th>&nbsp;</th><th>&nbsp;</th><th>Producto</th><th>Presentación</th><th>Tipo de Muestra</th><th>Línea</th></tr>";
+
+	echo "<div class='divBotones'>
+		<input type='button' value='Adicionar' name='adicionar' class='boton' onclick='enviar_nav()'>
+		<input type='button' value='Editar' name='Editar' class='boton' onclick='editar_nav(this.form)'>
+		<input type='button' value='Eliminar' name='eliminar' class='boton2' onclick='eliminar_nav(this.form)'>
+		</div>";
+		
+	echo "<center><table class='texto'>";
+	echo "<tr><th>&nbsp;</th><th>&nbsp;</th><th>Producto</th><th>Tipo</th><th>Linea</th></tr>";
 	$indice_tabla=1;
 	while($dat=mysql_fetch_array($resp))
 	{
@@ -129,12 +141,19 @@ where m.cod_tipo_muestra=tm.cod_tipo_muestra order by m.descripcion";
 		{
 		 	$fondo_fila="";
 		}
-		echo "<tr bgcolor=$fondo_fila><td align='center'>$indice_tabla</td><td><input type='checkbox' name='codigo' value='$codigo'></td><td>$muestra</td><td>$presentacion</td><td>$tipo_muestra</td><td>$nombre_linea</td></tr>";
+		echo "<tr bgcolor=$fondo_fila><td align='center'>$indice_tabla</td>
+		<td><input type='checkbox' name='codigo' value='$codigo'></td>
+		<td>$muestra</td>
+		<td>$tipo_muestra</td><td>$nombre_linea</td></tr>";
 		$indice_tabla++;
 	}
 	echo "</table></center><br>";
-	require("home_administracion.php");
-	echo "<center><table border='0' class='texto'>";
-	echo "<tr><td><input type='button' value='Adicionar' name='adicionar' class='boton' onclick='enviar_nav()'></td><td><input type='button' value='Eliminar' name='eliminar' class='boton' onclick='eliminar_nav(this.form)'></td><td><input type='button' value='Editar' name='Editar' class='boton' onclick='editar_nav(this.form)'></td></tr></table></center>";
+	
+		echo "<div class='divBotones'>
+		<input type='button' value='Adicionar' name='adicionar' class='boton' onclick='enviar_nav()'>
+		<input type='button' value='Editar' name='Editar' class='boton' onclick='editar_nav(this.form)'>
+		<input type='button' value='Eliminar' name='eliminar' class='boton2' onclick='eliminar_nav(this.form)'>
+		</div>";
+		
 	echo "</form>";
 ?>

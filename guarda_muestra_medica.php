@@ -1,26 +1,25 @@
 <?php
 require("conexion.inc");
 require("estilos_administracion.inc");
-$sql="select codigo from muestras_medicas where codigo LIKE 'M%' ORDER BY codigo desc";
+
+$sql="select count(*)+1 from muestras_medicas";
 $resp=mysql_query($sql);
-$max=0;
-while($dat=mysql_fetch_array($resp))
-{	$num_codigo=substr($dat[0],1);
-	if($num_codigo>$max)
-	{	$max=$num_codigo;
-	}
+$numFilas=mysql_result($resp,0,0);
+
+if($numFilas==1){	
+	$codigo="M1";
 }
-$num_filas=mysql_num_rows($resp);
-if($num_filas==0)
-{	$codigo="M1";
+else{
+	$codigo="M$numFilas";
 }
-else
-{
-	$max++;
-	$codigo="M$max";
-}
+
 $codigo_producto=$codigo;
-$sql_inserta=mysql_query("insert into muestras_medicas values('$codigo_producto','$muestra','$presentacion',1,'$tipo_muestra','$linea','')");
+
+$txtInserta="insert into muestras_medicas 
+	(codigo, descripcion, estado, cod_tipo_muestra, codigo_linea) values 
+	('$codigo_producto','$muestra',1,'$tipo_muestra','$linea')";
+
+$sql_inserta=mysql_query($txtInserta);
 if($sql_inserta==1)
 {
 	echo "<script language='Javascript'>
@@ -31,7 +30,7 @@ if($sql_inserta==1)
 else
 {
 		echo "<script language='Javascript'>
-			alert('Los datos no pudieron insertarse.');
+			alert('Ocurrio un error. Contacte con el administrador.');
 			history.back(-1);
 			</script>";
 }

@@ -259,11 +259,8 @@ while ($dat_productos = mysql_fetch_array($resp_productos)) {
 }
 echo "<tr><th>TOTALES</th></tr>";
 echo "</table><br>";
-echo "<center>";
-echo "<table border='0'>";
-echo "<tr><td><a href='javascript:window.print();'><IMG border='no' src='imagenes/print.gif'>Imprimir</a></td></tr>";
-echo "</table>";
-echo "</center>";
-
 echo "</form></body></html>";
+
+require("imprimirInc.php");
+
 ?>

@@ -22,7 +22,7 @@ echo "<table border='0' class='textomini' align='center'>
 <tr><td></td><td>Ejecutado</td><td bgcolor='#ffff00' width='30%'></td>
 </tr></table><br>";
 
-echo "<table class='texto' border='1' cellspacing='0' cellpading='0' align='center'>
+echo "<table class='texto' border='0' cellspacing='0' cellpading='0' align='center'>
 			<tr><th>Medico</th><th>Especialidad</th><th>Categoria</th><th>Frecuencia</th>";
 
 $sqlDias="select id, dia_contacto from orden_dias order by 1";
@@ -36,11 +36,13 @@ echo "</tr>";
 	
 $sql="select count(rd.cod_med), concat(m.`ap_pat_med`,' ',m.`nom_med`),
 	rd.`cod_med`, rd.`cod_especialidad`, rd.`categoria_med`
-	from `rutero_utilizado` r, `rutero_detalle_utilizado` rd , medicos m where
+	from `rutero` r, `rutero_detalle` rd , medicos m where
 	r.`cod_ciclo`='$rpt_ciclo' and r.`codigo_gestion`='$rpt_gestion' and rd.cod_med=m.cod_med and 
 	r.`cod_visitador`='$rpt_visitador' and r.`cod_contacto`=rd.`cod_contacto` group by rd.cod_med order by
 	5,2";
 
+//echo $sql;
+	
 $resp=mysql_query($sql);
 while($dat=mysql_fetch_array($resp)){
 	$frecuencia=$dat[0];
@@ -49,7 +51,7 @@ while($dat=mysql_fetch_array($resp)){
 	$codEspe=$dat[3];
 	$codCat=$dat[4];
 	
-	$sqlFrec="select o.id from `rutero_utilizado` r, `rutero_detalle_utilizado` rd, `orden_dias` o 
+	$sqlFrec="select o.id from `rutero` r, `rutero_detalle` rd, `orden_dias` o 
 		where r.`cod_ciclo` = '$rpt_ciclo' and r.`codigo_gestion` = '$rpt_gestion' and o.`dia_contacto` = r.`dia_contacto` and       
 		r.`cod_visitador` = '$rpt_visitador' and r.`cod_contacto` = rd.`cod_contacto` and rd.`cod_med` = '$codMed'";
 	$respFrec=mysql_query($sqlFrec);

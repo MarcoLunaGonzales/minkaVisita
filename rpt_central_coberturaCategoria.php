@@ -148,7 +148,7 @@ $resp_visitador=mysql_query($sql_visitador);
 echo "<center><table border='0' class='textotit'><tr><th>Cobertura x Visitador<br>
 Territorio: $nombre_territorio<br>Gestion: $nombreGestion Ciclo: $rpt_ciclo</th></tr></table></center><br>";
 $indice_tabla=1;
-echo "<center><table border='1' class='texto' width='100%' cellspacing='0' id='main'>";
+echo "<center><table border='0' class='texto' width='100%' cellspacing='0' id='main'>";
 echo "<tr><th>&nbsp;</th><th>Visitador</th>
 <th>Cont. A</th>
 <th>Cont. B</th>

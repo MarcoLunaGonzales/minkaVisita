@@ -184,6 +184,8 @@ Linea: $rptNombreLinea
 }			
 echo "<tr><TH>TOTALES</TH></tr>";
 echo "</table>";
-echo "<br><center><table border='0'><tr><td><a href='javascript:window.print();'><IMG border='no' src='imagenes/print.gif'>Imprimir</a></td></tr></table>";	
 echo "</form></body></html>";
+
+require("imprimirInc.php");
+
 ?>

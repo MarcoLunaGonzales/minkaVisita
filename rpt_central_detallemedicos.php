@@ -15,7 +15,7 @@ require("estilos_reportes.inc");
 	and f.cod_cargo='1011' order by f.paterno, f.materno";
 	$resp_visitador=mysql_query($sql_visitador);
 	$indice_tabla=1;
-	echo "<center><table border='1' class='texto' width='100%' cellspacing='0'>";
+	echo "<center><table border='0' class='texto' width='100%' cellspacing='0'>";
 	while($dat_visitador=mysql_fetch_array($resp_visitador))
 	{	$codigo_visitador=$dat_visitador[0];
 		$nombre_visitador="$dat_visitador[1] $dat_visitador[2] $dat_visitador[3]";

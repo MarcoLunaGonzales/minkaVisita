@@ -92,7 +92,7 @@ echo "<center><table border='0' class='textotit'><tr><th>Cobertura por Dia<br>
 Cat. Medico: $rpt_categoria<br>Gestion: $nombreGestion Ciclo: $rpt_ciclo<br>$nombreVisitador
 </th></tr></table></center><br>";
 $indice_tabla=1;
-echo "<center><table border='1' class='texto' width='60%' cellspacing='0' id='main'>";
+echo "<center><table border='0' class='texto' width='60%' cellspacing='0' id='main'>";
 echo "<tr>
 <th>&nbsp;</th>
 <th>Dia</th>

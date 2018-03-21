@@ -54,7 +54,7 @@ function imprimeRuteroMaestro($codigoGestion, $codigoCiclo, $tipoRuteroRpt, $vis
     $n = mysql_num_rows($respRuteros);
     $cadena_imprimir = '';
     ?>
-    <table border="1" align='center' width='90%' id="<?php echo $idtable ?>" class='texto'>
+    <table border="0" align='center' width='90%' id="<?php echo $idtable ?>" class='texto'>
         <?php  
         $cadena_imprimir .= "<tr>";
         $cadena_imprimir .= "<th>&nbsp;</th>";
@@ -65,7 +65,8 @@ function imprimeRuteroMaestro($codigoGestion, $codigoCiclo, $tipoRuteroRpt, $vis
             $codigo_linea   = $datRuteros[1];
             $nombre_linea   = $datRuteros[2];
             $cadena_codigo_linea .= $codigo_linea .",";
-            $sql = "SELECT r.nombre_rutero, l.nombre_linea from $tabla1 r, lineas l where r.codigo_linea=l.codigo_linea and r.cod_rutero=$rutero_maestro";
+            $sql = "SELECT r.nombre_rutero, l.nombre_linea from $tabla1 r, lineas l where r.codigo_linea=l.codigo_linea and 
+			r.cod_rutero=$rutero_maestro";
             
 			//echo $sql;
 			
@@ -95,11 +96,17 @@ function imprimeRuteroMaestro($codigoGestion, $codigoCiclo, $tipoRuteroRpt, $vis
         $cadena_imprimir .= "<th>TOTAL CONTACTOS</th>";
         $cadena_imprimir .= "</tr>";
         
+		
 		$sqlEspeTxt="select DISTINCT(rd.cod_especialidad) from $tabla1 rc, $tabla2 rm, 
 			$tabla3 rd 
 			where rc.cod_rutero=rm.cod_rutero and rm.cod_contacto=rd.cod_contacto and rm.cod_visitador=rd.cod_visitador 
 				and rc.codigo_gestion='$codigoGestion' and rc.codigo_ciclo='$codigoCiclo' and 
-				rc.cod_visitador='$visitador' and rc.estado_aprobado=1 order by 1";
+				rc.cod_visitador='$visitador'";
+		if($tipoRuteroRpt==1){
+			$sqlEspeTxt.=" and rc.estado_aprobado=1 ";
+		}
+		$sqlEspeTxt.=" order by 1";
+		
 		$sql_espe=mysql_query($sqlEspeTxt);
 		//$sql_espe = mysql_query("SELECT DISTINCT c.cod_especialidad, e.desc_especialidad  from lineas_visita a , 
 		//lineas_visita_visitadores_copy b, lineas_visita_especialidad c, especialidades e where a.codigo_l_visita = b.codigo_l_visita 

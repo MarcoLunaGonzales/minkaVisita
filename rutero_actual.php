@@ -11,7 +11,7 @@ $cod_ciclo=$codCiclo;
 $cod_gestion=$codGestion;
 
 
-$cod_gestion=1014;
+$cod_gestion=1000;
 
 //activamos el ciclo
 

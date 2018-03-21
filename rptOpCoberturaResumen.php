@@ -138,7 +138,7 @@ require("conexion.inc");
 require("estilos_administracion.inc");
 echo "<center><table class='textotit'><tr><th>Reporte de Cobertura Semanal</th></tr></table><br>";
 echo"<form method='post'>";
-	echo"\n<table class='texto' border='1' align='center' cellSpacing='0' width='30%'>\n";
+	echo"\n<table class='texto' border='0' align='center' cellSpacing='0' width='30%'>\n";
 	echo "<tr><th align='left'>Gesti&oacute;n</th>";
 	$sql_gestion="select distinct(codigo_gestion), nombre_gestion, estado from gestiones order by 1 desc";
 	$resp_gestion=mysql_query($sql_gestion);
@@ -185,9 +185,9 @@ echo"<form method='post'>";
 	<td>
 	<select name='rpt_reporte' class='texto' size='1'>
 	<option value='0'>Resumen por Semana</option>
-	<option value='3'>Resumen por Semana Con Tipos de Desasignacion</option>
+	<option value='3'>Resumen por Semana Con Tipos de Baja</option>
 	<option value='1'>Resumen por Semana y Territorio</option>
-	<option value='4'>Resumen por Semana y Territorio Con Tipos de Desasignacion</option>
+	<option value='4'>Resumen por Semana y Territorio Con Tipos de Baja</option>
 	<option value='2'>Resumen por Semana, Territorio y Visitador</option>
 	</select></td></tr>";
 	

@@ -70,11 +70,11 @@ require("conexion.inc");
 require("estilos_administracion.inc");
 echo "<center><table class='textotit'><tr><th>Reporte Detalle de Medicos en Rutero Maestro</th></tr></table><br>";
 echo"<form metodh='post'>";
-	echo"\n<table class='texto' border='1' align='center' cellSpacing='0' width='30%'>\n";
+	echo"\n<table class='texto' border='0' align='center' cellSpacing='0' width='30%'>\n";
 	echo "<tr><th align='left'>Territorio</th><td><select name='rpt_territorio' class='texto' onChange='ajaxVisitadores(this)'>";
 	$sql="select cod_ciudad, descripcion from ciudades order by descripcion";
 	$resp=mysql_query($sql);
-    echo "<option value=0>Seleccione una opción</option>";
+    echo "<option value=0>Seleccione una opcion</option>";
 	while($dat=mysql_fetch_array($resp))
 	{	$codigo_ciudad=$dat[0];
 		$nombre_ciudad=$dat[1];
@@ -89,7 +89,7 @@ echo"<form metodh='post'>";
 	echo "<tr><th align='left'>Visitador</th>";
 	echo "<td><div id='divVisitadores'></td></tr>";
 	
-	echo "<tr><th align='left'>Línea</th>";
+	echo "<tr><th align='left'>Linea</th>";
 	$sql_linea="select codigo_linea, nombre_linea from lineas where linea_promocion=1 and estado=1 order by nombre_linea";
 	$resp_linea=mysql_query($sql_linea);
 	echo "<td><select name='rpt_linea' class='texto' size='6' multiple>";

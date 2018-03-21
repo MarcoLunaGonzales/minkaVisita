@@ -2,8 +2,8 @@
 
 require("conexion.inc");
 
-$codigoCiclo=10;
-$codigoGestion=1014;
+$codigoCiclo=1;
+$codigoGestion=1000;
 
 
 $sqlLineas="select l.codigo_linea, l.nombre_linea from lineas l where l.estado=1 and l.linea_promocion=1";

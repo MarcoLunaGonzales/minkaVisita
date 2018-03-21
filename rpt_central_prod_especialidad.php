@@ -25,6 +25,6 @@
 		$indice_tabla++;
 	}
 	echo "</table></center>";
-	echo "<br><center><table border='0'><tr><td><a href='javascript:window.print();'><IMG border='no' src='imagenes/print.gif'>Imprimir</a></td></tr></table>";
+require("imprimirInc.php");
 
 ?>

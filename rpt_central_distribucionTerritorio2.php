@@ -31,12 +31,12 @@ $sql_nombreGestion = mysql_query("SELECT nombre_gestion from gestiones where cod
 $dat_nombreGestion = mysql_fetch_array($sql_nombreGestion);
 $nombreGestion = $dat_nombreGestion[0];
 echo "<html><body onload='totales();'>";
-echo "<table border='0' class='textotit' align='center'><tr><th>Reporte Distribuci�n x Ciclo x Territorio<br>
+echo "<table border='0' class='textotit' align='center'><tr><th>Reporte Distribucion x Ciclo x Territorio<br>
 Gestion: $nombreGestion Ciclo: $rpt_ciclo<br>
 Linea: $rptNombreLinea
 </th></tr></table></center><br>";
 
-echo "<table border=1 class='texto' cellspacing=0 cellpading=0 id='main' align='center'>";
+echo "<table border=0 class='texto' cellspacing=0 cellpading=0 id='main' align='center'>";
 $sql_territorio = "SELECT cod_ciudad, descripcion from ciudades where cod_ciudad in ($rpt_territorio) order by descripcion";
 
 $resp_territorios = mysql_query($sql_territorio);
@@ -201,8 +201,9 @@ while($dat_productos=mysql_fetch_array($resp_productos))
 echo "<tr><th>TOTALES</th></tr>";
 echo "</table><br>";
 echo "<center>";
-echo "<table border='0'>";
-echo "<tr><td><a href='javascript:window.print();'><IMG border='no' src='imagenes/print.gif'>Imprimir</a></td></tr>";
+
+require("imprimirInc.php");
+
 echo "</table>";
 echo "</center>";
 

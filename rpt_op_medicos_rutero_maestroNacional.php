@@ -80,7 +80,7 @@ require("conexion.inc");
 require('estilos_gerencia.inc');
 echo "<center><table class='textotit'><tr><th>M&eacute;dicos en Rutero Maestro Detallado</th></tr></table><br>";
 echo"<form method='post'>";
-	echo"\n<table class='texto' border='1' align='center' cellSpacing='0' width='40%'>\n";
+	echo"\n<table class='texto' border='0' align='center' cellSpacing='0' width='40%'>\n";
 	echo "<tr><th align='left'>Territorio</th>
 	<td>
 	<select name='rpt_territorio' class='texto' onChange='ajaxVisitadores(this)' size=11 multiple>";

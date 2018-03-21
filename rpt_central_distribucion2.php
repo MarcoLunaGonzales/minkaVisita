@@ -39,12 +39,12 @@ $dat_nombreGestion = mysql_fetch_array($sql_nombreGestion);
 $nombreGestion = $dat_nombreGestion[0];
 echo "<html><body onload='totales();'>";
 echo "<table border='0' class='textotit' align='center'>";
-echo "<tr><th>Reporte Distribuci�n x Ciclo x Visitador<br>
+echo "<tr><th>Reporte Distribucion x Ciclo x Visitador<br>
 Gestion: $nombreGestion Ciclo: $rpt_ciclo $cad_territorio<br>
 Linea: $rptNombreLinea
 </th></tr></table></center><br>";
 
-echo "<table border=1 class='texto' align='center' cellspacing=0 id='main'>";
+echo "<table border=0 class='texto' align='center' cellspacing=0 id='main'>";
 $sql_visitadores="SELECT paterno, materno, nombres from funcionarios where cod_ciudad='$rpt_territorio'and estado=1 and cod_cargo='1011' and codigo_funcionario in ($rpt_visitador) order by paterno, materno";
 $resp_visitadores=mysql_query($sql_visitadores);
 echo "<tr><th>&nbsp;Producto</th>";
@@ -212,9 +212,9 @@ while ($dat_productos = mysql_fetch_array($resp_productos)) {
 echo "<tr><th>TOTALES</th></tr>";
 echo "</table><br>";
 echo "<center>";
-echo "<table border='0'>";
-echo "<tr><td><a href='javascript:window.print();'><IMG border='no' src='imagenes/print.gif'>Imprimir</a></td></tr>";
-echo "</table>";
+
+require("imprimirInc.php");
+
 echo "</center>";
 
 echo "</form></body></html>";

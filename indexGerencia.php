@@ -22,14 +22,14 @@ include("datosUsuario.php");
 <div id="page">
 	<div class="header">
 		<a href="#menu"><span></span></a>
-		GALES - <span style="color:yellow;">  (Modulo Administracion)</span> <img src="imagenes/aesculapio2.png" width="30">
-		<div style="position:absolute; width:95%; height:50px; text-align:right; top:0px; font-size: 9px; font-weight: bold; color: #fff;">
+		GALES - <span style="color:yellow;">  (Modulo Administracion)</span>
+		<div style="position:absolute; width:95%; height:50px; text-align:right; top:0px; font-size: 11px; font-weight: bold; color: #fff;">
 			[<? echo $fechaSistemaSesion?>][<? echo $horaSistemaSesion;?>]			
 		<div>
 		<div style="position:absolute; width:99%; height:50px; text-align:right; top:17px; font-size: 9px; font-weight: bold; color: #fff;">
 			<span style="color:#D1C4E9;">PowerOfMinka</span>
 		<div>
-		<div style="position:absolute; width:95%; height:50px; text-align:left; top:-15px; font-size: 9px; font-weight: bold; color: #fff;">
+		<div style="position:absolute; width:95%; height:50px; text-align:left; top:-15px; font-size: 11px; font-weight: bold; color: #fff;">
 			[<? echo $nombreUsuarioSesion?>]</span>
 		<div>
 	</div>
@@ -99,8 +99,9 @@ include("datosUsuario.php");
 					</li>
 					<li><span>Parrillas</span>
 						<ul>
-							<li><a href="rpt_op_parrilla_central.php" target="contenedorPrincipal">Parrilla General</a></li>
-							<li><a href="rpt_op_parrilla_especial.php" target="contenedorPrincipal">Parrilla Especial</a></li>								
+							<!--li><a href="rpt_op_parrilla_central.php" target="contenedorPrincipal">Parrilla General</a></li>
+							<li><a href="rpt_op_parrilla_especial.php" target="contenedorPrincipal">Parrilla Especial</a></li-->
+							<li><a href="rptOpParrillaPersonalizada.php" target="contenedorPrincipal">Parrilla x Medico</a></li>
 						</ul>	
 					</li>
 					
@@ -124,7 +125,8 @@ include("datosUsuario.php");
 							<li><a href="rpt_op_medicos_rutero_maestro2.php" target="contenedorPrincipal">Medicos en Rutero Maestro Resumido x Visitador</a></li>	
 							<li><a href="rpt_op_medicos_rutero_maestro.php" target="contenedorPrincipal">Medicos en Rutero Maestro Detallado</a></li>	
 							<li><a href="rpt_op_frecuenciaSecuencia.php" target="contenedorPrincipal">Frecuencia y Secuencia de Visita</a></li>								
-							<li><a href="rpt_op_devolucionMMMA.php" target="contenedorPrincipal">Devolucion de Muestras Medicas</a></li>								
+							<li><a href="rpt_op_devolucionMMMA.php" target="contenedorPrincipal">Devolucion de Muestras Medicas</a></li>							
+							<li><a href="rpt_op_SecuenciaMedico.php" target="contenedorPrincipal">Secuencia de Visita por Medico</a>														
 						</ul>	
 					</li>
 					

@@ -117,6 +117,7 @@ Linea: $nombre_linea Ruteros Maestro: $nombreVistaRutero</th></tr></table></cent
 		<td align='right'>$totalC</td>
 		<td align='right'>$total_medicoslinea</td><td align='right'>$cobertura_total %</td></tr>";
     echo "</table></center>";
-echo "<br><center><table border='0'><tr><td><a href='javascript:window.print();'><IMG border='no' src='imagenes/print.gif'>Imprimir</a></td></tr></table>";
+	
+require("imprimirInc.php");
 
 ?>

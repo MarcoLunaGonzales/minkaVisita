@@ -23,7 +23,7 @@ echo "<h3 align='center'>Leyenda: <span style='color: black; font-size:10pt;'>X 
 echo "<h3 align='center'>X: Nro. Dias   Y: Nro. Contactos   Z: Promedio de contactos por Dia</h2>";
 
 			
-echo "<table border=1 class='texto' cellspacing='0' id='main' align='center'><tr><th>&nbsp;</th><th>&nbsp;</th>";
+echo "<table border=0 class='texto' cellspacing='0' id='main' align='center'><tr><th>&nbsp;</th><th>&nbsp;</th>";
 $sqlLinea="select codigo_linea, nombre_linea from lineas where linea_promocion=1 and estado=1 order by 2";
 $respLinea=mysql_query($sqlLinea);
 while($datLinea=mysql_fetch_array($respLinea)){

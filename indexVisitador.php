@@ -1,7 +1,7 @@
 <html>
 <head>
 	<meta charset="utf-8" />
-	<title>Modulo Visitador</title>
+	<title>Minka</title>
 
 	<link type="text/css" rel="stylesheet" href="menuLibs/css/demo.css" />
 	<link type="text/css" rel="stylesheet" href="menuLibs/dist/jquery.mmenu.css" />
@@ -22,11 +22,16 @@ include("datosUsuario.php");
 <div id="page">
 	<div class="header">
 		<a href="#menu"><span></span></a>
-		MINKA V++<span style="color:yellow;">(Modulo Visita)</span>
-		<div style="position:absolute; width:95%; height:50px; text-align:right; top:0px; font-size: 9px; font-weight: bold; color: #fff;">
+		GALES - <span style="color:yellow;">(Modulo Visita)</span>
+		<div style="position:absolute; width:95%; height:50px; text-align:right; top:0px; font-size: 11px; font-weight: bold; color: #fff;">
 			[<? echo $fechaSistemaSesion?>][<? echo $horaSistemaSesion;?>]			
 		<div>
-		<div style="position:absolute; width:95%; height:50px; text-align:left; top:0px; font-size: 9px; font-weight: bold; color: #fff;">
+		
+		<div style="position:absolute; width:99%; height:50px; text-align:right; top:17px; font-size: 9px; font-weight: bold; color: #fff;">
+			<span style="color:#D1C4E9;">PowerOfMinka</span>
+		<div>
+		
+		<div style="position:absolute; width:95%; height:50px; text-align:left; top:-15px; font-size: 11px; font-weight: bold; color: #fff;">
 			[<? echo $nombreUsuarioSesion?>]  [<? echo $nombreAgenciaSesion;?>]  <span style="color:yellow;">[<? echo $nombreLineaSesion;?>]</span>
 		<div>
 		
@@ -76,9 +81,7 @@ include("datosUsuario.php");
 							<li><a href="rptOpCoberturaSemanaVisitador.php" target="contenedorPrincipal">Cobertura x Dia</a></li>								
 							<li><a href="rpt_op_central_detallemedicos.php" target="contenedorPrincipal">Rutero Maestro Detallado</a></li>								
 							<li><a href="rpt_op_medicos_rutero_maestro2.php" target="contenedorPrincipal">Rutero Maestro Resumido x Visitador</a></li>								
-							<li><a href="rpt_op_frecuenciaSecuencia.php" target="contenedorPrincipal">Frecuencia y Secuencia de Visita</a></li>								
-							<li><a href="rpt_op_SecuenciaMedico.php" target="contenedorPrincipal">Secuencia de Visita por Medico</a></li>								
-							<li><a href="rptOpCoberturaSemanaVisitador.php" target="contenedorPrincipal">Cobertura x Dia</a></li>								
+							
 						</ul>	
 					</li>
 				</ul>

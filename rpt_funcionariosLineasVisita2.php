@@ -26,7 +26,7 @@ $nom_gestion = $datos11[2];
 		echo "<center><table border='0' class='textotit' align='center'><tr><th>Funcionarios en Lineas de Visita<br>
 		</th></tr></table></center><br>";
 
-		echo "<center><table border=1 class='texto' cellspacing=0 cellpading=0 id='main' align='center' width='70%'>
+		echo "<center><table border=0 class='texto' cellspacing=0 cellpading=0 id='main' align='center' width='70%'>
 		<tr><th>Linea  de Visita</th><th>Territorio</th><th>Funcionario</th></tr>";
 
 		$sql="select c.descripcion, concat(f.paterno,' ', f.materno, ' ', f.nombres), l.nombre_linea

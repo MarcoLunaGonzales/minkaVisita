@@ -6,7 +6,7 @@ $rpt_territorio=$_GET["rpt_territorio"];
 echo "<table border='0' class='textotit' align='center'><tr><th>Funcionarios Habilitados<br>
 </th></tr></table></center><br>";
 
-echo "<table border=1 class='texto' cellspacing=0 cellpading=0 id='main' align='center' width='70%'>
+echo "<table border=0 class='texto' cellspacing=0 cellpading=0 id='main' align='center' width='70%'>
 <tr><th>Territorio</th><th>Cargo</th><th>Codigo</th><th>Visitador</th><th>Lineas</th></tr>";
 
 $sql="select f.codigo_funcionario, c.`descripcion`, concat(f.`paterno`,' ',f.`nombres`), ca.`cargo` 

@@ -5,15 +5,6 @@
 require("conexion.inc");
 require("lib/phpmailer/class.phpmailer.php");
 
-$sql = "SELECT f.cod_cargo, f.cod_ciudad, f.codigo_funcionario from funcionarios f, usuarios_sistema u 
-where u.codigo_funcionario=f.codigo_funcionario 
-and u.nombre_usuario='$usuario' and u.contrasena='$contrasena'";
-
-//echo $sql;
-
-$resp = mysql_query($sql);
-$num_filas = mysql_num_rows($resp);
-
 function verifica_fecha_caducidad($usuario){
     $sql_veriica_fecha = mysql_query("SELECT fecha_caducidad from usuarios_sistema where codigo_funcionario = $usuario");
     $fecha_caducidad = mysql_result($sql_veriica_fecha, 0, 0);
@@ -32,16 +23,23 @@ function verifica_fecha_caducidad($usuario){
         $mail->Subject    = "Su contraseña expirará en $fecha->m";
         $mail->AltBody    = "Su contraseña expirará en $fecha->m, por favor cambiela antes de este tiempo."; // optional, comment out and test
         $mail->MsgHTML("Estimado Usuario: <br /> <br />Se le solicita cambiar su contraseña antes de que expire. Esto ocurrira dentro de <strong>%fecha-m</strong> meses. <br /> <br /> <i>/* Este es un mensaje autom&aacute;tico. Por favor no responda a este correo. */</i>");
-
-
-        if(!$mail->Send()){
+       if(!$mail->Send()){
             echo "Mailer Error: " . $mail->ErrorInfo;
         } 
     }
 }
 
-//este cookie es para el visitador
+$sql = "SELECT f.cod_cargo, f.cod_ciudad, f.codigo_funcionario from funcionarios f, usuarios_sistema u 
+where u.codigo_funcionario=f.codigo_funcionario 
+and u.nombre_usuario='$usuario' and u.contrasena='$contrasena'";
+
+$resp = mysql_query($sql);
+$num_filas = mysql_num_rows($resp);
+
 if ($num_filas != 0) {
+	
+	session_start();
+	
     $dat = mysql_fetch_array($resp);
     $cod_cargo = $dat[0];
     $cod_ciudad = $dat[1];

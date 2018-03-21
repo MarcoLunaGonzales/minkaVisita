@@ -16,9 +16,9 @@ $nombre_cab_gestion   = $datos_cab_gestion[0];
 echo "<form method='post' action='opciones_medico.php'>";
 
 echo "<center><table border='0' class='textotit'><tr><th>Parrillas Personalizadas
-	Gestion: $nombre_cab_gestion Ciclo: $ciclo_rpt</th></tr></table></center><br>";
+	Gestion: $nombre_cab_gestion Ciclo: $codCiclo</th></tr></table></center><br>";
 
-echo "<center><table border='1' class='textomini' cellspacing='0' width='100%'>";
+echo "<center><table border='0' class='texto' cellspacing='0' width='100%'>";
 echo "<tr><th>Territorio</th><th>Linea</th><th>Medico</th><th>Especialidad</th><th>Categoria</th><th>Numero Visita</th><th>Parrilla Promocional</th></tr>";
 
 $sql="select p.cod_linea, (select l.nombre_linea from lineas l where l.codigo_linea=p.cod_linea)linea, 
@@ -50,7 +50,7 @@ while($dat=mysql_fetch_array($resp)){
 		p.cod_linea=$codigoLinea order by p.orden_visita";
 		
 	$resp1 = mysql_query($sql1);
-	$parrilla_medica = "<table class='textomini' width='100%' border='0'>";
+	$parrilla_medica = "<table class='texto' width='100%' border='0'>";
 	$parrilla_medica = $parrilla_medica . "<tr><th>Orden</th><th>Producto</th><th>Cantidad</th><th>Material de Apoyo</th><th>Cantidad</td><th>Obs.</th></tr>";
 	while ($dat1 = mysql_fetch_array($resp1)) {
 		$prioridad     = $dat1[0];

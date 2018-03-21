@@ -70,7 +70,7 @@ for($i=0;$i<=$tamVectorVisitador-1;$i++) {
 //	echo $sql_medicos;
 	
 	$resp_medicos=mysql_query($sql_medicos);
-	echo "<center><table border='1' class='textomini' cellspacing='0' width='60%'>";
+	echo "<center><table border='0' class='texto' cellspacing='0' width='60%'>";
 	echo "<tr><th>&nbsp;</th><th>Codigo</th><th>Visitador</th><th>Nombre</th><th>Especialidad</th><th>Categoria</th>
 	<th>Contactos</th><th>Contactos Grilla</th><th>Diferencia</th></tr>";
 	$indice_tabla=1;
@@ -84,9 +84,15 @@ for($i=0;$i<=$tamVectorVisitador-1;$i++) {
 		$resp_cant_contactos = mysql_query($sql_cant_contactos);
 		$num_contactos = mysql_num_rows($resp_cant_contactos);
 
-		$sqlGrilla = "SELECT gd.frecuencia from grilla g, grilla_detalle gd where g.codigo_grilla=gd.codigo_grilla and gd.cod_especialidad='$especialidad_med' and gd.cod_categoria='$categoria_med' and g.agencia=$codTerritorio and g.codigo_linea='$codigoLinea'";
+		$sqlGrilla = "SELECT gd.frecuencia from grilla g, grilla_detalle gd where g.codigo_grilla=gd.codigo_grilla and 
+			gd.cod_especialidad='$especialidad_med' and gd.cod_categoria='$categoria_med' and g.agencia=$codTerritorio and 
+			g.codigo_linea='$codigoLinea'";
 		$respGrilla       = mysql_query($sqlGrilla);
-		$frecuenciaGrilla = mysql_result($respGrilla,0,0);
+		$numFilasX=mysql_num_rows($respGrilla);
+		$frecuenciaGrilla=0;
+		if($numFilasX>0){
+			$frecuenciaGrilla = mysql_result($respGrilla,0,0);	
+		}
 
 		$diferencia = $num_contactos - $frecuenciaGrilla;
 		if($diferencia == 0){
@@ -105,7 +111,7 @@ for($i=0;$i<=$tamVectorVisitador-1;$i++) {
 		<td align='center' bgcolor='$color'>$diferencia</td></tr>";
 		$indice_tabla++;
 	}
-	echo "</table></center>";
+	echo "</table><br><br></center>";
 
 	imprimeRuteroMaestroEspe($codigoGestion,$codigoCiclo,$tipoRuteroRpt,$codigoLinea,$rpt_visitador,$rpt_visitador,$codigoEspe);
 	echo "<br><br>";

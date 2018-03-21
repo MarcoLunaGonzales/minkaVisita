@@ -1,4 +1,7 @@
 <?php
+require("conexion.inc");
+require("estilos_administracion.inc");
+
 echo "<script language='Javascript'>
 	function validar(f)
 	{
@@ -7,19 +10,15 @@ echo "<script language='Javascript'>
 			f.muestra.focus();
 			return(false);
 		}
-		if(f.presentacion.value=='')
-		{	alert('El campo Presentación esta vacio.');
-			f.presentacion.focus();
-			return(false);
-		}
 		f.submit();
 	}
 	</script>";
-require("conexion.inc");
-require("estilos_administracion.inc");
+
 echo "<form action='guarda_muestra_medica.php' method='post'>";
-echo "<center><table border='0' class='textotit'><tr><th>Adicionar Muestras</th></tr></table></center><br>";
-echo "<center><table border='1' class='texto' cellspacing='0'>";
+
+echo "<h1>Registrar Muestra</h1>";
+
+echo "<center><table class='texto'>";
 /*echo "<tr><th align='left'>Producto</th>";
 $sql2="select cod_producto, descripcion from productos order by descripcion";
 $resp2=mysql_query($sql2);
@@ -31,8 +30,9 @@ while($dat2=mysql_fetch_array($resp2))
 }
 echo "</select></td>";
 echo "</tr>";*/
-echo "<tr><th align='left'>Nombre Muestra</th><td><input type='text' class='texto' name='muestra' size='40' onKeyUp='javascript:this.value=this.value.toUpperCase();'></td></tr>";
-echo "<tr><th align='left'>Presentación</th><td align='center'><input type='text' class='texto' name='presentacion' size='40' onKeyUp='javascript:this.value=this.value.toUpperCase();'></td></tr>";
+echo "<tr><th align='left'>Nombre</th>
+	<td><input type='text' class='texto' name='muestra' size='40' onKeyUp='javascript:this.value=this.value.toUpperCase();'></td>
+	</tr>";
 echo "<tr><th align='left'>Tipo de Muestra</th>";
 $sql1="select * from tipos_muestra order by nombre_tipo_muestra";
 $resp1=mysql_query($sql1);
@@ -44,8 +44,8 @@ while($dat1=mysql_fetch_array($resp1))
 }
 echo "</select></td>";
 echo "</tr>";
-echo "<tr><th align='left'>Línea</th><td><select name='linea' class='texto'>";
-$sql="select codigo_linea, nombre_linea from lineas where linea_inventarios=1 order by nombre_linea";
+echo "<tr><th align='left'>Linea</th><td><select name='linea' class='texto'>";
+$sql="select codigo_linea, nombre_linea from lineas where linea_inventarios=1 and estado=1 order by nombre_linea";
 $resp=mysql_query($sql);
 while($dat=mysql_fetch_array($resp))
 {	$codigo_linea=$dat[0];
@@ -59,8 +59,9 @@ while($dat=mysql_fetch_array($resp))
 }
 echo "</select></td></tr>";
 echo "</tr>";
-echo "</table><br>";
-echo"\n<table align='center'><tr><td><a href='navegador_muestras_medicas.php'><img  border='0'src='imagenes/back.png' width='40'></a></td></tr></table>";
-echo "<input type='button' class='boton' value='Guardar' onClick='validar(this.form)'></center>";
+echo "</table></center><br>";
+
+echo "<div class='divBotones'><input type='button' class='boton' value='Guardar' onClick='validar(this.form)'> 
+	<input type='button' class='boton2' value='Cancelar' onClick='location.href=\"navegador_muestras_medicas.php\"'></div>";
 echo "</form>";
 ?>

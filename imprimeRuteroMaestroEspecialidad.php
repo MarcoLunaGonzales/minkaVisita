@@ -49,7 +49,7 @@ if($tipoRuteroRpt==1){
 	$tabla2="rutero_maestro_aprobado";
 	$tabla3="rutero_maestro_detalle_aprobado";		
 }
-echo "<table class='texto' border='1' cellspacing='0' align='center'width='90%' id='$idtable'>
+echo "<table class='texto' border='0' cellspacing='0' align='center'width='90%' id='$idtable'>
 <tr><th colspan='9'>$nombreLinea -  $nombreVisitador  -  $nombreTerritorio</th></tr>
 <tr><th>Especialidad</th>
 <th>Categoria A</th><th>Categoria B</th><th>Categoria C</th><th>Total Medicos</th>

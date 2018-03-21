@@ -18,7 +18,7 @@ require("conexion.inc");
 require("estilos_administracion.inc");
 echo "<center><table class='textotit'><tr><th>Funcionarios Habilitados</th></tr></table><br>";
 echo"<form method='post'>";
-	echo"\n<table class='texto' border='1' align='center' cellSpacing='0' width='30%'>\n";
+	echo"\n<table class='texto' border='0' align='center' cellSpacing='0' width='30%'>\n";
 	echo "<tr><th align='left'>Territorio</th>
 	<td>
 	<select name='rpt_territorio' class='texto'  size='12' multiple>";

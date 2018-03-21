@@ -48,7 +48,7 @@ echo "</table>";
 
 
 
-echo "<table border=1 class='texto' align='center' cellspacing=0 id='main'>";
+echo "<table border=0 class='texto' align='center' cellspacing=0 id='main'>";
 $sql_visitadores = "SELECT paterno, materno, nombres from funcionarios where cod_ciudad='$rpt_territorio'
 and estado=1 and cod_cargo='1011' and codigo_funcionario in ($rpt_visitador) order by paterno, materno";
 $resp_visitadores = mysql_query($sql_visitadores);
@@ -203,6 +203,7 @@ while ($dat_productos = mysql_fetch_array($resp_productos)) {
 }
 echo "<tr><TH>TOTALES</TH></tr>";
 echo "</table>";
-echo "<br><center><table border='0'><tr><td><a href='javascript:window.print();'><IMG border='no' src='imagenes/print.gif'>Imprimir</a></td></tr></table>";
 echo "</form></body></html>";
+require("imprimirInc.php");
+
 ?>

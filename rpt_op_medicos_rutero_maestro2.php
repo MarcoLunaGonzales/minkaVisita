@@ -58,7 +58,7 @@ require("conexion.inc");
 require('estilos_gerencia.inc');
 echo "<center><table class='textotit'><tr><th>M&eacute;dicos en Rutero Maestro Resumido x Visitador</th></tr></table></center><br>";
 echo"<form method='post'>";
-echo"\n<table class='texto' border='1' align='center' cellSpacing='0' width='40%'>\n";
+echo"\n<table class='texto' border='0' align='center' cellSpacing='0' width='40%'>\n";
 echo "<tr><th align='left'>Territorio</th><td>
 <select name='rpt_territorio' class='texto' onChange='ajaxVisitadores(this)' size='9' multiple>";
 $sql="SELECT c.cod_ciudad, c.descripcion from ciudades c, funcionarios_agencias f where f.cod_ciudad = c.cod_ciudad and f.codigo_funcionario = $global_usuario order by c.descripcion";

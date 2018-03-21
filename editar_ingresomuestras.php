@@ -168,7 +168,7 @@ echo "<td align='center'>";
 	echo" <IMG id='imagenFecha' src='imagenes/fecha.bmp'>";
 
 	
-$sql1="select cod_tipoingreso, nombre_tipoingreso from tipos_ingreso where tipo_almacen='$global_tipoalmacen' order by nombre_tipoingreso";
+$sql1="select cod_tipoingreso, nombre_tipoingreso from tipos_ingreso where tipo_almacen='1' order by nombre_tipoingreso";
 $resp1=mysql_query($sql1);
 echo "<td align='center'><select name='tipo_ingreso' class='texto'>";
 while($dat1=mysql_fetch_array($resp1))

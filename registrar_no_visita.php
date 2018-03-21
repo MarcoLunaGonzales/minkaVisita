@@ -15,7 +15,7 @@ $enc_categoria=$dat_enc[5];
 $enc_especialidad=$dat_enc[6];
 $cod_medico=$dat_enc[10];
 echo "<form method='post' action='guardar_no_visita.php'>";
-echo "<center><table border='0' class='textotit'><tr><td align='center'>Registro de Visita M&eacute;dica<br>M&eacute;dico: <strong>$enc_nombre_medico</strong> Especialidad: <strong>$enc_especialidad</strong> Categor&iacute;a: <strong>$enc_categoria</strong></td></tr></table></center><br>";
+echo "<center><table border='0' class='textotit'><tr><td align='center'>Registro de Visita<br>M&eacute;dico: <strong>$enc_nombre_medico</strong> Especialidad: <strong>$enc_especialidad</strong> Categor&iacute;a: <strong>$enc_categoria</strong></td></tr></table></center><br>";
 echo "<table class='texto' align='center' border='1'><tr><th>Motivo de la no Visita</th>";	
 $sql_motivosnovisita="SELECT * from motivos_baja where tipo_motivo = 3 order by 2";
 $resp_motivosnovisita=mysql_query($sql_motivosnovisita);		

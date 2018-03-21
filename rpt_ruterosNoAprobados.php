@@ -6,19 +6,19 @@ $rpt_ciclo=$_GET["rpt_ciclo"];
 $rpt_territorio=$_GET["rpt_territorio"];
 
 $colorNoApro="#FE9A2E";
-$colorApro="#00FF00";
+$colorApro="#69f0ae";
 $colorEnApro="#FFFF00";
-$colorSinRutero="#FE2E2E";
+$colorSinRutero="#e57373";
 
 
 $sql_nombreGestion=mysql_query("select nombre_gestion from gestiones where codigo_gestion=$rpt_gestion");
 $dat_nombreGestion=mysql_fetch_array($sql_nombreGestion);
 $nombreGestion=$dat_nombreGestion[0];
-echo "<table border='0' class='textotit' align='center'><tr><th>Ruteros No Aprobados<br>
+echo "<table border='0' class='textotit' align='center'><tr><th>Ruteros en Elaboracion<br>
 Gestion: $nombreGestion Ciclo: $rpt_ciclo
 </th></tr></table></center><br>";
 
-echo "<table border=1 class='texto' cellspacing='0' id='main' align='center'><tr><th>&nbsp;</th><th>&nbsp;</th>";
+echo "<table border=0 class='texto' cellspacing='0' id='main' align='center'><tr><th>&nbsp;</th><th>&nbsp;</th>";
 $sqlLinea="select codigo_linea, nombre_linea from lineas where linea_promocion=1 and estado=1 order by 2";
 $respLinea=mysql_query($sqlLinea);
 while($datLinea=mysql_fetch_array($respLinea)){

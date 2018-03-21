@@ -116,8 +116,13 @@ function guarda_form(f) {
 }
 
 valores=f.valores.value;
-num_extras=f.muestras_extra.value;
-num_muestra_agregar=f.muestra_agregar.value;
+
+/*num_extras=f.muestras_extra.value;
+num_muestra_agregar=f.muestra_agregar.value;*/
+
+num_extras=0;
+num_muestra_agregar=0;
+
 fechaVisitaReal=f.fechaVisitaReal.value;
 cod_med=f.cod_med.value;
 cod_espe=f.cod_espe.value;
@@ -185,7 +190,7 @@ echo "<h1>Registro de Visita M&eacute;dica<br>M&eacute;dico: <strong>$enc_nombre
 Especialidad: <strong>$enc_especialidad</strong> Categor&iacute;a: <strong>$categoria</strong><br>
 <strong>$nombre_de_dia $fecha_visita</strong></h1>";
 
-echo "<table border='0' class='textomini' align='center'><tr><td>Leyenda:</td><td>Producto Objetivo</td><td bgcolor='#ffff99' width='10%'></td><td>&nbsp;</td><td>Producto Filtrado</td><td bgcolor='#ff7591' width='10%'></td><td>&nbsp;</td><td>Producto Extra</td><td bgcolor='#66ccff' width='10%'></td></table><br>";
+echo "<center><table border='0' class='texto' align='center'><tr><td>Leyenda:</td><td>Producto Objetivo</td><td bgcolor='#ffff99' width='10%'></td><td>&nbsp;</td><td>Producto Filtrado</td><td bgcolor='#ff7591' width='10%'></td><td>&nbsp;</td><td>Producto Extra</td><td bgcolor='#66ccff' width='10%'></td></table><br>";
 //aplicamos una consulta para saber si el visitador hace linea de visita para la especialidad
 // $verifica_lineas = "SELECT l.codigo_l_visita from lineas_visita l, lineas_visita_especialidad le, lineas_visita_visitadores lv where l.codigo_l_visita=le.codigo_l_visita and l.codigo_l_visita=lv.codigo_l_visita and le.codigo_l_visita=lv.codigo_l_visita and l.codigo_linea='$global_linea' and lv.codigo_funcionario='$global_visitador' and le.cod_especialidad='$especialidad' and lv.codigo_gestion = $codigo_gestion and lv.codigo_ciclo = $ciclo_activo ";
 $verifica_lineas = "SELECT lv.codigo_l_visita from lineas_visita_visitadores_copy lv, lineas_visita_especialidad le WHERE le.codigo_l_visita = lv.codigo_l_visita and lv.codigo_funcionario = $global_visitador and lv.codigo_gestion = $codigo_gestion and lv.codigo_ciclo = $ciclo_activo and lv.codigo_linea_visita = $global_linea and le.cod_especialidad = '$especialidad'";
@@ -242,7 +247,7 @@ if ($numero_registros != 0) {
           input_element_id='fechaVisitaReal' 
           click_element_id='imagenFecha'></DLCALENDAR></th>
       </tr></table><br>";
-      echo "<table border='1' cellspacing='0' class='textomini' width='100%'>";
+      echo "<table border='0' cellspacing='0' class='texto' width='100%'>";
       /*echo "<tr><th>Muestra</th><th>Cantidad</th><th>Cantidad extra entregada</th><th>Material de Apoyo</th><th>Cantidad</th>
       <th>Cantidad extra entregada</th><th>Obs.</th><th>Entregado</th><th>Sugerir Quitar</th></tr>";*/
       echo "<tr><th>Muestra</th><th>Cantidad</th><th>Cantidad extra entregada</th><th>Material de Apoyo</th><th>Cantidad</th>
@@ -318,7 +323,7 @@ if ($numero_registros != 0) {
         if ($valor_constancia == 1) {
             echo "<select name='cantidad_apoyo$i' id='cantidad_apoyo$i'  class='texto'>";
         } else {
-            echo "<select name='cantidad_apoyo$i' id='cantidad_apoyo$i' class='texto' disabled='true'>";
+            echo "<select name='cantidad_apoyo$i' id='cantidad_apoyo$i' class='texto' disabled='false'>";
         }
         for ($jj = 0; $jj <= $cant_apoyo; $jj++) {
             if ($jj == $cant_apoyo) {
@@ -332,7 +337,7 @@ if ($numero_registros != 0) {
         if ($valor_constancia == 1 and $codigo_material != 0) {
             echo "<td align='center'><select name='cantidad_extraapoyo$i' id='cantidad_extraapoyo$i' class='textomini'>";
         } else {
-            echo "<td align='center'><select name='cantidad_extraapoyo$i'  id='cantidad_extraapoyo$i' class='textomini' disabled='true'>";
+            echo "<td align='center'><select name='cantidad_extraapoyo$i'  id='cantidad_extraapoyo$i' class='textomini' disabled='false'>";
         }
         echo "<option value=''></option>";
         for ($j = 1; $j <= 20; $j++) {
@@ -365,7 +370,7 @@ if ($numero_registros != 0) {
 	
 	
 	
-	
+	/*
     //aqui construimos las muestras extra
     echo "<table border='1' cellspacing='0' class='texto' width='100%' align='center'>";
     echo "<tr><th colspan='5'>Cantidad de muestras de productos extra-parrilla entregadas:&nbsp;&nbsp;";
@@ -443,7 +448,7 @@ if ($numero_registros != 0) {
 
 	
     /*--------------------------------------------------------------------------------------------------------------------------*/
-    echo "<table border='1' cellspacing='0' class='texto' width='50%' align='center'>";
+    /*echo "<table border='1' cellspacing='0' class='texto' width='50%' align='center'>";
     echo "<tr><th>Sugerir muestras:&nbsp;&nbsp;";
     echo "<select name='muestra_agregar' class='textomini' onChange='envia_form(this.form)'>";
     for ($m = 0; $m <= 10; $m++) {
@@ -477,9 +482,9 @@ if ($numero_registros != 0) {
         echo "</tr>";
     }
     echo "</table><br>";
+	*/
 
-
-    echo "<table border='1' cellspacing='0' class='texto' width='30%' align='center'>";
+    /*echo "<table border='1' cellspacing='0' class='texto' width='30%' align='center'>";
     echo "<tr><th>Porque sugiri&oacute; quitar o agregar una muestras al m&eacute;dico?:&nbsp;&nbsp;";
     echo "</th></tr>";
     echo "<tr>";
@@ -488,13 +493,12 @@ if ($numero_registros != 0) {
     echo "</td>";
     echo "</tr>";
     echo "</table><br>";
-
+	*/
 
 
     /*--------------------------------------------------------------------------------------------------------------------------*/
 
 
-    echo"\n<table align='center'><tr><td><a href='javascript:history.back(-1);'><img  border='0'src='imagenes/back.png' width='40'></a></td></tr></table>";
     echo "<table border='0' align='center'>";
     echo "<input type='hidden' name='valores' value='$contacto-$orden_visita-$parrilla-$i'>";
     echo "<input type='hidden' name='cod_contacto' value='$cod_contacto'>";
@@ -506,9 +510,8 @@ if ($numero_registros != 0) {
     echo "<input type='hidden' name='codigo_parrilla' value='$codigo_parrilla'>";
 
 
-    echo "<tr>
-    <th><input type='button' OnClick='guarda_form(this.form)' class='boton' value='Guardar'></th>
-</tr>";
+    echo "<div class='divBotones'><input type='button' OnClick='guarda_form(this.form)' class='boton' value='Guardar'>
+		<input type='button' OnClick='javascript:history.back()' class='boton2' value='Cancelar'></div>";
 echo "</form>";
 echo "</table>";
 } else {

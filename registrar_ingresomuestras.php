@@ -149,7 +149,7 @@ echo "<td align='center'>";
 	echo" navbar_style='background-color: 7992B7; color:ffffff;' ";
 	echo" input_element_id='fecha'";
 	echo" click_element_id='imagenFecha'></DLCALENDAR></td>";*/
-$sql1="select cod_tipoingreso, nombre_tipoingreso from tipos_ingreso where tipo_almacen='$global_tipoalmacen' order by nombre_tipoingreso";
+$sql1="select cod_tipoingreso, nombre_tipoingreso from tipos_ingreso where tipo_almacen=1 order by nombre_tipoingreso";
 $resp1=mysql_query($sql1);
 echo "<td align='center'><select name='tipo_ingreso' class='texto'>";
 while($dat1=mysql_fetch_array($resp1))

@@ -1,8 +1,11 @@
 <?php
 require("conexion.inc");
 require("estilos_administracion.inc");
-$sql_upd=mysql_query("update muestras_medicas set descripcion='$muestra', presentacion='$presentacion',
-estado='$estado', cod_tipo_muestra='$tipo_muestra', codigo_linea='$linea' where codigo='$cod_muestra'");
+
+$txtUpd="update muestras_medicas set 
+		descripcion='$muestra', cod_tipo_muestra='$tipo_muestra', codigo_linea='$linea' where codigo='$cod_muestra'";
+$sql_upd=mysql_query($txtUpd);
+
 if($sql_upd==1)
 {
 	echo "<script language='Javascript'>
@@ -13,7 +16,7 @@ if($sql_upd==1)
 else
 {
 	echo "<script language='Javascript'>
-			alert('No se pudieron modificar los datos.');
+			alert('Los datos no se guardaron. Contacte con el administrador.');
 			history.back(-1);
 			</script>";
 }

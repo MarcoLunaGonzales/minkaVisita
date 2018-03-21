@@ -90,7 +90,7 @@ $nombre_cab_gestion=$datos_cab_gestion[0];
 echo "<center><table border='0' class='textotit'><tr><th>Cobertura Semanal<br>
 Territorio: $rpt_nombreterritorio   Cat. Medico: $rpt_categoria<br>Gestion: $nombreGestion Ciclo: $rpt_ciclo</th></tr></table></center><br>";
 $indice_tabla=1;
-echo "<center><table border='1' class='texto' width='60%' cellspacing='0' id='main'>";
+echo "<center><table border='0' class='texto' width='60%' cellspacing='0' id='main'>";
 echo "<tr>
 <th>&nbsp;</th>
 <th>Semana</th>
@@ -106,7 +106,7 @@ while($datTiposBaja=mysql_fetch_array($respTiposBaja)){
 	$nombreTipoBaja=$datTiposBaja[1];
 	echo "<th bgcolor='$colorBaja'>$nombreTipoBaja</th>";
 }
-echo "<th bgcolor='$colorBaja'>Total Desasignacion</th>";
+echo "<th bgcolor='$colorBaja'>Total Bajas</th>";
 echo "<th>Promedio Visita</th>
 <th>Cumplimiento</th>
 <th>Cobertura</th>

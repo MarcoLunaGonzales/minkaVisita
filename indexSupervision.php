@@ -1,7 +1,7 @@
 <html>
 <head>
 	<meta charset="utf-8" />
-	<title>Modulo de Supervision Regional</title>
+	<title>Minka</title>
 
 	<link type="text/css" rel="stylesheet" href="menuLibs/css/demo.css" />
 	<link type="text/css" rel="stylesheet" href="menuLibs/dist/jquery.mmenu.css" />
@@ -22,11 +22,16 @@ include("datosUsuario.php");
 <div id="page">
 	<div class="header">
 		<a href="#menu"><span></span></a>
-		Minka V++ <span style="color:yellow;">(Modulo Supervision)</span>
+		GALES - <span style="color:yellow;">(Modulo Supervision)</span>
 		<div style="position:absolute; width:95%; height:50px; text-align:right; top:0px; font-size: 9px; font-weight: bold; color: #fff;">
 			[<? echo $fechaSistemaSesion?>][<? echo $horaSistemaSesion;?>]			
 		<div>
-		<div style="position:absolute; width:95%; height:50px; text-align:left; top:0px; font-size: 9px; font-weight: bold; color: #fff;">
+		
+		<div style="position:absolute; width:99%; height:50px; text-align:right; top:17px; font-size: 9px; font-weight: bold; color: #fff;">
+			<span style="color:#D1C4E9;">PowerOfMinka</span>
+		<div>
+		
+		<div style="position:absolute; width:95%; height:50px; text-align:left; top:-15px; font-size: 9px; font-weight: bold; color: #fff;">
 			[<? echo $nombreUsuarioSesion?>]  [<? echo $nombreAgenciaSesion;?>]  <span style="color:yellow;">[<? echo $nombreLineaSesion;?>]</span>
 		<div>
 		

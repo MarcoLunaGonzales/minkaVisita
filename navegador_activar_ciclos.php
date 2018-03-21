@@ -42,7 +42,7 @@ echo "<script language='Javascript'>
 	$codGestion=$datGestion[0];
 	$nombreGestion=$datGestion[1];
 	
-	$sql="select * from ciclos where codigo_linea='1032' and codigo_gestion='1014' order by fecha_ini desc LIMIT 0,12";
+	$sql="select * from ciclos where codigo_gestion='1000' order by fecha_ini desc LIMIT 0,12";
 	$resp=mysql_query($sql);
 	$indice_tabla=1;
 	echo "<h1>Activar Ciclo Gestion: $nombreGestion</h1>";

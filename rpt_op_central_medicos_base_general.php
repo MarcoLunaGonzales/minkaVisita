@@ -24,7 +24,7 @@ else
 }
 echo "<center><table class='textotit'><tr><th>Reporte M&eacute;dicos listado general</th></tr></table><br>";
 echo"<form method='post'>";
-	echo"\n<table class='texto' border='1' align='center' cellSpacing='0'>\n";
+	echo"\n<table class='texto' border='0' align='center' cellSpacing='0'>\n";
 	echo "<tr><th align='left'>Territorio</th><td><select name='rpt_territorio' class='texto' onChange='envia_select(this.form)'>";
 	$sql="select c.cod_ciudad, c.descripcion from ciudades c, `funcionarios_agencias` f where 
 				f.`cod_ciudad`=c.`cod_ciudad` and f.`codigo_funcionario`=$global_usuario order by c.descripcion";
@@ -94,12 +94,7 @@ echo"<form method='post'>";
 	echo "</select></td>";
 	echo"</tr>";
 	echo"</table><br>";
-	if($global_usuario==1032)
-	{	require('home_gerencia.inc');	
-	}
-	else
-	{	require('home_central.inc');
-	}
+
 	echo "<center><input type='button' name='reporte' value='Ver Reporte' onClick='envia_formulario(this.form)' class='boton'>
 	</center><br>";	
 	echo"</form>";

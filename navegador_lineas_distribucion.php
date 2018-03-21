@@ -37,7 +37,7 @@ function eliminarDist(codigo_linea) {
 
 	require("estilos_gerencia.inc");
 
-$sql_gestion = "select nombre_gestion, codigo_gestion from gestiones where codigo_gestion=1014";
+$sql_gestion = "select nombre_gestion, codigo_gestion from gestiones where codigo_gestion=1000";
 $resp_gestion = mysql_query( $sql_gestion );
 $dat_gestion = mysql_fetch_array( $resp_gestion );
 $nombre_gestion = $dat_gestion[ 0 ];

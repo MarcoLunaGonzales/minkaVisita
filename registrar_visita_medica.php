@@ -155,7 +155,9 @@ echo "<center><table class='texto'>";
 echo "<tr><th>&nbsp;</th>
 <th>Turno</th><th>Orden Visita</th>
 <th>M&eacute;dico</th><th>Especialidad</th>
-<th>Categoria</th><th>Num. Visita</th><th>Estado</th><th>Linea</th></tr>";
+<th>Categoria</th><th>Num. Visita</th><th>Estado</th><th>Linea</th>
+<th>Registrar<br>Visita</th><th>Registrar<br>Baja</th>
+</tr>";
 
 $sql="SELECT c.turno, m.ap_pat_med, m.ap_mat_med, m.nom_med, cd.categoria_med, cd.cod_especialidad, cd.orden_visita, c.cod_contacto, 
 cd.estado, m.cod_med, c.codigo_linea, (select nombre_linea from lineas where codigo_linea=c.codigo_linea)linea 
@@ -288,7 +290,7 @@ while($dat=mysql_fetch_array($resp)) {
 	}
 
 	echo "<tr bgcolor='$fondo_fila'>
-	<td align='center'>$checkbox</td>
+	<td align='center'>&nbsp;</td>
 	<td align='center'>$turno</td>
 	<td align='center'>$orden_visita</td>
 	<td>$nombre_medico</td>
@@ -304,11 +306,21 @@ while($dat=mysql_fetch_array($resp)) {
 		$cadCategorizacion = "Categorizacion medico ya llenado";
 	}
 	echo "<td>$nombreLineaMkt</td>";
+	
+	if($estado==0){
+		echo "<td align='center'><a href='registrar_visita_detalle.php?cod_contacto=$valor'><img src='imagenes/go.png' width='40' title='Registrar Visita'></a></td>";
+		echo "<td align='center'><a href='registrar_no_visita.php?cod_contacto=$valor&dia_registro=$dia_registro'><img src='imagenes/enter.png' width='40' title='Registrar Baja'></a></td>";
+	}else{
+		echo "<td align='center'>-</td>";
+		echo "<td align='center'>-</td>";
+	}
+	
 	if($numFrecEspecial==0){
 		echo "</tr>";
 	}else{
 		$cadLink="registrarVisitaParrilla.php?codMed=$cod_med&codMedFrec=$codMedFrec$&codEspe=$especialidad&codCat=$categoria&codContacto=$cod_contacto&nombreMed=$nombre_medico&codLineaVisita=$codLineaVisita&numVisita=";
 	}
+	
 	$indice++;
 }
 echo "</table></center><br>";
@@ -319,14 +331,14 @@ $fecha_en_que_se_registro=$dat_fecha_registro[0];
 list($anio,$mes,$dia)=explode("-",$fecha_en_que_se_registro);
 $dia1=$dia+1;
 
-echo "<div class='divBotones'>
-	<input type='button' value='Editar Contactos' class='boton' onclick='editar_contactos(this.form,  \"$dia_registro\")'>
+/*echo "<div class='divBotones'>
+	<!--input type='button' value='Editar Contactos' class='boton' onclick='editar_contactos(this.form,  \"$dia_registro\")'-->
 	<input type='button' value='Registrar Visita' class='boton' onclick='editar_nav(this.form)'>
 	<input type='button' value='Registrar No Visita' class='boton' onclick='reportar_novisita(this.form)'>
-	</div>";
+	</div>";*/
 
 
-echo "<center><table border='1' class='textomini'>
+echo "<center><table border='0' class='texto'>
 <tr><th>Descripcion</th><th>Icono</th><th>Descripcion</th><th>Icono</th><th>Descripcion</th><th>Icono</th><th>Descripcion</th><th>Icono</th></tr>
 <tr>
 <td>D&iacute;as de baja</td><td bgcolor='#66CCFF'></td>

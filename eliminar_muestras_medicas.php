@@ -11,7 +11,7 @@
 	$n=sizeof($vector);
 	for($i=0;$i<$n;$i++)
 	{
-		$sql="delete from muestras_medicas where codigo='$vector[$i]'";
+		$sql="update muestras_medicas set estado='0' where codigo='$vector[$i]'";
 		$resp=mysql_query($sql);
 	}
 	echo "<script language='Javascript'>

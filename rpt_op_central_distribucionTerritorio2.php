@@ -89,15 +89,13 @@
 </script>
 <?php
 require("conexion.inc");
-if ($global_usuario == 1052) {
-    require("estilos_gerencia.inc");
-} else {
+
     require("estilos_inicio_adm.inc");
-}
-echo "<center><table class='textotit'><tr><th>Reporte Distribución x Ciclo x Territorio</th></tr></table><br>";
+
+	echo "<center><table class='textotit'><tr><th>Reporte Distribucion x Ciclo x Territorio</th></tr></table><br>";
 echo"<form method='post'>";
-echo"\n<table class='texto' border='1' align='center' cellSpacing='0' width='30%'>\n";
-echo "<tr><th align='left'>Gestión</th>";
+echo"\n<table class='texto' border='0' align='center' cellSpacing='0' width='30%'>\n";
+echo "<tr><th align='left'>Gestion</th>";
 $sql_gestion = "select distinct(codigo_gestion), nombre_gestion, estado from gestiones";
 $resp_gestion = mysql_query($sql_gestion);
 echo "<td><select name='gestion_rpt' class='texto' onChange='ajaxCiclos(this)'>";
@@ -126,7 +124,7 @@ while ($dat = mysql_fetch_array($resp)) {
     echo "<option value='$codigo_ciudad'>$nombre_ciudad</option>";
 }
 echo "</select></td></tr>";
-echo "<tr><th align='left'>Línea</th>";
+echo "<tr><th align='left'>Linea</th>";
 $sql_linea = "select codigo_linea, nombre_linea from lineas where linea_promocion=1 and estado=1 order by nombre_linea";
 $resp_linea = mysql_query($sql_linea);
 echo "<td><select name='linea_rpt' class='texto' multiple size='9'>";

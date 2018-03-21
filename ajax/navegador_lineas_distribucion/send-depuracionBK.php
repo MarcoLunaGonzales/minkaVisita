@@ -6,7 +6,7 @@ $global_linea        = $_REQUEST['global_linea_distribucion'];
 $gestionDistribucion = $global_gestion_distribucion;
 $cicloDistribucion   = $global_ciclo_distribucion;
 
-$sql_gestion = mysql_query("SELECT codigo_gestion from gestiones where codigo_gestion=1014 ");
+$sql_gestion = mysql_query("SELECT codigo_gestion from gestiones where codigo_gestion=1000");
 $gestion     = mysql_result($sql_gestion, 0,0);
 
 $sql_verificacion = "SELECT * from distribucion_productos_visitadores where 
@@ -113,8 +113,7 @@ if ($num_filas_verificacion == 0) {		$sql_visitador = "SELECT fl.codigo_funcion
 			}
 			
 		}*/
-
-	
+
 		//AQUI HACEMOS LA PARRILLA PERSONALIZADA
 		$sql_visitador = "SELECT fl.codigo_funcionario,f.cod_ciudad,f.codigo_lineaclave from funcionarios f, funcionarios_lineas fl 
 		where f.codigo_funcionario = fl.codigo_funcionario and fl.codigo_linea = '$global_linea' and f.cod_cargo = '1011' 

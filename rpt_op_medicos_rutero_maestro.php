@@ -69,7 +69,7 @@ require("conexion.inc");
 require('estilos_gerencia.inc');
 echo "<center><table class='textotit'><tr><th>Medicos en Rutero Maestro Detallado</th></tr></table><br>";
 echo"<form method='post'>";
-	echo"\n<table class='texto' border='1' align='center' cellSpacing='0' width='40%'>\n";
+	echo"\n<table class='texto' border='0' align='center' cellSpacing='0' width='40%'>\n";
 	echo "<tr><th align='left'>Territorio</th>
 	<td>
 	<select name='rpt_territorio' class='texto' onChange='ajaxVisitadores(this)'>";
@@ -107,7 +107,7 @@ echo"<form method='post'>";
 	echo "</select>";
 	echo "</td></tr>";
 	
-	echo "<tr><th align='left'>Línea</th>";
+	echo "<tr><th align='left'>Linea</th>";
 	$sql_linea="select codigo_linea, nombre_linea from lineas where linea_promocion=1 and estado=1 order by nombre_linea";
 	$resp_linea=mysql_query($sql_linea);
 	echo "<td><select name='rpt_linea' class='texto'>";
@@ -128,7 +128,7 @@ echo"<form method='post'>";
 	echo "</select></td></tr>";
 
 	echo"\n </table><br>";
-	require('home_regional1.inc');
+	
 	echo "<center><input type='button' name='reporte' value='Ver Reporte' onClick='envia_formulario(this.form)' class='boton'>
 	</center><br>";
 	echo"</form>";
