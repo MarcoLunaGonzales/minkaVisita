@@ -41,8 +41,8 @@ function activa_select(f,i) {
 function envia_form(f) {	
     f.submit();
 }
-function guarda_form(f) {	
-    var indice,valores,indice_extra,num_extras, fechaVisitaReal, sug=0,indice_agregado;
+function guarda_form(f, numeroItems) {	
+	var indice,valores,indice_extra,num_extras, fechaVisitaReal, sug=0,indice_agregado;
     indice=0;
     indice_extra=0;
     indice_agregado=0;
@@ -62,74 +62,86 @@ function guarda_form(f) {
     var sug=new Array();
     var prod_agregado = new Array();
     for(j=0;j<=f.length-1;j++) {
-     if(f.elements[j].name.indexOf('constancia')!=-1) {	
-        if(f.elements[j].checked==true) {	
-            constancia[indice-1]=1;
-        } else {	
-            constancia[indice-1]=0;
-        }
-    }
-    if(f.elements[j].name.indexOf('cantidad_extraentregada')!=-1) {	
-        cantidad_extraentregada[indice]=f.elements[j].value;
-    }
-    if(f.elements[j].name.indexOf('cantidad_extraapoyo')!=-1) {	
-        cantidad_extraapoyo[indice]=f.elements[j].value;
-    }
-    if(f.elements[j].name.indexOf('muestra')!=-1) {	
-        muestras[indice]=f.elements[j].value;
-    }
-    if(f.elements[j].name.indexOf('material')!=-1) {	
-        material[indice]=f.elements[j].value;
-    }
-    if(f.elements[j].name.indexOf('cantidad_entregada')!=-1) {	
-        cantidad_muestras[indice]=f.elements[j].value;
-    }
-    if(f.elements[j].name.indexOf('sug')!=-1){
-        sug[indice]=f.elements[j].value;
-    }
-    if(f.elements[j].name.indexOf('cantidad_apoyo')!=-1) {  
-        cantidad_apoyo[indice]=f.elements[j].value;
-        indice++;
-    }
-    if(f.elements[j].name.indexOf('prod_extra')!=-1) {  
-        prod_extra[indice_extra]=f.elements[j].value;
-    }
-    if(f.elements[j].name.indexOf('prod_agregado')!=-1){
-        prod_agregado[indice_agregado]=f.elements[j].value;
-        indice_agregado++;
-    }
-    if(f.elements[j].name.indexOf('mat_extra')!=-1) {   
-        mat_extra[indice_extra]=f.elements[j].value;
-    }
-    if(f.elements[j].name.indexOf('cant_entregada_extra')!=-1) {
-        cant_entregada_extra[indice_extra]=f.elements[j].value;
-    }
-    if(f.elements[j].name.indexOf('cant_entregada_apoyo_extra')!=-1) {  
-        cant_entregada_apoyo_extra[indice_extra]=f.elements[j].value;
-        indice_extra++;
-    }
-    if(f.elements[j].name.indexOf('obs')!=-1) { 
-        obs[indice_extra]=f.elements[j].value;
-        indice_extra++;
-    }
+		if(f.elements[j].name.indexOf('constancia')!=-1) {	
+			if(f.elements[j].checked==true) {	
+				constancia[indice-1]=1;
+			} else {	
+				constancia[indice-1]=0;
+			}
+		}
+		if(f.elements[j].name.indexOf('cantidad_extraentregada')!=-1) {	
+			cantidad_extraentregada[indice]=f.elements[j].value;
+		}
+		if(f.elements[j].name.indexOf('cantidad_extraapoyo')!=-1) {	
+			cantidad_extraapoyo[indice]=f.elements[j].value;
+		}
+		if(f.elements[j].name.indexOf('muestra')!=-1) {	
+			muestras[indice]=f.elements[j].value;
+		}
+		if(f.elements[j].name.indexOf('material')!=-1) {	
+			material[indice]=f.elements[j].value;
+		}
+		if(f.elements[j].name.indexOf('cantidad_entregada')!=-1) {	
+			cantidad_muestras[indice]=f.elements[j].value;
+		}
+		if(f.elements[j].name.indexOf('sug')!=-1){
+			sug[indice]=f.elements[j].value;
+		}
+		if(f.elements[j].name.indexOf('cantidad_apoyo')!=-1) {  
+			cantidad_apoyo[indice]=f.elements[j].value;
+			indice++;
+		}
+		if(f.elements[j].name.indexOf('prod_extra')!=-1) {  
+			prod_extra[indice_extra]=f.elements[j].value;
+		}
+		if(f.elements[j].name.indexOf('prod_agregado')!=-1){
+			prod_agregado[indice_agregado]=f.elements[j].value;
+			indice_agregado++;
+		}
+		if(f.elements[j].name.indexOf('mat_extra')!=-1) {   
+			mat_extra[indice_extra]=f.elements[j].value;
+		}
+		if(f.elements[j].name.indexOf('cant_entregada_extra')!=-1) {
+			cant_entregada_extra[indice_extra]=f.elements[j].value;
+		}
+		if(f.elements[j].name.indexOf('cant_entregada_apoyo_extra')!=-1) {  
+			cant_entregada_apoyo_extra[indice_extra]=f.elements[j].value;
+			indice_extra++;
+		}
+		if(f.elements[j].name.indexOf('obs')!=-1) { 
+			obs[indice_extra]=f.elements[j].value;
+			indice_extra++;
+		}
+	}
+	valores=f.valores.value;
 
-}
+		/*num_extras=f.muestras_extra.value;
+		num_muestra_agregar=f.muestra_agregar.value;*/
 
-valores=f.valores.value;
+	num_extras=0;
+	num_muestra_agregar=0;
 
-/*num_extras=f.muestras_extra.value;
-num_muestra_agregar=f.muestra_agregar.value;*/
-
-num_extras=0;
-num_muestra_agregar=0;
-
-fechaVisitaReal=f.fechaVisitaReal.value;
-cod_med=f.cod_med.value;
-cod_espe=f.cod_espe.value;
-cat_med=f.cat_med.value;
-cod_dia=f.cod_dia.value;
-codigo_parrilla=f.codigo_parrilla.value;
-location.href='guarda_registro_visitaNuevo.php?constancia='+constancia+'&muestras='+muestras+'&material='+material+'&cantidad_muestras='+cantidad_muestras+'&cantidad_apoyo='+cantidad_apoyo+'&sug='+sug+'&prod_agregado='+prod_agregado+'&prod_extra='+prod_extra+'&mat_extra='+mat_extra+'&cant_entregada_extra='+cant_entregada_extra+'&cant_entregada_apoyo_extra='+cant_entregada_apoyo_extra+'&cantidad_extraentregada='+cantidad_extraentregada+'&cantidad_extraapoyo='+cantidad_extraapoyo+'&obs='+obs+'&valores='+valores+'&num_extras='+num_extras+'&num_muestra_agregar='+num_muestra_agregar+'&fechaVisitaReal='+fechaVisitaReal+'&cod_med='+cod_med+'&cat_med='+cat_med+'&cod_espe='+cod_espe+'&cod_dia='+cod_dia+'&codigo_parrilla='+codigo_parrilla+'';
+	fechaVisitaReal=f.fechaVisitaReal.value;
+	cod_med=f.cod_med.value;
+	cod_espe=f.cod_espe.value;
+	cat_med=f.cat_med.value;
+	cod_dia=f.cod_dia.value;
+	codigo_parrilla=f.codigo_parrilla.value;
+	
+	/*revisamos los checks de entregado*/
+	//alert(numeroItems);
+	var banderaChk=0;
+	for(var xx=1; xx<numeroItems; xx++){
+		if(document.getElementById('constancia'+xx).checked==true){
+			banderaChk=1;
+		}
+	}
+	if(banderaChk==0){
+		alert('Debe entregar al menos un producto para registrar la visita.');
+		return (false);
+	}    
+	
+	location.href='guarda_registro_visitaNuevo.php?constancia='+constancia+'&muestras='+muestras+'&material='+material+'&cantidad_muestras='+cantidad_muestras+'&cantidad_apoyo='+cantidad_apoyo+'&sug='+sug+'&prod_agregado='+prod_agregado+'&prod_extra='+prod_extra+'&mat_extra='+mat_extra+'&cant_entregada_extra='+cant_entregada_extra+'&cant_entregada_apoyo_extra='+cant_entregada_apoyo_extra+'&cantidad_extraentregada='+cantidad_extraentregada+'&cantidad_extraapoyo='+cantidad_extraapoyo+'&obs='+obs+'&valores='+valores+'&num_extras='+num_extras+'&num_muestra_agregar='+num_muestra_agregar+'&fechaVisitaReal='+fechaVisitaReal+'&cod_med='+cod_med+'&cat_med='+cat_med+'&cod_espe='+cod_espe+'&cod_dia='+cod_dia+'&codigo_parrilla='+codigo_parrilla+'';
 }
 </script>";
 
@@ -137,10 +149,9 @@ require("estilos_visitador_sincab.inc");
 $codigo_parrilla = $_GET['codigo_parrilla'];
 
 
-
-
 //sacamos el ciclo activo de la linea
-$sql_ciclo = "SELECT cod_ciclo from ciclos where estado='Activo' and codigo_linea='1032'"; $resp_ciclo = mysql_query($sql_ciclo); $dat_ciclo = mysql_fetch_array($resp_ciclo); $ciclo_activo = $dat_ciclo[0];
+$sql_ciclo = "SELECT cod_ciclo from ciclos where estado='Activo'"; 
+$resp_ciclo = mysql_query($sql_ciclo); $dat_ciclo = mysql_fetch_array($resp_ciclo); $ciclo_activo = $dat_ciclo[0];
 //hasta aqui tenemos el ciclo en $ciclo_activo
 $vector           = explode("-", $cod_contacto);
 $contacto         = $vector[0];
@@ -151,21 +162,15 @@ $agencia_parrilla = $vector[4];
 $visita=$vector[5];
 $global_linea=$vector[6];
 
-
-
-/*DESPUES SACAR ESTO*/
-/*$codCiudadXXX=$agencia_parrilla;
-if($codCiudadXXX==116 || $codCiudadXXX==122 || $codCiudadXXX==124 || $codCiudadXXX==118 || $codCiudadXXX==119 || $codCiudadXXX==109 || $codCiudadXXX==113){
-	$ciclo_activo = 2;
-}*/
-
-//formamos los encabezados nombre medico, especialidad turno
-$sql = "SELECT c.turno, m.ap_pat_med, m.ap_mat_med, m.nom_med, dm.direccion, cd.categoria_med, cd.cod_especialidad, 
-cd.orden_visita, c.cod_contacto, cd.estado, m.cod_med from rutero c, rutero_detalle cd, medicos m, 
-direcciones_medicos dm where c.cod_ciclo='$ciclo_activo' and c.cod_visitador=$global_visitador and 
-m.cod_med=cd.cod_med and dm.numero_direccion=cd.cod_zona and cd.cod_med=dm.cod_med and c.cod_contacto='$contacto' 
-and c.cod_contacto=cd.cod_contacto and cd.orden_visita='$orden_visita' order by c.turno,cd.orden_visita";
+$sql="SELECT rm.turno, m.ap_pat_med, m.ap_mat_med, m.nom_med, dm.direccion, rd.categoria_med, rd.cod_especialidad, 
+rd.orden_visita, rd.cod_contacto, rd.estado, m.cod_med 
+from rutero_maestro_cab_aprobado rc, rutero_maestro_aprobado rm, rutero_maestro_detalle_aprobado rd, medicos m, direcciones_medicos dm 
+where rc.cod_rutero=rm.cod_rutero and rm.cod_contacto=rd.cod_contacto and rc.cod_visitador=rm.cod_visitador and rm.cod_visitador=rd.cod_visitador AND
+ rc.codigo_ciclo='$ciclo_activo' and rc.cod_visitador='$global_visitador' and m.cod_med=rd.cod_med and dm.numero_direccion=rd.cod_zona and rd.cod_med=dm.cod_med 
+and rm.cod_contacto='$contacto' and rd.orden_visita='$orden_visita' 
+order by rm.turno,rd.orden_visita";
 //echo $sql;
+
 $resp              = mysql_query($sql);
 $dat_enc           = mysql_fetch_array($resp);
 $enc_nombre_medico = "$dat_enc[1] $dat_enc[2] $dat_enc[3]";
@@ -173,13 +178,18 @@ $enc_turno         = $dat_enc[0];
 $enc_categoria     = $dat_enc[5];
 $enc_especialidad  = $dat_enc[6];
 $cod_med           = $dat_enc[10];
+
 //fin encabezados
-$sql_nombre_dia  = "SELECT dia_contacto from rutero where cod_contacto='$contacto'"; 
+
+$sql_nombre_dia  = "SELECT dia_contacto from rutero_maestro_aprobado where cod_contacto='$contacto' and 
+cod_visitador='$global_visitador'"; 
 $resp_nombre_dia = mysql_query($sql_nombre_dia); 
 $dat_nombre_dia  = mysql_fetch_array($resp_nombre_dia); 
 $nombre_de_dia   = $dat_nombre_dia[0];
 
-$sqlCodDia = "SELECT id from orden_dias where dia_contacto='$nombre_de_dia'"; $respCodDia = mysql_query($sqlCodDia); $codDiaContacto = mysql_result($respCodDia, 0, 0);
+$sqlCodDia = "SELECT id from orden_dias where dia_contacto='$nombre_de_dia'"; 
+$respCodDia = mysql_query($sqlCodDia); 
+$codDiaContacto = mysql_result($respCodDia, 0, 0);
 $sql = "SELECT cod_especialidad, categoria_med, estado from rutero_detalle where cod_contacto=$contacto and orden_visita=$orden_visita"; $res = mysql_query($sql); $dat = mysql_fetch_array($res); $especialidad = $dat[0];
 $categoria  = $dat[1];
 $estado_pri = $dat[2];
@@ -187,31 +197,10 @@ $estado_pri = $dat[2];
 
 
 echo "<h1>Registro de Visita M&eacute;dica<br>M&eacute;dico: <strong>$enc_nombre_medico</strong> 
-Especialidad: <strong>$enc_especialidad</strong> Categor&iacute;a: <strong>$categoria</strong><br>
+Especialidad: <strong>$enc_especialidad</strong> Categor&iacute;a: <strong>$enc_categoria</strong><br>
 <strong>$nombre_de_dia $fecha_visita</strong></h1>";
 
 echo "<center><table border='0' class='texto' align='center'><tr><td>Leyenda:</td><td>Producto Objetivo</td><td bgcolor='#ffff99' width='10%'></td><td>&nbsp;</td><td>Producto Filtrado</td><td bgcolor='#ff7591' width='10%'></td><td>&nbsp;</td><td>Producto Extra</td><td bgcolor='#66ccff' width='10%'></td></table><br>";
-//aplicamos una consulta para saber si el visitador hace linea de visita para la especialidad
-// $verifica_lineas = "SELECT l.codigo_l_visita from lineas_visita l, lineas_visita_especialidad le, lineas_visita_visitadores lv where l.codigo_l_visita=le.codigo_l_visita and l.codigo_l_visita=lv.codigo_l_visita and le.codigo_l_visita=lv.codigo_l_visita and l.codigo_linea='$global_linea' and lv.codigo_funcionario='$global_visitador' and le.cod_especialidad='$especialidad' and lv.codigo_gestion = $codigo_gestion and lv.codigo_ciclo = $ciclo_activo ";
-$verifica_lineas = "SELECT lv.codigo_l_visita from lineas_visita_visitadores_copy lv, lineas_visita_especialidad le WHERE le.codigo_l_visita = lv.codigo_l_visita and lv.codigo_funcionario = $global_visitador and lv.codigo_gestion = $codigo_gestion and lv.codigo_ciclo = $ciclo_activo and lv.codigo_linea_visita = $global_linea and le.cod_especialidad = '$especialidad'";
-// echo $verifica_lineas;
-$resp_verifica_lineas = mysql_query($verifica_lineas);
-$filas_verifica = mysql_num_rows($resp_verifica_lineas);
-if ($filas_verifica != 0) {
-    $dat_verifica = mysql_fetch_array($resp_verifica_lineas);
-    $codigo_l_visita = $dat_verifica[0];
-} else {
-    $codigo_l_visita = 0;
-}
-
-//$sqlX="select * from configuracion_parrilla_personalizada2 c where c.codigo_linea='$global_linea' and c.cod_especialidad='$especialidad'";
-
-//echo $sqlX;
-
-//$respX=mysql_query($sqlX);
-//$numFilasX=mysql_num_rows($respX);
-
-//echo $numFilasX;
 
 if(1==1){
 	$sql="SELECT 
@@ -231,8 +220,6 @@ if(1==1){
 	and p.codigo_gestion='$codigo_gestion' order by pd.prioridad";
 }
 
-
-//echo "<br>".$sql;
 
 $resp = mysql_query($sql);
 $numero_registros = mysql_num_rows($resp);
@@ -287,6 +274,10 @@ if ($numero_registros != 0) {
         echo "<tr bgcolor='$fondo'><td>$muestra $presentacion </td><td align='center'>";
         $var_constancia = "$constancia$i";
         $valor_constancia = $$var_constancia;
+		
+		//CAMBIAMOS EL VALOR A 1 PARA Q ESTEN COMO ENTREGADOS
+		$valor_constancia=1;
+		
         if ($valor_constancia == 1) {
             $var_cant_entregada   = "$cantidad_extraentregada$i";
             $valor_cant_entregada = $$var_cant_entregada;
@@ -306,9 +297,9 @@ if ($numero_registros != 0) {
         echo "</select>";
         echo "</td>";
         if ($valor_constancia == 1) {
-            echo "<td align='center'><select name='cantidad_extraentregada$i' id='cantidad_extraentregada$i' class='textomini'>";
+            echo "<td align='center'><select name='cantidad_extraentregada$i' id='cantidad_extraentregada$i' class='texto'>";
         } else {
-            echo "<td align='center'><select name='cantidad_extraentregada$i' id='cantidad_extraentregada$i' class='textomini' disabled='true'>";
+            echo "<td align='center'><select name='cantidad_extraentregada$i' id='cantidad_extraentregada$i' class='texto' disabled='true'>";
         }
         echo "<option value=''></option>";
         for ($j = 1; $j <= 20; $j++) {
@@ -335,9 +326,9 @@ if ($numero_registros != 0) {
         echo "</select>";
         echo "</td>";
         if ($valor_constancia == 1 and $codigo_material != 0) {
-            echo "<td align='center'><select name='cantidad_extraapoyo$i' id='cantidad_extraapoyo$i' class='textomini'>";
+            echo "<td align='center'><select name='cantidad_extraapoyo$i' id='cantidad_extraapoyo$i' class='texto'>";
         } else {
-            echo "<td align='center'><select name='cantidad_extraapoyo$i'  id='cantidad_extraapoyo$i' class='textomini' disabled='false'>";
+            echo "<td align='center'><select name='cantidad_extraapoyo$i'  id='cantidad_extraapoyo$i' class='texto' disabled='false'>";
         }
         echo "<option value=''></option>";
         for ($j = 1; $j <= 20; $j++) {
@@ -350,10 +341,10 @@ if ($numero_registros != 0) {
         echo "</td>";
 
         if ($valor_constancia == 1) {
-            echo "<td align='center'><input type='text' name='obs$i' id='obs$i' class='textomini'></td>";
+            echo "<td align='center'><input type='text' name='obs$i' id='obs$i' class='texto'></td>";
             echo "<td align='center'><input type=checkbox name='constancia$i' id='constancia$i' value='1' onClick='activa_select(this.form,$i)' checked></td>";
         } else {
-            echo "<td align='center'><input type='text' name='obs$i' id='obs$i'  class='textomini' disabled></td>";
+            echo "<td align='center'><input type='text' name='obs$i' id='obs$i'  class='texto' disabled></td>";
             echo "<td align='center'><input type=checkbox name='constancia$i' id='constancia$i' value='1' onClick='activa_select(this.form,$i)'></td>";
         }
         $i = $i + 1;
@@ -362,13 +353,6 @@ if ($numero_registros != 0) {
         echo "</tr>";
     }
     echo "</table><br>";
-	
-	
-	
-	
-	
-	
-	
 	
 	/*
     //aqui construimos las muestras extra
@@ -504,13 +488,14 @@ if ($numero_registros != 0) {
     echo "<input type='hidden' name='cod_contacto' value='$cod_contacto'>";
     echo "<input type='hidden' name='visita' value='$visita'>";
     echo "<input type='hidden' name='cod_med' value='$cod_med'>";
-    echo "<input type='hidden' name='cod_espe' value='$especialidad'>";
-    echo "<input type='hidden' name='cat_med' value='$categoria'>";
+    echo "<input type='hidden' name='cod_espe' value='$enc_especialidad'>";
+    echo "<input type='hidden' name='cat_med' value='$enc_categoria'>";
     echo "<input type='hidden' name='cod_dia' value='$codDiaContacto'>";
     echo "<input type='hidden' name='codigo_parrilla' value='$codigo_parrilla'>";
 
 
-    echo "<div class='divBotones'><input type='button' OnClick='guarda_form(this.form)' class='boton' value='Guardar'>
+    echo "<div class='divBotones'>
+		<input type='button' OnClick='guarda_form(this.form,$i)' class='boton' value='Guardar'>
 		<input type='button' OnClick='javascript:history.back()' class='boton2' value='Cancelar'></div>";
 echo "</form>";
 echo "</table>";

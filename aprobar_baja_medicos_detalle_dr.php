@@ -233,14 +233,21 @@ function toggleCheckedD(status) {
                                     <?php  
                                     $count = 1;
                                     
-									$sqlFuncX="SELECT r.cod_contacto,r.cod_visitador,CONCAT(f.nombres,' ',f.paterno,' ',f.materno) as nom_fun ,r.cod_med, 
-									CONCAT(m.nom_med,' ',m.ap_pat_med,' ',m.ap_mat_med) as nom_med, r.orden_visita, r.estado from 
-									rutero_detalle r, funcionarios f, medicos m where f.codigo_funcionario = r.cod_visitador and m.cod_med = r.cod_med 
-									and f.cod_ciudad = $cod_ciudades and r.estado in (4) order by r.cod_contacto desc";
+									$sqlFuncX="SELECT rm.cod_contacto,rc.cod_visitador,CONCAT(f.nombres,' ',f.paterno,' ',f.materno) as nom_fun,
+									rd.cod_med, CONCAT(m.nom_med,' ',m.ap_pat_med,' ',m.ap_mat_med) as nom_med, rd.orden_visita, rd.estado
+									from rutero_maestro_detalle_aprobado rd, funcionarios f, rutero_maestro_cab_aprobado rc, rutero_maestro_aprobado rm, medicos m 
+									where rc.cod_rutero=rm.cod_rutero and rm.cod_contacto=rd.cod_contacto and rc.cod_visitador=rd.cod_visitador and rm.cod_visitador=rd.cod_visitador
+									and f.codigo_funcionario = rc.cod_visitador and 
+									m.cod_med = rd.cod_med and f.cod_ciudad = $cod_ciudades and rd.estado = 4 and rc.codigo_gestion in 
+									(select codigo_gestion from gestiones where estado='Activo') order by cod_contacto desc";
 									
 									$sql_funcionarios = mysql_query($sqlFuncX);
                                     while ($row = mysql_fetch_array($sql_funcionarios)) {
-                                        $sql_datos_cab = mysql_query("SELECT r.cod_ciclo, g.nombre_gestion, CONCAT(r.dia_contacto,' ',r.turno) from rutero r, gestiones g where g.codigo_gestion = r.codigo_gestion and cod_contacto = $row[0]");
+                                        $sqlTxtCab="SELECT rc.codigo_ciclo, g.nombre_gestion, CONCAT(rm.dia_contacto,' ',rm.turno) 
+										from rutero_maestro_cab_aprobado rc, rutero_maestro_aprobado rm, 
+										gestiones g where rc.cod_rutero=rm.cod_rutero and rc.cod_visitador=rm.cod_visitador and 
+										g.codigo_gestion = rc.codigo_gestion and cod_contacto = $row[0]";
+										$sql_datos_cab = mysql_query($sqlTxtCab);
                                         $sql_motivo = mysql_query("SELECT m.descripcion_motivo from registro_no_visita r, motivos_baja m where r.codigo_motivo = m.codigo_motivo and r.cod_contacto = $row[0]");
                                         ?>
                                         <tr>

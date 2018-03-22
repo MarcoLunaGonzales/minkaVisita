@@ -159,12 +159,14 @@ echo "<tr><th>&nbsp;</th>
 <th>Registrar<br>Visita</th><th>Registrar<br>Baja</th>
 </tr>";
 
-$sql="SELECT c.turno, m.ap_pat_med, m.ap_mat_med, m.nom_med, cd.categoria_med, cd.cod_especialidad, cd.orden_visita, c.cod_contacto, 
-cd.estado, m.cod_med, c.codigo_linea, (select nombre_linea from lineas where codigo_linea=c.codigo_linea)linea 
-from rutero c, rutero_detalle cd, medicos m where c.codigo_gestion='$codigo_gestion' and 
-c.cod_ciclo='$cod_ciclo' and c.dia_contacto='$dia_registro' and 
-c.cod_visitador=$global_visitador and m.cod_med=cd.cod_med and c.cod_visitador=cd.cod_visitador and 
-c.cod_contacto=cd.cod_contacto order by linea, c.turno,cd.orden_visita";
+$sql="SELECT rc.turno, m.ap_pat_med, m.ap_mat_med, m.nom_med, cd.categoria_med, cd.cod_especialidad, cd.orden_visita, rc.cod_contacto, 
+cd.estado, m.cod_med, 
+rcc.codigo_linea, (select nombre_linea from lineas where codigo_linea=rcc.codigo_linea)linea 
+from rutero_maestro_cab_aprobado rcc, rutero_maestro_aprobado rc, rutero_maestro_detalle_aprobado cd, medicos m 
+where rcc.cod_rutero=rc.cod_rutero and rcc.cod_visitador=rc.cod_visitador and rc.cod_contacto=cd.cod_contacto and rc.cod_visitador=cd.cod_visitador 
+ and rcc.codigo_gestion='$codigo_gestion' and rcc.codigo_ciclo='$cod_ciclo' and rc.dia_contacto='$dia_registro' 
+and rcc.cod_visitador=$global_visitador and m.cod_med=cd.cod_med 
+order by linea, rc.turno,cd.orden_visita";
 
 //echo $sql;
 $resp=mysql_query($sql);
@@ -184,12 +186,12 @@ while($dat=mysql_fetch_array($resp)) {
 	$codLineaMkt=$dat[10];
 	$nombreLineaMkt=$dat[11];
 	
-	
-	$sqlNumVis="SELECT r.dia_contacto from rutero r, rutero_detalle rd, 
-	orden_dias o where r.cod_contacto=rd.cod_contacto and 
-	r.cod_visitador='$global_visitador' and r.cod_ciclo='$ciclo_global' and r.codigo_gestion='$codigo_gestion' and 
-	r.dia_contacto=o.dia_contacto and rd.cod_med='$cod_med' and r.codigo_linea='$codLineaMkt' order by id";	
-	
+	$sqlNumVis="SELECT r.dia_contacto from rutero_maestro_cab_aprobado rc, rutero_maestro_aprobado r, 
+		rutero_maestro_detalle_aprobado rd, orden_dias o 
+		where rc.cod_rutero=r.cod_rutero and rc.cod_visitador=r.cod_visitador and r.cod_contacto=rd.cod_contacto 
+		and r.cod_visitador=rd.cod_visitador and rc.cod_visitador='$global_visitador' and rc.codigo_ciclo='$ciclo_global' and 
+		rc.codigo_gestion='$codigo_gestion' and r.dia_contacto=o.dia_contacto and rd.cod_med='$cod_med' 
+		and rc.codigo_linea='$codLineaMkt' order by id";
 	//echo $sqlNumVis;
 	
 	$respNumVis=mysql_query($sqlNumVis);
@@ -222,29 +224,29 @@ while($dat=mysql_fetch_array($resp)) {
 	$sql_baja_medico=mysql_query("SELECT cod_med from baja_medicos where cod_med='$cod_med' and inicio<='$fecha_registro_real' and fin>='$fecha_registro_real' and codigo_linea='$global_linea'");
 	$filas_baja_medico=mysql_num_rows($sql_baja_medico);
 	if($estado==0) {	
-		$val_estado="<img src='imagenes/pendiente.png' width='30'>";
+		$val_estado="-";
 		$checkbox="<input type='checkbox' value='$valor' name='cod_contacto$indice' onclick='desactiva_checkbox(this,this.form)'>";
 	}
 	if($estado==1) {	
-		$val_estado="<img src='imagenes/si.png' width='30'>";
+		$val_estado="<img src='imagenes/okG.png' width='40'>";
 		$checkbox="&nbsp";
 		$bandera=1;
 		$cod_contacto_registro=$cod_contacto;
 	}
 	if($estado==2) {	
-		$val_estado="<img src='imagenes/no.png' width='30'>";
+		$val_estado="<img src='imagenes/noG2.png' width='40'>";
 		$checkbox="&nbsp";
 		$bandera=1;
 		$cod_contacto_registro=$cod_contacto;
 	}
-	if($estado==3) {	
-		$val_estado="<img src='imagenes/btn_modificar.png' width='30'>";
+	if($estado==3 || $estado==4) {	
+		$val_estado="<img src='imagenes/infoG.png' width='40'>";
 		$checkbox="&nbsp";
 		$bandera=1;
 		$cod_contacto_registro=$cod_contacto;
 	}
-	if($estado==6) {	
-		$val_estado="<img src='imagenes/pulgarabajo.png' width='30'>";
+	if($estado==6 || $estado==5) {	
+		$val_estado="<img src='imagenes/pulgarabajo.png' width='40'>";
 		$checkbox="<input type='checkbox' value='$valor' name='cod_contacto$indice' onclick='desactiva_checkbox(this,this.form)'>";
 	}
 	if($filas_baja_dias!=0) {	
@@ -344,12 +346,12 @@ echo "<center><table border='0' class='texto'>
 <td>D&iacute;as de baja</td><td bgcolor='#66CCFF'></td>
 <td>Medicos con baja</td><td bgcolor='#AAAAAA'></td>
 <td>Medicos Frecuencia Especial</td><td bgcolor='#AAAAFF'></td>
-<td>Visitado</td><td><img src='imagenes/si.png' width='30'></td>
+<td>Visitado</td><td><img src='imagenes/okG.png' width='30'></td>
 </tr>
 <tr>
-<td>No Visitado</td><td><img src='imagenes/no.png' width='30'></td>
-<td>Pendiente</td><td><img src='imagenes/pendiente.png' width='30'></td>
-<td>Baja Pendiente Aprobacion</td><td><img src='imagenes/btn_modificar.png' width='30'></td>
+<td>Baja Aprobada</td><td><img src='imagenes/noG2.png' width='30'></td>
+<td>Sin Registrar</td><td>-</td>
+<td>Baja Pendiente Aprobacion</td><td><img src='imagenes/infoG.png' width='30'></td>
 <td>Baja No Aprobada</td><td><img src='imagenes/pulgarabajo.png' width='30'></td>
 </tr>
 </table></center><br>";
