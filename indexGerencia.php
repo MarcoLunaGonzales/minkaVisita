@@ -85,6 +85,7 @@ include("datosUsuario.php");
 			
 			<li><span>Reportes</span>
 				<ul>
+					<li><a href="usuariosClavesVis.php" target="contenedorPrincipal">Listado de Usuarios</a></li>
 					<li><span>Funcionarios</span>
 						<ul>
 							<li><a href="rpt_op_funcionariosHabilitados.php" target="contenedorPrincipal">Funcionarios Habilitados</a></li>

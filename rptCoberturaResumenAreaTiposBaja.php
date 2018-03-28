@@ -66,7 +66,9 @@ function compara_fechas($fecha1,$fecha2) {
 }
 
 require("conexion.inc");
+
 error_reporting(0);
+
 require("estilos_reportes.inc");
 require("funcion_nombres.php");
 echo "<html><body onload=''>";
@@ -141,10 +143,14 @@ for ($ii=1; $ii<=5; $ii++){
 		$totalContactosMaestro=$totalContactosMaestro+$numero_contactos_maestro;
 		$totalContactosMaestroSemana=$totalContactosMaestroSemana+$numero_contactos_maestro;
 		
-		$sql_contactos_ejecutado="SELECT count(*) from rutero_detalle rd, rutero r where 
-		r.cod_ciclo='$rpt_ciclo' and r.codigo_gestion='$rpt_gestion' and r.cod_visitador in (select codigo_funcionario from funcionarios where cod_ciudad in ($codArea)) and 
-		r.cod_contacto=rd.cod_contacto and r.cod_visitador=rd.cod_visitador and rd.estado='1' 
-		and rd.categoria_med in ($rpt_categoria) and r.dia_contacto like '%$ii%'";
+		
+		$sql_contactos_ejecutado="SELECT count(*) from rutero_maestro_cab_aprobado rc, rutero_maestro_aprobado rm, 
+		rutero_maestro_detalle_aprobado rd
+		where rc.cod_rutero=rm.cod_rutero and rc.cod_visitador=rm.cod_visitador and rm.cod_contacto=rd.cod_contacto and 
+		rm.cod_visitador=rd.cod_visitador and rc.codigo_ciclo='$rpt_ciclo' and rc.codigo_gestion='$rpt_gestion' 
+		and rc.cod_visitador in (select codigo_funcionario from funcionarios 
+		where cod_ciudad in ($codArea)) and rd.estado='1' and rd.categoria_med in ($rpt_categoria) and rm.dia_contacto like '%$ii%'";
+		
 		$resp_contactos_ejecutado=mysql_query($sql_contactos_ejecutado);
 		$dat_ejecutado=mysql_fetch_array($resp_contactos_ejecutado);
 		$numero_contactos_ejecutado=$dat_ejecutado[0];
@@ -166,18 +172,25 @@ for ($ii=1; $ii<=5; $ii++){
 		while($datTiposBaja=mysql_fetch_array($respTiposBaja)){
 			$codTipoBaja=$datTiposBaja[0];
 			$nombreTipoBaja=$datTiposBaja[1];
-			$sqlBajaTipoContacto="SELECT COUNT(rd.cod_med) from rutero r, rutero_detalle rd, registro_no_visita rn where r.cod_contacto = rd.cod_contacto 
-			and rn.cod_contacto=rd.cod_contacto and rn.orden_visita=rd.orden_visita 
-			and r.cod_ciclo = $rpt_ciclo and r.codigo_gestion = $rpt_gestion and r.cod_visitador in (select codigo_funcionario from funcionarios where cod_ciudad in ($codArea)) and 
-			rd.estado = 2 and rd.categoria_med in ($rpt_categoria) and r.dia_contacto like '%$ii%' and rn.codigo_motivo='$codTipoBaja'";
+			
+			$sqlBajaTipoContacto="SELECT COUNT(rd.cod_med) from rutero_maestro_cab_aprobado rc, rutero_maestro_aprobado rm, rutero_maestro_detalle_aprobado rd, registro_no_visita rn 
+			where rc.cod_rutero=rm.cod_rutero and rc.cod_visitador=rm.cod_visitador and 
+			rm.cod_contacto=rd.cod_contacto and rm.cod_visitador=rd.cod_contacto and rn.orden_visita=rd.orden_visita 
+			and rc.codigo_ciclo = $rpt_ciclo and rc.codigo_gestion = $rpt_gestion and rc.cod_visitador in 
+			(select codigo_funcionario from funcionarios where cod_ciudad in ($codArea)) and rd.estado = 2 
+			and rd.categoria_med in ($rpt_categoria) and rm.dia_contacto like '%$ii%' and rn.codigo_motivo='$codTipoBaja'";
+			//echo $sqlBajaTipoContacto;
 			$respBajaTipoContacto=mysql_query($sqlBajaTipoContacto);
 			$numeroBajasPorTipo=mysql_result($respBajaTipoContacto,0,0);
 			$cadTiposBaja=$cadTiposBaja."<td bgcolor='$colorBaja' align='center'>$numeroBajasPorTipo</td>";
 		}
 		
-		$sqlBajasContactos="SELECT COUNT(rd.cod_med) from rutero r, rutero_detalle rd where r.cod_contacto = rd.cod_contacto and 
-			r.cod_ciclo = $rpt_ciclo and r.codigo_gestion = $rpt_gestion and r.cod_visitador in (select codigo_funcionario from funcionarios where cod_ciudad in ($codArea)) and 
-			rd.estado = 2 and rd.categoria_med in ($rpt_categoria) and r.dia_contacto like '%$ii%'";
+		$sqlBajasContactos="SELECT COUNT(rd.cod_med) from rutero_maestro_cab_aprobado rc, rutero_maestro_aprobado rm, rutero_maestro_detalle_aprobado rd, registro_no_visita rn 
+			where rc.cod_rutero=rm.cod_rutero and rc.cod_visitador=rm.cod_visitador and 
+			rm.cod_contacto=rd.cod_contacto and rm.cod_visitador=rd.cod_contacto and rn.orden_visita=rd.orden_visita 
+			and rc.codigo_ciclo = $rpt_ciclo and rc.codigo_gestion = $rpt_gestion and rc.cod_visitador in 
+			(select codigo_funcionario from funcionarios where cod_ciudad in ($codArea)) and rd.estado = 2 
+			and rd.categoria_med in ($rpt_categoria) and rm.dia_contacto like '%$ii%'";
 		$sql_me_a = mysql_query($sqlBajasContactos);
 		$numeroBajas = mysql_result($sql_me_a, 0, 0);    
 		$totalBajaContactos=$totalBajaContactos+$numeroBajas;
@@ -225,10 +238,18 @@ for ($ii=1; $ii<=5; $ii++){
 	while($datTiposBaja=mysql_fetch_array($respTiposBaja)){
 		$codTipoBaja=$datTiposBaja[0];
 		$nombreTipoBaja=$datTiposBaja[1];
-		$sqlBajaTipoContacto="SELECT COUNT(rd.cod_med) from rutero r, rutero_detalle rd, registro_no_visita rn where r.cod_contacto = rd.cod_contacto 
-		and rn.cod_contacto=rd.cod_contacto and rn.orden_visita=rd.orden_visita 
-		and r.cod_ciclo = $rpt_ciclo and r.codigo_gestion = $rpt_gestion and r.cod_visitador in (select codigo_funcionario from funcionarios where cod_ciudad in ($rpt_territorio)) and 
-		rd.estado = 2 and rd.categoria_med in ($rpt_categoria) and r.dia_contacto like '%$ii%' and rn.codigo_motivo='$codTipoBaja'";
+		
+		$sqlBajaTipoContacto="SELECT COUNT(rd.cod_med) from rutero_maestro_cab_aprobado rc, rutero_maestro_aprobado rm, rutero_maestro_detalle_aprobado rd, 
+		registro_no_visita rn 
+		where rc.cod_rutero=rm.cod_rutero and rc.cod_visitador=rm.cod_visitador and rm.cod_contacto=rd.cod_contacto and 
+		rm.cod_visitador=rd.cod_visitador and rn.orden_visita=rd.orden_visita 
+		and rc.codigo_ciclo = $rpt_ciclo and rc.codigo_gestion = $rpt_gestion and rc.cod_visitador in 
+		(select codigo_funcionario from funcionarios where cod_ciudad in ($rpt_territorio)) and rd.estado = 2 
+		and rd.categoria_med in ($rpt_categoria)
+		 and rm.dia_contacto like '%$ii%' and rn.codigo_motivo='$codTipoBaja'";
+		
+		//echo $sqlBajaTipoContacto;
+		
 		$respBajaTipoContacto=mysql_query($sqlBajaTipoContacto);
 		$numeroBajasPorTipo=mysql_result($respBajaTipoContacto,0,0);
 		$cadTiposBaja=$cadTiposBaja."<td bgcolor='$colorBaja' align='center'>$numeroBajasPorTipo</td>";
@@ -249,10 +270,15 @@ $cadTiposBaja="";
 while($datTiposBaja=mysql_fetch_array($respTiposBaja)){
 	$codTipoBaja=$datTiposBaja[0];
 	$nombreTipoBaja=$datTiposBaja[1];
-	$sqlBajaTipoContacto="SELECT COUNT(rd.cod_med) from rutero r, rutero_detalle rd, registro_no_visita rn where r.cod_contacto = rd.cod_contacto 
-	and rn.cod_contacto=rd.cod_contacto and rn.orden_visita=rd.orden_visita 
-	and r.cod_ciclo = $rpt_ciclo and r.codigo_gestion = $rpt_gestion and r.cod_visitador in (select codigo_funcionario from funcionarios where cod_ciudad in ($rpt_territorio)) and 
-	rd.estado = 2 and rd.categoria_med in ($rpt_categoria) and rn.codigo_motivo='$codTipoBaja'";
+	
+	$sqlBajaTipoContacto="SELECT COUNT(rd.cod_med) from rutero_maestro_cab_aprobado rc, rutero_maestro_aprobado rm, rutero_maestro_detalle_aprobado rd, 
+		registro_no_visita rn 
+		where rc.cod_rutero=rm.cod_rutero and rc.cod_visitador=rm.cod_visitador and 
+		rm.cod_contacto=rd.cod_contacto and rm.cod_visitador=rd.cod_visitador and 
+		rn.orden_visita=rd.orden_visita and rc.codigo_ciclo= $rpt_ciclo and rc.codigo_gestion = $rpt_gestion
+		and rc.cod_visitador in (select codigo_funcionario from funcionarios where cod_ciudad in ($rpt_territorio)) 
+		and rd.estado = 2 and rd.categoria_med in ($rpt_categoria) and rn.codigo_motivo='$codTipoBaja'";
+	
 	$respBajaTipoContacto=mysql_query($sqlBajaTipoContacto);
 	$numeroBajasPorTipo=mysql_result($respBajaTipoContacto,0,0);
 	$cadTiposBaja=$cadTiposBaja."<td bgcolor='$colorBaja' align='center'>$numeroBajasPorTipo</td>";

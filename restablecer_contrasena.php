@@ -22,15 +22,24 @@ echo "<script language='Javascript'>
 	</script>";
 require("conexion.inc");
 require("estilos_administracion.inc");
-	$sql_cab=mysql_query("select paterno, materno, nombres from funcionarios where codigo_funcionario='$codigo_funcionario'");
+	$txtCab="select f.paterno, f.materno, f.nombres, u.nombre_usuario from funcionarios f, usuarios_sistema u 
+		where f.codigo_funcionario='$codigo_funcionario' and f.codigo_funcionario=u.codigo_funcionario";
+	$sql_cab=mysql_query($txtCab);
 	$dat_cab=mysql_fetch_array($sql_cab);
 	$nombre_funcionario="$dat_cab[2] $dat_cab[0] $dat_cab[1]";
+	$nombreusuario=$dat_cab[3];
 	
 echo "<form action='guarda_restablecer_contrasena.php' method='get'>";
 echo "<h1>Restablecer Clave<br>Funcionario: $nombre_funcionario</h1>";
 echo "<center><table border='1' class='texto' cellspacing='0'>";
-echo "<tr><th>Usuario</th><th>Clave</th></tr>";
-echo "<tr><th>$codigo_funcionario</th><td align='center'><input type='text' class='texto' name='contrasena' size='40'></td></tr>";
+echo "<tr><th>Codigo</th><th>NombreUsuario</th><th>Clave</th></tr>";
+
+echo "<tr>
+	<th>$codigo_funcionario</th>
+	<td align='center'><input type='text' class='texto' name='nombreusuario' size='30' value='$nombreusuario'></td>
+	<td align='center'><input type='text' class='texto' name='contrasena' size='40'></td>
+	</tr>";
+	
 echo "<input type='hidden' name='codigo_funcionario' value='$codigo_funcionario'>";
 echo "<input type='hidden' name='cod_territorio' value='$cod_territorio'>";
 echo "</table><br>";

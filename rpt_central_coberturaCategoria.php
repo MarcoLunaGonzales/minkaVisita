@@ -211,11 +211,14 @@ while($dat_visitador=mysql_fetch_array($resp_visitador)) {
 
     $totalContactosMaestro=$numero_contactos_maestroA+$numero_contactos_maestroB+$numero_contactos_maestroC;
     $totalContactosMaestro=$numero_contactos_maestroA+$numero_contactos_maestroB+$numero_contactos_maestroC;
-
-    $sql_contactos_ejecutado="SELECT count(rd.cod_contacto) from rutero_detalle rd, rutero r where 
-	r.cod_ciclo='$rpt_ciclo' and r.codigo_gestion='$rpt_gestion' and r.cod_visitador='$codigo_visitador' and 
-	r.cod_contacto=rd.cod_contacto and rd.estado='1' and rd.categoria_med='A'";
-    $resp_contactos_ejecutado=mysql_query($sql_contactos_ejecutado);
+	
+	$sql_contactos_ejecutado="select count(rd.cod_contacto) from rutero_maestro_cab_aprobado rc, rutero_maestro_aprobado rm,
+		rutero_maestro_detalle_aprobado rd where rc.cod_rutero=rm.cod_rutero and rm.cod_contacto=rd.cod_contacto 
+		and rc.cod_visitador=rm.cod_visitador and rm.cod_visitador=rd.cod_visitador and 
+		rc.codigo_ciclo='$rpt_ciclo' and rc.codigo_gestion='$rpt_gestion' and rc.cod_visitador='$codigo_visitador'
+		and rd.estado=1 and rd.categoria_med='A'";
+    //echo $sql_contactos_ejecutado;
+	$resp_contactos_ejecutado=mysql_query($sql_contactos_ejecutado);
     $dat_ejecutado=mysql_fetch_array($resp_contactos_ejecutado);
     $numero_contactos_ejecutadoA=$dat_ejecutado[0];
     if($numero_contactos_maestroA!=0){
@@ -225,9 +228,11 @@ while($dat_visitador=mysql_fetch_array($resp_visitador)) {
     }
     $cobertura_visitadorA=round($cobertura_visitadorA);
 
-    $sql_contactos_ejecutado="SELECT count(rd.cod_contacto) from rutero_detalle rd, rutero r where r.cod_ciclo='$rpt_ciclo' 
-	and r.codigo_gestion='$rpt_gestion' and r.cod_visitador='$codigo_visitador' 
-	and r.cod_contacto=rd.cod_contacto and rd.estado='1' and rd.categoria_med='B'";
+    $sql_contactos_ejecutado="select count(rd.cod_contacto) from rutero_maestro_cab_aprobado rc, rutero_maestro_aprobado rm,
+		rutero_maestro_detalle_aprobado rd where rc.cod_rutero=rm.cod_rutero and rm.cod_contacto=rd.cod_contacto 
+		and rc.cod_visitador=rm.cod_visitador and rm.cod_visitador=rd.cod_visitador and 
+		rc.codigo_ciclo='$rpt_ciclo' and rc.codigo_gestion='$rpt_gestion' and rc.cod_visitador='$codigo_visitador'
+		and rd.estado=1 and rd.categoria_med='B'";
     $resp_contactos_ejecutado=mysql_query($sql_contactos_ejecutado);
     $dat_ejecutado=mysql_fetch_array($resp_contactos_ejecutado);
     $numero_contactos_ejecutadoB=$dat_ejecutado[0];
@@ -238,9 +243,11 @@ while($dat_visitador=mysql_fetch_array($resp_visitador)) {
     }
     $cobertura_visitadorB=round($cobertura_visitadorB);
 
-    $sql_contactos_ejecutado="SELECT count(rd.cod_contacto) from rutero_detalle rd, rutero r where 
-	r.cod_ciclo='$rpt_ciclo' and r.codigo_gestion='$rpt_gestion' and r.cod_visitador='$codigo_visitador' and 
-	r.cod_contacto=rd.cod_contacto and rd.estado='1' and rd.categoria_med='C'";
+    $sql_contactos_ejecutado="select count(rd.cod_contacto) from rutero_maestro_cab_aprobado rc, rutero_maestro_aprobado rm,
+		rutero_maestro_detalle_aprobado rd where rc.cod_rutero=rm.cod_rutero and rm.cod_contacto=rd.cod_contacto 
+		and rc.cod_visitador=rm.cod_visitador and rm.cod_visitador=rd.cod_visitador and 
+		rc.codigo_ciclo='$rpt_ciclo' and rc.codigo_gestion='$rpt_gestion' and rc.cod_visitador='$codigo_visitador'
+		and rd.estado=1 and rd.categoria_med='C'";
     $resp_contactos_ejecutado=mysql_query($sql_contactos_ejecutado);
     $dat_ejecutado=mysql_fetch_array($resp_contactos_ejecutado);
     $numero_contactos_ejecutadoC=$dat_ejecutado[0];
@@ -256,12 +263,11 @@ while($dat_visitador=mysql_fetch_array($resp_visitador)) {
 
     $numero_medicos_baja=0;
 
-    $sql_medicos_baja="SELECT distinct(bm.cod_med), bm.inicio, bm.fin, rd.categoria_med from 
+    //COMENTAMOS ESTA PARTE PORQUE YA NO SE USAN LAS BAJAS POR PERIODOS
+	/*$sql_medicos_baja="SELECT distinct(bm.cod_med), bm.inicio, bm.fin, rd.categoria_med from 
 	baja_medicos bm, medicos m, rutero_maestro_cab_aprobado rc, rutero_maestro_aprobado rm, 
-	rutero_maestro_detalle_aprobado rd where m.cod_ciudad = '$rpt_territorio' and bm.codigo_linea in ($rpt_linea) and m.cod_med = bm.cod_med and rc.cod_rutero=rm.cod_rutero and rm.cod_contacto=rd.cod_contacto and   rc.codigo_gestion=$rpt_gestion and rc.codigo_linea in ($rpt_linea) and rc.codigo_ciclo=$rpt_ciclo and rc.cod_visitador=$codigo_visitador and rd.cod_med=m.cod_med";
-    
+	rutero_maestro_detalle_aprobado rd where m.cod_ciudad = '$rpt_territorio' and bm.codigo_linea in ($rpt_linea) and m.cod_med = bm.cod_med and rc.cod_rutero=rm.cod_rutero and rm.cod_contacto=rd.cod_contacto and   rc.codigo_gestion=$rpt_gestion and rc.codigo_linea in ($rpt_linea) and rc.codigo_ciclo=$rpt_ciclo and rc.cod_visitador=$codigo_visitador and rd.cod_med=m.cod_med";    
 	//echo $sql_medicos_baja."<br />";
-
     $resp_medicos_baja=mysql_query($sql_medicos_baja);
 
     while($dat_medicos=mysql_fetch_array($resp_medicos_baja)) {   
@@ -297,13 +303,28 @@ while($dat_visitador=mysql_fetch_array($resp_visitador)) {
                 }
             }
         }
-    }
+    }*/
 
-    $sql_me_a = mysql_query("SELECT COUNT(rd.cod_med) from rutero r, rutero_detalle rd where r.cod_contacto = rd.cod_contacto and r.cod_ciclo = $rpt_ciclo and r.codigo_gestion = $rpt_gestion and r.cod_visitador = $codigo_visitador and rd.estado = 2 and rd.categoria_med = 'A'");
+    $txt_me_a="select count(rd.cod_contacto) from rutero_maestro_cab_aprobado rc, rutero_maestro_aprobado rm,
+		rutero_maestro_detalle_aprobado rd where rc.cod_rutero=rm.cod_rutero and rm.cod_contacto=rd.cod_contacto 
+		and rc.cod_visitador=rm.cod_visitador and rm.cod_visitador=rd.cod_visitador and 
+		rc.codigo_ciclo='$rpt_ciclo' and rc.codigo_gestion='$rpt_gestion' and rc.cod_visitador='$codigo_visitador'
+		and rd.estado=2 and rd.categoria_med='A'";
+	$sql_me_a = mysql_query($txt_me_a);
     $me_A = mysql_result($sql_me_a, 0, 0);    
-    $sql_me_b = mysql_query("SELECT COUNT(rd.cod_med) from rutero r, rutero_detalle rd where r.cod_contacto = rd.cod_contacto and r.cod_ciclo = $rpt_ciclo and r.codigo_gestion = $rpt_gestion and r.cod_visitador = $codigo_visitador and rd.estado = 2 and rd.categoria_med = 'B'");
+	$txt_me_b="select count(rd.cod_contacto) from rutero_maestro_cab_aprobado rc, rutero_maestro_aprobado rm,
+		rutero_maestro_detalle_aprobado rd where rc.cod_rutero=rm.cod_rutero and rm.cod_contacto=rd.cod_contacto 
+		and rc.cod_visitador=rm.cod_visitador and rm.cod_visitador=rd.cod_visitador and 
+		rc.codigo_ciclo='$rpt_ciclo' and rc.codigo_gestion='$rpt_gestion' and rc.cod_visitador='$codigo_visitador'
+		and rd.estado=2 and rd.categoria_med='B'";
+    $sql_me_b = mysql_query($txt_me_b);
     $me_B = mysql_result($sql_me_b, 0, 0);
-    $sql_me_c = mysql_query("SELECT COUNT(rd.cod_med) from rutero r, rutero_detalle rd where r.cod_contacto = rd.cod_contacto and r.cod_ciclo = $rpt_ciclo and r.codigo_gestion = $rpt_gestion and r.cod_visitador = $codigo_visitador and rd.estado = 2 and rd.categoria_med = 'C'");
+	$txt_me_c="select count(rd.cod_contacto) from rutero_maestro_cab_aprobado rc, rutero_maestro_aprobado rm,
+		rutero_maestro_detalle_aprobado rd where rc.cod_rutero=rm.cod_rutero and rm.cod_contacto=rd.cod_contacto 
+		and rc.cod_visitador=rm.cod_visitador and rm.cod_visitador=rd.cod_visitador and 
+		rc.codigo_ciclo='$rpt_ciclo' and rc.codigo_gestion='$rpt_gestion' and rc.cod_visitador='$codigo_visitador'
+		and rd.estado=2 and rd.categoria_med='C'";
+    $sql_me_c = mysql_query($txt_me_c);
     $me_C = mysql_result($sql_me_c, 0, 0);
     // echo "dsadsa".$bajaMedA."<br />";
     

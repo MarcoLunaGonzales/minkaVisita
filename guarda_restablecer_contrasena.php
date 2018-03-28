@@ -34,10 +34,14 @@ $nuevafecha = date ( 'Y-m-d' , $nuevafecha );
 
 $error_encontrado="";
 if (validar_clave($contrasena, $error_encontrado)){
-	$sql_update=mysql_query("UPDATE usuarios_sistema set contrasena='$contrasena', fecha_caducidad = '$nuevafecha' where codigo_funcionario='$codigo_funcionario'");
+	
+	$txtUpd="UPDATE usuarios_sistema set contrasena='$contrasena', nombre_usuario='$nombreusuario',
+	fecha_caducidad = '$nuevafecha' where codigo_funcionario='$codigo_funcionario'";
+	$sql_update=mysql_query($txtUpd);
 	// echo "update usuarios_sistema set contrasena='$contrasena' where codigo_funcionario=$codigo_funcionario";
 		//esta parte envia el mail al usuario
-	$sql_mail="select email from funcionarios where codigo_funcionario=$codigo_funcionario";
+	
+	/*$sql_mail="select email from funcionarios where codigo_funcionario=$codigo_funcionario";
 	$resp_mail=mysql_query($sql_mail);
 	$dat_mail=mysql_fetch_array($resp_mail);
 	$mail_funcionario=$dat_mail[0];
@@ -52,11 +56,12 @@ if (validar_clave($contrasena, $error_encontrado)){
 			password:			$contrasena,
 			Fecha de caducidad: $nuevafecha","FROM:Administrador del sistema HERMES");
 
-			/*$sendresult = "Muchas_gracias_en_breve_nos_comunicaremos_con_usted";
+			$sendresult = "Muchas_gracias_en_breve_nos_comunicaremos_con_usted";
 			$send_answer = "Respuesta=";
-			$send_answer .= rawurlencode($sendresult);*/
+			$send_answer .= rawurlencode($sendresult);
 	}
-	//fin enviar mail
+	*/
+	
 	echo "<script language='Javascript'>
 	alert('Los datos fueron modificados correctamente.');
 	location.href='navegador_funcionarios.php?cod_ciudad=$cod_territorio';
@@ -66,7 +71,5 @@ if (validar_clave($contrasena, $error_encontrado)){
 	alert('".$error_encontrado."');
 	history.go(-1);
 	</script>";
-	// location.href='restablecer_contrasena.php?cod_ciudad=$cod_territorio&codigo_funcionario=$codigo_funcionario';
 }
-
 ?>
