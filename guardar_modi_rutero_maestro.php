@@ -21,6 +21,8 @@ $numero_contactos=$vector[3];
 	//esto es para el codigo de los contactos
 		$sql_upd="update rutero_maestro set dia_contacto='$dia_contacto', turno='$turno' where cod_contacto=$cod_contacto";
 		$resp_upd=mysql_query($sql_upd);
+	
+	
 	for($i=4;$i<=$num_elementos-5;$i=$i+5)
 	{	$orden_visita=$vector[$i];
 		$cod_med=$vector[$i+1];

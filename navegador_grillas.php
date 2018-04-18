@@ -31,7 +31,7 @@
 				}
 				else
 				{
-					window.open('replicar_grilla.php?codigo_grilla='+j_codigo+'','','scrollbars=yes,status=no,toolbar=no,directories=no,menubar=no,resizable=yes,width=300,height=300');						
+					window.open('replicar_grilla.php?codigo_grilla='+j_codigo+'','','scrollbars=yes,status=no,toolbar=no,directories=no,menubar=no,resizable=yes,width=800,height=800');						
 				}
 			}			
 		}
@@ -160,10 +160,10 @@
 		$distrito=$dat[5];
 		$codDistrito=$dat[6];
 		
-		if($estado==0)
-		{	$desc_estado="No Vigente";	}
+		if($estado==1)
+		{	$desc_estado="Vigente";	}
 		else
-		{	$desc_estado="Vigente";	}	
+		{	$desc_estado="No Vigente";	}	
 		echo "<tr><td><input type='checkbox' name='codigo' value='$codigo'></td>
 		<td align='center'>$nombre</td>
 		<td align='center'>$distrito</td>
@@ -177,7 +177,7 @@
 	}
 	echo "</table></center><br>";
 	
-	echo"\n<table align='center'><tr><td><a href='grilla_ciudades.php'><img  border='0'src='imagenes/back.png' width='40'></a></td></tr></table>";
+	echo"\n<table align='center'><tr><td><a href='grilla_ciudades.php?codigo_linea=$global_linea'><img  border='0'src='imagenes/back.png' width='40'></a></td></tr></table>";
 	
 	echo "<div class='divBotones'>
 		<input type='button' value='Adicionar' name='adicionar' class='boton' onclick='enviar_nav()'>

@@ -2,7 +2,7 @@
 
 //$usuario=$_post['usuario'];
 //$contrasena=$_post['contrasena'];
-require("conexion.inc");
+require("conexionInicial.inc");
 require("lib/phpmailer/class.phpmailer.php");
 
 function verifica_fecha_caducidad($usuario){

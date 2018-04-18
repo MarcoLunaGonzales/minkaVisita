@@ -6,6 +6,7 @@ require("conexion.inc");
 <head>
     <meta charset="iso-8859-1">
     <title>Aprobar Ruteros</title>
+    <link type="text/css" href="stilos.css" rel="stylesheet" />
     <link type="text/css" href="css/style.css" rel="stylesheet" />
     <link type="text/css" href="responsive/stylesheets/foundation.css" rel="stylesheet" />
     <link rel="stylesheet" href="responsive/stylesheets/style.css">
@@ -123,9 +124,10 @@ require("conexion.inc");
             <div class="row">
                 <div class="two columns end">
                     <?php
-                    //$sql_ciclos = mysql_query("SELECT DISTINCT c.cod_ciclo, c.codigo_gestion, g.nombre_gestion from ciclos c, gestiones g where g.codigo_gestion = c.codigo_gestion and g.estado = 'Activo'"); 
+                    //$sql_ciclos = mysql_query("SELECT DISTINCT c.cod_ciclo, c.codigo_gestion, g.nombre_gestion from ciclos c, gestiones g 
+					//where g.codigo_gestion = c.codigo_gestion and g.estado = 'Activo'"); 
                     $sql_ciclos = mysql_query("SELECT DISTINCT c.cod_ciclo, c.codigo_gestion, g.nombre_gestion from ciclos c, gestiones g 
-					where g.codigo_gestion = c.codigo_gestion and c.codigo_gestion in (1013, 1014) order by codigo_gestion desc, cod_ciclo desc"); 
+					where g.codigo_gestion = c.codigo_gestion  order by codigo_gestion desc, cod_ciclo desc"); 
                     ?>
                     <select name="ciclo" id="ciclo" size="15">
                         <?php while ($row_ciclo = mysql_fetch_array($sql_ciclos)) { ?>
@@ -166,7 +168,8 @@ require("conexion.inc");
             </div>
             <div class="row" style="margin-top:20px">
                 <div class="two columns centered">
-                    <a href="javascript:void(0)" id="replicar" class="button">Aprobar</a>
+                    <!--a href="javascript:void(0)" id="replicar" class="button">Aprobar</a-->
+					<input type="button" id="replicar" onClick="javascript:void(0)" value="Aprobar" class="boton">
                 </div>
             </div>
         </section>

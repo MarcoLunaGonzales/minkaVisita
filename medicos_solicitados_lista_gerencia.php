@@ -43,7 +43,7 @@ require("estilos_administracion.inc");
         $(".editar").click(function(){
             var codd = $("input:checked").attr('value');
             var estadoo = $("input:checked").attr('estadoo');
-            window.location = "editar_medico_gerencia.php?cod="+codd+"&esta="+estadoo;
+            window.location = "editar_medico_gerencia.php?cod="+codd+"&esta=2";
         })
         $(".rechazar").click(function(){
             var codd = $("input:checked").attr('value')

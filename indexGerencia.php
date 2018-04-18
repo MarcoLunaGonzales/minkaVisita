@@ -70,12 +70,12 @@ include("datosUsuario.php");
 				</ul>
 			</li>
 			
-			<!--li><span>Ruteros</span>
+			<li><span>Ruteros</span>
 				<ul>
 					<li><a href="aprobar_rutero_conjunto.php" target="contenedorPrincipal">Aprobar Ruteros</a></li>
 					<li><a href="rechazar_rutero_conjunto.php" target="contenedorPrincipal">Rechazar Ruteros</a></li>
 				</ul>
-			</li-->
+			</li>
 			
 			<li><span>Baja de Medicos para Cobertura</span>
 				<ul>

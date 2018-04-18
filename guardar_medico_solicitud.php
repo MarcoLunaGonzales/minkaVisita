@@ -26,6 +26,9 @@ $cod_ciudad = $_POST['cod_ciudad'];
 $lineas = $_POST['lineass'];
 
 $centro_medico = $_POST['centro_medico'];
+if($centro_medico==""){
+	$centro_medico=0;
+}
 $direccionvial1 = $_POST['direccionvial1'];
 $direccion1 = $_POST['direccion1'];
 $num_casa1 = $_POST['num_casa1'];
@@ -57,6 +60,7 @@ $consulta = $_POST['consulta'];
 /* Fin Categorizacion */
 /* Ponderacion de datos */
 
+/*
 $ponderacion_especialidad = mysql_query("SELECT ponderacion from especialidades_ponderacion where especialidad = '$espe1' ");
 $num_ponderacion_especialidad = mysql_num_rows($ponderacion_especialidad);
 
@@ -133,7 +137,7 @@ if ($categoria_medico_sistema >= 23) {
 if ($categoria_medico_sistema >= 27) {
     $categoria_medico_sistea_final = 'AAA';
 }
-
+*/
 //echo $categoria_medico_sistema;
 
 
@@ -156,8 +160,10 @@ $sql = "INSERT into medicos (cod_med, ap_pat_med, ap_mat_med, nom_med, fecha_nac
 // echo $sql."<br />";
 $resp = mysql_query($sql);
 
-$sql1 = "INSERT into direcciones_medicos (cod_med, cod_zona, direccion, direccionvial, num_casa, numero_direccion ,cod_centro_medico) values('$cod_med','$zona1','$direccion1','$direccionvial1',$num_casa1, 1, $centro_medico)";
+$sql1 = "INSERT into direcciones_medicos (cod_med, cod_zona, direccion, direccionvial, num_casa, numero_direccion ,cod_centro_medico) 
+values('$cod_med','$zona1','$direccion1','$direccionvial1', '$num_casa1', 1, '$centro_medico')";
 
+//echo $sql1;
 
 $resp1 = mysql_query($sql1);
 
@@ -173,6 +179,7 @@ if($espe2!=""){
 
 /*  Datos categorizacion Insterst */
 
+/*
 $sql_farmacias_referecnia = mysql_query("INSERT into farmacias_referencia_medico (cod_med, nombre_farmacia, direccion_farmacia) values ($cod_med, '$name_farm_1', '$dir_farm_1')");
 
 if ($name_farm_2 != '') {
@@ -183,8 +190,9 @@ if ($name_farm_3 != '') {
 }
 
 $sql_categorizacion_medico = mysql_query("INSERT into categorizacion_medico (cod_med,sexo,edad,n_pacientes,tiene_preferencia,nivel,costo) values ($cod_med,'$sexo',$edad,$paci,'$prescriptiva','$nivel',$consulta)");
+*/
 
-$sql_medico_asignado = mysql_query("INSERT into medico_asignado_visitador (cod_med,codigo_visitador) values($cod_med, $codigo_visitador)");
+$sql_medico_asignado = mysql_query("INSERT into medico_asignado_visitador (cod_med,codigo_visitador,codigo_linea) values($cod_med, $codigo_visitador, $lineas)");
 
 $sql_linea_medico = mysql_query("INSERT into categorias_lineas (codigo_linea,cod_med,cod_especialidad,frecuencia_linea,frecuencia_permitida) values($lineas,$cod_med,'$espe1',0,0)");
 
@@ -197,14 +205,22 @@ $sql_linea_medico = mysql_query("INSERT into categorias_lineas (codigo_linea,cod
 /* FIN Guardar Ponderacion categorizacion medico */
 
 
-if ($resp == 1 && $resp1 == 1 && $resp_espe == 1 && $sql_farmacias_referecnia == 1 || ( $sql_farmacias_referecnia2 == 1 || $sql_farmacias_referecnia3 == 1 ) && $sql_categorizacion_medico == 1 && $sql_medico_asignado == 1 && $sql_linea_medico == 1) {
-    echo "<script language='Javascript'>
+if ($resp == 1 && $resp1 == 1 && $resp_espe == 1 && $sql_medico_asignado == 1 && $sql_linea_medico == 1) {
+    /*echo "<script language='Javascript'>
     alert('Los datos se guardaron correctamente.');
     location.href='envios_mails/envio_alta_medico.php?medico=$medico&territorio=$cod_ciudad&dia=$fecha_registro&visitador=$codigo_visitador';
+    </script>";*/
+	
+	echo "<script language='Javascript'>
+    alert('Los datos se guardaron correctamente.');
+    location.href='medicos_solicitados_lista.php';
     </script>";
+	
 } else {
     echo "<script language='Javascript'>
     alert('Los datos NO se guardaron correctamente verifique los datos.');
     location.href='medicos_solicitados_lista.php';
     </script>";
 }
+
+?>

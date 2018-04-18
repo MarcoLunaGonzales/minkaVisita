@@ -41,8 +41,8 @@ $lineass    = $_POST['lineass'];
 $visitadorr = $_POST['visitadorr'];
 $cate_medd  = $_POST['cate_medd'];
 
-/* Categorizacion */
 
+/*desde aqui quitamos esto
 $name_farm_1 = $_POST['name_farm_1'];
 $name_farm_2 = $_POST['name_farm_2'];
 $name_farm_3 = $_POST['name_farm_3'];
@@ -58,9 +58,6 @@ $prescriptiva = $_POST['prescriptiva'];
 $nivel        = $_POST['nivel'];
 $consulta     = $_POST['consulta'];
 
-/* Fin Categorizacion */
-
-/* Ponderacion de datos */
 
 $ponderacion_especialidad = mysql_query("SELECT ponderacion from especialidades_ponderacion where especialidad = '$espe1' " );
 $num_ponderacion_especialidad = mysql_num_rows($ponderacion_especialidad);
@@ -138,8 +135,7 @@ if ($categoria_medico_sistema >= 23) {
 if ($categoria_medico_sistema >= 27) {
     $categoria_medico_sistea_final = 'AAA';
 }
-
-/* Fin Ponderacion de datos */
+*/
 
 $estado_final = $_GET['estaa'];
 
@@ -175,7 +171,7 @@ $resp1 = mysql_query($sql1);*/
 
 	mysql_query("delete from direcciones_medicos where cod_med='$cod_med'");
 	$sql1="insert into direcciones_medicos values ('$cod_med','$zona1','$direccion1','$direccionvial1','$num_casa1','1','1','$centro_medico')";
-	echo $sql1;
+	//echo $sql1;
 	$respxx=mysql_query($sql1);
 
 
@@ -192,7 +188,6 @@ if($espe2!=""){
 }
 
 
-
 /* Guardamos especialidad y la linea */
 if ($estado_final == 3) {
 //    $sql_linea = mysql_query("INSERT into categorias_lineas (codigo_linea,cod_med,cod_especialidad,categoria_med,frecuencia_linea,frecuencia_permitida) values($lineass,$cod_med,'$espe1','$cate_medd',0,0)");
@@ -206,38 +201,7 @@ if ($estado_final == 2) {
     $sql_visitador = mysql_query("UPDATE medico_asignado_visitador set codigo_visitador = $visitadorr, codigo_linea = $lineass where cod_med = $cod_med");
 }
 
-/* Fin del Guardado de especialidad y la linea */
-/*  Datos categorizacion Inserts */
-
-$sql_farmacias_referencia_verificacion = mysql_num_rows(mysql_query("SELECT * from farmacias_referencia_medico where cod_med = $cod_med"));
-
-if ($sql_farmacias_referencia_verificacion > 0) {
-
-    mysql_query("DELETE from farmacias_referencia_medico where cod_med = $cod_med ");
-
-    $sql_farmacias_referecnia = mysql_query("INSERT into farmacias_referencia_medico (cod_med, nombre_farmacia, direccion_farmacia) values ($cod_med, '$name_farm_1', '$dir_farm_1')");
-
-    if ($name_farm_2 != '') {
-        $sql_farmacias_referecnia2 = mysql_query("INSERT into farmacias_referencia_medico (cod_med, nombre_farmacia, direccion_farmacia) values ($cod_med, '$name_farm_2', '$dir_farm_2')");
-    }
-    if ($name_farm_3 != '') {
-        $sql_farmacias_referecnia3 = mysql_query("INSERT into farmacias_referencia_medico (cod_med, nombre_farmacia, direccion_farmacia) values ($cod_med, '$name_farm_3', '$dir_farm_3')");
-    }
-}
-
-$sql_categorizacion_medico_verificacion = mysql_num_rows(mysql_query("SELECT * from categorizacion_medico where cod_med = $cod_med "));
-
-if ($sql_categorizacion_medico_verificacion == 1) {
-
-    // $sql_categorizacion_medico = mysql_query("UPDATE categorizacion_medico set sexo = '$sexo' , edad = $edad , n_pacientes = '$paci' , tiene_preferencia = '$prescriptiva' , nivel = '$nivel' , costo = '$consulta' where cod_med = $cod_med ");
-
-} else{
-
-    $sql_categorizacion_medico = mysql_query("INSERT into categorizacion_medico (cod_med,sexo,edad,n_pacientes,tiene_preferencia,nivel,costo) values ($cod_med,'$sexo',$edad,$paci,'$prescriptiva','$nivel',$consulta)");
-    
-}
-
-if ($resp == 1 && $resp1 == 1 && $resp_espe == 1 && $sql_farmacias_referecnia == 1 || ( $sql_farmacias_referecnia2 == 1 || $sql_farmacias_referecnia3 == 1 ) && $sql_categorizacion_medico == 1) {
+if ($resp == 1 && $respxx == 1 && $resp_espe == 1) {
     echo "<script language='Javascript'>
     alert('Los datos se guardaron correctamente.');
     location.href='medicos_solicitados_lista_gerencia.php?cod_ciudad=$cod_ciudad';

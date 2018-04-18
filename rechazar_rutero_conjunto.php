@@ -4,6 +4,7 @@
     <meta charset="iso-8859-1">
     <title>Rechazar Ruteros</title>
     <link type="text/css" href="css/style.css" rel="stylesheet" />
+	<link type="text/css" href="stilos.css" rel="stylesheet" />
     <link type="text/css" href="responsive/stylesheets/foundation.css" rel="stylesheet" />
     <link rel="stylesheet" href="responsive/stylesheets/style.css">
     <script type="text/javascript" src="lib/jquery-1.7.1.js"></script>
@@ -121,7 +122,7 @@
                 <div class="two columns end">
                     <?php
                     $sql_ciclos = mysql_query("SELECT DISTINCT c.cod_ciclo, c.codigo_gestion, g.nombre_gestion from ciclos c, gestiones g 
-					where g.codigo_gestion = c.codigo_gestion and c.codigo_gestion in (1013, 1014) order by codigo_gestion desc, cod_ciclo desc"); 
+					where g.codigo_gestion = c.codigo_gestion order by codigo_gestion desc, cod_ciclo desc"); 
                     ?>
                     <select name="ciclo" id="ciclo" size="15">
                         <?php while ($row_ciclo = mysql_fetch_array($sql_ciclos)) { ?>
@@ -162,7 +163,8 @@
             </div>
             <div class="row" style="margin-top:20px">
                 <div class="two columns centered">
-                    <a href="javascript:void(0)" id="replicar" class="button">Rechazar</a>
+                    <!--a href="javascript:void(0)" id="replicar" class="button">Rechazar</a-->
+					<input type="button" id="replicar" class="boton" onClick="javascript:void(0)" value="Rechazar">
                 </div>
             </div>
         </section>

@@ -15,6 +15,7 @@ $territorio = mysql_result($sql_territorio, 0,0);
 $sql_visitador = mysql_query("SELECT CONCAT(nombres,' ',paterno,' ',materno) from funcionarios where codigo_funcionario = $visitador2 ");
 $visitador = mysql_result($sql_visitador,0,0);
 
+/*
 $mail = new PHPMailer();
 
 

@@ -31,7 +31,7 @@ if ($nroRegs != 0) {
     echo "<table border=1 class='texto' width='100%' align='center'>";
     echo "<tr><th colspan='6'>Validacion de Contactos de Acuerdo a Grilla Vigente</th></tr>";
     echo "<tr><th colspan='6'>$nombre_visitador $nombre_linea</th></tr>";
-    echo "<tr><th>M�dico</th><th>Espe.</th><th>Cat.</th><th>Contactos<br>Grilla</th><th>Contactos<br>Rutero Maestro</th><th>Dias de Contacto</th></tr>";
+    echo "<tr><th>Medico</th><th>Espe.</th><th>Cat.</th><th>Contactos<br>Grilla</th><th>Contactos<br>Rutero Maestro</th><th>Dias de Contacto</th></tr>";
 
     $bandera = 0;
 
@@ -40,29 +40,15 @@ if ($nroRegs != 0) {
         $espe_med = $datos_med_vis[1];
         $cat_med = $datos_med_vis[2];
 
-        //sacamos si hace linea de visita
-        $codLineaVisita = 0;
-        $sqlLineaVis = "SELECT l.`codigo_l_visita` from `lineas_visita` l, `lineas_visita_especialidad` le, `lineas_visita_visitadores` lv where l.`codigo_l_visita` = le.`codigo_l_visita` and l.`codigo_l_visita` = lv.`codigo_l_visita` and le.`codigo_l_visita` = lv.`codigo_l_visita` and le.`cod_especialidad`='$espe_med' and lv.`codigo_funcionario`='$visitador' and l.`codigo_linea`='$global_linea' and lv.codigo_ciclo = $cilcooo and lv.codigo_gestion = $codigo_gestion"; 
-		
-		
-		
-        //        echo $sqlLineaVis."<br />";
-        $respLineaVis = mysql_query($sqlLineaVis);
-        $numFilas = mysql_num_rows($respLineaVis);
-        if ($numFilas > 0) {
-            $codLineaVisita = mysql_result($respLineaVis, 0, 0);
-            if ($codLineaVisita == "") {
-                $codLineaVisita = 0;
-            }
-        }
-
 
         $sql_cuenta_med = "SELECT count(rd.cod_med) from rutero_maestro_detalle rd, rutero_maestro r WHERE r.cod_rutero='$codRutero' AND r.cod_visitador='$visitador' AND r.cod_contacto=rd.cod_contacto and rd.cod_med='$cod_med' and rd.cod_especialidad='$espe_med' and rd.categoria_med='$cat_med'";
         $resp_cuenta_med = mysql_query($sql_cuenta_med);
         $datos_cuenta_med = mysql_fetch_array($resp_cuenta_med);
         $num_veces_medico = $datos_cuenta_med[0];
-        $sql_grilla = "SELECT gd.cod_especialidad, gd.cod_categoria, gd.frecuencia from grilla g, grilla_detalle gd where g.codigo_grilla=gd.codigo_grilla and gd.cod_especialidad='$espe_med' and gd.cod_categoria='$cat_med' and g.codigo_linea='$global_linea' and g.agencia='$rpt_territorio' and g.estado='1' and gd.cod_linea_visita='$codLineaVisita'";
-        // echo $sql_grilla."<br />";
+        $sql_grilla = "SELECT gd.cod_especialidad, gd.cod_categoria, gd.frecuencia from grilla g, grilla_detalle gd where 
+		g.codigo_grilla=gd.codigo_grilla and gd.cod_especialidad='$espe_med' and gd.cod_categoria='$cat_med' and 
+		g.codigo_linea='$global_linea' and g.agencia='$rpt_territorio' and g.estado='1'";
+        //echo $sql_grilla."<br />";
         $resp_grilla = mysql_query($sql_grilla);
         $dat_grilla = mysql_fetch_array($resp_grilla);
         $frec_grilla = $dat_grilla[2];
@@ -89,12 +75,12 @@ if ($nroRegs != 0) {
         if ($frec_grilla < $num_veces_medico) {
             //$colorFondo = "#FFFFFF";
             echo "<tr bgcolor='$colorFondo'><td>$nombre_medico</td><td>$espe_med</td><td align='center'>$cat_med</td><td align='center'>$frec_grilla</td><td align='center'>$num_veces_medico</td><td>$cadena_dias</td></tr>";
-            //$bandera = 1;
+            $bandera = 1;
         }
         if ($frec_grilla > $num_veces_medico) {
             //$colorFondo = "#FFFFFF";
             echo "<tr bgcolor='$colorFondo'><td>$nombre_medico</td><td>$espe_med</td><td align='center'>$cat_med</td><td align='center'>$frec_grilla</td><td align='center'>$num_veces_medico</td><td>$cadena_dias</td></tr>";
-            //$bandera = 1;
+            $bandera = 1;
         }
     }
     echo "</table><br>";
@@ -104,8 +90,6 @@ if ($nroRegs != 0) {
     $count_result = 0;
 
     if($count_result == 0){
-
-
         $sqlVeriLineas = "SELECT * from `funcionarios_lineas` f, lineas l where f.`codigo_funcionario`=$visitador and l.`estado`=1 and f.`codigo_linea`=l.`codigo_linea`";
         $respVeriLineas = mysql_query($sqlVeriLineas);
 

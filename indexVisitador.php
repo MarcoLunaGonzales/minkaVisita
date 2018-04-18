@@ -79,7 +79,7 @@ include("datosUsuario.php");
 						<ul>
 							<li><a href="rpt_op_central_coberturaCategoria1.php" target="contenedorPrincipal">Cobertura x Visitador</a></li>
 							<li><a href="rptOpCoberturaSemanaVisitador.php" target="contenedorPrincipal">Cobertura x Dia</a></li>								
-							<li><a href="rpt_op_central_detallemedicos.php" target="contenedorPrincipal">Rutero Maestro Detallado</a></li>								
+							<li><a href="rpt_op_medicos_rutero_maestro.php" target="contenedorPrincipal">Rutero Maestro Detallado</a></li>								
 							<li><a href="rpt_op_medicos_rutero_maestro2.php" target="contenedorPrincipal">Rutero Maestro Resumido x Visitador</a></li>								
 							
 						</ul>	

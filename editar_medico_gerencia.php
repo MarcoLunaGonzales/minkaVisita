@@ -171,7 +171,7 @@ if(f.espe1.value==f.espe2.value){
 //     alert('Debe ingresar el costo.');
 //     return(false);
 // }
-f.action='guardar_editarmedico_gerencia.php?estaa='+<?php echo $esta; ?>;
+f.action='guardar_editarmedico_gerencia.php?estaa=2';
 f.submit();
 }
 function cargarZonas(f, zona1, zona2, zona3){

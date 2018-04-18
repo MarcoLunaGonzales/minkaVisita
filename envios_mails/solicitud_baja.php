@@ -16,27 +16,27 @@ $motivo = mysql_result($sql_motivo, 0, 0);
 
 $date = date('d/m/Y');
 
-$mail = new PHPMailer();
+// $mail = new PHPMailer();
 
 
-$mail->AddReplyTo("solicitud_baja_visitador@cofar.com.bo","Solicitud Baja Visitador");
+// $mail->AddReplyTo("solicitud_baja_visitador@cofar.com.bo","Solicitud Baja Visitador");
 
-$mail->SetFrom("solicitud_baja_visitador@cofar.com.bo","Solicitud Baja Visitador");
+// $mail->SetFrom("solicitud_baja_visitador@cofar.com.bo","Solicitud Baja Visitador");
 
-$mail->AddReplyTo("solicitud_baja_visitador@cofar.com.bo","Solicitud Baja Visitador");
+// $mail->AddReplyTo("solicitud_baja_visitador@cofar.com.bo","Solicitud Baja Visitador");
 
-$address = "mpacheco@cofar.com.bo";
-// $address2 = "jarze@cofar.com.bo";
-$address3 = "gtancara@cofar.com.bo";
-//$mail->AddAddress($address, "Dr. Miguel A. Pacheco");
-// $mail->AddAddress($address2, "Jorge Arze");
-//$mail->AddAddress($address3, "German Tancara");
+// $address = "mpacheco@cofar.com.bo";
+// // $address2 = "jarze@cofar.com.bo";
+// $address3 = "gtancara@cofar.com.bo";
+// //$mail->AddAddress($address, "Dr. Miguel A. Pacheco");
+// // $mail->AddAddress($address2, "Jorge Arze");
+// //$mail->AddAddress($address3, "German Tancara");
 
-$mail->Subject    = "Solicitud Baja Visitador '$nom_visitador' ";
+// $mail->Subject    = "Solicitud Baja Visitador '$nom_visitador' ";
 
-$mail->AltBody    = "Se solicit&oacute; la baja para el funcionario '$nom_visitador' con el motivo de: '$motivo' el d&iacute;a de hoy($date)"; 
+// $mail->AltBody    = "Se solicit&oacute; la baja para el funcionario '$nom_visitador' con el motivo de: '$motivo' el d&iacute;a de hoy($date)"; 
 
-$mail->MsgHTML("Estimados Se&ntilde;or@s: <br /> <br />Se solicit&oacute; la baja del visitador <strong>$nom_visitador</strong> por el motivo: <strong>$motivo</strong> el d&iacute;a de hoy<strong>($date)</strong>. <br /> <br /> Por favor tomar en cuenta para la aprobaci&oacute;n o no en la aprobaci&oacute;n de bajas.<br /> <br /><i>/* Este es un mensaje autom&aacute;tico. Por favor no responda a este correo. */</i>");
+// $mail->MsgHTML("Estimados Se&ntilde;or@s: <br /> <br />Se solicit&oacute; la baja del visitador <strong>$nom_visitador</strong> por el motivo: <strong>$motivo</strong> el d&iacute;a de hoy<strong>($date)</strong>. <br /> <br /> Por favor tomar en cuenta para la aprobaci&oacute;n o no en la aprobaci&oacute;n de bajas.<br /> <br /><i>/* Este es un mensaje autom&aacute;tico. Por favor no responda a este correo. */</i>");
 
 
 if(!$mail->Send()) {

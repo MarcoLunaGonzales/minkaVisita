@@ -9,11 +9,11 @@
 	$resp_update=mysql_query($sql_update);
 	$sql_update2="update grilla set estado='1' where codigo_grilla='$j_codigo' and agencia='$cod_ciudad'";
 	
-	echo $sql_update2;
+	//echo $sql_update2;
 	$resp_update2=mysql_query($sql_update2);
 
-	/*echo "<script language='Javascript'>
+	echo "<script language='Javascript'>
 		  alert('Los Grilla se activo satisfactoriamente.');
 		  location.href='navegador_grillas.php?cod_ciudad=$cod_ciudad&codigo_linea=$codigo_linea';
-	      </script>";*/
+	      </script>";
 ?>
