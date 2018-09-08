@@ -2,7 +2,7 @@
 	require("conexion.inc");
 	require("estilos_gerencia.inc");
 
-	$sql="select cod_ciudad,descripcion from ciudades order by descripcion";
+	$sql="select cod_ciudad, nombre_ciudad from ciudades order by 2";
 	$resp=mysql_query($sql);
 	echo "<h1>Funcionarios</h1>";
 	echo "<center><table class='texto'>";

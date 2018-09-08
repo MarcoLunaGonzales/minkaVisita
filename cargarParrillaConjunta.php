@@ -2,7 +2,7 @@
 
 require("conexion.inc");
 
-$codigoCiclo=1;
+$codigoCiclo=4;
 $codigoGestion=1000;
 
 

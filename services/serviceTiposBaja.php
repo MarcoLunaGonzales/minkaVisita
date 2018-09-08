@@ -23,8 +23,7 @@
 	}
 	
 	
-	require("../conexion.inc");
-	
+	require("../conexionInicial.inc");
 
 	if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		$X=file_get_contents("php://input");

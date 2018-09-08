@@ -17,9 +17,9 @@ echo "<table align='center' class='textotit'><tr><th>Frecuencia y Secuencia de V
 			Visitador: $nombreVisitador
 			</table><br>";
 
-echo "<table border='0' class='textomini' align='center'>
-<tr><td>Leyenda:</td><td>Planificado</td><td bgcolor='#ff0000' width='30%'></td>
-<tr><td></td><td>Ejecutado</td><td bgcolor='#ffff00' width='30%'></td>
+echo "<table border='0' class='texto' align='center'>
+<tr><td>Leyenda:</td><td>Planificado</td><td width='10%'><img src='imagenes/medicoplanificado.png' width='50'></td>
+<tr><td></td><td>Ejecutado</td><td width='10%'><img src='imagenes/medicoejecutado.png' width='50'></td>
 </tr></table><br>";
 
 echo "<table class='texto' border='0' cellspacing='0' cellpading='0' align='center'>
@@ -90,13 +90,13 @@ while($dat=mysql_fetch_array($resp)){
 		$txtFrec="";
 		$txtSec="";
 		if(in_array($codDia,$diasFrecuencia)){
-			$txtFrec="#ff0000";
+			$txtFrec="<img src='imagenes/medicoplanificado.png' width='50'>";
 		}
 		if(in_array($codDia,$diasSecuencia)){
-			$txtSec="#ffff00";
+			$txtSec="<img src='imagenes/medicoejecutado.png' width='50'";
 		}
-		echo "<td bgcolor='$txtFrec'>&nbsp;</td>";		
-		echo "<td bgcolor='$txtSec'>&nbsp;</td>";
+		echo "<td>$txtFrec</td>";		
+		echo "<td>$txtSec</td>";
 	}
 	unset($diasFrecuencia);		
 	unset($diasSecuencia);		

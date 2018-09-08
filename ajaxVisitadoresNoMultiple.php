@@ -7,7 +7,7 @@ $sql_visitador="select distinct(f.codigo_funcionario), f.paterno, f.materno, f.n
 	and f.cod_cargo='1011' and f.estado=1 and f.cod_ciudad in ($codTerritorio) 
 	and f.cod_ciudad=ci.cod_ciudad order by ci.descripcion,f.paterno";
 $resp_visitador=mysql_query($sql_visitador);
-echo "<select name='rpt_visitador' class='texto' size='10'>";
+echo "<select name='rpt_visitador' class='texto' size='6'>";
 while($dat_visitador=mysql_fetch_array($resp_visitador))
 {	$codigo_visitador=$dat_visitador[0];
 	$nombre_visitador="$dat_visitador[1] $dat_visitador[2] $dat_visitador[3]";

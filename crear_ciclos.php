@@ -1,86 +1,67 @@
 <?php
-/**
- * Desarrollado por Datanet.
- * @autor: Marco Antonio Luna Gonzales
- * @copyright 2005 
-*/
+require("estilos_gerencia.inc");
+require("conexion.inc");
+
 echo "<script language='JavaScript'>
 	function validar(f)
 	{	if(f.exafinicial.value=='')
-		{	alert('El campo Fecha Inicial de Ciclo no puede estar vacio.');
+		{	alert('El campo Fecha Inicio esta vacio.');
 			return(false);
 		}
 		if(f.exafvalidez.value=='')
-		{	alert('El campo Fecha Final de Ciclo no puede estar vacio.');
+		{	alert('El campo Fecha Final esta vacio.');
 			return(false);
 		}
-		var dia_ini,mes_ini,anio_ini,dia_fin,mes_fin,anio_fin;
-		vec_ini=new Array(5);
-		vec_fin=new Array(5);
-		var fecha_ini,fecha_fin;
-		fecha_ini=f.exafinicial.value;
-		fecha_fin=f.exafvalidez.value;
-		vec_ini=fecha_ini.split('/');
-		vec_fin=fecha_fin.split('/');
-		dia_ini=vec_ini[0]*1; mes_ini=(vec_ini[1]*1)-1; anio_ini=vec_ini[2]*1;
-		dia_fin=vec_fin[0]*1; mes_fin=(vec_fin[1]*1)-1; anio_fin=vec_fin[2]*1;
-		fecha_ini=new Date(anio_ini,mes_ini,dia_ini);
-		fecha_fin=new Date(anio_fin,mes_fin,dia_fin);
-		if(fecha_fin<=fecha_ini)
-		{	alert('La Fecha de Fin de Ciclo no puede ser Anterior o Igual a la de Inicio de Ciclo.');
+
+		//alert(f.exafinicial.value+' '+f.exafvalidez.value);
+		
+		if(f.exafinicial.value>f.exafvalidez.value)
+		{	alert('La Fecha Final de Ciclo no puede ser Anterior o Igual a la de Inicio de Ciclo.');
 			return(false);
 		}
 		f.submit();
 	}
 	</script>";	
-			require("estilos.inc");
-			echo "<center><table border='0' class='textotit'><tr><td>Creación de Ciclos</td></tr></table></center><br>";
+	
+			$sql_gestion=mysql_query("select codigo_gestion, nombre_gestion from gestiones where estado='Activo'");
+			$dat_gestion=mysql_fetch_array($sql_gestion);
+			$codigoGestion=$dat_gestion[0];
+			$nombreGestion=$dat_gestion[1];
+	
+			echo "<h1>Registro de Ciclo</h1>";
+			
 			echo "<form method='post' action='guarda_ciclo.php'>";
-			echo"<center><table class='texto' border='1' cellspacing='0'>";
-			echo "<tr><th>Ciclo a Crear</th>";
+			echo"<center><table class='texto'>";
+			echo "<tr>
+			<td>Ciclo</td>";
 			//aqui formamos los ciclos de manera consecutiva para mandarlos a guardar
-				$sql_codigo="select cod_ciclo from ciclos where codigo_linea='$global_linea' and codigo_gestion='$codigo_gestion' order by fecha_ini desc";
+				$sql_codigo="select max(cod_ciclo)+1 from ciclos where
+				codigo_gestion='$codigoGestion'";
+				
+				//echo $sql_codigo;
+				
 				$resp_codigo=mysql_query($sql_codigo);
 				$dat_codigo=mysql_fetch_array($resp_codigo);
 				$codigo_ciclo=$dat_codigo[0];
-				/*if($codigo_ciclo>=12)
-				{	$codigo_ciclo=0;
-				}*/
-				$codigo_ciclo=$codigo_ciclo+1;
-				$codigo_ciclo="$codigo_ciclo/$gestion";
+				
 			echo "<input type='hidden' name='cod_ciclo' value='$codigo_ciclo'>";
-			echo "<th>$codigo_ciclo</th>";			
+			echo "<td>$codigo_ciclo</td>";			
 			echo "</tr>";
-			echo "<tr><td>Fecha Inicio Ciclo</td>";
+			echo "<tr><td>Fecha Inicio</td>";
 			//<!-- INI fecha con javascript -->
-    		echo" <TD bgcolor='#ffffff'><INPUT  type='text' class='texto' id='exafinicial' size='10' name='exafinicial'>";
-    		echo" <IMG id='imagenFecha' src='imagenes/fecha.bmp'>";
-    		echo" <DLCALENDAR tool_tip='Seleccione la Fecha' ";
-    		echo" daybar_style='background-color: DBE1E7; font-family: verdana; color:000000;' ";
-    		echo" navbar_style='background-color: 7992B7; color:ffffff;' ";
-    		echo" input_element_id='exafinicial' ";
-    		echo" click_element_id='imagenFecha'></DLCALENDAR>";
-    		echo"  </TD>";
-  			//<!-- FIN fecha con javascript -->
+    		echo" <td><input type='date' class='texto' id='exafinicial' name='exafinicial'>";
+    		echo"  </td>";
 			echo"</tr>";
-			echo"<tr><td>Fecha Final de Ciclo</td>";
-			//<!-- INI fecha con javascript -->
-   			 echo" <TD bgcolor='#ffffff'><INPUT type='text'class='texto' id='exafvalidez' size='10' name='exafvalidez'>";
-   			 echo" <IMG id='imagenFecha1' src='imagenes/fecha.bmp'>";
-    		echo" <DLCALENDAR tool_tip='Seleccione la Fecha' ";
-    		echo" daybar_style='background-color: DBE1E7; font-family: verdana; color:000000;' ";
-    		echo" navbar_style='background-color: 7992B7; color:ffffff;' ";
-    		echo"  input_element_id='exafvalidez' ";
-    		echo" click_element_id='imagenFecha1'></DLCALENDAR>";
-    		echo"  </TD>";
-  			//<!-- FIN fecha con javascript -->
+			echo"<tr><td>Fecha Final</td>";
+   			echo"<td><input type='date' class='texto' id='exafvalidez' name='exafvalidez'>";
+    		echo"</td>";
+	echo"</tr></table></center><br>";
 
-///NO OLVIDES DE ESTO DEBE IR DEBAJO DEL FORM MUCHA SUERTE
-echo"</tr></table></center><br>";
-echo"\n<table align='center'><tr><td><a href='javascript:history.back(-1);'><img  border='0'src='imagenes/back.png' width='40'></a></td></tr></table>";
-echo"<center><input type='button' class='boton' value='Guardar' onClick='validar(this.form)'></center>";
-echo"</form>\n";
+	echo"<div class='divBotones'>
+<input type='button' class='boton' value='Guardar' onClick='validar(this.form)'>
+<input type='button' class='boton2' value='Cancelar' onClick='location.href=\"navegador_activar_ciclos.php\"'>";
 echo "</div>";
-echo"<script type='text/javascript' language='javascript'  src='dlcalendar.js'></script>";
+
+echo"</form>";
 
 ?>

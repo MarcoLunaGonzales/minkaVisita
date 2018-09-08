@@ -18,7 +18,4 @@ while($dat=mysql_fetch_array($resp)){
 		
 	echo "medico  $medico <br>";
 }
-
-
-
 ?>

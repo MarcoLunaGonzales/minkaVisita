@@ -48,7 +48,14 @@ $resp_cab=mysql_query($sql_cab);
 $dat_cab=mysql_fetch_array($resp_cab);
 $nombre_funcionario="$dat_cab[0] $dat_cab[1] $dat_cab[2]";
 
-$sql="SELECT distinct m.cod_med, m.ap_pat_med, m.ap_mat_med, m.nom_med from medicos m, categorias_lineas c,medico_asignado_visitador v where m.cod_ciudad = '$global_agencia' and m.cod_med = c.cod_med and m.cod_med = v.cod_med and v.codigo_visitador = '$visitador'and v.codigo_linea = $global_linea order by m.ap_pat_med";
+$sql="SELECT distinct m.cod_med, m.ap_pat_med, m.ap_mat_med, m.nom_med,
+	(select estado from estado_medico_registro where id=m.estado_registro)as estado,
+	m.estado_registro
+	from medicos m, 
+	categorias_lineas c,medico_asignado_visitador v 
+	where m.cod_ciudad = '$global_agencia' and m.cod_med = c.cod_med and m.cod_med = v.cod_med 
+	and v.codigo_visitador = '$visitador'and v.codigo_linea = $global_linea order by m.ap_pat_med";
+	
 $resp=mysql_query($sql);
 echo "<form>";
 echo "<h1>Medicos Asignados<br>Visitador: $nombre_funcionario</h1>";
@@ -59,10 +66,10 @@ echo"\n<table align='center'><tr><td><a href='navegador_funcionarios_regional.ph
 echo "<center><table class='texto'>";
 echo "<tr><td><input type='checkbox' name='todo' onClick='sel_todo(this.form)'>Seleccionar Todo</td></tr></table></center>";
 echo "<center><table border='0' class='texto'>";
-echo "<tr><td><input type='button' value='Eliminar' class='boton' onclick='eliminar_nav(this.form)'></td></tr></table></center>";
+echo "<tr><td><input type='button' value='Eliminar' class='boton2' onclick='eliminar_nav(this.form)'></td></tr></table></center>";
 
 echo "<center><table class='texto'>";
-echo "<tr><th>&nbsp;</th><th>&nbsp;</th><th>Codigo</th><th>Nombre</th><th>Especialidades</th></tr>";
+echo "<tr><th>&nbsp;</th><th>&nbsp;</th><th>Codigo</th><th>Nombre</th><th>Especialidades</th><th>Estado</th></tr>";
 while($dat=mysql_fetch_array($resp)) {
 
 	$cod=$dat[0];
@@ -70,16 +77,29 @@ while($dat=mysql_fetch_array($resp)) {
 	$mat=$dat[2];
 	$nom=$dat[3];
 	$nombre_completo="$pat $mat $nom";
-	$sql2="SELECT c.cod_especialidad, c.categoria_med from especialidades_medicos e, categorias_lineas c where c.cod_med = e.cod_med and c.cod_med = $cod and c.cod_especialidad = e.cod_especialidad and c.codigo_linea = $global_linea order by c.cod_especialidad";
+	$nombreEstado=$dat[4];
+	$codEstado=$dat[5];
+	
+	$sql2="SELECT c.cod_especialidad, c.categoria_med from especialidades_medicos e, categorias_lineas c 
+		where c.cod_med = e.cod_med and c.cod_med = $cod and c.cod_especialidad = e.cod_especialidad and 
+		c.codigo_linea = $global_linea order by c.cod_especialidad";
+		
 	$resp2=mysql_query($sql2);
 	$especialidad="";
 	while($dat2=mysql_fetch_array($resp2)) {
 		$espe=$dat2[0];
 		$cat=$dat2[1];
-		$especialidad="$especialidad<br>$espe&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$cat";
+		$especialidad="$especialidad<br>$espe&nbsp;$cat";
 	}
-	$especialidad="$especialidad<br><br>";
-	echo "<tr><td align='center'>$indice_tabla</td><td align='center'><input type='checkbox' name='codigos_ciclos' value=$cod></td><td align='center'>$cod</td><td>&nbsp;$nombre_completo</td><td align='center'>&nbsp;$especialidad</td></tr>";
+	$especialidad="$especialidad<br>";
+	if($codEstado==1){
+		$nombreEstado="<span style='color:green'>$nombreEstado</span>";
+	}else{
+		$nombreEstado="<span style='color:red'>$nombreEstado</span>";
+	}
+	echo "<tr><td align='center'>$indice_tabla</td><td align='center'>
+	<input type='checkbox' name='codigos_ciclos' value=$cod></td><td align='center'>$cod</td>
+	<td>&nbsp;$nombre_completo</td><td align='center'>&nbsp;$especialidad</td><td>$nombreEstado</td></tr>";
 	$indice_tabla++;
 }
 echo "</table></center><br>";

@@ -17,7 +17,7 @@ $cilcooo = mysql_result($sql_pr, 0,0);
 //$sql_gestion = mysql_query("SELECT codigo_gestion from gestiones where estado = 'Activo'");
 $codigo_gestion = mysql_result($sql_pr, 0, 1);
 
-echo "<center><table border='0' class='textotit'><tr><th>Observaciones en el envio a Aprobacion de Rutero Maestro</th></tr></table></center><br>";
+echo "<h1>Observaciones en el envio a Aprobacion de Rutero Maestro</h1><br>";
 
 $sql_med_vis = "SELECT distinct(rd.cod_med), rd.cod_especialidad, rd.categoria_med from rutero_maestro_cab rc, 
 	rutero_maestro r, rutero_maestro_detalle rd where rc.cod_rutero=r.cod_rutero and r.cod_contacto=rd.cod_contacto and 
@@ -28,7 +28,7 @@ $sql_med_vis = "SELECT distinct(rd.cod_med), rd.cod_especialidad, rd.categoria_m
 $resp_med_vis = mysql_query($sql_med_vis);
 $nroRegs = mysql_num_rows($resp_med_vis);
 if ($nroRegs != 0) {
-    echo "<table border=1 class='texto' width='100%' align='center'>";
+    echo "<center><table class='texto'>";
     echo "<tr><th colspan='6'>Validacion de Contactos de Acuerdo a Grilla Vigente</th></tr>";
     echo "<tr><th colspan='6'>$nombre_visitador $nombre_linea</th></tr>";
     echo "<tr><th>Medico</th><th>Espe.</th><th>Cat.</th><th>Contactos<br>Grilla</th><th>Contactos<br>Rutero Maestro</th><th>Dias de Contacto</th></tr>";
@@ -91,19 +91,22 @@ if ($nroRegs != 0) {
 
     if($count_result == 0){
         $sqlVeriLineas = "SELECT * from `funcionarios_lineas` f, lineas l where f.`codigo_funcionario`=$visitador and l.`estado`=1 and f.`codigo_linea`=l.`codigo_linea`";
-        $respVeriLineas = mysql_query($sqlVeriLineas);
+        //echo $sqlVeriLineas;
+		$respVeriLineas = mysql_query($sqlVeriLineas);
 
         $numFilasVeri = mysql_num_rows($respVeriLineas);
 
-        if ($numFilasVeri == 1) {
+        if ($numFilasVeri >= 1) {
             $bandera1 = validaRuteroReglas($visitador, $codRutero);
         }
 
         //$bandera2=validaRuteroReglasConjunto($visitador, $ciclo_global,$codigo_gestion,$global_linea);
 		//SACAMOS LAS VALIDACIONES PARA TODOS
 		//$bandera=0;
-		$bandera1=0;
-        if (($bandera == 0 && $bandera1 == 0)) {
+		//$bandera1=0;
+        
+		
+		if (($bandera == 0 && $bandera1 == 0)) {
             $sql_pre = "UPDATE rutero_maestro_cab set estado_aprobado='0' where cod_visitador='$visitador' and codigo_linea='$global_linea'";
             $resp_pre = mysql_query($sql_pre);
             $sql_aprueba = "UPDATE rutero_maestro_cab set estado_aprobado='2' where cod_visitador='$visitador' and cod_rutero='$cod_rutero'";

@@ -8,8 +8,14 @@ $contactos = explode("@", $contactos);
 
 foreach ($contactos as $cadena) {
 	$cadena = explode("|", $cadena);
-	$sql1= mysql_query("UPDATE registro_no_visita set estado = 4 where cod_contacto = $cadena[0] and orden_visita = $cadena[1]");
-	$sql2=mysql_query("UPDATE rutero_maestro_detalle_aprobado set estado = 4 where cod_contacto = $cadena[0] and orden_visita = $cadena[1]");
+	$sql1="UPDATE registro_no_visita set estado = 4 where cod_contacto = $cadena[0] and orden_visita = $cadena[1]";
+	//echo $sql1."<br>";
+	$resp1=mysql_query($sql1);
+	
+	$sql2="UPDATE rutero_maestro_detalle_aprobado set estado = 4 where cod_contacto = $cadena[0] and orden_visita = $cadena[1]";
+	//echo $sql2."<br>";
+	$resp2=mysql_query($sql2);
+	
 }
 echo json_encode("Bajas Aprobadas");
 

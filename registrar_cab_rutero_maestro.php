@@ -20,9 +20,8 @@ $sqlCicloSiguiente="SELECT cod_ciclo
 					from ciclos c 
 					INNER JOIN gestiones g on c.codigo_gestion = g.codigo_gestion
 					where c.estado = 'Inactivo'
-					and g.estado = 'Activo'
-					order by c.cod_ciclo asc
-					LIMIT 0, 1";
+					order by c.cod_ciclo desc
+					LIMIT 0, 5";
 $respCicloSiguiente = mysql_query($sqlCicloSiguiente);
 if ($datCicloSiguiente=mysql_fetch_array($respCicloSiguiente)) {
 	$cicloSiguiente = $datCicloSiguiente[0];
@@ -41,7 +40,7 @@ if ($datVerifRutero=mysql_fetch_array($respVerifRutero)) {
 	$cantRuteros = $datVerifRutero[0];
 }
 $nombreCicloSiguiente = "CICLO ".$cicloSiguiente;
-if ($cantRuteros == 0) {
+if ($cantRuteros == 0 || 1==1) {
 	echo "<center><table class='texto'>";
 	echo "<tr><th>Nombre Rutero Maestro</th><th>Ciclo Asociado</th></tr>";
 	echo "<tr>
@@ -54,8 +53,8 @@ if ($cantRuteros == 0) {
 				inner join gestiones g on c.codigo_gestion = g.codigo_gestion 
 				where c.estado = 'Inactivo'
 				and g.estado = 'Activo'
-				order by c.cod_ciclo asc
-				LIMIT 0, 1";
+				order by c.cod_ciclo desc
+				LIMIT 0, 2";
 	$respCiclos=mysql_query($sqlCiclos);
 	while($datCiclos=mysql_fetch_array($respCiclos)){
 		$codCiclo=$datCiclos[0];

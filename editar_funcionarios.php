@@ -39,6 +39,7 @@
 		$email=$dat[9];
 		$agencia=$dat[10];
 		$estado=$dat[11];
+		$codigoexterno=$dat[13];
 		$exafinicial="$fecha_nac[8]$fecha_nac[9]/$fecha_nac[5]$fecha_nac[6]/$fecha_nac[0]$fecha_nac[1]$fecha_nac[2]$fecha_nac[3]";
 	}
 	echo "<h1>Editar Datos de Funcionario</h1>";
@@ -78,11 +79,11 @@
 			}
 	echo "</select></td>";
 	echo "</tr>";
-	echo "<tr><th>Email</th><th>Agencia (*)</th><th>Estado</th><th></th></tr>";
+	echo "<tr><th>Email</th><th>Agencia (*)</th><th>Estado</th><th>Codigo Externo</th></tr>";
 	echo "<tr>";
 	echo "<td align='center'><input type='text' name='email' class='texto' value='$email'></td>";
 	echo "<td align='center'><select name='agencia' class='texto'>";
-			$sql_agencia=mysql_query("select cod_ciudad,descripcion from ciudades order by descripcion asc");
+			$sql_agencia=mysql_query("select cod_ciudad,nombre_ciudad from ciudades order by nombre_ciudad");
 			while($dat_agencia=mysql_fetch_array($sql_agencia))
 			{	$cod_ciudad=$dat_agencia[0];
 				$descripcion=$dat_agencia[1];
@@ -104,7 +105,8 @@
 	{
 	  echo "<option value='1'>Activo</option><option value='0' selected>Retirado</option></select>";
 	}
-	echo "</td><td></td>";
+	echo "</td>";
+	echo "<td align='center'><input type='text' name='codigoexterno' value='$codigoexterno'></td>";
 	echo "</tr>";
 	echo "</table><br></center>";
 

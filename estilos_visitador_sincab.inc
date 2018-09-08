@@ -1,5 +1,5 @@
 <?php
-echo"<head><title>Minka V++</title>
+echo"<head><title>Minka VM++</title>
 <link href='stilos.css' rel='stylesheet' type='text/css'></head>";
 ?>
 

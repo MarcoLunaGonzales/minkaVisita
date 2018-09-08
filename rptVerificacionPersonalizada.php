@@ -11,10 +11,10 @@ $codGestion = $url1[1];
 $rpt_territorio=$_GET['rpt_territorio'];
 //$codLinea = $_GET['linea_rpt'];
 
-echo "<center><h2>Reporte de Verificacion De Distribucion Personalizada<br>Ciclo: $codCiclo Gestion: $codGestion</h2></center><br>";
+echo "<h1>Reporte de Verificacion De Distribucion Personalizada<br>Ciclo: $codCiclo Gestion: $codGestion</h1>";
 
 
-echo "<table border='1' cellspacing='0' align='center' class='texto'>";
+echo "<center><table class='texto1' border='1'>";
 /*$sqlLineas = "select l.codigo_linea, l.nombre_linea from lineas l, configuracion_parrilla_personalizada2 c  
 			where l.linea_promocion=1 and l.codigo_linea=c.codigo_linea";*/
 
@@ -52,7 +52,8 @@ while ($datLineas = mysql_fetch_array($respLineas)) {
 			(select concat(m.ap_pat_med,' ',m.ap_mat_med,' ', m.nom_med) from medicos m where m.cod_med=rd.cod_med) as medico
 			from rutero_maestro_cab_aprobado rc, 
 			rutero_maestro_aprobado rm, rutero_maestro_detalle_aprobado rd
-			where rc.cod_rutero=rm.cod_rutero and rm.cod_contacto=rd.cod_contacto and 
+			where rc.cod_rutero=rm.cod_rutero and rm.cod_contacto=rd.cod_contacto and rc.cod_visitador=rm.cod_visitador and 
+			rm.cod_visitador=rd.cod_visitador and 
 			rc.cod_visitador=$codVisitador and rc.codigo_ciclo=$codCiclo and rc.codigo_gestion=$codGestion and 
 			rc.codigo_linea=$codLinea and rc.estado_aprobado=1 group by rd.cod_med order by rd.cod_especialidad, rd.categoria_med, medico";
         $respRutero = mysql_query($sqlRutero);
@@ -95,12 +96,14 @@ while ($datLineas = mysql_fetch_array($respLineas)) {
                      echo "<tr><td>$codMed</td><td>$nombreMed</td><td>$codEspecialidadMed</td><td>$categoriaMed</td>
 					 <td>$nroContactos</td><td>$nroParrillas</td><td>$obs $nombreVisitador  $nombreLinea $ciudadVisitador</td></tr>";
 					
-					for($ii=$nroParrillas; $ii<=$nroContactos; $ii++){
+					for($ii=$nroParrillas+1; $ii<=$nroContactos; $ii++){
+						
 						$sqlInsert="insert into parrilla_personalizada (cod_gestion, cod_ciclo, cod_linea, cod_med, numero_visita, 
 							orden_visita, cod_mm, cantidad_mm, 
 							cod_ma, cantidad_ma) select cod_gestion, cod_ciclo, cod_linea, cod_med, $ii, orden_visita, cod_mm, cantidad_mm, 
 							cod_ma, cantidad_ma from parrilla_personalizada where cod_gestion=$codGestion and cod_ciclo=$codCiclo 
-							and cod_med=$codMed and cod_linea=$codLinea";
+							and cod_med=$codMed and cod_linea=$codLinea and numero_visita=$nroParrillas";
+						//echo $sqlInsert;
 						$respInsert=mysql_query($sqlInsert);
 					}
                 }
@@ -121,10 +124,7 @@ while ($datLineas = mysql_fetch_array($respLineas)) {
                     //$obs = "<img src='imagenes/no.png'>";
                     //echo "<tr><td colspan='8'><span style='color:#5858FA; background-color:#F3F781'>$ciudadVisitador------$codVisitador-------$nombreVisitador---------$nombreLinea</span></td></tr>";
 //                    echo "<tr><td>Cod Med</td><td>Medico</td><td>Esp.</td><td>Categoria</td><td>Contactos Rutero</td><td>Nro. Parrillas</td><td>Observaci&oacute;n</td></tr>";
-                    if($codLinea==1041 && $codEspecialidadMed=="MGE"){
-						$codEspecialidadMed="MIN";
-					}
-					
+                   
 					$codMedIgual=0;
 					$sqlMedIgual="select m.cod_med from parrilla_personalizada p, medicos m, categorias_lineas c
 					where p.cod_med=m.cod_med and m.cod_med=c.cod_med and c.cod_med=p.cod_med and c.cod_especialidad='$codEspecialidadMed' 
@@ -153,7 +153,7 @@ while ($datLineas = mysql_fetch_array($respLineas)) {
         }
     }
 }
-echo "</table>";
+echo "</table></center>";
 
 echo $codCiudadVeri;
 ?>

@@ -74,7 +74,7 @@ function imprimeRuteroMaestro($codigoGestion, $codigoCiclo, $tipoRuteroRpt, $vis
             $dat = mysql_fetch_array($resp);
             $nom_rutero = $dat[0];
             $nom_linea = $dat[1];
-            $cadena_imprimir .= '<th colspan="9">'.$nom_linea.' '.$nombreVisitador.' '.$nombreTerritorio.'</th>';
+            $cadena_imprimir .= '<th colspan="9">'.$nom_linea.'  -  '.$nombreVisitador.'  -  '.$nombreTerritorio.'</th>';
         }
         $cadena_codigo_linea = substr($cadena_codigo_linea, 0, -1);
         $cadena_imprimir .= "<th>&nbsp;</th>";
@@ -83,7 +83,7 @@ function imprimeRuteroMaestro($codigoGestion, $codigoCiclo, $tipoRuteroRpt, $vis
         $cadena_imprimir .= "<th>Especialidad</th>";
         $respRuteros = mysql_query($sqlRuteros);
         while($datRuteros2 = mysql_fetch_array($respRuteros)){
-            $cadena_imprimir .= "<th>L&iacute;nea</th>";
+            //$cadena_imprimir .= "<th>L&iacute;nea</th>";
             $cadena_imprimir .= "<th>Cat A</th>";
             $cadena_imprimir .= "<th>Cat B</th>";
             $cadena_imprimir .= "<th>Cat C</th>";
@@ -132,7 +132,7 @@ function imprimeRuteroMaestro($codigoGestion, $codigoCiclo, $tipoRuteroRpt, $vis
                 }else{
                     $linea_casilla_final = "&nbsp;";
                 }
-                $cadena_imprimir .= "<td>$linea_casilla_final</td>";
+                //$cadena_imprimir .= "<td>$linea_casilla_final</td>";
                 $sql_medicos = "SELECT DISTINCT ( rmd.cod_med), m.ap_pat_med, m.ap_mat_med, m.nom_med, rmd.categoria_med from $tabla1 rmc, $tabla2 rm, $tabla3 rmd, medicos m where rmc.cod_rutero=rm.cod_rutero and rmc.cod_rutero='$cod_rutero_f' and rm.cod_contacto=rmd.cod_contacto and m.cod_med=rmd.cod_med and rmc.codigo_linea='$linea_casilla'and rmc.cod_visitador='$visitador' and rmd.cod_visitador='$visitador' and rmd.cod_especialidad='$row_espe[0]' order by m.ap_pat_med, m.ap_mat_med, m.nom_med";
                 
 

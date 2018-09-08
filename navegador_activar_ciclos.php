@@ -3,6 +3,38 @@
 require("conexion.inc");
 
 echo "<script language='Javascript'>
+		
+		function enviar_nav(){	
+			location.href='crear_ciclos.php';
+		}
+		function editar_nav(f){
+			var i;
+			var j=0;
+			var j_ciclo;
+			for(i=0;i<=f.length-1;i++)
+			{
+				if(f.elements[i].type=='checkbox')
+				{	if(f.elements[i].checked==true)
+					{	j_ciclo=f.elements[i].value;
+						j=j+1;
+					}
+				}
+			}
+			if(j>1)
+			{	alert('Debe seleccionar solamente un ciclo para editar sus datos.');
+			}
+			else
+			{
+				if(j==0)
+				{
+					alert('Debe seleccionar un ciclo para editar sus datos.');
+				}
+				else
+				{
+					location.href='editar_ciclos.php?cod_ciclo='+j_ciclo+'';
+				}
+			}
+		}
 		function activar(f)
 		{
 			var i;
@@ -45,7 +77,7 @@ echo "<script language='Javascript'>
 	$sql="select * from ciclos where codigo_gestion='1000' order by fecha_ini desc LIMIT 0,12";
 	$resp=mysql_query($sql);
 	$indice_tabla=1;
-	echo "<h1>Activar Ciclo Gestion: $nombreGestion</h1>";
+	echo "<h1>Ciclos Gestion: $nombreGestion</h1>";
 	
 	
 	echo "<center><table class='zebra'>";
@@ -73,7 +105,10 @@ echo "<script language='Javascript'>
 		$indice_tabla++;		
 	}
 	echo "</table></center><br>";
-	echo "<center><table class='texto'>";
-	echo "<tr><td><input type='button' value='Activar' class='boton' onclick='activar(this.form)'></td></tr></table></center><br>";
+	echo "<div class='divBotones'>";
+	echo "<input type='button' value='Adicionar' name='adicionar' class='boton' onclick='enviar_nav()'>
+	<input type='button' value='Editar' name='Editar' class='boton' onclick='editar_nav(this.form)'>
+	<input type='button' value='Activar' class='boton' onclick='activar(this.form)'>";
+	echo "</div>";
 	echo "</form>";
 ?>

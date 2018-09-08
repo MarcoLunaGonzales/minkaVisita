@@ -99,7 +99,7 @@ echo "<tr>
 <th>Planificado</th>
 <th>Realizado</th>
 <th>No Realizado</th>
-<th>Desasignacion</th>
+<th>Baja</th>
 <th>Promedio Visita</th>
 <th>Cumplimiento</th>
 <th>Cobertura</th>
@@ -127,7 +127,7 @@ for ($ii=1; $ii<=5; $ii++){
 		$totalContactosEjecutadoVisitador=0;
 		$totalBajaContactosVisitador=0;
 		
-		$sqlVisitador="select distinct(f.codigo_funcionario), concat(f.paterno,' ',f.materno,' ',f.nombres)as nombrefunc from rutero_maestro_cab_aprobado rc,
+		$sqlVisitador="select distinct(f.codigo_funcionario), concat(f.paterno,' ',' ',f.nombres)as nombrefunc from rutero_maestro_cab_aprobado rc,
 			funcionarios f where rc.cod_visitador=f.codigo_funcionario and rc.codigo_gestion=$rpt_gestion and rc.codigo_ciclo=$rpt_ciclo 
 			and rc.estado_aprobado=1 and f.cod_ciudad in ($codArea) order by 2";
 		$respVisitador=mysql_query($sqlVisitador);
@@ -147,10 +147,12 @@ for ($ii=1; $ii<=5; $ii++){
 			$totalContactosMaestroSemana=$totalContactosMaestroSemana+$numero_contactos_maestro;
 			$totalContactosMaestroVisitador=$totalContactosMaestroVisitador+$numero_contactos_maestro;
 			
-			$sql_contactos_ejecutado="SELECT count(*) from rutero_detalle rd, rutero r where 
-			r.cod_ciclo='$rpt_ciclo' and r.codigo_gestion='$rpt_gestion' and r.cod_visitador in ($codVisitador) and 
-			r.cod_contacto=rd.cod_contacto and r.cod_visitador=rd.cod_visitador and rd.estado='1' 
-			and rd.categoria_med in ($rpt_categoria) and r.dia_contacto like '%$ii%'";
+			$sql_contactos_ejecutado="select count(*) from rutero_maestro_cab_aprobado rc, rutero_maestro_aprobado rm, rutero_maestro_detalle_aprobado rd
+				where rc.cod_rutero=rm.cod_rutero and rm.cod_contacto=rd.cod_contacto and rc.cod_visitador=rm.cod_visitador and 
+				rm.cod_visitador=rd.cod_visitador and rc.codigo_gestion='$rpt_gestion' and rc.codigo_ciclo='$rpt_ciclo' 
+				and rc.cod_visitador in ($codVisitador) 
+				and rd.estado='1' and rd.categoria_med in ($rpt_categoria) and rm.dia_contacto like '%$ii%'";
+
 			$resp_contactos_ejecutado=mysql_query($sql_contactos_ejecutado);
 			$dat_ejecutado=mysql_fetch_array($resp_contactos_ejecutado);
 			$numero_contactos_ejecutado=$dat_ejecutado[0];
@@ -167,9 +169,11 @@ for ($ii=1; $ii<=5; $ii++){
 			
 			$promedioVisita=round($numero_contactos_ejecutado/5/$numeroVisitadores);
 			
-			$sqlBajasContactos="SELECT COUNT(rd.cod_med) from rutero r, rutero_detalle rd where r.cod_contacto = rd.cod_contacto and 
-				r.cod_ciclo = $rpt_ciclo and r.codigo_gestion = $rpt_gestion and r.cod_visitador in ($codVisitador) and 
-				rd.estado = 2 and rd.categoria_med in ($rpt_categoria) and r.dia_contacto like '%$ii%'";
+			$sqlBajasContactos="select count(*) from rutero_maestro_cab_aprobado rc, rutero_maestro_aprobado rm, rutero_maestro_detalle_aprobado rd
+				where rc.cod_rutero=rm.cod_rutero and rm.cod_contacto=rd.cod_contacto and rc.cod_visitador=rm.cod_visitador and 
+				rm.cod_visitador=rd.cod_visitador and rc.codigo_gestion='$rpt_gestion' and rc.codigo_ciclo='$rpt_ciclo' 
+				and rc.cod_visitador in ($codVisitador) 
+				and rd.estado='2' and rd.categoria_med in ($rpt_categoria) and rm.dia_contacto like '%$ii%'";
 			$sql_me_a = mysql_query($sqlBajasContactos);
 			$numeroBajas = mysql_result($sql_me_a, 0, 0);    
 			$totalBajaContactos=$totalBajaContactos+$numeroBajas;

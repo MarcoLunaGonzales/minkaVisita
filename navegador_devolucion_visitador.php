@@ -125,13 +125,18 @@ Gestion: $nombreGestion Ciclo: $ciclo_global</th></tr></table></center><br>";
         $respVerificacion = mysql_query($sqlVerificacion);
         $filasVerificacion = mysql_num_rows($respVerificacion);
 
-        echo "<center><table border='1' class='texto' cellspacing='0'>";
+        echo "<center><table class='texto'>";
 //echo "<tr><th>Producto</th><th>Cantidad Recibida</th><th>Cantidad Entregada</th><th>Cantidad a Devolver</th><th>Cantidad Efectiva a Devolver</th></tr>";
 
         echo "<tr><th>&nbsp;</th><th>Producto</th><th>Cantidad Efectiva a Devolver</th></tr>";
 
-        $sqlMuestrasEnt = "select distinct (m.codigo), concat(m.descripcion, ' ', m.presentacion), sum(sd.cantidad_unitaria) from salida_detalle_visitador sv, salida_detalle_almacenes sd, muestras_medicas m where sv.cod_salida_almacen = sd.cod_salida_almacen and m.codigo = sd.cod_material and sv.codigo_ciclo = '$ciclo_global' and sv.codigo_gestion = '$global_gestion' and sv.codigo_funcionario in ('$global_visitador') group by m.codigo order by 2";
-
+        //CUANDO SE UTILIZAN LAS SALIDAS DE MM
+		/*$sqlMuestrasEnt = "select distinct (m.codigo), concat(m.descripcion, ' ', m.presentacion), sum(sd.cantidad_unitaria) from salida_detalle_visitador sv, salida_detalle_almacenes sd, muestras_medicas m where sv.cod_salida_almacen = sd.cod_salida_almacen and m.codigo = sd.cod_material and sv.codigo_ciclo = '$ciclo_global' and sv.codigo_gestion = '$global_gestion' and sv.codigo_funcionario in ('$global_visitador') group by m.codigo order by 2";*/
+		
+		//CUANDO SE UTILIZA LA DISTRIBUCION
+		$sqlMuestrasEnt="select m.codigo, m.descripcion, sum(d.cantidad_planificada) from distribucion_productos_visitadores d, 
+			muestras_medicas m where m.codigo=d.codigo_producto and d.codigo_gestion='$global_gestion' and d.cod_ciclo='$ciclo_global' and 
+			d.cod_visitador in ($global_visitador) group by m.codigo, m.descripcion order by 2";
         $respMuestrasEnt = mysql_query($sqlMuestrasEnt);
         $cont = 0;
         while ($datMuestrasEnt = mysql_fetch_array($respMuestrasEnt)) {
@@ -161,7 +166,7 @@ Gestion: $nombreGestion Ciclo: $ciclo_global</th></tr></table></center><br>";
         }
         echo "</table><br>";
         echo "<input type='hidden' id='nrMM' name='nrMM' value='$cont'>";
-        echo "<table id='idtabMM' border=1 class='texto'>";
+        echo "<table id='idtabMM' class='texto'>";
 //echo "<tbody id='idtabMM'>";
         echo "<tr><th colspan=3>Si Ud. tiene un producto que no se encuentra en la tabla de arriba favor registrarlo a continuacion:</th></tr>";
         echo "<tr><th>Producto</th><th>Cantidad a Devolver</th><th>&nbsp;</th></tr>";

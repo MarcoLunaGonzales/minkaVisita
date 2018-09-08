@@ -1,5 +1,5 @@
 <?php
-	require("../conexion.inc");
+	require("../conexionInicial.inc");
 	include("funcionScaner.php");
 
 	
@@ -99,12 +99,10 @@
 				
 			}
 			
-
-			
 			$query="update boletas_visita_cabXXX set observacion='$obj->observacion', firma='$obj->firma', fecha_visita='$fecha', latitud='$obj->latitud', longitud='$obj->longitud', estado=1 where id_boleta='$obj->id_boleta'";
 			$resp=mysql_query($query);
 			
-			$sql_upd = "UPDATE rutero_detalle set estado = 1 where cod_contacto = $codContactoX and cod_med = $codMedX";
+			$sql_upd = "UPDATE rutero_maestro_detalle_aprobado set estado = 1 where cod_contacto = $codContactoX and cod_med = $codMedX";
 			$resp_upd = mysql_query($sql_upd);
 		
 		}

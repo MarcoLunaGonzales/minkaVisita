@@ -1,9 +1,5 @@
 <?php
-/**
- * Desarrollado por Datanet.
- * @autor: Marco Antonio Luna Gonzales
- * @copyright 2005
-*/
+
 require("conexion.inc");
 require("estilos_visitador.inc");
 $vector=explode(",",$variables);
@@ -31,10 +27,12 @@ $numero_contactos=$vector[3];
 		$cod_categoria=$vector[$i+4];
 		//echo "numero $num_elementos vis $orden_visita med $cod_med zona $cod_zona espe $cod_espe categoria $cod_categoria";
 		$sql="update rutero_maestro_detalle set orden_visita=$orden_visita, cod_med='$cod_med' ,cod_especialidad='$cod_espe', categoria_med='$cod_categoria', cod_zona='$cod_zona' where cod_contacto=$cod_contacto and orden_visita=$orden_visita";
+		//echo $sql;
 		$resp=mysql_query($sql);
 	}
 	//sacamos el numero de contactos que se tiene
-	echo $cod_contacto;
+	//echo $cod_contacto;
+	
 	$sql_contactos="select * from rutero_maestro_detalle where cod_contacto=$cod_contacto";
 	$resp_contactos=mysql_query($sql_contactos);
 	$numero_contactos_bd=mysql_num_rows($resp_contactos);
@@ -44,6 +42,7 @@ $numero_contactos=$vector[3];
 			$entero++;
 			for($i=$entero;$i<=$numero_contactos_bd;$i++)
 			{	$sql_del="delete from rutero_maestro_detalle where cod_contacto=$cod_contacto and orden_visita=$i";
+				//echo $sql_del;
 				$resp_del=mysql_query($sql_del);
 			}
 		}
@@ -58,6 +57,7 @@ $numero_contactos=$vector[3];
 				$cod_espe=$vector[$indice+3];
 				$cod_categoria=$vector[$indice+4];
 				$sql="insert into rutero_maestro_detalle values($cod_contacto ,'$i' , '$global_visitador' , '$cod_med' , '$cod_espe' , '$cod_categoria' , '$cod_zona' ,0, 2)";
+				//echo $sql;
 				$resp=mysql_query($sql);
 			}
 		}

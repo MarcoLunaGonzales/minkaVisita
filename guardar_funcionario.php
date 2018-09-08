@@ -22,10 +22,13 @@ $nombres=strtoupper($nombres);
 
 //estado=1 es activo, 0 es retirado
 $sql="insert into funcionarios values($codigo_funcionario,'$cargo','$paterno','$materno','$nombres','$fecha_real','$direccion','$telefono',
-'$celular','$email','$agencia',1,0,0)";
+'$celular','$email','$agencia',1,0,'$codigoexterno')";
+
+//echo $sql."<br>";
 $resp=mysql_query($sql);
 
 $sql="insert into funcionarios_agencias values($codigo_funcionario,'$agencia')";
+//echo $sql."<br>";
 $resp=mysql_query($sql);
 
 echo "<script language='Javascript'>

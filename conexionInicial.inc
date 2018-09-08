@@ -12,11 +12,12 @@ if(!function_exists('register_globals')){
 }else{
 }
 
-//$conexion  = mysql_connect("localhost","root","4868422Marco");
-//$bd        = mysql_select_db("minkavisita", $conexion);
+//$conexion  = mysql_connect("localhost","crespal_minka","Marquexmar30");
+//$bd        = mysql_select_db("crespal_minkavisita", $conexion);
 
 $conexion  = mysql_connect("localhost","root","4868422Marco");
-$bd        = mysql_select_db("minkavisita2", $conexion);
+$bd        = mysql_select_db("minkaventas", $conexion);
+//$bd        = mysql_select_db("minkavisita2", $conexion);
 
 
 ?>

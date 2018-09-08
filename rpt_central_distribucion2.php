@@ -51,20 +51,16 @@ echo "<tr><th>&nbsp;Producto</th>";
 while($dat_visitadores=mysql_fetch_array($resp_visitadores))
 {   $cod_visitador=$dat_visitadores[0];
     $nombre_visitador="$dat_visitadores[0] $dat_visitadores[2]";
-    echo "<th colspan=9>$nombre_visitador</th>";
+    echo "<th>$nombre_visitador</th>";
 }
 echo "<th colspan=9>TOTALES</th></tr>";
 
 $resp_visitadores=mysql_query($sql_visitadores);
 echo "<tr><th>&nbsp;</th>";
 while($dat_visitadores=mysql_fetch_array($resp_visitadores))
-{   echo "<th>CP</th><th>CD</th><th>Dif.</th>";
-    echo "<th>CP(GE)</th><th>CD(GE)</th><th>Dif.(GE)</th>";
-    echo "<th>CP(B)</th><th>CD(B)</th><th>Dif.(B)</th>";
+{   echo "<th>CP</th></th>";
 }
-echo "<th>CP</th><th>CD</th><th>Dif.</th>";
-echo "<th>CP(GE)</th><th>CD(GE)</th><th>Dif.(GE)</th>";
-echo "<th>CP(B)</th><th>CD(B)</th><th>Dif.(B)</th>";
+echo "<th>CP</th>";
 echo "</tr>";
 
 if ($rptVer == 0) {
@@ -160,7 +156,7 @@ while ($dat_productos = mysql_fetch_array($resp_productos)) {
         if ($cantidad_distribuida == "") {
             $cantidad_distribuida = 0;
         }
-        $cad_mostrar.="<td>$cantidad_planificada</td><td>$cantidad_distribuida</td><td>$cantidad_faltante</td>";
+        $cad_mostrar.="<td align='center'>$cantidad_planificada</td>";
         //COLUMNAS DISTRIBUCION DE GRUPOS ESPECIALES
         $sql_dist = "SELECT sum(cantidad_planificada), sum(cantidad_distribuida) from distribucion_grupos_especiales where codigo_gestion='$rpt_gestion' and cod_ciclo in ('$rpt_ciclo') and codigo_producto='$cod_prod' and territorio='$rpt_territorio'and cod_visitador='$cod_visitador' and codigo_linea in ($rpt_linea) group by territorio, cod_visitador";
 //        echo $sql_dist."<br />";
@@ -198,13 +194,11 @@ while ($dat_productos = mysql_fetch_array($resp_productos)) {
             $cantidad_distribuida_b = 0;
         }
         
-        $cad_mostrar.="<td>$cantidad_planificada</td><td>$cantidad_distribuida</td><td>$cantidad_faltante</td>";
-        $cad_mostrar .="<td>$cantidad_planificada_b</td><td>$cantidad_distribuida_b</td><td>$cantidad_faltante_b</td>";
+        //$cad_mostrar.="<td>$cantidad_planificada</td><td>$cantidad_distribuida</td><td>$cantidad_faltante</td>";
+        //$cad_mostrar .="<td>$cantidad_planificada_b</td><td>$cantidad_distribuida_b</td><td>$cantidad_faltante_b</td>";
         //
     }
-    $cad_mostrar.="<th>$totalPlanificado</th><th>$totalDistribuido</th><th>$totalFaltante</th>";
-    $cad_mostrar.="<th>$totalPlanificado2</th><th>$totalDistribuido2</th><th>$totalFaltante2</th>";
-    $cad_mostrar .="<th>$totalPlanificado2_b</th><th>$totalDistribuido2_b</th><th>$totalFaltante2_b</th>";
+    $cad_mostrar.="<th>$totalPlanificado</th>";
     //
     $cad_mostrar.="</tr>";
     echo $cad_mostrar;

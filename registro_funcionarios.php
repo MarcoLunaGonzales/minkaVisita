@@ -48,11 +48,11 @@ while($dat_cargo=mysql_fetch_array($sql_cargo))
 	}
 	echo "</select></td>";
 	echo "</tr>";
-	echo "<tr><th>Email</th><th>Agencia (*)</th><th></th><th></th></tr>";
+	echo "<tr><th>Email</th><th>Agencia (*)</th><th>Codigo Externo</th><th></th></tr>";
 	echo "<tr>";
 	echo "<td align='center'><input type='text' name='email' class='texto'></td>";
 	echo "<td align='center'><select name='agencia' class='texto'>";
-	$sql_agencia=mysql_query("select cod_ciudad,descripcion from ciudades order by descripcion asc");
+	$sql_agencia=mysql_query("select cod_ciudad,nombre_ciudad from ciudades order by 2");
 	while($dat_agencia=mysql_fetch_array($sql_agencia))
 		{	$codciudad=$dat_agencia[0];
 			$descripcion=$dat_agencia[1];
@@ -64,7 +64,8 @@ while($dat_cargo=mysql_fetch_array($sql_cargo))
 	}
 }
 echo "</select></td>";
-echo "<td></td><td></td>";
+echo "<td align='center'><input type='text' name='codigoexterno' class='texto'></td>";
+echo "<td></td>";
 echo "</tr>";
 echo "</table><br></center>";
 

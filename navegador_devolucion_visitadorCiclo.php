@@ -5,8 +5,10 @@ require("estilos_visitador.inc");
 echo "<form method='post' action='' name=''>";
 
 
+$globalGestion=$global_gestion;
+
 $sql ="SELECT distinct(c.`cod_ciclo`), g.`codigo_gestion`, g.`nombre_gestion` from `ciclos` c, gestiones g 
-where c.`codigo_gestion`=g.`codigo_gestion` and g.codigo_gestion in (1014)  order by g.codigo_gestion desc, c.cod_ciclo  desc limit 12"; 
+where c.`codigo_gestion`=g.`codigo_gestion` and g.codigo_gestion in ('$globalGestion')  order by g.codigo_gestion desc, c.cod_ciclo  desc limit 12"; 
 
 
 $resp=mysql_query($sql);

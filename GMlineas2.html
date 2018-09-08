@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Complex icons</title>
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+	<div class='titular'><h1>Puntos de Contacto</h1></div>
+    <div id="map"></div>
+    <script>
+
+      // The following example creates complex markers to indicate beaches near
+      // Sydney, NSW, Australia. Note that the anchor is set to (0,32) to correspond
+      // to the base of the flagpole.
+
+      function initMap() {
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 14,
+          center: {lat: -16.5264984, lng: -68.1574491}
+        });
+
+        setMarkers(map);
+      }
+      var beaches = [
+        ['MEDICO 1', -16.5264984, -68.1574491, 4],
+        ['MEDICO 2', -16.5109439, -68.1568573, 5],
+        ['MEDICO 3', -16.5220535, -68.1536061, 3]
+      ];
+
+      function setMarkers(map) {
+        var image = {
+          url: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png',
+          size: new google.maps.Size(20, 32),
+          origin: new google.maps.Point(0, 0),
+          anchor: new google.maps.Point(0, 32)
+        };
+
+        var shape = {
+          coords: [1, 1, 1, 20, 18, 20, 18, 1],
+          type: 'poly'
+        };
+        for (var i = 0; i < beaches.length; i++) {
+          var beach = beaches[i];
+          var marker = new google.maps.Marker({
+            position: {lat: beach[1], lng: beach[2]},
+            map: map,
+            icon: image,
+            shape: shape,
+            title: beach[0],
+			label: beach[0],
+            zIndex: beach[3]
+          });
+        }
+		
+		var flightPlanCoordinates = [
+          {lat: -16.5264984, lng: -68.1574491},
+          {lat: -16.5109439, lng: -68.1568573},
+          {lat: -16.5220535, lng: -68.1536061}
+        ];
+        var flightPath = new google.maps.Polyline({
+          path: flightPlanCoordinates,
+          geodesic: true,
+          strokeColor: '#FF0000',
+          strokeOpacity: 1.0,
+          strokeWeight: 2
+        });
+		flightPath.setMap(map);
+		
+      }
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAjzv1PIy1PfjeSxl8-KNNfwtpCdpA45Xo&callback=initMap">
+    </script>
+  </body>
+</html>

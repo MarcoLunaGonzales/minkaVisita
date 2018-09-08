@@ -52,7 +52,7 @@ echo "<th colspan='9'>TOTALES</th>";
 
 echo "</tr>";
 echo "<tr>";
-echo "<th>&nbsp;</th>";
+echo "<th>&nbsp;</th><th>&nbsp;</th>";
 $resp_territorios=mysql_query($sql_territorio);
 while($dat_territorios=mysql_fetch_array($resp_territorios))
 {

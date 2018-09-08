@@ -2,11 +2,11 @@
 require('conexion.inc');
 $codTerritorio=$_GET['codTerritorio'];
 $sql_visitador="select distinct(f.codigo_funcionario), f.paterno, f.materno, f.nombres, 
-	ci.descripcion
+	ci.nombre_ciudad
 	from funcionarios f, cargos c, ciudades ci, funcionarios_lineas fl
 	where f.cod_cargo=c.cod_cargo and f.codigo_funcionario=fl.codigo_funcionario 
-	and f.cod_cargo='1011' and f.estado=1 and f.cod_ciudad in ($codTerritorio) 
-	and f.cod_ciudad=ci.cod_ciudad order by ci.descripcion,f.paterno";
+	and f.cod_cargo='1012' and f.estado=1 and f.cod_ciudad in ($codTerritorio) 
+	and f.cod_ciudad=ci.cod_ciudad order by ci.nombre_ciudad,f.paterno";
 $resp_visitador=mysql_query($sql_visitador);
 echo "<select name='rpt_visitador' class='texto' size='15' multiple>";
 while($dat_visitador=mysql_fetch_array($resp_visitador))

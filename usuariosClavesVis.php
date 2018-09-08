@@ -16,7 +16,8 @@ while($dat_ciudades=mysql_fetch_array($resp_ciudades))
         where f.cod_cargo=c.cod_cargo and f.cod_ciudad=ci.cod_ciudad and f.cod_ciudad='$cod_ciudad' and f.estado='1' 
 		and f.cod_cargo in (1011,1001) order by c.cargo,f.paterno";
     $resp=mysql_query($sql);
-	echo "<table class='texto' align='center' border='0' width='100%'><tr><th width='20%'>Cargo</th><th width='40%'>Usuario</th><th width='20%'>Usuario</th><th width='20%'>Clave</th></th>";
+	echo "<table class='texto' align='center' border='0' width='100%'>
+	<tr><th width='20%'>Cargo</th><th width='40%'>Personal</th><th width='20%'>Codigo</th><th width='20%'>Usuario</th><th width='20%'>Clave</th></th>";
 	while($dat=mysql_fetch_array($resp))
     {
                 $codigo=$dat[0];
@@ -40,7 +41,7 @@ while($dat_ciudades=mysql_fetch_array($resp_ciudades))
 				$nombreUsuario=$datos_sistema[3];
 				
 				//echo "<tr bgcolor='$fondo_fila'><td align='center'>$indice_tabla</td><td align='center'><input type='checkbox' name='cod_contacto' value='$codigo'></td><td>&nbsp;$cargo</td><td>$nombre_f</td><td align='left'>&nbsp;$email</td><td align='center'>$alta_sistema</td><td align='center'>$ver_lineas</td><td align='center'>$dar_alta</td><td align='center'>$restablecer</td></tr>";
-				echo "<tr><td>$cargo</td><td>$nombre_f</td><td align='center'>$nombreUsuario</td><td>$clave_sistema</td></tr>";
+				echo "<tr><td>$cargo</td><td>$nombre_f</td><td>$codigo</td><td align='center'>$nombreUsuario</td><td>$clave_sistema</td></tr>";
 	}
 	echo "</table></td></tr>";
 }

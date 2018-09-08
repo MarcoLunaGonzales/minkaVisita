@@ -116,10 +116,13 @@ while($dat=mysql_fetch_array($resp)) {
 	} else {	
 		$fondo_fila="";
 	}
-	$sql1="SELECT c.orden_visita, m.ap_pat_med, m.ap_mat_med, m.nom_med, d.direccion, c.cod_especialidad, c.categoria_med, c.estado, m.cod_med 
-	from $nombreTabla2 c, medicos m, direcciones_medicos d where (c.cod_contacto=$cod_contacto) and 
-	(c.cod_visitador=$global_visitador) and (c.cod_med=m.cod_med) and (m.cod_med=d.cod_med) and (c.cod_zona=d.numero_direccion) 
+	$sql1="SELECT c.orden_visita, m.ap_pat_med, m.ap_mat_med, m.nom_med, 
+	(select d.direccion from direcciones_medicos d where d.cod_med=c.cod_med limit 0,1) as direccion, 
+	c.cod_especialidad, c.categoria_med, c.estado, m.cod_med 
+	from $nombreTabla2 c, medicos m where (c.cod_contacto=$cod_contacto) and 
+	(c.cod_visitador=$global_visitador) and (c.cod_med=m.cod_med) 
 	order by c.orden_visita";
+	//echo $sql1;
 	$resp1=mysql_query($sql1);
 	$contacto="<table class='textomini'>";
 	$contacto=$contacto."<tr><th width='5%'>Orden</th><th>Nro.Cont.</th><th width='25%'>Medico</th><th width='5%'>Especialidad</th>
@@ -134,7 +137,7 @@ while($dat=mysql_fetch_array($resp)) {
 		$cat           = $dat1[6];
 		$cod_med       = $dat1[8];
 		$zona_f        = $dat1[9];
-		$nombre_medico = "$pat $mat $nombre";
+		$nombre_medico = "$pat $mat $nombre ($cod_med)";
 
 		
 		

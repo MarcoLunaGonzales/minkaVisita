@@ -1,3 +1,11 @@
+<?php
+
+require("conexion.inc");
+
+require("estilos_administracion.inc");
+
+
+?>
 <script language='JavaScript'>
 function nuevoAjax()
 {	var xmlhttp=false;
@@ -148,11 +156,12 @@ function descargar(f)
 
 </script>
 <?php
-require("conexion.inc");
-require("estilos_administracion.inc");
-echo "<center><table class='textotit'><tr><th>Reporte Boletas de Visita (Firmas)</th></tr></table><br>";
+
+
+echo "<center><h1>Reporte Boletas de Visita (Firmas)</h1><br>";
 echo"<form method='post'>";
-	echo"\n<table class='texto' border='1' align='center' cellSpacing='0' width='30%'>\n";
+
+	echo"\n<table class='texto' width='30%'>\n";
 	echo "<tr><th align='left'>Gesti&oacute;n</th>";
 	$sql_gestion="select distinct(codigo_gestion), nombre_gestion, estado from gestiones order by 1 desc";
 	$resp_gestion=mysql_query($sql_gestion);

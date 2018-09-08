@@ -1,6 +1,7 @@
 <?php
 	//require("conexionMI.inc");
-	require("../conexion.inc");
+	require("../conexionInicial.inc");
+	
 	$sql = "select codigo_material as id, descripcion_material as nombre from material_apoyo";
     $result = mysql_query($sql) or die("Error in Selecting. ");
 

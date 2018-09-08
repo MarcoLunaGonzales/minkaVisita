@@ -1,10 +1,4 @@
 <?php
-/**
- * Desarrollado por Datanet-Bolivia.
- * @autor: Marco Antonio Luna Gonzales
- * Sistema de Visita Médica
- * * @copyright 2005
-*/
 echo "<script language='Javascript'>
 		function enviar_nav()
 		{	location.href='registrar_almacenes.php';

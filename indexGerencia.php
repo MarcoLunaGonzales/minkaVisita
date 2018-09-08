@@ -5,6 +5,8 @@
 
 	<link type="text/css" rel="stylesheet" href="menuLibs/css/demo.css" />
 	<link type="text/css" rel="stylesheet" href="menuLibs/dist/jquery.mmenu.css" />
+	
+	<link rel="icon" type="image/png" href="imagenes/aesculapio2.png" />
 
 	<script type="text/javascript" src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
 	<script type="text/javascript" src="menuLibs/dist/jquery.mmenu.js"></script>
@@ -22,7 +24,7 @@ include("datosUsuario.php");
 <div id="page">
 	<div class="header">
 		<a href="#menu"><span></span></a>
-		GALES - <span style="color:yellow;">  (Modulo Administracion)</span>
+		MinkaVM++   <span style="color:yellow;">  (Modulo Administracion)</span>
 		<div style="position:absolute; width:95%; height:50px; text-align:right; top:0px; font-size: 11px; font-weight: bold; color: #fff;">
 			[<? echo $fechaSistemaSesion?>][<? echo $horaSistemaSesion;?>]			
 		<div>
@@ -45,7 +47,7 @@ include("datosUsuario.php");
 			
 			<li><span>Configuracion General</span>
 				<ul>
-					<li><a href="navegador_activar_ciclos.php" target="contenedorPrincipal">Activar Ciclo</a></li>
+					<li><a href="navegador_activar_ciclos.php" target="contenedorPrincipal">Ciclos</a></li>
 					<li><a href="grilla_lineas.php" target="contenedorPrincipal">Grillas</a></li>
 					<li><a href="navegador_funcionarios1.php" target="contenedorPrincipal">Funcionarios</a></li>
 					<li><a href="navegador_grupo_especial.php" target="contenedorPrincipal">Grupos Especiales</a></li>
@@ -60,11 +62,13 @@ include("datosUsuario.php");
 					<li><a href="medicos_solicitados_lista_gerencia.php" target="contenedorPrincipal">Aprobar Alta de Medicos</a></li>
 					<li><a href="navegador_medicos1.php" target="contenedorPrincipal">Editar Datos de Medico</a></li>
 					<li><a href="medicosCiudadesGeneral.php" target="contenedorPrincipal">Asignar/Quitar Medicos de Lineas</a></li>
+					<li><a href="listadoMedicosCUP.php" target="contenedorPrincipal">Medicos CUP</a></li>
 				</ul>
 			</li>
 			
 			<li><span>Distribución de Material por Ciclo</span>
 				<ul>
+					<li><a href="rptOpVerificacionPersonalizada.php" target="contenedorPrincipal">Verificacion para la Distribucion</a></li>
 					<li><a href="navegador_distribucion_ciclos.php" target="contenedorPrincipal">Distribución General de MM y MA</a></li>
 					<!--li><a href="navegador_distribucion_ciclos.php" target="contenedorPrincipal">Distribución General de MM y MA GE</a></li-->
 				</ul>
@@ -123,6 +127,7 @@ include("datosUsuario.php");
 					<li><span>Visitadores</span>
 						<ul>
 							<li><a href="rptOpFirmaBoletas.php" target="contenedorPrincipal">Boletas de Visita</a></li>
+							<li><a href="rptOpPuntosContacto.php" target="contenedorPrincipal">Puntos de Contacto</a></li>
 							<li><a href="rpt_op_medicos_rutero_maestro2.php" target="contenedorPrincipal">Medicos en Rutero Maestro Resumido x Visitador</a></li>	
 							<li><a href="rpt_op_medicos_rutero_maestro.php" target="contenedorPrincipal">Medicos en Rutero Maestro Detallado</a></li>	
 							<li><a href="rpt_op_frecuenciaSecuencia.php" target="contenedorPrincipal">Frecuencia y Secuencia de Visita</a></li>								

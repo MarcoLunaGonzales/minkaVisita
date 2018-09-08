@@ -23,7 +23,7 @@
 	}
 	
 	
-	require("../conexion.inc");
+	require("../conexionInicial.inc");
 	
 	
 	$sql = "select codigo as id, concat(descripcion, ' ', presentacion) as nombre from muestras_medicas 

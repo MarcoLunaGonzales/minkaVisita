@@ -19,8 +19,8 @@
          select distinct (rd.`cod_med`) from `rutero_maestro_cab` rc, `rutero_maestro` r,
          `rutero_maestro_detalle` rd where rc.`cod_rutero` = r.`cod_rutero` and r.`cod_contacto` = rd.`cod_contacto` and
          rc.`cod_visitador` = $codVisitador and rc.`cod_rutero` = $codRutero";
-     $respMedicos=mysql_query($sqlMedicos);
-     echo "<table border=1 class='texto' align='center' cellspacing=0 cellpaddin=0>
+	 $respMedicos=mysql_query($sqlMedicos);
+     echo "<table class='texto'>
      <tr><th colspan='3'>Validacion de Secuencia en Rutero</th></tr>
      <tr><th>Medico</th><th>Contactos</th><th>Dias de Contacto</th></tr>";
      while($datMedicos=mysql_fetch_array($respMedicos)){

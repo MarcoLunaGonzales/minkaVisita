@@ -18,12 +18,16 @@ echo "<table align='center' class='textotit'><tr><th>Secuencia de Visita x Medic
 
 $sqlLeyenda="select codigo_funcionario, concat(paterno,' ',nombres) from funcionarios where codigo_funcionario in ($rpt_visitador)";
 $respLeyenda=mysql_query($sqlLeyenda);
-echo "<table border='0' class='textomini' align='center'>";
-echo "<tr><td>Leyenda:</td><th>Codigo</th><th>Visitador</th></td>";
+echo "<table border='0' class='textomini' align='center'";
+echo "<tr><th>Codigo</th><th>Visitador</th></td>";
+$arrayVis = [];
+$indice=1;
 while($datLeyenda=mysql_fetch_array($respLeyenda)){
 	$codFuncionario=$datLeyenda[0];
 	$nombreFuncionario=$datLeyenda[1];
-	echo "<tr><td></td><th>$codFuncionario</th><th align='left'>$nombreFuncionario</th></td>";
+	$arrayVis[$codFuncionario]="person".$indice.".png";
+	$indice++;
+	echo "<tr><th align='left'>$nombreFuncionario</th><th><img src='imagenes/$arrayVis[$codFuncionario]'></th></td>";
 }
 echo "</table>";
 
@@ -72,7 +76,7 @@ while($dat=mysql_fetch_array($resp)){
 		$codVisitador=$datSec[0];
 		$diaContacto=$datSec[1];
 		
-		$diasSecuencia[$j][1]=$codVisitador;
+		$diasSecuencia[$j][1]="<img src='imagenes/".$arrayVis[$codVisitador]."' >";
 		$diasSecuencia[$j][2]=$diaContacto;
 		
 		$j++;

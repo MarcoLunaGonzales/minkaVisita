@@ -16,7 +16,7 @@ function saca_nombre_muestra($codigo)
 
 function nombreProducto($codigo)
 
-{	$sql="select concat(descripcion, ' ',presentacion) from muestras_medicas where codigo='$codigo'";
+{	$sql="select nombre_producto from productos where cod_producto='$codigo'";
 
 	$resp=mysql_query($sql);
 
@@ -95,7 +95,7 @@ function nombreCompletoVisitador($codigo)
 
 function nombreTerritorio($codigo)
 
-{	$sql="select descripcion from ciudades where cod_ciudad='$codigo'";
+{	$sql="select nombre_ciudad from ciudades where cod_ciudad='$codigo'";
 
 	$resp=mysql_query($sql);
 
@@ -121,18 +121,38 @@ function codigoTerritorio($codigo)
 
 
 function nombreMedico($codigo)
-
-{	$sql="select concat(ap_pat_med,' ', nom_med) from medicos where cod_med='$codigo'";
-
-	$resp=mysql_query($sql);
-
-	$nombre=mysql_result($resp,0,0);
-
-	return($nombre);
-
+{	if($codigo!=0){
+		$sql="select concat(ap_pat_med,' ', nom_med) from medicos where cod_med='$codigo'";
+		$resp=mysql_query($sql);
+		$nombre=mysql_result($resp,0,0);
+		return($nombre);
+	}else{
+		return("----");
+	}
 }
 
+function nombreCliente($codigo)
+{	if($codigo!=0){
+		$sql="select nombre_cliente from clientes where cod_cliente='$codigo'";
+		$resp=mysql_query($sql);
+		$nombre=mysql_result($resp,0,0);
+		return($nombre);
+	}else{
+		return("----");
+	}
+}
 
+function nombreMedicoCUP($codigo)
+
+{	$sql="select concat(nombre_medico,'  - (',especialidad,')') from cup_medicos where cod_cup='$codigo'";
+	$resp=mysql_query($sql);
+	$numeroFilas=mysql_num_rows($resp);
+	$nombre="--Medico No Encontrado--";
+	if($numeroFilas>0){
+		$nombre=mysql_result($resp,0,0);	
+	}
+	return($nombre);
+}
 
 function nombreDia($codigo)
 

@@ -2,8 +2,8 @@
 require('conexion.inc');
 
 
-$codCiudadX="116";
-
+$codCiudadX="117";
+$codMedMax=8100;
 
 $sql="select f.codigo_funcionario, f.cod_ciudad, fli.codigo_linea 
 	from funcionarios f, funcionarios_lineas fli
@@ -20,7 +20,7 @@ while($dat=mysql_fetch_array($resp)){
 	echo $codFuncionario." ".$codCiudad." ".$codLinea."<br>";
 	
 	$sqlCat="select cod_med, cod_especialidad, categoria_med from categorias_lineas where codigo_linea=$codLinea 
-	and cod_med in (select cod_med from medicos where cod_ciudad=$codCiudadX)";
+	and cod_med in (select cod_med from medicos where cod_ciudad='$codCiudadX' and cod_med>='$codMedMax') ";
 	//echo $sqlCat;
 	$respCat=mysql_query($sqlCat);
 	while($datCat=mysql_fetch_array($respCat)){

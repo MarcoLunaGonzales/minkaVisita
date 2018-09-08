@@ -5,6 +5,8 @@
 
 	<link type="text/css" rel="stylesheet" href="menuLibs/css/demo.css" />
 	<link type="text/css" rel="stylesheet" href="menuLibs/dist/jquery.mmenu.css" />
+	
+	<link rel="icon" type="image/png" href="imagenes/aesculapio2.png" />
 
 	<script type="text/javascript" src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
 	<script type="text/javascript" src="menuLibs/dist/jquery.mmenu.js"></script>
@@ -22,7 +24,7 @@ include("datosUsuario.php");
 <div id="page">
 	<div class="header">
 		<a href="#menu"><span></span></a>
-		GALES - <span style="color:yellow;">(Modulo Visita)</span>
+		MinkaV+ - <span style="color:yellow;">(Modulo Visita)</span>
 		<div style="position:absolute; width:95%; height:50px; text-align:right; top:0px; font-size: 11px; font-weight: bold; color: #fff;">
 			[<? echo $fechaSistemaSesion?>][<? echo $horaSistemaSesion;?>]			
 		<div>
@@ -60,6 +62,8 @@ include("datosUsuario.php");
 			<li><a href="cambiar_contrasena_visitador.php" target="contenedorPrincipal">Cambiar Clave de Acceso</a></li>
 			<li><a href="navegador_devolucion_visitadorCiclo.php" target="contenedorPrincipal">Devolucion por Ciclo</a></li>
 			<li><a href="medicos_solicitados_lista.php" target="contenedorPrincipal">Alta de Medicos Nuevos</a></li>
+			<li><a href="listadoMedicosAsignados.php" target="contenedorPrincipal">Medicos Asignados & CUP</a></li>
+			<li><a href="listadoMedicosCUP.php" target="contenedorPrincipal">Medicos CUP</a></li>
 			
 			<li><span>Reportes</span>
 				<ul>

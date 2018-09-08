@@ -30,12 +30,12 @@ $dato=mysql_fetch_array($resp1);
 $nombre_territorio=$dato[1];	
 
 
-echo "<center><table border='0' class='textotit'><tr><th>Reporte Boletas de Visita (Firmas)<br>
+echo "<h1>Reporte Boletas de Visita (Firmas)<br>
 Territorio: $nombre_territorio<br>Gestion: $nombreGestion Ciclo: $rpt_ciclo<br>
-Visitador: $nombreVisitadorX</th></tr></table></center><br>";
+Visitador: $nombreVisitadorX</h1><br>";
 $indice_tabla=1;
 
-echo "<center><table border='1' class='texto' width='100%' cellspacing='0' id='main'>";
+echo "<center><table class='texto' id='main'>";
 
 echo "<tr><th>&nbsp;</th>
 <th>Visitador</th>

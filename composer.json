@@ -1,0 +1,16 @@
+{
+    "name": "marcoluna/minkavisita",
+    "description": "proyecto de visita medica para fabricantes de medicamentos",
+    "type": "project",
+    "license": "private",
+    "authors": [
+        {
+            "name": "Marco Luna",
+            "email": "mluna@minkasoftware.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+	"codeguy/upload": "@dev"
+	}
+}

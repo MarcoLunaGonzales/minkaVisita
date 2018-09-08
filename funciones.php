@@ -1,7 +1,19 @@
 <?php
 
+
+
 function redondear2($valor) { 
    $float_redondeado=round($valor * 100) / 100; 
+   return $float_redondeado; 
+}
+
+function formatonumero($valor) { 
+   $float_redondeado=number_format($valor, 0); 
+   return $float_redondeado; 
+}
+
+function formatonumeroDec($valor) { 
+   $float_redondeado=number_format($valor, 2); 
    return $float_redondeado; 
 }
 
@@ -79,5 +91,164 @@ function restauraCantidades($codigo_registro){
 	return(1);
 }
 
+function sanear_string($string)
+{
+ 
+    $string = trim($string);
+ 
+    $string = str_replace(
+        array('á', 'à', 'ä', 'â', 'ª', 'Á', 'À', 'Â', 'Ä'),
+        array('a', 'a', 'a', 'a', 'a', 'A', 'A', 'A', 'A'),
+        $string
+    );
+ 
+    $string = str_replace(
+        array('é', 'è', 'ë', 'ê', 'É', 'È', 'Ê', 'Ë'),
+        array('e', 'e', 'e', 'e', 'E', 'E', 'E', 'E'),
+        $string
+    );
+ 
+    $string = str_replace(
+        array('í', 'ì', 'ï', 'î', 'Í', 'Ì', 'Ï', 'Î'),
+        array('i', 'i', 'i', 'i', 'I', 'I', 'I', 'I'),
+        $string
+    );
+ 
+    $string = str_replace(
+        array('ó', 'ò', 'ö', 'ô', 'Ó', 'Ò', 'Ö', 'Ô'),
+        array('o', 'o', 'o', 'o', 'O', 'O', 'O', 'O'),
+        $string
+    );
+ 
+    $string = str_replace(
+        array('ú', 'ù', 'ü', 'û', 'Ú', 'Ù', 'Û', 'Ü'),
+        array('u', 'u', 'u', 'u', 'U', 'U', 'U', 'U'),
+        $string
+    );
+ 
+    $string = str_replace(
+        array('ñ', 'Ñ', 'ç', 'Ç'),
+        array('n', 'N', 'c', 'C',),
+        $string
+    );
+ 
+    //Esta parte se encarga de eliminar cualquier caracter extraño
+    $string = str_replace(
+        array("\\", "¨", "º", "-", "~",
+             "#", "@", "|", "!", "\"",
+             "·", "$", "%", "&", "/",
+             "(", ")", "?", "'", "¡",
+             "¿", "[", "^", "<code>", "]",
+             "+", "}", "{", "¨", "´",
+             ">", "< ", ";", ",", ":",
+             ".", " "),
+        ' ',
+        $string
+    );
+ 
+    return $string;
+}
+function fechasNombresCUP(){
+	$sqlMax="select max(d.fecha) from cup_datos d";
+	$respMax=mysql_query($sqlMax);
+	$fechaMaxima=mysql_result($respMax,0,0);
+	
+	$trim4Fin=date("M.y", strtotime($fechaMaxima));
+	$trim4Ini=date("M.y", strtotime($fechaMaxima."- 2 month"));
+	$trim4=$trim4Ini." ".$trim4Fin;
+	
+	$trim3Fin=date("M.y", strtotime($fechaMaxima."- 3 month"));
+	$trim3Ini=date("M.y", strtotime($fechaMaxima."- 5 month"));
+	$trim3=$trim3Ini." ".$trim3Fin;
+	
+	$trim2Fin=date("M.y", strtotime($fechaMaxima."- 6 month"));
+	$trim2Ini=date("M.y", strtotime($fechaMaxima."- 8 month"));
+	$trim2=$trim2Ini." ".$trim2Fin;
+	
+	$trim1Fin=date("M.y", strtotime($fechaMaxima."- 9 month"));
+	$trim1Ini=date("M.y", strtotime($fechaMaxima."- 11 month"));
+	$trim1=$trim1Ini." ".$trim1Fin;
+	
+	$vectorNombresFechas[0]=$trim1;
+	$vectorNombresFechas[1]=$trim2;
+	$vectorNombresFechas[2]=$trim3;
+	$vectorNombresFechas[3]=$trim4;
+	
+	return($vectorNombresFechas);
+}
+function fechasCUPAnioMovil(){
+	$sqlMax="select max(d.fecha) from cup_datos d";
+	$respMax=mysql_query($sqlMax);
+	$fechaMaxima=mysql_result($respMax,0,0);
+	
+	$fechaIni=date("Y-m-d", strtotime($fechaMaxima."- 11 month"));
+	$fechaFin=date("Y-m-d", strtotime($fechaMaxima));
+
+	$vectorCUPAnoMovil[0]=$fechaIni;
+	$vectorCUPAnoMovil[1]=$fechaFin;
+	
+	return($vectorCUPAnoMovil);	
+}
+function fechasCUPTrimestreIni(){
+	$sqlMax="select max(d.fecha) from cup_datos d";
+	$respMax=mysql_query($sqlMax);
+	$fechaMaxima=mysql_result($respMax,0,0);
+	
+	$trim4Fin=date("Y-m-d", strtotime($fechaMaxima));
+	$trim4Ini=date("Y-m-d", strtotime($fechaMaxima."- 2 month"));
+	
+	$trim3Fin=date("Y-m-d", strtotime($fechaMaxima."- 3 month"));
+	$trim3Ini=date("Y-m-d", strtotime($fechaMaxima."- 5 month"));
+	
+	$trim2Fin=date("Y-m-d", strtotime($fechaMaxima."- 6 month"));
+	$trim2Ini=date("Y-m-d", strtotime($fechaMaxima."- 8 month"));
+	
+	$trim1Fin=date("Y-m-d", strtotime($fechaMaxima."- 9 month"));
+	$trim1Ini=date("Y-m-d", strtotime($fechaMaxima."- 11 month"));
+	
+	$vectorTrimIni[0]=$trim1Ini;
+	$vectorTrimIni[1]=$trim2Ini;
+	$vectorTrimIni[2]=$trim3Ini;
+	$vectorTrimIni[3]=$trim4Ini;
+
+	return($vectorTrimIni);
+}
+function fechasCUPTrimestreFin(){
+	$sqlMax="select max(d.fecha) from cup_datos d";
+	$respMax=mysql_query($sqlMax);
+	$fechaMaxima=mysql_result($respMax,0,0);
+	
+	$trim4Fin=date("Y-m-d", strtotime($fechaMaxima));
+	$trim4Ini=date("Y-m-d", strtotime($fechaMaxima."- 2 month"));
+	
+	$trim3Fin=date("Y-m-d", strtotime($fechaMaxima."- 3 month"));
+	$trim3Ini=date("Y-m-d", strtotime($fechaMaxima."- 5 month"));
+	
+	$trim2Fin=date("Y-m-d", strtotime($fechaMaxima."- 6 month"));
+	$trim2Ini=date("Y-m-d", strtotime($fechaMaxima."- 8 month"));
+	
+	$trim1Fin=date("Y-m-d", strtotime($fechaMaxima."- 9 month"));
+	$trim1Ini=date("Y-m-d", strtotime($fechaMaxima."- 11 month"));
+	
+	$vectorTrimFin[0]=$trim1Fin;
+	$vectorTrimFin[1]=$trim2Fin;
+	$vectorTrimFin[2]=$trim3Fin;
+	$vectorTrimFin[3]=$trim4Fin;
+
+	return($vectorTrimFin);
+}
+
+function funcionUltimoDiaMes() { 
+	  $month = date('m');
+	  $year = date('Y');
+	  $day = date("d", mktime(0,0,0, $month+1, 0, $year));
+	  return date('Y-m-d', mktime(0,0,0, $month, $day, $year));
+};
+ 
+function funcionPrimerDiaMes() {
+	  $month = date('m');
+	  $year = date('Y');
+	  return date('Y-m-d', mktime(0,0,0, $month, 1, $year));
+}
 
 ?>

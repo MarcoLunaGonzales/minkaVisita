@@ -41,7 +41,7 @@ Gestion: $nombreGestion Ciclo: $rpt_ciclo $cad_territorio<br>
 
 echo "<table border='0' class='textomini' align='center'>";
 echo "<tr><td>Leyenda:</td><th>AR</th><th align='Left'>Asignacion Recibida</th></td></tr>";
-echo "<tr><td></td><th>CR</th><th align='left'>Cantidad Reportada en HERMES</th></td></tr>";
+echo "<tr><td></td><th>CR</th><th align='left'>Cantidad Reportada</th></td></tr>";
 echo "<tr><td></td><th>CED</th><th align='left'>Cantidad Efectiva Devuelta</th></td></tr>";
 echo "<tr><td></td><th>Dif.</th><th align='left'>Diferencia</th></td></tr>";
 echo "</table>";

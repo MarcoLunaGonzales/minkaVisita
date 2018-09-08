@@ -220,11 +220,11 @@
 	echo "<input type='hidden' name='fecha' value='fechilla'>";
 	echo "<td align='center'><select class='texto' name='turno'>";
 	if($turno=='Am')
-	{	echo"<option value='Am' selected>Manana</option>";
+	{	echo"<option value='Am' selected>Ma&ntilde;ana</option>";
 		echo"<option value='Pm'>Tarde</option>";
 	}
 	else
-	{	echo"<option value='Am'>Manana</option>";
+	{	echo"<option value='Am'>Ma&ntilde;ana</option>";
 		echo"<option value='Pm' selected>Tarde</option>";
 	}
 	echo "</select></td>";
@@ -260,10 +260,13 @@ for($i=1;$i<=$num_medicos;$i++)
 	$v_h_especialidad_med=$$h_especialidad_med;
 	$v_h_categoria_med=$$h_categoria_med;
 	
-	$sql="select DISTINCT(m.cod_med), m.ap_pat_med, m.ap_mat_med, m.nom_med from medicos m, categorias_lineas c, medico_asignado_visitador v
+	$sql="select DISTINCT(m.cod_med), m.ap_pat_med, m.ap_mat_med, m.nom_med from medicos m, categorias_lineas c, 
+			medico_asignado_visitador v
 			where c.cod_med=m.cod_med and c.codigo_linea='$global_linea' and c.cod_med=v.cod_med and 
+			v.codigo_linea=c.codigo_linea and
 			v.codigo_visitador='$global_visitador' 
 			and m.estado_registro=1 order by m.ap_pat_med";
+	
 	$res=mysql_query($sql);
 	echo "<tr><td align='center'><input type='text' class='texto' maxlength='2' size='2' name='$h_orden_visita' value='$v_h_orden_visita' onKeypress='if (event.keyCode < 48 || event.keyCode > 57 ) event.returnValue = false;'></td>";
 	echo "<td><select class='texto' name='$h_cod_med' onChange='envia_select(this,this.form)'>";
@@ -337,6 +340,8 @@ echo"\n<table align='center'><tr><td><a href='rutero_maestro_todo.php?rutero=$ru
 echo "<div class='divBotones'>
 		<input type='button' value='Modificar' onClick='envia(this.form)' class='boton'>
 		<input type='button' value='Guardar como' onClick='envia_nuevo(this.form)' class='boton'>
+		<!--input type='button' value='Cancelar' onClick='location.href=\"rutero_maestro_todo.php?rutero=$rutero\"' class='boton2'-->
+		
 	</div>";
 
 echo "<input type='hidden' name='rutero' value='$rutero'>";

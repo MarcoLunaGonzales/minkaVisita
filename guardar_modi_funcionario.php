@@ -1,9 +1,4 @@
 <?php
-/**
- * Desarrollado por Datanet.
- * @autor: Marco Antonio Luna Gonzales
- * @copyright 2005
-*/
 require("conexion.inc");
 if($usuario_rrhh!="")
 {	require("estilos_rrhh.php");
@@ -23,11 +18,11 @@ $fecha_real=$fecha[6].$fecha[7].$fecha[8].$fecha[9]."-".$fecha[3].$fecha[4]."-".
 $date = date("Y-m-d");
 mysql_query("INSERT into cambio_nombre_funcionario values($codigo,'$dat_nombre_fun[2]',' ','$dat_nombre_fun[0]','$dat_nombre_fun[1]','$date')");
 
-$sql="UPDATE funcionarios set cod_cargo=$cargo, paterno='$paterno',materno='$materno',nombres='$nombres',fecha_nac='$fecha_real', direccion='$direccion', telefono='$telefono',celular='$celular', email='$email', cod_ciudad='$agencia', estado=$estado where codigo_funcionario=$codigo";
+$sql="UPDATE funcionarios set cod_cargo=$cargo, paterno='$paterno',materno='$materno',nombres='$nombres',fecha_nac='$fecha_real', direccion='$direccion', telefono='$telefono',celular='$celular', email='$email', cod_ciudad='$agencia', estado=$estado, cod_zeus='$codigoexterno' where codigo_funcionario=$codigo";
 $resp=mysql_query($sql);
 $estado_final=$estado;
 echo "inicial $estado_inicial final $estado_final";
-if($estado_inicial==1 && $estado_final==0)
+/*if($estado_inicial==1 && $estado_final==0)
 {
  	//esta parte envia un correo a recursos humanos
 	$adicionales="FROM:Administrador del sistema HERMES";
@@ -39,10 +34,10 @@ if($estado_inicial==1 && $estado_final==0)
 	
 }
 else
-{
+{*/
 	echo "<script language='Javascript'>
 			alert('Los datos se modificaron satisfactoriamente');
 			location.href='navegador_funcionarios.php?cod_ciudad=$agencia';
 		</script>";  
-}
+
 ?>

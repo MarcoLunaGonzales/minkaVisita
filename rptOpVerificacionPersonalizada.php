@@ -25,10 +25,10 @@ require("estilos_cuerpo.inc");
 
 $gestionCicloRpt = $_GET["gestionCicloRpt"];
 
-echo "<center>";
-echo "<table class='textotit'><tr><th>Verificacion para la Distribucion de Parrillas Personalizadas <br> Seleccione el ciclo</th></tr></table><br>";
+echo "<h1>Verificacion para la Distribucion de Parrillas Personalizadas <br> Seleccione el ciclo</h1>";
+
 echo "<form metodh='GET'>";
-echo "<table class='texto' border='1' align='center' cellSpacing='0'>";
+echo "<center><table class='texto' align='center'>";
 
 echo "<tr><th align='left'>Ciclo - Gestion</th>";
 echo "<td><select name='gestionCicloRpt' class='texto'>";
@@ -68,8 +68,8 @@ echo "</select></td></tr>";
 //echo "</tr>";
 
 
-echo "</table><br>";
+echo "</table>";
 echo "<input type='button' name='reporte' value='Verificar' onClick='envia_formulario(this.form)' class='boton'>";
-echo "</form>";
-echo "</center>";
+echo "</form></center>";
+
 ?>

@@ -8,9 +8,9 @@ require("funcion_nombres.php");
 
 echo "Hora inicio: " . date("H:i:s");
 
-$rpt_ciclo = "9";
-$rpt_gestion = "2017/2018";
-$global_gestion = "1014";
+$rpt_ciclo = "3";
+$rpt_gestion = "2018/2019";
+$global_gestion = "1000";
 
 //$agencia=$_GET['agencia'];
 
@@ -62,15 +62,14 @@ while ($inicio < $fecha_fin_actual) {
 }
 
 	//AQUI PONDREMOS EL LISTADO DE TODOS LOS VISITADORES ACTIVOS
-	$cod_visitador="1345";
-	$cod_linea="1046";
+	$cod_visitador="118";
+	//$cod_linea="1046";
 	
 $sql_visitadores="SELECT f.codigo_funcionario, f.paterno, f.materno, f.nombres, rc.codigo_linea, rc.codigo_linea, f.cod_zeus, f.cod_ciudad
 	from rutero_maestro_cab_aprobado rc, funcionarios f
-	where f.codigo_funcionario=rc.cod_visitador and f.cod_zeus<>0 and 
+	where f.codigo_funcionario=rc.cod_visitador and 
 	rc.codigo_ciclo='$rpt_ciclo' and rc.codigo_gestion='$global_gestion' 
-	and rc.cod_visitador='$cod_visitador'
-	and rc.codigo_linea='$cod_linea' 
+	and f.estado=1 
 	order by f.cod_ciudad";
 
 echo $sql_visitadores;
@@ -78,7 +77,7 @@ echo $sql_visitadores;
 
 $resp_visitadores  = mysql_query($sql_visitadores);
 //$indice_reporte    = 1;
-$sqlXXX="select IFNULL(max(id_boleta+1),3500000) from boletas_visita_cabXXX";
+$sqlXXX="select IFNULL(max(id_boleta+1),15000) from boletas_visita_cabXXX";
 $respXXX=mysql_query($sqlXXX);
 $indice_reporte=mysql_result($respXXX,0,0);
 
@@ -88,6 +87,7 @@ while ($dat_visitadores = mysql_fetch_array($resp_visitadores)) {
     $linea_funcionario  = $dat_visitadores[4];
     $codigo_lineaclave  = $dat_visitadores[5];
 	$codZeus=$dat_visitadores[6];
+	$codZeus=$codigo_funcionario;
 	$rpt_territorio=$dat_visitadores[7];
 	
 	$nombre_territorio = nombreTerritorio($rpt_territorio);
@@ -129,15 +129,16 @@ while ($dat_visitadores = mysql_fetch_array($resp_visitadores)) {
         }
 
 		
-        $sql1 = "SELECT c.orden_visita, m.cod_med, m.ap_pat_med, m.ap_mat_med, m.nom_med, d.direccion, c.cod_especialidad, 
+        $sql1 = "SELECT c.orden_visita, m.cod_med, m.ap_pat_med, m.ap_mat_med, m.nom_med, 
+		(select d.direccion from direcciones_medicos d where d.cod_med=c.cod_med limit 0,1) as direccion, 
+		c.cod_especialidad, 
 		c.categoria_med, c.estado, m.telf_med, m.telf_celular_med, m.cod_catcloseup from rutero_maestro_detalle_aprobado c, 
-		medicos m, direcciones_medicos d where (c.cod_contacto=$cod_contacto) and (c.cod_visitador=$codigo_funcionario) and 
-		(c.cod_med=m.cod_med) and (m.cod_med=d.cod_med) and c.cod_med=d.cod_med and (c.cod_zona=d.numero_direccion) order by c.orden_visita";
+		medicos m where (c.cod_contacto=$cod_contacto) and (c.cod_visitador=$codigo_funcionario) and 
+		(c.cod_med=m.cod_med) order by c.orden_visita";
         $resp1 = mysql_query($sql1);
         while ($dat1 = mysql_fetch_array($resp1)) {
 			
 			$strNegados="";
-					
 			
             $orden_visita = $dat1[0];
             $codigo_medico = $dat1[1];

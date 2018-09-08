@@ -74,22 +74,20 @@ echo "<script language='Javascript'>
 
 				require("estilos_gerencia.inc");
 	
-		$sql_cab="select descripcion from ciudades where cod_ciudad=$cod_ciudad";
+		$sql_cab="select nombre_ciudad from ciudades where cod_ciudad=$cod_ciudad";
                 $resp_cab=mysql_query($sql_cab);
                 $dat_cab=mysql_fetch_array($resp_cab);
                 $nombre_ciudad=$dat_cab[0];
         echo "<form method='post' action=''>";
         //esta parte saca el ciclo activo
         $sql="select f.codigo_funcionario,c.cargo,f.paterno,f.materno,f.nombres,f.fecha_nac,f.direccion,f.telefono, f.celular,f.email,
-		ci.descripcion,f.estado, f.codigo_lineaclave,
-		(select l.nombre_linea as linea_clave from lineas l where l.codigo_linea=f.codigo_lineaclave)
-        from funcionarios f, cargos c, ciudades ci
+		ci.nombre_ciudad, f.estado, f.codigo_lineaclave, f.cod_zeus
+		from funcionarios f, cargos c, ciudades ci
         where f.cod_cargo=c.cod_cargo and f.cod_ciudad=ci.cod_ciudad and f.cod_ciudad='$cod_ciudad' and f.estado='1' order by c.cargo,f.paterno";
         if($vista==1)
         {
                 $sql="select f.codigo_funcionario,c.cargo,f.paterno,f.materno,f.nombres,f.fecha_nac,
-				f.direccion,f.telefono, f.celular,f.email,ci.descripcion,f.estado, f.codigo_lineaclave,
-				(select l.nombre_linea as linea_clave from lineas l where l.codigo_linea=f.codigo_lineaclave)
+				f.direccion,f.telefono, f.celular,f.email,ci.nombre_ciudad,f.estado, f.codigo_lineaclave, f.cod_zeus
         from funcionarios f, cargos c, ciudades ci
         where f.cod_cargo=c.cod_cargo and f.cod_ciudad=ci.cod_ciudad and f.cod_ciudad='$cod_ciudad' and 
 		f.estado='0' order by c.cargo,f.paterno";
@@ -97,12 +95,12 @@ echo "<script language='Javascript'>
         if($vista==2)
         {
                 $sql="select f.codigo_funcionario,c.cargo,f.paterno,f.materno,f.nombres,f.fecha_nac,f.direccion,f.telefono, 
-				f.celular,f.email,ci.descripcion,f.estado, f.codigo_lineaclave,
-				(select l.nombre_linea as linea_clave from lineas l where l.codigo_linea=f.codigo_lineaclave)
+				f.celular, f.email, ci.nombre_ciudad, f.estado, f.codigo_lineaclave, f.cod_zeus
         from funcionarios f, cargos c, ciudades ci
         where f.cod_cargo=c.cod_cargo and f.cod_ciudad=ci.cod_ciudad and f.cod_ciudad='$cod_ciudad' 
 		order by c.cargo,f.paterno";
         }
+		//echo $sql;
 		$resp=mysql_query($sql);
 
         echo "<h1>Funcionarios<br>Territorio $nombre_ciudad</h1>";
@@ -118,8 +116,8 @@ echo "<script language='Javascript'>
         
 		echo "<center><table class='texto'>";
 		echo "<tr><th>&nbsp;</th><th>&nbsp;</th><th>Cargo</th><th>Nombre</th>
-				<th>Email</th><th>Alta en sistema</th>
-				<th>Lineas</th><th>Dar Alta</th><th>Restablecer Clave</th></tr>";
+				<th>CodigoExterno</th><th>Alta en sistema</th>
+				<th>Dar Alta</th><th>Restablecer Clave</th></tr>";
         $indice_tabla=1;
 	while($dat=mysql_fetch_array($resp))
         {
@@ -136,8 +134,10 @@ echo "<script language='Javascript'>
                 $email=$dat[9];
                 $ciudad=$dat[10];
                 $estado=$dat[11];
-								$linea_clave=$dat[13];
-                if($estado==0)
+				$linea_clave=$dat[12];
+                $codExterno=$dat[13];
+				
+				if($estado==0)
                 {
                         $fondo_fila="#ff6666";
                         $ver_lineas="-";
@@ -178,9 +178,8 @@ echo "<script language='Javascript'>
 									echo "<tr bgcolor='$fondo_fila'><td align='center'>$indice_tabla</td>
 										<td align='center'><input type='checkbox' name='cod_contacto' value='$codigo'></td>
 											<td>&nbsp;$cargo</td><td>$nombre_f</td>
-										<td align='left'>&nbsp;$email</td>
+										<td align='left'>&nbsp;$codExterno</td>
 										<td align='center'>$alta_sistema</td>
-										<td align='center'>$ver_lineas</td>
 										<td align='center'>$dar_alta</td>
 										<td align='center'>$restablecer</td></tr>";
         						$indice_tabla++;

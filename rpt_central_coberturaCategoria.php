@@ -185,7 +185,8 @@ while($dat_visitador=mysql_fetch_array($resp_visitador)) {
     $nombre_visitador="$dat_visitador[1] $dat_visitador[3]";
 
     $sql_contactos_maestro="SELECT count(*) from rutero_maestro_cab_aprobado rc, rutero_maestro_aprobado r, 
-	rutero_maestro_detalle_aprobado rd where rc.cod_rutero=r.cod_rutero and rd.cod_contacto=r.cod_contacto and 
+	rutero_maestro_detalle_aprobado rd where rc.cod_rutero=r.cod_rutero and rd.cod_contacto=r.cod_contacto 
+	and rc.cod_visitador=r.cod_visitador and r.cod_visitador=rd.cod_visitador and 
 	rc.cod_visitador='$codigo_visitador' and rc.codigo_ciclo='$rpt_ciclo' and rc.codigo_gestion='$rpt_gestion' and 
 	rd.categoria_med='A' and rc.estado_aprobado=1";
     //echo $sql_contactos_maestro;
@@ -194,7 +195,8 @@ while($dat_visitador=mysql_fetch_array($resp_visitador)) {
     $numero_contactos_maestroA=$dat_maestro[0];
 
     $sql_contactos_maestro="SELECT count(*) from rutero_maestro_cab_aprobado rc, rutero_maestro_aprobado r, 
-	rutero_maestro_detalle_aprobado rd where rc.cod_rutero=r.cod_rutero and rd.cod_contacto=r.cod_contacto and 
+	rutero_maestro_detalle_aprobado rd where rc.cod_rutero=r.cod_rutero and rd.cod_contacto=r.cod_contacto 
+	and rc.cod_visitador=r.cod_visitador and r.cod_visitador=rd.cod_visitador and 
 	rc.cod_visitador='$codigo_visitador' and rc.codigo_ciclo='$rpt_ciclo' and rc.codigo_gestion='$rpt_gestion' 
 	and rd.categoria_med='B' and rc.estado_aprobado=1";
     $resp_contactos_maestro=mysql_query($sql_contactos_maestro);
@@ -202,7 +204,8 @@ while($dat_visitador=mysql_fetch_array($resp_visitador)) {
     $numero_contactos_maestroB=$dat_maestro[0];
 
     $sql_contactos_maestro="SELECT count(*) from rutero_maestro_cab_aprobado rc, rutero_maestro_aprobado r, 
-	rutero_maestro_detalle_aprobado rd where rc.cod_rutero=r.cod_rutero and rd.cod_contacto=r.cod_contacto and 
+	rutero_maestro_detalle_aprobado rd where rc.cod_rutero=r.cod_rutero and rd.cod_contacto=r.cod_contacto 
+	and rc.cod_visitador=r.cod_visitador and r.cod_visitador=rd.cod_visitador and 
 	rc.cod_visitador='$codigo_visitador' and rc.codigo_ciclo='$rpt_ciclo' and rc.codigo_gestion='$rpt_gestion' 
 	and rd.categoria_med='C' and rc.estado_aprobado=1";
     $resp_contactos_maestro=mysql_query($sql_contactos_maestro);
@@ -214,6 +217,7 @@ while($dat_visitador=mysql_fetch_array($resp_visitador)) {
 	
 	$sql_contactos_ejecutado="select count(rd.cod_contacto) from rutero_maestro_cab_aprobado rc, rutero_maestro_aprobado rm,
 		rutero_maestro_detalle_aprobado rd where rc.cod_rutero=rm.cod_rutero and rm.cod_contacto=rd.cod_contacto 
+		and rc.cod_visitador=rm.cod_visitador and rm.cod_visitador=rd.cod_visitador 
 		and rc.cod_visitador=rm.cod_visitador and rm.cod_visitador=rd.cod_visitador and 
 		rc.codigo_ciclo='$rpt_ciclo' and rc.codigo_gestion='$rpt_gestion' and rc.cod_visitador='$codigo_visitador'
 		and rd.estado=1 and rd.categoria_med='A'";
@@ -230,6 +234,7 @@ while($dat_visitador=mysql_fetch_array($resp_visitador)) {
 
     $sql_contactos_ejecutado="select count(rd.cod_contacto) from rutero_maestro_cab_aprobado rc, rutero_maestro_aprobado rm,
 		rutero_maestro_detalle_aprobado rd where rc.cod_rutero=rm.cod_rutero and rm.cod_contacto=rd.cod_contacto 
+		and rc.cod_visitador=rm.cod_visitador and rm.cod_visitador=rd.cod_visitador 
 		and rc.cod_visitador=rm.cod_visitador and rm.cod_visitador=rd.cod_visitador and 
 		rc.codigo_ciclo='$rpt_ciclo' and rc.codigo_gestion='$rpt_gestion' and rc.cod_visitador='$codigo_visitador'
 		and rd.estado=1 and rd.categoria_med='B'";
@@ -245,6 +250,7 @@ while($dat_visitador=mysql_fetch_array($resp_visitador)) {
 
     $sql_contactos_ejecutado="select count(rd.cod_contacto) from rutero_maestro_cab_aprobado rc, rutero_maestro_aprobado rm,
 		rutero_maestro_detalle_aprobado rd where rc.cod_rutero=rm.cod_rutero and rm.cod_contacto=rd.cod_contacto 
+		and rc.cod_visitador=rm.cod_visitador and rm.cod_visitador=rd.cod_visitador 
 		and rc.cod_visitador=rm.cod_visitador and rm.cod_visitador=rd.cod_visitador and 
 		rc.codigo_ciclo='$rpt_ciclo' and rc.codigo_gestion='$rpt_gestion' and rc.cod_visitador='$codigo_visitador'
 		and rd.estado=1 and rd.categoria_med='C'";
